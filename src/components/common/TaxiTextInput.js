@@ -11,7 +11,6 @@ const TaxiTextInput = (props) =>{
             secureTextEntry={props.secureTextEntry?props.secureTextEntry:false}
             placeholder= {props.placeholder? props.placeholder:'enter the text here'}
             placeholderTextColor= 'blue'
-            placeholderStyle={{margin:100}}
             style={props.style? props.style: styles.input}
             keyboardType={props.keyboardType? props.keyboardType: null}
             onChangeText={props.func? props.fun: getInput}
