@@ -8,6 +8,7 @@ const TaxiButton= (props) =>{
 
     return (
         <TouchableOpacity 
+            style={{alignSelf:'stretch',marginLeft:'14%', marginRight:'14%'}}
             onPress={props.func? props.func: pressed}
             >
             <View style={props.style? props.style: styles.button}>
@@ -26,7 +27,6 @@ const styles = StyleSheet.create({
         alignItems: "center",
         backgroundColor:"#F2B84D",
         height:48,
-        width:288,
         borderRadius:3,
         justifyContent: "center",
         marginTop:15,
