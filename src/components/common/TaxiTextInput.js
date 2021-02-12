@@ -24,15 +24,17 @@ export default TaxiTextInput;
 const styles = StyleSheet.create({
     input:{ 
         height: 40, 
-        width:288,
         borderColor: 'gray',
         borderWidth: 1 ,
+        alignSelf:'stretch',
         borderRadius:3,
         marginBottom:16,
         fontFamily:  fontKeys.MR,
         paddingLeft:11,
         color:'#3F4D5F',
         fontSize:12,
+        marginLeft:36,
+        marginRight:36
 
     }
 });
