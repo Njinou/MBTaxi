@@ -34,10 +34,16 @@ const LoginScreen: () => React$Node = () => {
        setIsPortrait(ecran.screen.width <=  ecran.screen.height);
      });
   }, []);
-  
+
   return (
     <>  
-         <Text style={{color:'red',fontSize:22}}> { "manger " +isportrait   }</Text>
+         <Text style={{color:'red',fontSize:22,marginBottom:10,fontFamily:fontKeys.MEBI,color:'#F2B84D',marginTop:10,
+          textShadowColor: 'rgba(4,80,110,0.5)',
+          textShadowOffset: {width: 1, height: 1},
+          textShadowRadius: 5
+        }}> TAXI DRIVER </Text>
+        {isportrait?
+        <>
         <View style={{width:360,height:242,backgroundColor:'#F2B84D'}}>
             <View style={{alignItems:'center',marginTop:124}}>
               <Text style={{textAlign:'center',fontSize:63.5,fontFamily:fontKeys.MR,fontWeight:'bold'}}>
@@ -53,7 +59,10 @@ const LoginScreen: () => React$Node = () => {
               </View>
             </View>
         </View>
-        <View style={[styles.triangle,styles.arrowDown]}/>
+        <View style={[styles.triangle,styles.arrowDown]}/> 
+        </>
+        :null}
+
         <TaxiTextInput secureTextEntry={true}/>
         <TaxiTextInput keyboardType="numeric"/>
         <TaxiButton/>
