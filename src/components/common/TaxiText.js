@@ -11,7 +11,7 @@ const TaxiText = (props) =>{
             <Text 
               onPress={props.func? props.func: setTexting}
               style={props.styleText? props.styleText: styles.text}>
-                    {props.text ? props.text: 'CREATE A NEW ACCOUNT'}
+                    {props.text ? props.text: 'TEXT'}
             </Text>
         </View>
     )

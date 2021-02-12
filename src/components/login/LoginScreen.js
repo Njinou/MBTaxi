@@ -18,6 +18,8 @@ import {
 } from 'react-native';
 
 import fontKeys from '../../keyText/fontKeys';
+import textKeys from '../../keyText/textKeys';
+
 import TaxiText from '../common/TaxiText'
 import TaxiButton from '../common/TaxiButton'
 import TaxiTextInput from '../common/TaxiTextInput'
@@ -41,19 +43,19 @@ const LoginScreen: () => React$Node = () => {
           textShadowColor: 'rgba(4,80,110,0.5)',
           textShadowOffset: {width: 1, height: 1},
           textShadowRadius: 5
-        }}> TAXI DRIVER </Text>
+        }}> {textKeys.taxiDriver} </Text>
         { (isportrait && windowHeight >= 600)?
         <>
         <View style={{width:360,height:242,backgroundColor:'#F2B84D'}}>
             <View style={{alignItems:'center',marginTop:124}}>
               <Text style={{textAlign:'center',fontSize:63.5,fontFamily:fontKeys.MR,fontWeight:'bold'}}>
-                TAXI
+                {textKeys.taxi}
               </Text>
               
               <View style={{alignItems:'center',justifyContent:'center',flexDirection:'row'}}>  
                 <Text style={styles.driverDot }> . </Text>
                 <Text style={styles.driver}>
-                  DRIVER
+                  {textKeys.driver}
                 </Text>
                 <Text style={styles.driverDot}> . </Text>
               </View>
@@ -62,16 +64,16 @@ const LoginScreen: () => React$Node = () => {
         <View style={[styles.triangle,styles.arrowDown]}/> 
         </>
         :null}
-
-        <TaxiTextInput secureTextEntry={true}/>
-        <TaxiTextInput keyboardType="numeric"/>
-        <TaxiButton/>
+        
+        <TaxiTextInput placeholder={textKeys.login.username}/>
+        <TaxiTextInput  placeholder={textKeys.password} secureTextEntry={true}/>
+        <TaxiButton  text={textKeys.login.login}/>
         <TaxiText   
-          text="FORGOT PASSWORD" 
+          text={textKeys.login.forgotPassword}
           style={styles.password} 
           styleText={styles.passwordText}
         />
-        <TaxiText/>
+        <TaxiText text={textKeys.login.createAccount}/>
     </>
   );
 };

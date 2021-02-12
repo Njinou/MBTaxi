@@ -1,4 +1,5 @@
 const textKeys = {
+    "taxiDriver":"TAXI DRIVER",
     "password": "Password",
     "ok": "OK",
     "taxi": "TAXI",
@@ -27,6 +28,10 @@ const textKeys = {
      'day':"Day",
      'week': "Week",
      'Month': "Month",
+     "uploadPhoto": "Upload Photo", 
+    "fullName": "Full Name",
+    "phoneNumber": "Phone Number",
+    "email": "Email",
     "login":{ 
         "login": "Log In",
         "username": "Username",
@@ -34,10 +39,6 @@ const textKeys = {
         "createAccount": "CREATE ACCOUNT"
     },
     "signup":{
-        "uploadPhoto": "Upload Photo", 
-        "fullName": "Full Name",
-        "phoneNumber": "Phone Number",
-        "email": "Email",
         "createUsername": "Create Username",
         "confirmPassword": "Confirm Password"
     },
