@@ -10,105 +10,72 @@ import React from 'react';
 import {
   SafeAreaView,
   StyleSheet,
-  ScrollView,
-  View,
-  Text,
   StatusBar,
+  View,
+  Text
 } from 'react-native';
-
-import {
-  Header,
-  LearnMoreLinks,
-  Colors,
-  DebugInstructions,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
+import TaxiTextInput from './src/components/common/TaxiTextInput';
+import TaxiButton from './src/components/common/TaxiButton';
+import fontKeys from './src/keyText/fontKeys';
+import TaxiText from './src/components/common/TaxiText';
+import LoginScreen from './src/components/login/LoginScreen';
 
 const App: () => React$Node = () => {
   return (
     <>
       <StatusBar barStyle="dark-content" />
-      <SafeAreaView>
-        <ScrollView
-          contentInsetAdjustmentBehavior="automatic"
-          style={styles.scrollView}>
-          <Header />
-          {global.HermesInternal == null ? null : (
-            <View style={styles.engine}>
-              <Text style={styles.footer}>Engine: Hermes</Text>
-            </View>
-          )}
-          <View style={styles.body}>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Step One</Text>
-              <Text style={styles.sectionDescription}>
-                Edit <Text style={styles.highlight}>App.js</Text> to change this
-                screen and then come back to see your edits.
-              </Text>
-            </View>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>See Your Changes</Text>
-              <Text style={styles.sectionDescription}>
-                <ReloadInstructions />
-              </Text>
-            </View>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Debug</Text>
-              <Text style={styles.sectionDescription}>
-                <DebugInstructions />
-              </Text>
-            </View>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Learn More</Text>
-              <Text style={styles.sectionDescription}>
-                Read the docs to discover what to do next:
-              </Text>
-            </View>
-            <LearnMoreLinks />
-          </View>
-        </ScrollView>
+      <SafeAreaView style={{alignItems:'center'}}>
+        <LoginScreen/>
       </SafeAreaView>
     </>
   );
 };
 
 const styles = StyleSheet.create({
-  scrollView: {
-    backgroundColor: Colors.lighter,
-  },
-  engine: {
-    position: 'absolute',
-    right: 0,
-  },
-  body: {
-    backgroundColor: Colors.white,
-  },
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-    color: Colors.black,
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-    color: Colors.dark,
-  },
-  highlight: {
-    fontWeight: '700',
-  },
-  footer: {
-    color: Colors.dark,
-    fontSize: 12,
-    fontWeight: '600',
-    padding: 4,
-    paddingRight: 12,
-    textAlign: 'right',
-  },
+ arrowDown: {
+    borderTopWidth: 66,
+    borderRightWidth: 180,
+    borderBottomWidth: 0,
+    borderLeftWidth: 180,
+    borderTopColor: '#F2B84D',
+   // backgroundColor:  'transparent',//'#F2B84D',
+    borderRightColor: 'transparent',
+    borderBottomColor: 'transparent',
+    borderLeftColor: 'transparent',
+    marginBottom:21,
+    zIndex:0,
+   
+},
+triangle: {
+    width: 0,
+    height: 0,
+    backgroundColor: 'transparent',
+    borderStyle: 'solid',
+},
+driver: {
+  textAlign:'center',
+  fontSize:20.5,
+  fontFamily:fontKeys.MR,
+  fontWeight:'bold',
+  fontStyle:'italic',
+},
+driverDot: {
+  alignSelf:'flex-start',
+  fontSize:15.5,
+  fontFamily:fontKeys.MR,
+  fontWeight:'bold',
+  fontStyle:'italic'
+},
+password:{
+  marginTop:73,
+  marginBottom:32
+},
+passwordText:{
+  color:'#A3A1A1',
+  fontSize:12,
+  fontFamily:fontKeys.MSB
+}
+
 });
 
 export default App;
