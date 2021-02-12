@@ -13,7 +13,8 @@ import {
   StatusBar,
   View,
   Text,
-  AppState
+  AppState,
+  Image
 } from 'react-native';
 import TaxiTextInput from './src/components/common/TaxiTextInput';
 import TaxiButton from './src/components/common/TaxiButton';
