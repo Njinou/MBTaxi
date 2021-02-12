@@ -36,13 +36,13 @@ const LoginScreen: () => React$Node = () => {
   }, []);
 
   return (
-    <>  
+    <>    
          <Text style={{color:'red',fontSize:22,marginBottom:10,fontFamily:fontKeys.MEBI,color:'#F2B84D',marginTop:10,
           textShadowColor: 'rgba(4,80,110,0.5)',
           textShadowOffset: {width: 1, height: 1},
           textShadowRadius: 5
         }}> TAXI DRIVER </Text>
-        {isportrait?
+        { (isportrait && windowHeight >= 600)?
         <>
         <View style={{width:360,height:242,backgroundColor:'#F2B84D'}}>
             <View style={{alignItems:'center',marginTop:124}}>
