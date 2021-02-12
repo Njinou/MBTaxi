@@ -11,8 +11,7 @@ const TaxiTextInput = (props) =>{
             secureTextEntry={props.secureTextEntry?props.secureTextEntry:false}
             placeholder= {props.placeholder? props.placeholder:'enter the text here'}
             placeholderTextColor= 'blue'
-            placeholderStyle={{margin:100}}
-            style={props.style? props.style: styles.input}
+            style={props.style? props.style: [styles.input,{ marginLeft:'14%', marginRight:'14%'}]}
             keyboardType={props.keyboardType? props.keyboardType: null}
             onChangeText={props.func? props.fun: getInput}
             value={props.value?props.value: value}
@@ -25,15 +24,17 @@ export default TaxiTextInput;
 const styles = StyleSheet.create({
     input:{ 
         height: 40, 
-        width:288,
         borderColor: 'gray',
         borderWidth: 1 ,
+        alignSelf:'stretch',
         borderRadius:3,
         marginBottom:16,
         fontFamily:  fontKeys.MR,
         paddingLeft:11,
         color:'#3F4D5F',
         fontSize:12,
+        marginLeft:36,
+        marginRight:36
 
     }
 });

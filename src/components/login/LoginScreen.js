@@ -6,13 +6,15 @@
  * @flow strict-local
  */
 
-import React from 'react';
+import React, { useState,useEffect,useRef } from 'react';
 import {
   SafeAreaView,
   StyleSheet,
   StatusBar,
   View,
-  Text
+  Text,
+  useWindowDimensions,
+  Dimensions,
 } from 'react-native';
 
 import fontKeys from '../../keyText/fontKeys';
@@ -21,8 +23,21 @@ import TaxiButton from '../common/TaxiButton'
 import TaxiTextInput from '../common/TaxiTextInput'
 
 const LoginScreen: () => React$Node = () => {
+  const windowWidth = useWindowDimensions().width;
+  const windowHeight = useWindowDimensions().height;
+  const [isportrait,setIsPortrait] = useState(windowWidth <= windowHeight);
+
+  const appState = useRef(Dimensions.get('screen'));
+
+  useEffect(() => {
+    Dimensions.addEventListener("change", function(ecran) {
+       setIsPortrait(ecran.screen.width <=  ecran.screen.height);
+     });
+  }, []);
+  
   return (
-    <>
+    <>  
+         <Text style={{color:'red',fontSize:22}}> { "manger " +isportrait   }</Text>
         <View style={{width:360,height:242,backgroundColor:'#F2B84D'}}>
             <View style={{alignItems:'center',marginTop:124}}>
               <Text style={{textAlign:'center',fontSize:63.5,fontFamily:fontKeys.MR,fontWeight:'bold'}}>
