@@ -12,8 +12,8 @@ const TaxiButton= (props) =>{
             onPress={props.func? props.func: pressed}
             >
             <View style={props.style? props.style: styles.button}>
-                <Text style={props.text?props.text:styles.text}>  
-                    {props.text? props.text: 'Log In ' } 
+                <Text style={props.textStyle?props.textStyle:styles.text}>  
+                    {props.text? props.text: 'Button' } 
                 </Text>
             </View>
         </TouchableOpacity>
