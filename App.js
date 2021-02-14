@@ -13,13 +13,19 @@ import {
   StatusBar,
   View,
   Text,
-  AppState
+  AppState,
+  ImageBackground,
+  Image
 } from 'react-native';
 import TaxiTextInput from './src/components/common/TaxiTextInput';
 import TaxiButton from './src/components/common/TaxiButton';
 import fontKeys from './src/keyText/fontKeys';
 import TaxiText from './src/components/common/TaxiText';
 import LoginScreen from './src/components/login/LoginScreen';
+import SignUp from './src/components/signUp/SignUp';
+import SignUpConfirmationCode  from './src/components/signUp/SignUpConfirmationCode';
+import imageKeys from './src/keyText/imageKeys';
+
 
 const App: () => React$Node = () => {
 
@@ -51,7 +57,9 @@ const App: () => React$Node = () => {
     <>
       <StatusBar barStyle="dark-content" />
       <SafeAreaView style={{alignItems:'center'}}>
-        <LoginScreen/>
+      <ImageBackground source={imageKeys.background} style={styles.image}>
+        <SignUpConfirmationCode/>
+        </ImageBackground>
       </SafeAreaView>
     </>
   );
@@ -100,7 +108,13 @@ passwordText:{
   color:'#A3A1A1',
   fontSize:12,
   fontFamily:fontKeys.MSB
-}
+},
+image: {
+  //flex: 1,
+  resizeMode: "cover",
+  justifyContent: "center",
+  alignSelf:'stretch'
+},
 
 });
 

@@ -15,30 +15,39 @@ import {
   Text,
   useWindowDimensions,
   Dimensions,
+  ScrollView
 } from 'react-native';
 
 import fontKeys from '../../keyText/fontKeys';
 import textKeys from '../../keyText/textKeys';
 
-import TaxiText from '../common/TaxiText'
-import TaxiButton from '../common/TaxiButton'
-import TaxiTextInput from '../common/TaxiTextInput'
+import TaxiText from '../common/TaxiText';
+import TaxiButton from '../common/TaxiButton';
+import TaxiTextInput from '../common/TaxiTextInput';
 
 const LoginScreen: () => React$Node = () => {
   const windowWidth = useWindowDimensions().width;
   const windowHeight = useWindowDimensions().height;
   const [isportrait,setIsPortrait] = useState(windowWidth <= windowHeight);
 
-  const appState = useRef(Dimensions.get('screen'));
+  //const appState = useRef(Dimensions.get('screen'));
 
   useEffect(() => {
     Dimensions.addEventListener("change", function(ecran) {
        setIsPortrait(ecran.screen.width <=  ecran.screen.height);
      });
+     return () => {
+      // unsubscribe event
+      Dimensions.removeEventListener("change", function(ecran) {
+        console.log("Effectivement");
+       // setIsPortrait(ecran.screen.width <=  ecran.screen.height);
+      });
+    };
   }, []);
 
   return (
-    <>    
+    <ScrollView style={{alignSelf:'stretch',}} contentContainerStyle={{alignItems:'center',paddingBottom:54}} >  
+        <View style={{alignSelf:'stretch',alignItems:'center'}}>
          <Text style={{color:'red',fontSize:22,marginBottom:10,fontFamily:fontKeys.MEBI,color:'#F2B84D',marginTop:10,
           textShadowColor: 'rgba(4,80,110,0.5)',
           textShadowOffset: {width: 1, height: 1},
@@ -74,7 +83,8 @@ const LoginScreen: () => React$Node = () => {
           styleText={styles.passwordText}
         />
         <TaxiText text={textKeys.login.createAccount}/>
-    </>
+      </View>
+    </ScrollView> 
   );
 };
 

@@ -10,7 +10,7 @@ const TaxiText = (props) =>{
         <View style={props.style? props.style: styles.container}>
             <Text 
               onPress={props.func? props.func: setTexting}
-              style={props.styleText? props.styleText: styles.text}>
+              style={props.styleText? [styles.text,props.styleText]: styles.text}>
                     {props.text ? props.text: 'TEXT'}
             </Text>
         </View>
