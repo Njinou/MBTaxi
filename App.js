@@ -26,6 +26,7 @@ import SignUp from './src/components/signUp/SignUp';
 import SignUpConfirmationCode  from './src/components/signUp/SignUpConfirmationCode';
 import imageKeys from './src/keyText/imageKeys';
 import ConfirmationSuccess from  './src/components/signUp/ConfirmationSuccess';
+import MenuScreen from  './src/components/menu/MenuScreen';
 
 const App: () => React$Node = () => {
 
@@ -58,7 +59,7 @@ const App: () => React$Node = () => {
       <StatusBar barStyle="dark-content" />
       <SafeAreaView style={{alignItems:'center'}}>
       <ImageBackground source={imageKeys.background} style={styles.image}>
-        <ConfirmationSuccess/>
+        <MenuScreen/>
         </ImageBackground>
       </SafeAreaView>
     </>

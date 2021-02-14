@@ -57,10 +57,11 @@ const textKeys = {
         "stats": "Stats",
         "payment": "Payment",
         "info": "Info",
-        "faq": "FAD & Help",
+        "faq": "FAQ & Help",
         "settings": "Settings",
         "contact": "Contact US",
         "logout":" Log Out",
+        "schedule":"Scheduled Pickups"
     },
     "weekDay":{
          "m": "M",
