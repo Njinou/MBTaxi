@@ -11,7 +11,7 @@ const TaxiButton= (props) =>{
             style={{alignSelf:'stretch',marginLeft:'14%', marginRight:'14%'}}
             onPress={props.func? props.func: pressed}
             >
-            <View style={props.style? [props.style,styles.button]: styles.button}>
+            <View style={props.style? [styles.button,props.style]: styles.button}>
                 <Text style={props.textStyle?props.textStyle:styles.text}>  
                     {props.text? props.text: 'Button' } 
                 </Text>
