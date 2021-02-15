@@ -1,5 +1,5 @@
 import React from 'react';
-import {Text,StyleSheet,TouchableOpacity,View} from 'react-native';
+import {Text,StyleSheet,TouchableOpacity,View,Pressable} from 'react-native';
 import fontKeys from '../../keyText/fontKeys';
 
 const TaxiButton= (props) =>{
@@ -7,7 +7,7 @@ const TaxiButton= (props) =>{
     const pressed = () => console.log("clicked");
 
     return (
-        <TouchableOpacity 
+        <Pressable 
             style={{alignSelf:'stretch',marginLeft:'14%', marginRight:'14%'}}
             onPress={props.func? props.func: pressed}
             >
@@ -16,7 +16,7 @@ const TaxiButton= (props) =>{
                     {props.text? props.text: 'Button' } 
                 </Text>
             </View>
-        </TouchableOpacity>
+        </Pressable>
     )
 
 }
