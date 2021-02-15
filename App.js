@@ -28,6 +28,7 @@ import imageKeys from './src/keyText/imageKeys';
 import ConfirmationSuccess from  './src/components/signUp/ConfirmationSuccess';
 import MenuScreen from  './src/components/menu/MenuScreen';
 import AcceptTripModal from './src/components/accepttrip/AcceptTripModal';
+
 const App: () => React$Node = () => {
 
   const appState = useRef(AppState.currentState);
