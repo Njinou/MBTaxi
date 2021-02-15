@@ -9,7 +9,7 @@ const textKeys = {
     "history": "History",
     'accept': 'Accept',
     'reject': "Reject",
-    'pickup': "PickUp",
+    'pickup': "Pickup",
     'location': "Location",
     'continue': "Continue",
     'straight': "Straight",
@@ -62,6 +62,10 @@ const textKeys = {
         "contact": "Contact US",
         "logout":" Log Out",
         "schedule":"Scheduled Pickups"
+    },
+    "acceptTrip":{
+        "acceptTrip": "Accept Trip?",
+        "trip": "Trip Earnings: "
     },
     "weekDay":{
          "m": "M",
