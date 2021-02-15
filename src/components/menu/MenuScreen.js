@@ -35,7 +35,7 @@ const MenuScreen: () => React$Node = () => {
         
         <View style={{backgroundColor:'white',flex:1}}>
             <ImageBackground source={imageKeys.maplightgrey} style={styles.image}>
-                <View style={{height:95,flexDirection:'row',justifyContent:'space-between',borderStyle:'solid',borderBottomWidth:1,borderBottomColor:'#DBDBDB',marginBottom:'auto'}}> 
+                <View style={{flexDirection:'row',justifyContent:'space-between',borderStyle:'solid',borderBottomWidth:1,borderBottomColor:'#DBDBDB',marginBottom:'auto'}}> 
                         <View style={{justifyContent:'space-around',paddingLeft:18}}>
                             <TaxiText styleText={{color:'#000000',fontWeight:'bold',fontSize:13}} text={textKeys.menu.earnings}/>
                             <TaxiText styleText={{color:'#000000',fontSize:18}} text={'$' + '400'}/>
@@ -77,6 +77,8 @@ const styles = StyleSheet.create({
         shadowOpacity: 0,
         shadowRadius: 2,  
         elevation: 5,
+        marginTop:23,
+        marginBottom:24
     },
     cashOut:{
         color:'white',fontSize:22,
