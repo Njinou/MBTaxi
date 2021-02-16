@@ -25,7 +25,7 @@ const HomeScreen: () => React$Node = () => {
   return (
     <View style={{height:'100%'}}>
         <ImageBackground source={imageKeys.map} style={styles.image}>
-            <Image  source={imageKeys.menu}  style={{marginLeft:20,marginBottom:25}}/>
+            <Image  source={imageKeys.menu}  style={{marginLeft:20,marginBottom:25,marginTop:25}}/>
             <TaxiText 
                 styleText={{color:'#000000',fontSize:12,fontFamily:fontKeys.MR,textAlign:'center'}}  
                 style={{paddingLeft:15,alignItems:'center',justifyContent:'center',paddingBottom:13}} 
