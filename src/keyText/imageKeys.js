@@ -46,6 +46,7 @@ const imageKeys = {
     taxiicon: require("../assets/images/taxiicon.png"),
     taxisearch: require("../assets/images/taxisearch.png"),
     visa: require("../assets/images/visa.png"),
+    map: require("../assets/images/map.png"),
    yourlocation: require("../assets/images/yourlocation.png"),
  };
  export default imageKeys;
