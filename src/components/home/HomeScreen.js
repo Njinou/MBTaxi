@@ -19,7 +19,7 @@ import TaxiButton from '../common/TaxiButton'
 import TaxiTextInput from '../common/TaxiTextInput'
 import TaxiText from  '../common/TaxiText';
 
-const HomeScreen: () => React$Node = () => {
+const HomeScreen: (props) => React$Node = (props) => {
 
 
   return (
@@ -38,8 +38,8 @@ const HomeScreen: () => React$Node = () => {
                             marginLeft:60,
                             marginRight:'-19.5%',
                             fontSize:14,
-                            fontFamily:fontKeys.MSB,
-                            backgroundColor:'white',
+                            fontFamily:props.offline? fontKeys.MR : fontKeys.MSB,
+                            backgroundColor: props.color1? props.color1:'white',
                             //borderStyle:'solid',
                         // borderWidth:2,
                         // borderColor:'#04506E',
@@ -48,16 +48,20 @@ const HomeScreen: () => React$Node = () => {
                             shadowOpacity: 2,
                             shadowRadius: 4,
                         }]} 
-                        textStyle={[styles.cashOut,{color:'#58585C',fontFamily:fontKeys.MR,paddingTop:9,
+                        textStyle={[styles.cashOut,{color:props.textColor1? props.textColor1:'#58585C',
+                        fontFamily:props.offline? fontKeys.MB : fontKeys.MR,
+                        paddingTop:9,
                         paddingBottom:9,}]} 
                         text={textKeys.offline}
                     />
                     </View>
                     <View style={{alignSelf:'stretch',flex:1,marginRight:20}}>
                         <TaxiButton 
-                            style={{ marginLeft:'-19.5%',marginRight:60,backgroundColor:'#18BEAE'}} 
+                            style={{ marginLeft:'-19.5%',marginRight:60,backgroundColor:props.color2? props.color2:'#18BEAE'}} 
                             textStyle={[styles.cashOut,{paddingTop:9,
-                                paddingBottom:9,color:'#FFFFFF',fontFamily:fontKeys.MB,fontSize:14}]} 
+                                paddingBottom:9,color:props.textColor1? props.textColor2:'#FFFFFF',
+                                fontFamily:props.offline? fontKeys.MR : fontKeys.MB,
+                                fontSize:14}]} 
                             text={textKeys.online}
                         />
                 </View>

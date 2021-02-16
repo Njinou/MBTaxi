@@ -30,6 +30,7 @@ import MenuScreen from  './src/components/menu/MenuScreen';
 import AcceptTripModal from './src/components/accepttrip/AcceptTripModal';
 import MapDirectionScreen from './src/components/duringtrip/MapDirectionScreen';
 import HomeScreen from './src/components/home/HomeScreen';
+import HomeOfflineScreen from './src/components/home/HomeOfflineScreen';
 
 const App: () => React$Node = () => {
 
@@ -56,13 +57,14 @@ const App: () => React$Node = () => {
     setAppStateVisible(appState.current);
     console.log("AppState", appState.current);
   };
-
+//text == blanc  
+//text blanc
   return (
     <>
       <StatusBar barStyle="dark-content" />
       <SafeAreaView style={{alignItems:'center'}}>
       <ImageBackground source={imageKeys.background} style={styles.image}>
-        <HomeScreen/>
+        <HomeOfflineScreen/>
         </ImageBackground>
       </SafeAreaView>
     </>
