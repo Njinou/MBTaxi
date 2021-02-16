@@ -29,6 +29,7 @@ import ConfirmationSuccess from  './src/components/signUp/ConfirmationSuccess';
 import MenuScreen from  './src/components/menu/MenuScreen';
 import AcceptTripModal from './src/components/accepttrip/AcceptTripModal';
 import MapDirectionScreen from './src/components/duringtrip/MapDirectionScreen';
+import HomeScreen from './src/components/home/HomeScreen';
 
 const App: () => React$Node = () => {
 
@@ -61,7 +62,7 @@ const App: () => React$Node = () => {
       <StatusBar barStyle="dark-content" />
       <SafeAreaView style={{alignItems:'center'}}>
       <ImageBackground source={imageKeys.background} style={styles.image}>
-        <MapDirectionScreen/>
+        <HomeScreen/>
         </ImageBackground>
       </SafeAreaView>
     </>
