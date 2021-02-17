@@ -11,102 +11,43 @@ import TaxiTextInput from '../common/TaxiTextInput'
 import TaxiText from  '../common/TaxiText';
 
 import TaxiImageText  from '../common/TaxiImageText';
+import HomeScreen from '../home/HomeScreen';
+import ModalComponent from '../common/ModalComponent';
+
+const ScrollOpportunity = () =>{
+    return (
+        <View style={{flexDirection:'column'}} contentContainerStyle={{flexDirection:'row'}}>
+                <ModalComponent />
+                <ModalComponent />
+                <ModalComponent />
+                <ModalComponent />
+                <ModalComponent />
+                <ModalComponent />
+
+                <ModalComponent />
+                <ModalComponent />
+                <ModalComponent />
+                <ModalComponent />
+                <ModalComponent />
+                <ModalComponent />
+                
+        </View>
+    );
+}
 
 const DriverOpportunityScreen = () => {
-
-
-    const renderItem = ({ item }) => (
-        <View key={item.id} style={styles.modalView}>
-            <Text style={styles.modalText}>Hello World!</Text>
-            <Pressable
-              style={[styles.button, styles.buttonClose]}
-              onPress={() => setModalVisible(!modalVisible)}
-            >
-              <Text style={styles.textStyle}>Hide Modal</Text>
-            </Pressable>
-          </View>
-      );
-    
-  const [modalVisible, setModalVisible] = useState(false);
+    const [modalVisible, setModalVisible] = useState(false);
   return (
-    <View >
-    <ScrollView>
-      <Modal
-        animationType="slide"
-        transparent={true}
-        visible={modalVisible}
-        onRequestClose={() => {
-          Alert.alert("Modal has been closed.");
-          setModalVisible(!modalVisible);
-        }}
-      >
-
-            <View style={styles.centeredView1}>
-                <View style={styles.modalView}>
-                    <Text style={styles.modalText}>Hello MBOUENDEU!</Text>
-                    <Pressable
-                    style={[styles.button, styles.buttonClose]}
-                    onPress={() => setModalVisible(!modalVisible)}
-                    >
-                    <Text style={styles.textStyle}>Hide Modal</Text>
-                    </Pressable>
-                </View>
-            </View>
-            <TaxiButton text={textKeys.end}  style={{margin:50,justifyContent:'flex-end'}} textStyle={{color:'#3E3E39',fontFamily:fontKeys.MSB,fontSize:18}} />
-            <View style={styles.centeredView1}>
-                <View style={styles.modalView}>
-                    <Text style={styles.modalText}>Hello MBOUENDEU!</Text>
-                    <Pressable
-                    style={[styles.button, styles.buttonClose]}
-                    onPress={() => setModalVisible(!modalVisible)}
-                    >
-                    <Text style={styles.textStyle}>Hide Modal</Text>
-                    </Pressable>
-                </View>
-            </View>
-
-            <View style={styles.centeredView1}>
-                <View style={styles.modalView}>
-                    <Text style={styles.modalText}>Hello MBOUENDEU!</Text>
-                    <Pressable
-                    style={[styles.button, styles.buttonClose]}
-                    onPress={() => setModalVisible(!modalVisible)}
-                    >
-                    <Text style={styles.textStyle}>Hide Modal</Text>
-                    </Pressable>
-                </View>
-            </View>
-       
-      </Modal>
-
-
-      </ScrollView>
-
-      <Pressable
-        style={[styles.button, styles.buttonOpen]}
-        onPress={() => setModalVisible(true)}
-      >
-        <Text style={styles.textStyle}>Show Modal</Text>
-      </Pressable>
-
-    </View>
+    <HomeScreen color1= "#ED5A4D"  textColor1="white" color2="white" textColor2="#58585C" offline={true} Component={<ScrollOpportunity />}/>
   );
 };
 
 const styles = StyleSheet.create({
   centeredView: {
     flex: 1,
-    //justifyContent: "center",
-   // alignItems: "center",
-    marginBottom: 24,
-    marginTop:22,
-  },
-  centeredView1: {
-    flex: 1,
-    justifyContent: "flex-end",
-   // alignItems: "center",
-    marginBottom: 24,
-    marginTop:22,
+    justifyContent: "center",
+    alignItems: "center",
+    marginTop: 22
   },
   modalView: {
     margin: 20,

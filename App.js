@@ -32,6 +32,7 @@ import MapDirectionScreen from './src/components/duringtrip/MapDirectionScreen';
 import HomeScreen from './src/components/home/HomeScreen';
 import HomeOfflineScreen from './src/components/home/HomeOfflineScreen';
 import RatingScreen from './src/components/rate/RatingScreen';
+import DriverOpportunityScreen from './src/components/ridenotification/DriverOpportunityScreen';
 
 const App: () => React$Node = () => {
 
@@ -65,7 +66,7 @@ const App: () => React$Node = () => {
       <StatusBar barStyle="dark-content" />
       <SafeAreaView style={{alignItems:'center'}}>
       <ImageBackground source={imageKeys.background} style={styles.image}>
-        <RatingScreen/>
+        <DriverOpportunityScreen/>
         </ImageBackground>
       </SafeAreaView>
     </>
