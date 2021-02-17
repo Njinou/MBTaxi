@@ -24,7 +24,7 @@ const textKeys = {
      "online": "Online",
      "offline": "Offline",
      "rideReview": "How was your Trip",
-     "done": "Done",
+     "done": "DONE",
      'comment': "Write A Comment",  
      'driverOpportunities': "Higher ride activity today at",
      'from': "From",
