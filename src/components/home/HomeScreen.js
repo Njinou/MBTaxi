@@ -73,15 +73,9 @@ const HomeScreen: (props) => React$Node = (props) => {
                         />
                 </View>
         </View>
-        <ScrollView  >
+        
             {props.Component}
-        </ScrollView>
-                                
-        <ScrollView   horizontal={true}>
-            <ModalComponent/>
-            <ModalComponent/>
-            <ModalComponent/>
-        </ScrollView>
+         
         </ImageBackground>
     </View>
   );
