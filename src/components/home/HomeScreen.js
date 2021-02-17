@@ -8,7 +8,7 @@
  */
 
 import React from 'react';
-import {StyleSheet,View,Image,ImageBackground} from 'react-native';
+import {StyleSheet,View,Image,ImageBackground, ScrollView,Text} from 'react-native';
 
 import fontKeys from '../../keyText/fontKeys';
 import imageKeys from '../../keyText/imageKeys';
@@ -19,8 +19,15 @@ import TaxiButton from '../common/TaxiButton'
 import TaxiTextInput from '../common/TaxiTextInput'
 import TaxiText from  '../common/TaxiText';
 
-const HomeScreen: (props) => React$Node = (props) => {
+import ModalComponent from '../common/ModalComponent';
 
+const logo = {
+    uri: 'https://reactnative.dev/img/tiny_logo.png',
+    width: 64,
+    height: 64
+  };
+
+const HomeScreen: (props) => React$Node = (props) => {
 
   return (
     <View style={{height:'100%'}}>
@@ -66,6 +73,9 @@ const HomeScreen: (props) => React$Node = (props) => {
                         />
                 </View>
         </View>
+        
+            {props.Component}
+         
         </ImageBackground>
     </View>
   );
