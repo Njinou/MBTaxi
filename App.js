@@ -33,6 +33,7 @@ import HomeScreen from './src/components/home/HomeScreen';
 import HomeOfflineScreen from './src/components/home/HomeOfflineScreen';
 import RatingScreen from './src/components/rate/RatingScreen';
 import DriverOpportunityScreen from './src/components/ridenotification/DriverOpportunityScreen';
+import DriverStatsScreen from './src/components/driverstats/DriverStatsScreen';
 
 const App: () => React$Node = () => {
 
@@ -66,7 +67,7 @@ const App: () => React$Node = () => {
       <StatusBar barStyle="dark-content" />
       <SafeAreaView style={{alignItems:'center'}}>
       <ImageBackground source={imageKeys.background} style={styles.image}>
-        <DriverOpportunityScreen/>
+        <DriverStatsScreen/>
         </ImageBackground>
       </SafeAreaView>
     </>
