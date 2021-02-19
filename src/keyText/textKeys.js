@@ -2,6 +2,7 @@ const textKeys = {
     "taxiDriver":"TAXI DRIVER",
     "password": "Password",
     "ok": "OK",
+    "or": "Or",
     "home": "Home",
     "am":"AM",
     "pm": "PM",
@@ -90,7 +91,8 @@ const textKeys = {
     "rider":{
         "request":{
             'request': "Request Taxi",
-            "schedule":"Scheduled Rides",
+            "schedule": "Scheduled Rides",
+            "taxiOption": "View our other Taxi request options "
         }
     }
     

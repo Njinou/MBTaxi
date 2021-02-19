@@ -59,8 +59,8 @@ const HomeRiderDestinationScreen: (props) => React$Node = (props) => {
                 <ScrollView 
                     style={{
                         backgroundColor:'white',
-                        borderBottomEndRadius:8,
-                        borderBottomStartRadius:8, 
+                        borderBottomLeftRadius:8,
+                        borderBottomRightRadius:8,
                     }}
                 >
                     <TaxiImageText12 
@@ -74,15 +74,53 @@ const HomeRiderDestinationScreen: (props) => React$Node = (props) => {
                         text={textKeys.destination} 
                     />
                 </ScrollView>
+                <Image source={imageKeys.yourlocation} style={{marginTop:80,alignSelf:'flex-end',marginRight:60,marginBottom:41}} />
+                <Image source={imageKeys.taxi} style={{alignSelf:'flex-end',marginRight:'33%',marginBottom:36}} />
+                <Image source={imageKeys.taxi} style={{marginLeft:66,marginBottom:'auto',transform: [{ rotate: "90deg" }]}} />
             </View>
             
+            <View style={{ marginTop:'auto',alignItems:'center',justifyContent:'center',flexDirection:'row', alignSelf:'flex-end'}}>
+                    <View style={{borderStyle:'solid',borderColor:'#000000',borderWidth:1,flex:1,marginLeft:'30%',margin:5}}/>
+                    <Text style={{fontSize:14,fontFamily:fontKeys.MR,color:'#000000'}}>
+                        {textKeys.or}
+                    </Text>
+                    <View style={{borderStyle:'solid',borderColor:'#000000',borderWidth:1,flex:1,marginRight:'30%',margin:5}}/>
+            </View>
+
+            <TaxiText 
+                style={{
+                  //  marginTop:'auto',
+                    alignSelf:'stretch',
+                    marginLeft:17,
+                    marginRight:15,
+                    marginBottom:20,
+                    borderBottomRightRadius:8,
+                    shadowColor: 'rgba(170,170,170,0.5)',
+                    shadowOffset:(0,2),
+                    shadowOpacity:22,
+                    shadowRadius:8,
+                    backgroundColor:'white',
+                    borderRadius:8
+                }} 
+                styleText={{
+                    color:'#000000',
+                    borderWidth:0,
+                    fontFamily:fontKeys.MR,
+                    padding:13,
+                    textAlign:'center',
+                    fontSize:14
+                }} 
+
+                text={textKeys.rider.request.taxiOption} 
+            />
+
             <View 
                 style={{
                     justifyContent:'space-between',
                     flexDirection:'row',
                     paddingLeft:54,
                     paddingRight:46,
-                    marginTop:'auto',
+                   // marginTop:'auto',
                     backgroundColor:'#222222',
                     shadowOffset:(0,-1),
                     shadowColor:'rgba(0,0,0,0.09)',
