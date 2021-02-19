@@ -54,6 +54,7 @@ const HomeScreen: (props) => React$Node = (props) => {
                             shadowOffset: { width: 0, height: 1 },
                             shadowOpacity: 2,
                             shadowRadius: 4,
+                            elevation:5,
                         }]} 
                         textStyle={[styles.cashOut,{color:props.textColor1? props.textColor1:'#58585C',
                         fontFamily:props.offline? fontKeys.MB : fontKeys.MR,

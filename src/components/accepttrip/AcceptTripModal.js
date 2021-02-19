@@ -62,7 +62,9 @@ const AcceptTripModal = () => {
                                     shadowColor: '#04506E',
                                     shadowOffset: { width: 0, height: 2 },
                                     shadowOpacity: 0,
-                                    shadowRadius: 2,}]} 
+                                    shadowRadius: 2,
+                                    elevation:5,
+                                  }]} 
                                     textStyle={[styles.cashOut,{color:'#3E3E39',fontFamily:fontKeys.MSB}]} 
                                     text={textKeys.reject}
                                 />

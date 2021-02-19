@@ -17,6 +17,7 @@ const textKeys = {
     'location': "Location",
     'continue': "Continue",
     'straight': "Straight",
+    'destination': "Where do you need to go?",
     'left': "Left",
     'right': "Right",
     'turn': "Turn",
