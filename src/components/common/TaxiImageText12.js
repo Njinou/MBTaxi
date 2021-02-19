@@ -2,20 +2,16 @@ import React from 'react';
 import {StyleSheet,Image,View,Text} from 'react-native';
 import fontKeys from '../../keyText/fontKeys';
 import imageKeys from '../../keyText/imageKeys';
+import textKeys from '../../keyText/textKeys';
 import TaxiText from './TaxiText';
 
 const TaxiImageText12= (props) =>{
     return (
         <View style={props.style? [styles.container,props.style] : styles.container}> 
              <Image  style={props.imageStyle? [styles.image,props.imageStyle]  :styles.image} source={ props.image? props.image: imageKeys.profile} />
-             <Text style={{color:'red',alignSelf:'center'}}> ADdsakjnasdakjndaskdasdads</Text>
-             <View style={{alignSelf:'flex-end'}}>
-                 <Text style={{color:'rebeccapurple'}}> ,alignSelf:'center'</Text>
-                 <Text style={{color:'rebeccapurple'}}> ,alignSelf:'center' ??????????????????????</Text>
-             </View>
-             <View style={{marginTop:'auto',}}>
-                <TaxiText styleText={props.textStyleStart? [styles.textStart,props.textStyleStart]  : styles.textStart} text={props.textStart? props.textStart:"John Smith"}/>
-                <TaxiText styleText={props.textStyleEnd? [styles.textEnd,props.textStyleEnd]  : styles.textEnd} text={props.textEnd? props.textEnd:"John Smith"}/>
+             <View>
+                 <Text style={[styles.input,{paddingTop:12},props.styleText1]}>{props.text1? props.text1 : ''}</Text>
+                 <Text style={[styles.input,{color:'#878787',fontSize:11},props.styleText2]}> {props.text2 ? props.text2 :''}</Text>
              </View>
             
         </View>
@@ -29,7 +25,7 @@ const styles = StyleSheet.create({
        alignItems:'flex-start',
        flexDirection:'row',
        //alignItems:'center',
-       paddingBottom:10,
+       paddingBottom:12,
     },
     image:{
         marginLeft:21,
@@ -44,6 +40,17 @@ const styles = StyleSheet.create({
     },
     textEnd:{
         color:'#3F4D5F',
-        fontSize:15
+        fontSize:15,
+    },
+    input:{ 
+       // height: 40, 
+        borderColor: 'gray',
+        borderWidth: 0 ,
+        borderRadius:3,
+        fontFamily:  fontKeys.MR,
+        //paddingLeft:11,
+        color:'#000000',
+        fontSize:14,
+        backgroundColor:'white',
     }
 });
