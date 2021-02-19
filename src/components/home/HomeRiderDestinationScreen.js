@@ -20,8 +20,6 @@ import TaxiTextInput from '../common/TaxiTextInput'
 import TaxiText from  '../common/TaxiText';
 import TaxiImageText from '../common/TaxiImageText';
 import TaxiImageText12 from '../common/TaxiImageText12';
-
-import ModalComponent from '../common/ModalComponent';
 import TaxiImageTextInput from '../common/TaxiImageTextInput';
 
 const HomeRiderDestinationScreen: (props) => React$Node = (props) => {
@@ -37,8 +35,9 @@ const HomeRiderDestinationScreen: (props) => React$Node = (props) => {
                 
                     <TaxiImageTextInput  
                         style={{
-                        backgroundColor:'white',alignItems:'center',textAlign:'center',
-                        //paddingTop:17,
+                        backgroundColor:'white',
+                        alignItems:'center',
+                        textAlign:'center',
                         marginBottom:1,
                         borderTopLeftRadius:8,
                         borderTopRightRadius:8,
@@ -46,13 +45,14 @@ const HomeRiderDestinationScreen: (props) => React$Node = (props) => {
                         shadowOffset: { width: 0, height: 2 },
                         shadowOpacity: 2,
                         shadowRadius:8,
-                        elevation:50
-                  
+                        elevation:50,
+                        flexWrap:'nowrap',alignSelf:'stretch',
+                        width:'100%'
                         }} 
                         imageStyle={{marginRight:22}} 
                         image={imageKeys.taxisearch} 
                         placeholder={textKeys.destination}
-                        inputStyle={{borderWidth:0,marginRight:24,
+                        inputStyle={{borderWidth:0,marginRight:24,marginTop :17,
                         }}
                     /> 
                       
@@ -63,30 +63,44 @@ const HomeRiderDestinationScreen: (props) => React$Node = (props) => {
                         borderBottomStartRadius:8, 
                     }}
                 >
-                <TaxiImageText12 style={{
-                    
-                }}  image={imageKeys.stayyellow} 
-                        text={textKeys.destination} />
-                         <TaxiImageText12 style={{
-                    
-                }}  image={imageKeys.stayyellow} 
-                        text={textKeys.destination} />
-                         <TaxiImageText12 style={{
-                    
-                }}  image={imageKeys.stayyellow} 
-                        text={textKeys.destination} />
-                         <TaxiImageText12 style={{
-                    
-                }}  image={imageKeys.stayyellow} 
-                        text={textKeys.destination} />
-                         <TaxiImageText12 style={{
-                    
-                }}  image={imageKeys.stayyellow} 
-                        text={textKeys.destination} />
-
-            </ScrollView>
+                    <TaxiImageText12 
+                        image={imageKeys.stayyellow} 
+                        text={textKeys.destination} 
+                        text1={textKeys.home}
+                        text2= "308 Raleigh Dr. Raleigh,NC"
+                    />
+                    <TaxiImageText12 
+                        image={imageKeys.stayyellow} 
+                        text={textKeys.destination} 
+                    />
+                </ScrollView>
             </View>
             
+            <View 
+                style={{
+                    justifyContent:'space-between',
+                    flexDirection:'row',
+                    paddingLeft:54,
+                    paddingRight:46,
+                    marginTop:'auto',
+                    backgroundColor:'#222222',
+                    shadowOffset:(0,-1),
+                    shadowColor:'rgba(0,0,0,0.09)',
+                    shadowOpacity:4
+                }}
+
+            >   
+                <View style={{alignItems:'center',justifyContent:'center',paddingBottom:10,paddingTop:10}}>
+                    <Image  source={imageKeys.requesttaxiyellow}/>
+                    <Text style={{color:'white'}}>Request Taxi</Text>
+                </View>
+                
+                <View style={{alignItems:'center',justifyContent:'center',paddingBottom:10,paddingTop:10}}>
+                    <Image  source={imageKeys.scheduledridesgrey} />
+                    <Text style={{color:'white'}}>Scheduled rides</Text>
+                </View>
+            </View>
+
 
         </ImageBackground>
     </View>
