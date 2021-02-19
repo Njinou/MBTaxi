@@ -92,12 +92,12 @@ const HomeRiderDestinationScreen: (props) => React$Node = (props) => {
             >   
                 <View style={{alignItems:'center',justifyContent:'center',paddingBottom:10,paddingTop:10}}>
                     <Image  source={imageKeys.requesttaxiyellow}/>
-                    <Text style={{color:'white'}}>Request Taxi</Text>
+                    <Text style={{color:'#F2B84D',fontSize:10,textShadowColor:'#F2B84D',textShadowRadius:1,fontFamily:fontKeys.MSB}}>{textKeys.rider.request.request}</Text>
                 </View>
                 
                 <View style={{alignItems:'center',justifyContent:'center',paddingBottom:10,paddingTop:10}}>
                     <Image  source={imageKeys.scheduledridesgrey} />
-                    <Text style={{color:'white'}}>Scheduled rides</Text>
+                    <Text style={{color:'#C3C1C1',fontSize:10,fontFamily:fontKeys.MSB}}>{textKeys.rider.request.schedule}</Text>
                 </View>
             </View>
 

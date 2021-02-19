@@ -2,6 +2,7 @@ const textKeys = {
     "taxiDriver":"TAXI DRIVER",
     "password": "Password",
     "ok": "OK",
+    "home": "Home",
     "am":"AM",
     "pm": "PM",
     "end": "End",
@@ -85,6 +86,12 @@ const textKeys = {
          "f": "F",
          "s": "Sa",
          "su": "Su"
+    },
+    "rider":{
+        "request":{
+            'request': "Request Taxi",
+            "schedule":"Scheduled Rides",
+        }
     }
     
  };
