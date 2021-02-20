@@ -21,6 +21,7 @@ import TaxiText from  '../common/TaxiText';
 import TaxiImageText from '../common/TaxiImageText';
 import TaxiImageText12 from '../common/TaxiImageText12';
 import TaxiImageTextInput from '../common/TaxiImageTextInput';
+import RideOtherOptions from '../rider/rideOptions/RideOtherOptions';
 
 const HomeRiderDestinationScreen: (props) => React$Node = (props) => {
     const [destination,setDestination] = useState(null);
@@ -29,10 +30,10 @@ const HomeRiderDestinationScreen: (props) => React$Node = (props) => {
 
   return (
     <View style={{height:'100%'}}>
-        <ImageBackground source={imageKeys.map} style={styles.image}>
+       <ImageBackground source={imageKeys.map} style={styles.image}>
             <View style={{marginLeft:20,marginRight:15, }}> 
                 <Image  source={imageKeys.menu}  style={{marginBottom:20,marginTop:18}}/>
-                
+                  {props.option? < RideOtherOptions/> :<>
                     <TaxiImageTextInput  
                         style={{
                         backgroundColor:'white',
@@ -55,7 +56,7 @@ const HomeRiderDestinationScreen: (props) => React$Node = (props) => {
                         inputStyle={{borderWidth:0,marginRight:24,marginTop :17,
                         }}
                     /> 
-                      
+                    
                 <ScrollView 
                     style={{
                         backgroundColor:'white',
@@ -74,48 +75,54 @@ const HomeRiderDestinationScreen: (props) => React$Node = (props) => {
                         text={textKeys.destination} 
                     />
                 </ScrollView>
-                <Image source={imageKeys.yourlocation} style={{marginTop:80,alignSelf:'flex-end',marginRight:60,marginBottom:41}} />
+                  </>}
+                <Image source={imageKeys.yourlocation} style={{marginTop:props.option? 'auto':80,alignSelf:'flex-end',marginRight:60,marginBottom:41}} />
                 <Image source={imageKeys.taxi} style={{alignSelf:'flex-end',marginRight:'33%',marginBottom:36}} />
                 <Image source={imageKeys.taxi} style={{marginLeft:66,marginBottom:'auto',transform: [{ rotate: "90deg" }]}} />
+              
             </View>
             
-            <View style={{ marginTop:'auto',alignItems:'center',justifyContent:'center',flexDirection:'row', alignSelf:'flex-end'}}>
-                    <View style={{borderStyle:'solid',borderColor:'#000000',borderWidth:1,flex:1,marginLeft:'30%',margin:5}}/>
-                    <Text style={{fontSize:14,fontFamily:fontKeys.MR,color:'#000000'}}>
-                        {textKeys.or}
-                    </Text>
-                    <View style={{borderStyle:'solid',borderColor:'#000000',borderWidth:1,flex:1,marginRight:'30%',margin:5}}/>
-            </View>
+            {props.option ? <RideOtherOptions/>:
+            <>
+                <View style={{ marginTop:'auto',alignItems:'center',justifyContent:'center',flexDirection:'row', alignSelf:'flex-end'}}>
+                        <View style={{borderStyle:'solid',borderColor:'#000000',borderWidth:1,flex:1,marginLeft:'30%',margin:5}}/>
+                        <Text style={{fontSize:14,fontFamily:fontKeys.MR,color:'#000000'}}>
+                            {textKeys.or}
+                        </Text>
+                        <View style={{borderStyle:'solid',borderColor:'#000000',borderWidth:1,flex:1,marginRight:'30%',margin:5}}/>
+                </View>
+                
+                <TaxiText 
+                    style={{
+                    //  marginTop:'auto',
+                        alignSelf:'stretch',
+                        marginLeft:17,
+                        marginRight:15,
+                        marginBottom:20,
+                        borderBottomRightRadius:8,
+                        shadowColor: 'rgba(170,170,170,0.5)',
+                        shadowOffset:(0,2),
+                        shadowOpacity:22,
+                        shadowRadius:8,
+                        backgroundColor:'white',
+                        borderRadius:8
+                    }} 
+                    styleText={{
+                        color:'#000000',
+                        borderWidth:0,
+                        fontFamily:fontKeys.MR,
+                        padding:13,
+                        textAlign:'center',
+                        fontSize:14
+                    }} 
 
-            <TaxiText 
-                style={{
-                  //  marginTop:'auto',
-                    alignSelf:'stretch',
-                    marginLeft:17,
-                    marginRight:15,
-                    marginBottom:20,
-                    borderBottomRightRadius:8,
-                    shadowColor: 'rgba(170,170,170,0.5)',
-                    shadowOffset:(0,2),
-                    shadowOpacity:22,
-                    shadowRadius:8,
-                    backgroundColor:'white',
-                    borderRadius:8
-                }} 
-                styleText={{
-                    color:'#000000',
-                    borderWidth:0,
-                    fontFamily:fontKeys.MR,
-                    padding:13,
-                    textAlign:'center',
-                    fontSize:14
-                }} 
-
-                text={textKeys.rider.request.taxiOption} 
-            />
+                    text={textKeys.rider.request.taxiOption} 
+                />
+            </>}
 
             <View 
                 style={{
+                    marginTop: props.option? 'auto': null,
                     justifyContent:'space-between',
                     flexDirection:'row',
                     paddingLeft:54,
@@ -136,10 +143,8 @@ const HomeRiderDestinationScreen: (props) => React$Node = (props) => {
                 <View style={{alignItems:'center',justifyContent:'center',paddingBottom:10,paddingTop:10}}>
                     <Image  source={imageKeys.scheduledridesgrey} />
                     <Text style={{color:'#C3C1C1',fontSize:10,fontFamily:fontKeys.MSB}}>{textKeys.rider.request.schedule}</Text>
-                </View>
-            </View>
-
-
+                </View> 
+            </View>           
         </ImageBackground>
     </View>
   );
