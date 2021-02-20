@@ -1,8 +1,12 @@
 import React, { useState } from "react";
-import { Alert, Modal, StyleSheet, Text, Pressable, View } from "react-native";
+import { Alert, Modal, StyleSheet, Text, Pressable, View,Image } from "react-native";
+import imageKeys from "../../../keyText/imageKeys";
+import textKeys from "../../../keyText/textKeys";
+import ModalText from '../../common/ModalText';
 
 const RideOtherOptions = () => {
   const [modalVisible, setModalVisible] = useState(true);
+   setModalFunc = () => setModalVisible(!modalVisible);
   return (
       <Modal
       supportedOrientations={['portrait', 'landscape']}
@@ -15,44 +19,12 @@ const RideOtherOptions = () => {
           setModalVisible(!modalVisible);
         }}
       >
+         
         <View style={{flexDirection:'row',alignItems:'center',height:'100%',justifyContent:'center',flexWrap:'wrap',marginTop:85}}>
-            <View style={styles.modalView}>
-                <Pressable
-                style={[styles.button, styles.buttonClose]}
-                onPress={() => setModalVisible(!modalVisible)}
-                >
-                <Text style={styles.textStyle}>Hide Modal</Text>
-                </Pressable>
-            </View>
-            
-            <View style={styles.modalView}>
-                <Pressable
-                style={[styles.button, styles.buttonClose]}
-                onPress={() => setModalVisible(!modalVisible)}
-                >
-                <Text style={styles.textStyle}>Hide Modal</Text>
-                </Pressable>
-            </View>
-               
-            <View style={styles.modalView}>
-                <Pressable
-                style={[styles.button, styles.buttonClose]}
-                onPress={() => setModalVisible(!modalVisible)}
-                >
-                <Text style={styles.textStyle}>Hide Modal</Text>
-                </Pressable>
-            </View>
-            
-            <View style={styles.modalView}>
-                <Pressable
-                style={[styles.button, styles.buttonClose]}
-                onPress={() => setModalVisible(!modalVisible)}
-                >
-                <Text style={styles.textStyle}>Hide Modal</Text>
-                </Pressable>
-            </View>
-
-            
+            <ModalText text1={textKeys.rider.options.goBack} func={setModalFunc} Component={<Image source={imageKeys.backarrowlarge} style={{alignSelf:'flex-start'}}/>}/>
+            <ModalText text1={textKeys.rider.options.course} text2={textKeys.rider.options.bookCourse} func={setModalFunc}/>
+            <ModalText text1={textKeys.rider.options.schedule} text2={textKeys.rider.options.setTime} func={setModalFunc}/>
+            <ModalText text1={textKeys.rider.options.subscribe} text2={textKeys.rider.options.monthSubscribe} func={setModalFunc}/>
         </View>
 
       </Modal>
@@ -74,7 +46,7 @@ const styles = StyleSheet.create({
     width: 152,
     height:152,
     //padding: 15,
-    alignItems: "center",
+    alignItems: "flex-start",
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
@@ -82,7 +54,9 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 0.25,
     shadowRadius: 4,
-    elevation: 5
+    elevation: 5,
+    padding:18,
+    justifyContent:'flex-start'
   },
   button: {
     borderRadius: 20,
@@ -98,11 +72,11 @@ const styles = StyleSheet.create({
   textStyle: {
     color: "white",
     fontWeight: "bold",
-    textAlign: "center"
+    textAlign: "left"
   },
   modalText: {
     marginBottom: 15,
-    textAlign: "center"
+    textAlign: "left"
   }
 });
 
