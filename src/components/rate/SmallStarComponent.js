@@ -23,22 +23,16 @@ import TaxiTextInput from '../common/TaxiTextInput'
 import TaxiText from  '../common/TaxiText';
 
 import TaxiImageText  from '../common/TaxiImageText';
-//ratefilled
-//StarCopy5
-//set the number of star rated...
-const Rate: () => React$Node = (props) => {
-    const [star,setStar] = useState(0);
+
+const SmallStarComponent: () => React$Node = (props) => {
+    const [star,setStar] = useState(props.nbre);
     const number = [1,2,3,4,5];
 
   return (
     <View style={{flexDirection:'row',justifyContent:'space-evenly',alignItems:'center'}}> 
     { number.map( x => {
-        return <Pressable key={x} onPress={()=> {setStar(x);
-        console.log("Etoile " + x)
-        }}>
-        <Image   source={star >=x ? imageKeys.ratefilled : imageKeys.StarCopy5 } />
-        </Pressable>
-        })
+        return <Image   key={x} source={star >=x ? imageKeys.smallstar : imageKeys.stayyellow } />
+      })
     }   
     </View>
   );
@@ -49,4 +43,4 @@ const styles = StyleSheet.create({
 
 });
 
-export default Rate;
+export default SmallStarComponent;

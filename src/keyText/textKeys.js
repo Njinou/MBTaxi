@@ -2,6 +2,8 @@ const textKeys = {
     "taxiDriver":"TAXI DRIVER",
     "password": "Password",
     "ok": "OK",
+    "or": "Or",
+    "home": "Home",
     "am":"AM",
     "pm": "PM",
     "end": "End",
@@ -17,6 +19,7 @@ const textKeys = {
     'location': "Location",
     'continue': "Continue",
     'straight': "Straight",
+    'destination': "Where do you need to go?",
     'left': "Left",
     'right': "Right",
     'turn': "Turn",
@@ -84,6 +87,22 @@ const textKeys = {
          "f": "F",
          "s": "Sa",
          "su": "Su"
+    },
+    "rider":{
+        "request":{
+            'request': "Request Taxi",
+            "schedule": "Scheduled Rides",
+            "taxiOption": "View our other Taxi request options "
+        },
+        "options":{
+            "goBack": "Go back to request a taxi now.",
+            "course": "Book a taxi for a set amount of time.",
+            "schedule": "Schedule a ride.",
+            "subscribe": "Subscribe for a continuous pickup.",
+            "setTime": "Set a pick up time and location.",
+            "bookCourse": "Book a taxi from an hour to full day.",
+            "monthSubscribe": "Subscribe to set pickups per month."
+        }
     }
     
  };

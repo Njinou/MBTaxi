@@ -11,29 +11,17 @@ import {
   SafeAreaView,
   StyleSheet,
   StatusBar,
-  View,
-  Text,
   AppState,
   ImageBackground,
-  Image
 } from 'react-native';
-import TaxiTextInput from './src/components/common/TaxiTextInput';
-import TaxiButton from './src/components/common/TaxiButton';
+
 import fontKeys from './src/keyText/fontKeys';
-import TaxiText from './src/components/common/TaxiText';
-import LoginScreen from './src/components/login/LoginScreen';
-import SignUp from './src/components/signUp/SignUp';
-import SignUpConfirmationCode  from './src/components/signUp/SignUpConfirmationCode';
 import imageKeys from './src/keyText/imageKeys';
-import ConfirmationSuccess from  './src/components/signUp/ConfirmationSuccess';
-import MenuScreen from  './src/components/menu/MenuScreen';
-import AcceptTripModal from './src/components/accepttrip/AcceptTripModal';
-import MapDirectionScreen from './src/components/duringtrip/MapDirectionScreen';
-import HomeScreen from './src/components/home/HomeScreen';
-import HomeOfflineScreen from './src/components/home/HomeOfflineScreen';
+import HomeRiderDestinationScreen from './src/components/home/HomeRiderDestinationScreen';
+import LoginScreen from './src/components/login/LoginScreen';
+import OptionRequestScreen from './src/components/rider/rideOptions/OptionRequestScreen';
 import RatingScreen from './src/components/rate/RatingScreen';
-import DriverOpportunityScreen from './src/components/ridenotification/DriverOpportunityScreen';
-import DriverStatsScreen from './src/components/driverstats/DriverStatsScreen';
+import RideHistoryComponent from './src/components/rider/history/RideHistoryComponent';
 
 const App: () => React$Node = () => {
 
@@ -60,14 +48,12 @@ const App: () => React$Node = () => {
     setAppStateVisible(appState.current);
     console.log("AppState", appState.current);
   };
-//text == blanc  
-//text blanc
   return (
     <>
       <StatusBar barStyle="dark-content" />
       <SafeAreaView style={{alignItems:'center'}}>
       <ImageBackground source={imageKeys.background} style={styles.image}>
-        <DriverStatsScreen/>
+        <RideHistoryComponent/>
         </ImageBackground>
       </SafeAreaView>
     </>
