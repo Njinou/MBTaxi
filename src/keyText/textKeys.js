@@ -107,7 +107,10 @@ const textKeys = {
             "split":{
                 'username': "Find username",
                 'info': "Split fare with other Taxi users:",
-                'price': "Total Trip Price:"
+                'price': "Total Trip Price:",
+                'you': "You Pay",
+                'addPerson': "Add a Person",
+                'split': "Split fare",
             },
         }
     }

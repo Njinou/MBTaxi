@@ -6,9 +6,9 @@ const ModalText = (props) => {
         <Pressable
             onPress={props.func? props.func: console.log("Inside the component")}
         >
-            <View style={[styles.modalView]}>
-                {props.text1? <Text style={[styles.textStyle,{paddingBottom:11}]}>{props.text1}</Text>: null}
-                {props.text2? <Text style={[styles.textStyle,{color:'#A3A1A1',fontSize:12}]}>{props.text2}</Text>: null}
+            <View style={[styles.modalView,props.style]}>
+                {props.text1? <Text style={[styles.textStyle,{paddingBottom:11},props.text1Style]}>{props.text1}</Text>: null}
+                {props.text2? <Text style={[styles.textStyle,{color:'#A3A1A1',fontSize:12},props.text2Style]}>{props.text2}</Text>: null}
                 {props.Component}
             </View>
             {props.Component}
