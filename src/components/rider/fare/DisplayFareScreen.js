@@ -61,25 +61,25 @@ const DisplayFareScreen = () => {
                    
               </View>
             <View>
-                <TaxiTextInput placeholder={textKeys.rider.fare.split.username} func={getTextInput}  value={input} styleText={{color:'red'}} style={{borderStyle:'solid',borderColor:'#DBDBDB'}}/>
+                <TaxiTextInput placeholder={textKeys.rider.fare.split.username} func={getTextInput}  value={input} style={{borderStyle:'solid',borderColor:'#DBDBDB'}}/>
              </View>
              {isSearching ?
                 <ScrollView  style={{marginTop:-26,}} contentContainerStyle={[styles.modalView,{justifyContent:'flex-start',marginRight:38,marginLeft:38,borderRadius: 0,borderBottomLeftRadius:8,borderBottomRightRadius:8}]}>
-                    <TaxiImageText image={imageKeys.help} text="Nitcheu Mbouendeu" style={{marginLeft:-38}}/>
-                    <TaxiImageText image={imageKeys.help} text="Nitcheu"/>
-                    <TaxiImageText image={imageKeys.help} text="John Smith"/>
-                    <TaxiImageText image={imageKeys.help} text="Nitcheu Mbouendeu" style={{marginLeft:-38}}/>
-                    <TaxiImageText image={imageKeys.help} text="Nitcheu"/>
-                    <TaxiImageText image={imageKeys.help} text="John Smith"/>
-                    <TaxiImageText image={imageKeys.help} text="Nitcheu Mbouendeu" style={{marginLeft:-38}}/>
-                    <TaxiImageText image={imageKeys.help} text="Nitcheu"/>
-                    <TaxiImageText image={imageKeys.help} text="John Smith"/>
-                    <TaxiImageText image={imageKeys.help} text="Nitcheu Mbouendeu" style={{marginLeft:-38}}/>
-                    <TaxiImageText image={imageKeys.help} text="Nitcheu"/>
-                    <TaxiImageText image={imageKeys.help} text="John Smith"/>
-                    <TaxiImageText image={imageKeys.help} text="Nitcheu Mbouendeu" style={{marginLeft:-38}}/>
-                    <TaxiImageText image={imageKeys.help} text="Nitcheu"/>
-                    <TaxiImageText image={imageKeys.help} text="John Smith"/>
+                    <TaxiImageText image={imageKeys.smallprofileblack} text="Nitcheu Mbouendeu" style={{marginLeft:-38}}/>
+                    <TaxiImageText image={imageKeys.smallprofileblack} text="Nitcheu" style={{marginLeft:-38}}/>
+                    <TaxiImageText image={imageKeys.smallprofileblack} text="John Smith" style={{marginLeft:-38}}/>
+                    <TaxiImageText image={imageKeys.smallprofileblack} text="Nitcheu Mbouendeu" style={{marginLeft:-38}}/>
+                    <TaxiImageText image={imageKeys.smallprofileblack} text="Nitcheu" style={{marginLeft:-38}}/>
+                    <TaxiImageText image={imageKeys.smallprofileblack} text="John Smith" style={{marginLeft:-38}}/>
+                    <TaxiImageText image={imageKeys.smallprofileblack} text="Nitcheu Mbouendeu" style={{marginLeft:-38}}/>
+                    <TaxiImageText image={imageKeys.smallprofileblack} text="Nitcheu" style={{marginLeft:-38}}/>
+                    <TaxiImageText image={imageKeys.smallprofileblack} text="John Smith" style={{marginLeft:-38}}/>
+                    <TaxiImageText image={imageKeys.smallprofileblack} text="Nitcheu Mbouendeu" style={{marginLeft:-38}}/>
+                    <TaxiImageText image={imageKeys.smallprofileblack} text="Nitcheu" style={{marginLeft:-38}}/>
+                    <TaxiImageText image={imageKeys.smallprofileblack} text="John Smith" style={{marginLeft:-38}}/>
+                    <TaxiImageText image={imageKeys.smallprofileblack} text="Nitcheu Mbouendeu" style={{marginLeft:-38}}/>
+                    <TaxiImageText image={imageKeys.smallprofileblack} text="Nitcheu" style={{marginLeft:-38}}/>
+                    <TaxiImageText image={imageKeys.smallprofileblack} text="John Smith" style={{marginLeft:-38}}/>
                 </ScrollView>  : null}
             </View>
         </View>
