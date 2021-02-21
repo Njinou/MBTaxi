@@ -102,6 +102,13 @@ const textKeys = {
             "setTime": "Set a pick up time and location.",
             "bookCourse": "Book a taxi from an hour to full day.",
             "monthSubscribe": "Subscribe to set pickups per month."
+        },
+        "fare":{
+            "split":{
+                'username': "Find username",
+                'info': "Split fare with other Taxi users:",
+                'price': "Total Trip Price:"
+            },
         }
     }
     
