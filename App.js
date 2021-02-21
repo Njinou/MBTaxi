@@ -17,11 +17,8 @@ import {
 
 import fontKeys from './src/keyText/fontKeys';
 import imageKeys from './src/keyText/imageKeys';
-import HomeRiderDestinationScreen from './src/components/home/HomeRiderDestinationScreen';
-import LoginScreen from './src/components/login/LoginScreen';
-import OptionRequestScreen from './src/components/rider/rideOptions/OptionRequestScreen';
-import RatingScreen from './src/components/rate/RatingScreen';
-import RideHistoryComponent from './src/components/rider/history/RideHistoryComponent';
+import DisplayFareScreen from './src/components/rider/fare/DisplayFareScreen';
+import DisplayFareSplittedScreen from './src/components/rider/fare/DisplayFareSplittedScreen';
 
 const App: () => React$Node = () => {
 
@@ -53,7 +50,7 @@ const App: () => React$Node = () => {
       <StatusBar barStyle="dark-content" />
       <SafeAreaView style={{alignItems:'center'}}>
       <ImageBackground source={imageKeys.background} style={styles.image}>
-        <RideHistoryComponent/>
+        <DisplayFareSplittedScreen/>
         </ImageBackground>
       </SafeAreaView>
     </>

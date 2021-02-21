@@ -23,8 +23,7 @@ const styles = StyleSheet.create({
     container:{ 
         alignItems:'center',
         justifyContent:'center',
-        textAlign:'center',
-        borderRadius:20
+        textAlign:'center'
     },
     text:{
         color:'#F2B84D',

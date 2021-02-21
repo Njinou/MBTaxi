@@ -3,8 +3,8 @@ import {Text,View,TextInput,StyleSheet} from 'react-native';
 import fontKeys from '../../keyText/fontKeys';
 
 const TaxiTextInput = (props) =>{
-    const [value, onChangeText] = React.useState('');
-    const getInput = input => onChangeText(input);
+    const [value, onChangeTexte] = React.useState('');
+    const getInput = input => onChangeTexte(input);
 
     return (
         <TextInput
@@ -13,7 +13,7 @@ const TaxiTextInput = (props) =>{
             placeholderTextColor= 'blue'
             style={props.style? [styles.input,props.style]: [styles.input,{ marginLeft:'14%', marginRight:'14%'}]}
             keyboardType={props.keyboardType? props.keyboardType: null}
-            onChangeText={props.func? props.fun: getInput}
+            onChangeText={props.func? props.func: getInput}
             value={props.value?props.value: value}
         />
     )
