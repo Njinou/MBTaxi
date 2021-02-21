@@ -112,6 +112,10 @@ const textKeys = {
                 'addPerson': "Add a Person",
                 'split': "Split fare",
             },
+        },
+        "driver":{
+            "match": "Matching you with a driver",
+            "wait": "Please Wait..."
         }
     }
     
