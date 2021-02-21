@@ -8,7 +8,7 @@ import TaxiButton from '../common/TaxiButton'
 import TaxiTextInput from '../common/TaxiTextInput'
 import TaxiText from  '../common/TaxiText';
 import TaxiImageText  from '../common/TaxiImageText';
-
+import SmallStarComponent from '../rate/SmallStarComponent';
 import Rate from './Rate';
 
 const RatingScreen = () => {
