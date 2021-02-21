@@ -37,7 +37,7 @@ const DisplayFareSplittedScreen = () => {
         }}
       >
         <View style={styles.centeredView}>
-          <View style={[styles.modalView,]}>
+          <ScrollView  contentContainerStyle={[styles.modalView,]}>
                 <View 
                     style={{ 
                         borderBottomStyle:'solid',
@@ -77,7 +77,7 @@ const DisplayFareSplittedScreen = () => {
                 <View style={{backgroundColor:'#222222',marginTop:'auto',padding:30,margin:-36,borderBottomLeftRadius:20,borderBottomRightRadius:20}}>
                     <TaxiText text={textKeys.rider.fare.split.split} styleText={{color:'#FFFFFF',fontSize:14,fontFamily:fontKeys.MMR,textShadowColor:'rgba(4,80,110,0.5)',textShadowOffset:{width:1,height:1},textShadowRadius:1}}/>
                 </View>
-            </View>
+            </ScrollView>
             
         </View>
       </Modal>
