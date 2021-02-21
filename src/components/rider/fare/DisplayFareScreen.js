@@ -1,16 +1,25 @@
-import React, { useState } from "react";
-import { Alert, Modal, StyleSheet, Text, Pressable, View } from "react-native";
+import React, { useState,useEffect } from "react";
+import { Alert, Modal, StyleSheet, Text, Pressable, View, ScrollView } from "react-native";
 
 import fontKeys from '../../../keyText/fontKeys';
 import textKeys from '../../../keyText/textKeys';
-import TaxiTextInput from '../../common/TaxiTextInput'
+import TaxiTextInput from '../../common/TaxiTextInput';
 import TaxiText from  '../../common/TaxiText';
+import TaxiImageText from '../../common/TaxiImageText';
 
 import Rate from '../../rate/Rate';
+import imageKeys from "../../../keyText/imageKeys";
 
 const DisplayFareScreen = () => {
-  const [modalVisible, setModalVisible] = useState(false);
-   setVisibleFunc = () =>  setModalVisible(!modalVisible);
+    const [modalVisible, setModalVisible] = useState(false);
+    const [isSearching,setIsSearching] = useState(false); 
+     const [input,setInput] = useState(null); 
+     setVisibleFunc = () =>  setModalVisible(!modalVisible);
+     getTextInput = (val) =>  {
+                                setInput (val);
+                                val.length >0 ? setIsSearching(true) : setIsSearching(false);
+                            }
+
   return (
     <View style={styles.centeredView}>
       <Modal
@@ -23,7 +32,7 @@ const DisplayFareScreen = () => {
         }}
       >
         <View style={styles.centeredView}>
-          <View style={[styles.modalView]}>
+          <View style={[styles.modalView,]}>
                 <View 
                     style={{ 
                         borderBottomStyle:'solid',
@@ -51,9 +60,28 @@ const DisplayFareScreen = () => {
                     </Text>
                    
               </View>
-
-            <TaxiTextInput placeholder={textKeys.rider.fare.split.username} style={{alignSelf:'stretch',marginBottom:54}}/>        
-          </View>
+            <View>
+                <TaxiTextInput placeholder={textKeys.rider.fare.split.username} func={getTextInput}  value={input} styleText={{color:'red'}} style={{borderStyle:'solid',borderColor:'#DBDBDB'}}/>
+             </View>
+             {isSearching ?
+                <ScrollView  style={{marginTop:-26,}} contentContainerStyle={[styles.modalView,{justifyContent:'flex-start',marginRight:38,marginLeft:38,borderRadius: 0,borderBottomLeftRadius:8,borderBottomRightRadius:8}]}>
+                    <TaxiImageText image={imageKeys.help} text="Nitcheu Mbouendeu" style={{marginLeft:-38}}/>
+                    <TaxiImageText image={imageKeys.help} text="Nitcheu"/>
+                    <TaxiImageText image={imageKeys.help} text="John Smith"/>
+                    <TaxiImageText image={imageKeys.help} text="Nitcheu Mbouendeu" style={{marginLeft:-38}}/>
+                    <TaxiImageText image={imageKeys.help} text="Nitcheu"/>
+                    <TaxiImageText image={imageKeys.help} text="John Smith"/>
+                    <TaxiImageText image={imageKeys.help} text="Nitcheu Mbouendeu" style={{marginLeft:-38}}/>
+                    <TaxiImageText image={imageKeys.help} text="Nitcheu"/>
+                    <TaxiImageText image={imageKeys.help} text="John Smith"/>
+                    <TaxiImageText image={imageKeys.help} text="Nitcheu Mbouendeu" style={{marginLeft:-38}}/>
+                    <TaxiImageText image={imageKeys.help} text="Nitcheu"/>
+                    <TaxiImageText image={imageKeys.help} text="John Smith"/>
+                    <TaxiImageText image={imageKeys.help} text="Nitcheu Mbouendeu" style={{marginLeft:-38}}/>
+                    <TaxiImageText image={imageKeys.help} text="Nitcheu"/>
+                    <TaxiImageText image={imageKeys.help} text="John Smith"/>
+                </ScrollView>  : null}
+            </View>
         </View>
       </Modal>
       <Pressable
