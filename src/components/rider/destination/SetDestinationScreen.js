@@ -92,7 +92,7 @@ const SetDestinationScreen = (props) =>{
                         <TaxiTextInput placeholder="Ongola Tongolo" style={{backgroundColor:'#F2F2F2'}}/>
                 </View>
             </View>
-            <ScrollView style={{flex:1,
+            <ScrollView style={{flex:1,paddingLeft:35
                 }} >
                  <TaxiImageText12 
                     style={{alignSelf:'stretch',maxWidth:'100%'}}
