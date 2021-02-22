@@ -9,7 +9,7 @@ const TaxiImageText12= (props) =>{
     return (
         <View style={props.style? [styles.container,props.style] : styles.container}> 
              <Image  style={props.imageStyle? [styles.image,props.imageStyle]  :styles.image} source={ props.image? props.image: imageKeys.profile} />
-             <View>
+             <View style={props.textOnlyStyle? props.textOnlyStyle:null}>
                  <Text style={[styles.input,{paddingTop:12},props.styleText1]}>{props.text1? props.text1 : ''}</Text>
                  <Text style={[styles.input,{color:'#878787',fontSize:11},props.styleText2]}> {props.text2 ? props.text2 :''}</Text>
              </View>

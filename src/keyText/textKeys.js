@@ -137,8 +137,11 @@ const textKeys = {
             'stop': "Add a Stop",
             'destination': "Destination",
             'me': "Me",
-            'who': "Who is the rider?"
-
+            'forme':'For Me',
+            'who': "Who is the rider?",
+            'change': "change",
+            'remove': "remove",
+            'places': "More saved places"
         },
         'details': "Trip Details",
         'arrival':"Arrival Time",
@@ -147,7 +150,7 @@ const textKeys = {
         'contact': "Contact Driver",
         'cancel': "Cancel Taxi",
         'share': "Share driver info",
-        'date': "Date"
+        'date': "Date",
     }
     
  };
