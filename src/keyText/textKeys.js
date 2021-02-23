@@ -138,7 +138,8 @@ const textKeys = {
             'destination': "Destination",
             'me': "Me",
             'forme':'For Me',
-            'who': "Who is the rider?",
+            'who': "Select who's riding",
+            'whor': "Who is the rider?",
             'change': "change",
             'remove': "remove",
             'places': "More saved places"
