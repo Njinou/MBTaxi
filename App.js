@@ -20,6 +20,8 @@ import fontKeys from './src/keyText/fontKeys';
 import imageKeys from './src/keyText/imageKeys';
 import SetDestinationScreen from './src/components/rider/destination/SetDestinationScreen';
 import LoginScreen from './src/components/login/LoginScreen';
+import LoginRoute from './src/routes/LoginRoute';
+
 import { NavigationContainer } from '@react-navigation/native';
 
 const App: () => React$Node = () => {
@@ -47,14 +49,18 @@ const App: () => React$Node = () => {
     setAppStateVisible(appState.current);
     console.log("AppState", appState.current);
   };
-  return (
-    <NavigationContainer>
-      <StatusBar barStyle="dark-content" />
+
+  /**
+   * <StatusBar barStyle="dark-content" />
       <SafeAreaView style={{alignItems:'center'}}>
       <ImageBackground source={imageKeys.background} style={styles.image}>
-        <LoginScreen/>
+        <LoginRoute/>
         </ImageBackground>
       </SafeAreaView>
+   */
+  return (
+    <NavigationContainer>
+        <LoginRoute/>
     </NavigationContainer>
   );
 };
