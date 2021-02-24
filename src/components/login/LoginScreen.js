@@ -26,7 +26,7 @@ import TaxiButton from '../common/TaxiButton';
 import TaxiTextInput from '../common/TaxiTextInput';
 import auth from '@react-native-firebase/auth';
 
-const LoginScreen: () => React$Node = () => {
+const LoginScreen: () => React$Node = (props) => {
 
   // Set an initializing state whilst Firebase connects
   const [initializing, setInitializing] = useState(true);
@@ -60,6 +60,10 @@ const LoginScreen: () => React$Node = () => {
 
       console.error(error);
     });
+  }
+
+  const navigatingSignUp = () =>{
+    props.navigation.navigate('signup')
   }
 
   //const appState = useRef(Dimensions.get('screen'));
@@ -127,7 +131,7 @@ const LoginScreen: () => React$Node = () => {
         
         <TaxiTextInput placeholder={textKeys.login.username}/>
         <TaxiTextInput  placeholder={textKeys.password} secureTextEntry={true}/>
-        <TaxiButton  text={textKeys.login.login} func={creatingAccount}/>
+        <TaxiButton  text={textKeys.login.login} func={navigatingSignUp}/>
         <TaxiText   
           text={textKeys.login.forgotPassword}
           style={styles.password} 
