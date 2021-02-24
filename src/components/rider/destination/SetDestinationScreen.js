@@ -28,7 +28,7 @@ import TaxiButton from '../../common/TaxiButton';
 const SetDestinationScreen = (props) =>{
         const [addStop,SetStop] = useState(false);
         const [meRider,setMeRider] = useState(textKeys.rider.address.forme);
-        const [scheduledRide,scheduleARide] = useState (true);
+        const [scheduledRide,scheduleARide] = useState (false);
 
         const AjouterStop = () => SetStop(false);
         const removeStop = () => SetStop(false);
