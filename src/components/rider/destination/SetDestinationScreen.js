@@ -12,18 +12,8 @@ import TaxiImageText12 from '../../common/TaxiImageText12';
 import HeaderSelectDestination from '../../common/HeaderSelectDestination';
 import TaxiButton from '../../common/TaxiButton';
 
-/*
-'address': {
-            'pickup': 'Pickup',
-            'stop': "Add a Stop",
-            'destination': "Destination",
-            'me': "Me",
-            'who': "Who is the rider?",,
-            '
-
-        },
-
-*/
+//org.reactjs.native.example.MBTaxi
+//com.mbouendeu.MBTaxi
 
 const SetDestinationScreen = (props) =>{
         const [addStop,SetStop] = useState(false);
