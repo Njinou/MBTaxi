@@ -24,11 +24,43 @@ import textKeys from '../../keyText/textKeys';
 import TaxiText from '../common/TaxiText';
 import TaxiButton from '../common/TaxiButton';
 import TaxiTextInput from '../common/TaxiTextInput';
+import auth from '@react-native-firebase/auth';
 
 const LoginScreen: () => React$Node = () => {
+
+  // Set an initializing state whilst Firebase connects
+  const [initializing, setInitializing] = useState(true);
+  const [user, setUser] = useState();
+
+  // Handle user state changes
+  function onAuthStateChanged(user) {
+    setUser(user);
+    if (initializing) setInitializing(false);
+  }
+
+  
   const windowWidth = useWindowDimensions().width;
   const windowHeight = useWindowDimensions().height;
   const [isportrait,setIsPortrait] = useState(windowWidth <= windowHeight);
+  
+   creatingAccount = () => {
+    auth()
+    .createUserWithEmailAndPassword('jane.doe@example1234.com', 'SuperSecretPassword!')
+    .then(() => {
+      console.log('User account created & signed in!');
+    })
+    .catch(error => {
+      if (error.code === 'auth/email-already-in-use') {
+        console.log('That email address is already in use!');
+      }
+
+      if (error.code === 'auth/invalid-email') {
+        console.log('That email address is invalid!');
+      }
+
+      console.error(error);
+    });
+  }
 
   //const appState = useRef(Dimensions.get('screen'));
 
@@ -36,14 +68,33 @@ const LoginScreen: () => React$Node = () => {
     Dimensions.addEventListener("change", function(ecran) {
        setIsPortrait(ecran.screen.width <=  ecran.screen.height);
      });
+     const subscriber = auth().onAuthStateChanged(onAuthStateChanged);
      return () => {
       // unsubscribe event
       Dimensions.removeEventListener("change", function(ecran) {
         console.log("Effectivement");
        // setIsPortrait(ecran.screen.width <=  ecran.screen.height);
       });
+      subscriber;
     };
   }, []);
+
+  /*if (initializing) return (
+    (
+      <View style={{}}>
+        <Text>Login.........</Text>
+      </View>
+    )
+  );//null;
+
+  if (!user) {
+    return (
+      <View>
+        <Text>Login</Text>
+      </View>
+    );
+  }
+  */
 
   return (
     <ScrollView style={{alignSelf:'stretch',}} contentContainerStyle={{alignItems:'center',paddingBottom:54}} >  
@@ -76,7 +127,7 @@ const LoginScreen: () => React$Node = () => {
         
         <TaxiTextInput placeholder={textKeys.login.username}/>
         <TaxiTextInput  placeholder={textKeys.password} secureTextEntry={true}/>
-        <TaxiButton  text={textKeys.login.login}/>
+        <TaxiButton  text={textKeys.login.login} func={creatingAccount}/>
         <TaxiText   
           text={textKeys.login.forgotPassword}
           style={styles.password} 

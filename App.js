@@ -18,6 +18,8 @@ import {
 import fontKeys from './src/keyText/fontKeys';
 import imageKeys from './src/keyText/imageKeys';
 import SetDestinationScreen from './src/components/rider/destination/SetDestinationScreen';
+import LoginScreen from './src/components/login/LoginScreen';
+
 const App: () => React$Node = () => {
 
   const appState = useRef(AppState.currentState);
@@ -48,7 +50,7 @@ const App: () => React$Node = () => {
       <StatusBar barStyle="dark-content" />
       <SafeAreaView style={{alignItems:'center'}}>
       <ImageBackground source={imageKeys.background} style={styles.image}>
-        <SetDestinationScreen/>
+        <LoginScreen/>
         </ImageBackground>
       </SafeAreaView>
     </>
