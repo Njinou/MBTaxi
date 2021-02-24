@@ -61,7 +61,7 @@ const App: () => React$Node = () => {
    */
   return (
     <NavigationContainer>
-        <ComponentBackgroundHOC Composant= { <LoginScreen/>}/>
+    <LoginRoute/>
     </NavigationContainer>
   );
 };
