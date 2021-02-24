@@ -60,3 +60,4 @@ buck-out/
 
 #Firebase key
 google-services.json
+GoogleService-Info.plist
