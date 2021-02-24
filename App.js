@@ -21,6 +21,7 @@ import imageKeys from './src/keyText/imageKeys';
 import SetDestinationScreen from './src/components/rider/destination/SetDestinationScreen';
 import LoginScreen from './src/components/login/LoginScreen';
 import LoginRoute from './src/routes/LoginRoute';
+import ComponentBackgroundHOC from './src/components/common/ComponentBackgroundHOC';
 
 import { NavigationContainer } from '@react-navigation/native';
 
@@ -60,7 +61,7 @@ const App: () => React$Node = () => {
    */
   return (
     <NavigationContainer>
-        <LoginRoute/>
+        <ComponentBackgroundHOC Composant= { <LoginScreen/>}/>
     </NavigationContainer>
   );
 };
