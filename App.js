@@ -17,10 +17,7 @@ import {
 
 import fontKeys from './src/keyText/fontKeys';
 import imageKeys from './src/keyText/imageKeys';
-import DisplayFareScreen from './src/components/rider/fare/DisplayFareScreen';
-import DisplayFareSplittedScreen from './src/components/rider/fare/DisplayFareSplittedScreen';
-import MatchDriverScreen from './src/components/rider/MatchDriver/MatchDriverScreen';
-
+import SetDestinationScreen from './src/components/rider/destination/SetDestinationScreen';
 const App: () => React$Node = () => {
 
   const appState = useRef(AppState.currentState);
@@ -51,7 +48,7 @@ const App: () => React$Node = () => {
       <StatusBar barStyle="dark-content" />
       <SafeAreaView style={{alignItems:'center'}}>
       <ImageBackground source={imageKeys.background} style={styles.image}>
-        <MatchDriverScreen/>
+        <SetDestinationScreen/>
         </ImageBackground>
       </SafeAreaView>
     </>

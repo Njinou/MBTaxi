@@ -116,7 +116,42 @@ const textKeys = {
         "driver":{
             "match": "Matching you with a driver",
             "wait": "Please Wait..."
-        }
+        },
+        "select":{
+            "size": "Select Taxi Size",
+            "pool": "Taxi-Pool",
+            "cheap": "Cheaper, more stops",
+            "benSkin": "Ben-Skin",
+            'person': "person",
+            'taxi': "Taxi",
+            'regular': "Regular",
+            'large': "Large",
+            'estimate': "Estimated Price",
+            'hurry': "In a hurry? Propose your price to increase speed of being accepted by a driver",
+            'visa': "Visa ending in",
+            'request': "Request Taxi",
+        },
+        'change': "change",
+        'address': {
+            'pickup': 'Pickup',
+            'stop': "Add a Stop",
+            'destination': "Destination",
+            'me': "Me",
+            'forme':'For Me',
+            'who': "Select who's riding",
+            'whor': "Who is the rider?",
+            'change': "change",
+            'remove': "remove",
+            'places': "More saved places"
+        },
+        'details': "Trip Details",
+        'arrival':"Arrival Time",
+        'price': "Price",
+        'split': "Split Fare",
+        'contact': "Contact Driver",
+        'cancel': "Cancel Taxi",
+        'share': "Share driver info",
+        'date': "Date",
     }
     
  };
