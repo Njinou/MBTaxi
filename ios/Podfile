@@ -9,6 +9,16 @@ pod 'Firebase/Analytics'
 # https://firebase.google.com/docs/ios/setup#available-pods
 
 target 'MBTaxi' do
+    # React Native Maps dependencies
+    rn_maps_path = '../node_modules/react-native-maps'
+    pod 'react-native-google-maps', :path => rn_maps_path
+    pod 'GoogleMaps'
+    pod 'Google-Maps-iOS-Utils'
+
+    # React Native Permissions
+    permissions_path = '../node_modules/react-native-permissions/ios'
+    pod 'Permission-LocationWhenInUse', :path => "#{permissions_path}/LocationWhenInUse"
+
   config = use_native_modules!
 
   use_react_native!(:path => config["reactNativePath"])

@@ -22,6 +22,8 @@ import SetDestinationScreen from './src/components/rider/destination/SetDestinat
 import LoginScreen from './src/components/login/LoginScreen';
 import LoginRoute from './src/routes/LoginRoute';
 import ComponentBackgroundHOC from './src/components/common/ComponentBackgroundHOC';
+import GradientPolylines from './src/components/maps/GradientPolylines';
+import MapsScreen from './src/components/maps/MapsScreen';
 
 import { NavigationContainer } from '@react-navigation/native';
 
@@ -61,7 +63,7 @@ const App: () => React$Node = () => {
    */
   return (
     <NavigationContainer>
-    <LoginRoute/>
+    <MapsScreen/>
     </NavigationContainer>
   );
 };
