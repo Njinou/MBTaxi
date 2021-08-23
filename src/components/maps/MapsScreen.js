@@ -1,12 +1,24 @@
 import React, { useEffect,useState } from "react"
-import { SafeAreaView, StatusBar, StyleSheet } from "react-native"
+import { SafeAreaView, StatusBar, StyleSheet,TextInput,View,Modal ,Text,Pressable} from "react-native"
 import MapView, { PROVIDER_GOOGLE } from "react-native-maps"
 import { check, request, PERMISSIONS, RESULTS } from "react-native-permissions" //
 import Geolocation from "react-native-geolocation-service"
 import {customStyleMap} from '../../styles/customStyleMap';
+import Geocoder from 'react-native-geocoding';
 
+import MapViewDirections from 'react-native-maps-directions';
+
+const GOOGLE_MAPS_API_KEY = 'AIzaSyB6iuVD8X4sEeHAGHY3tmMQRyM_Vyoc3UU';
+Geocoder.init(GOOGLE_MAPS_API_KEY, {language: 'en'});
+
+const origin = {latitude: 37.3318456, longitude: -122.0296002};
+const destination = {latitude: 37.771707, longitude: -122.4053769};
+
+//code bar for promotion and new products....
 const MapsScreen = () => {
     const [location, setLocation] = useState(null) //
+    const [textInput, setTextInput] = useState("");
+    const [modalVisible, setModalVisible] = useState(true);
     const handleLocationPermission = async () => { 
         let permissionCheck = ""
         if (Platform.OS === "ios") {
@@ -44,6 +56,20 @@ const MapsScreen = () => {
         Geolocation.getCurrentPosition(
           position => {
             const { latitude, longitude } = position.coords
+              // We use Geocoder.from function to pass our current location.
+        Geocoder.from({
+            latitude: latitude,
+            longitude: longitude,
+          }).then(res => {
+            // Destructure the response
+            const {
+              formatted_address,
+              place_id,
+              geometry: {
+                location: {lat, lng},
+              },
+            } = res.results[0];
+        })
             setLocation({ latitude, longitude })
           },
           error => {
@@ -52,15 +78,110 @@ const MapsScreen = () => {
           { enableHighAccuracy: true, timeout: 15000, maximumAge: 10000 }
         )
       }, [])
-//
+
+      const onRegionChange = ({latitude, longitude}) => {
+        Geocoder.from({
+          latitude,
+          longitude,
+        }).then(res => {
+          const {
+            formatted_address,
+            place_id,
+            geometry: {
+              location: {lat, lng},
+            },
+          } = res.results[0];
+          console.log('formatted_address',place_id);
+        });
+      };
+
+      const APIPlaceAutocomplete = (destination, currentPlace) => {
+        const URL = `https://maps.googleapis.com/maps/api/place/autocomplete/json?key=${GOOGLE_MAPS_API_KEY}&input=${destination}&location=${currentPlace.latitude},${currentPlace.longitude}&radius=2000`;
+      
+        if (destination.length > 0) {
+          return fetch(URL)
+            .then(resp => resp.json())
+            .then (result => console.log('inside resultat of the auto complete search',result))
+            .catch(error => error);
+        } else {
+          return 'No destination Address provided';
+        }
+      };
+
+      const onChangeText = (val) =>{
+        setTextInput(val);
+        APIPlaceAutocomplete(val,location);
+      }
+
+      /*
+      1)-request taxi cab 
+      is user destination close to driver route or path  ? 
+      is user location on user destination or traject ? or 
+      is driver nearby user or increase the circle of search?
+      mutex once the driver select the ride....... 
+
+      Add user destination in the ride queue 
+      from here driver  path should consider picking the user up 
+      2)-driver is near the user 
+       confirmation of identity before approving the ride.. 
+
+       driver drops users by priority queue....
+      distance from current location 
+      distance 
+
+      */
+      function getDistanceFromLatLonInKm(lat1,lon1,lat2,lon2) {
+        var R = 6371; // Radius of the earth in km
+        var dLat = deg2rad(lat2-lat1);  // deg2rad below
+        var dLon = deg2rad(lon2-lon1); 
+        var a = 
+          Math.sin(dLat/2) * Math.sin(dLat/2) +
+          Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) * 
+          Math.sin(dLon/2) * Math.sin(dLon/2)
+          ; 
+        var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
+        var d = R * c; // Distance in km
+        return d;
+      }
+      
+      function deg2rad(deg) {
+        return deg * (Math.PI/180)
+      }
+      if (location) console.log("voici la distance qui me separe de yaounde",getDistanceFromLatLonInKm(location.latitude,location.longitude,3.866667,11.516667))
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar barStyle="dark-content" />
+      <Modal
+        animationType="slide"
+        transparent={true}
+        visible={modalVisible}
+        onRequestClose={() => {
+          Alert.alert("Modal has been closed.");
+          setModalVisible(!modalVisible);
+        }}
+      >
+        <View style={styles.centeredView}>
+          <View style={styles.modalView}>
+          <TextInput
+        style={{
+            height: 40,
+            margin: 12,
+            borderWidth: 1,
+            padding: 10,
+          }}
+        onChangeText={onChangeText}
+        value={textInput}
+      />
+          </View>
+        </View>
+      </Modal>
+
       {location && (<MapView
         paddingAdjustmentBehavior="automatic" 
         showsMyLocationButton={true} 
         showsBuildings={true} 
         maxZoomLevel={17.5} 
+        onRegionChangeComplete={onRegionChange}
         loadingEnabled={true}
         loadingIndicatorColor="#fcb103"
         loadingBackgroundColor="#242f3e"
@@ -73,7 +194,21 @@ const MapsScreen = () => {
           longitudeDelta: 0.0421,
         }}
         showsUserLocation={true}
-      />)}
+      >
+          <MapViewDirections
+                origin={{latitude: location.latitude, longitude: location.longitude}}
+                destination={{latitude: 3.866667, longitude: 11.516667}}
+                apikey={GOOGLE_MAPS_API_KEY}
+                strokeWidth ={3}
+                strokeColor="red"
+                onReady={result => {
+                    console.log(`Distance: ${result.distance} km`)
+                    console.log(`Duration: ${result.duration} min.`)
+                    this.forceUpdate()
+                }}
+            />
+      </MapView>
+    )}
     </SafeAreaView>
   )
 }
@@ -86,6 +221,47 @@ container: {
   map: {
     ...StyleSheet.absoluteFillObject,
   },
+  centeredView: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    marginTop: 22
+  },
+  modalView: {
+    margin: 20,
+    backgroundColor: "white",
+    borderRadius: 20,
+    padding: 35,
+    alignItems: "center",
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    elevation: 5
+  },
+  button: {
+    borderRadius: 20,
+    padding: 10,
+    elevation: 2
+  },
+  buttonOpen: {
+    backgroundColor: "#F194FF",
+  },
+  buttonClose: {
+    backgroundColor: "#2196F3",
+  },
+  textStyle: {
+    color: "white",
+    fontWeight: "bold",
+    textAlign: "center"
+  },
+  modalText: {
+    marginBottom: 15,
+    textAlign: "center"
+  }
 })
 
 export default MapsScreen
