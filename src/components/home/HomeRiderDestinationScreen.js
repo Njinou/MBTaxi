@@ -7,8 +7,8 @@
  * @flow strict-local
  */
 
-import React, { useState } from 'react';
-import {StyleSheet,View,Image,ImageBackground, ScrollView,Text,TextInput} from 'react-native';
+import React, { useState,useEffect } from 'react';
+import {StyleSheet,View,Image,ImageBackground, ScrollView,Text,TextInput,FlatList, Pressable} from 'react-native';
 
 import fontKeys from '../../keyText/fontKeys';
 import imageKeys from '../../keyText/imageKeys';
@@ -22,13 +22,145 @@ import TaxiImageText from '../common/TaxiImageText';
 import TaxiImageText12 from '../common/TaxiImageText12';
 import TaxiImageTextInput from '../common/TaxiImageTextInput';
 import RideOtherOptions from '../rider/rideOptions/RideOtherOptions';
+import Geolocation from "react-native-geolocation-service"
+import Geocoder from 'react-native-geocoding';
+import { check, request, PERMISSIONS, RESULTS } from "react-native-permissions" //
+import { Value } from 'react-native-reanimated';
 
+const GOOGLE_MAPS_API_KEY = 'AIzaSyB6iuVD8X4sEeHAGHY3tmMQRyM_Vyoc3UU';
+//DANS SCHEDULE RIDE IL PEUT CHOISIR LE POINT DE PICK UP 
+//IL FAUT IMPOSER D'ACTIVER L'AUTORISATION  de la position pour permettre a l'utilisateur de pouvoir utiliser lappli sinon on ne pourra pas afficher le message d'erreuur au niveau de la destination et le point de depart 
 const HomeRiderDestinationScreen: (props) => React$Node = (props) => {
     const [destination,setDestination] = useState(null);
     const [isSearching,setIsSearching] = useState(false);
-    const [value,setValue] = useState('');
+    const [value,setValue] = useState(null);
+    const [location, setLocation] = useState(null) //
+    const [textInput, setTextInput] = useState("");
+    const [error, setError] = useState("");
+    const [data,setData] = useState([]);
 
-  return (
+    const handleLocationPermission = async () => { 
+        let permissionCheck = ""
+        if (Platform.OS === "ios") {
+          permissionCheck = await check(PERMISSIONS.IOS.LOCATION_WHEN_IN_USE)
+    
+          if (permissionCheck === RESULTS.DENIED) {
+            const permissionRequest = await request(
+              PERMISSIONS.IOS.LOCATION_WHEN_IN_USE
+            )
+            permissionRequest === RESULTS.GRANTED
+              ? console.warn("Location permission granted.")
+              : console.warn("Location perrmission denied.")
+          }
+        }
+    
+        if (Platform.OS === "android") {
+          permissionCheck = await check(PERMISSIONS.ANDROID.ACCESS_FINE_LOCATION)
+    
+          if (permissionCheck === RESULTS.DENIED) {
+            const permissionRequest = await request(
+              PERMISSIONS.ANDROID.ACCESS_FINE_LOCATION
+            )
+            permissionRequest === RESULTS.GRANTED
+              ? console.warn("Location permission granted.")
+              : console.warn("Location perrmission denied.")
+          }
+        }
+      }
+     
+      useEffect(() => {
+        handleLocationPermission()
+      }, [])
+
+
+      useEffect(() => { 
+        Geolocation.getCurrentPosition(
+          position => {
+            const { latitude, longitude } = position.coords
+              // We use Geocoder.from function to pass our current location.
+        Geocoder.from({
+            latitude: latitude,
+            longitude: longitude,
+          }).then(res => {
+            // Destructure the response
+            const {
+              formatted_address,
+              place_id,
+              geometry: {
+                location: {lat, lng},
+              },
+            } = res.results[0];
+
+            //same for revere geocoding 
+            /*
+            // Search by geo-location (reverse geo-code)
+Geocoder.from(41.89, 12.49)
+		.then(json => {
+        		var addressComponent = json.results[0].address_components[0];
+			console.log(addressComponent);
+		})
+		.catch(error => console.warn(error));
+            */
+        })
+            setLocation({ latitude, longitude })
+          },
+          error => {
+            console.log(error.code, error.message)
+          },
+          { enableHighAccuracy: true, timeout: 15000, maximumAge: 10000 }
+        )
+      }, [])
+
+
+/*
+onChangeText={onChangeText}
+        value={textInput}
+*/
+     const renderItemAutoCompletion = ({item}) =>{
+        return (<Text> JE suis desole ..</Text>)
+     }
+     APIPlaceAutocomplete = (destination, currentPlace) => {
+       const URL = `https://maps.googleapis.com/maps/api/place/autocomplete/json?key=${GOOGLE_MAPS_API_KEY}&input=${destination}&location=${currentPlace.latitude},${currentPlace.longitude}&radius=2000`;
+        if (destination.length > 0) {
+          return fetch(URL)
+            .then(resp => resp.json())
+            .then (result => setData(result.predictions))
+            ////ici il faut filtrer les valeurs avec la ville et le pays pour diminuer les valeurs envoyer ....  
+          // et pour cela on peut prendre les valeur de geocoder comme reference ......   et il faut verifier que le format est le meme cest a dire le nombre de virgule qui separe les villes et les pays est le meme que les resultats qui sont 
+          //produits
+            .catch(error => console.log('voici l\'erreur ',error));
+        } else {
+            console.log("No address corresponding ..")
+          return 'No destination Address provided';
+        }
+      };
+
+      const onChangeText = (val) =>{
+        setTextInput(val);
+     APIPlaceAutocomplete(val,location);
+      }
+      // console.log("this is the item that has been pressed",item)
+      const renderItem = ({ item }) => (
+        <Item item={item} />
+      );
+      const Item = ({ item}) => (
+        <Pressable onPress={() =>  {
+          setValue(item);
+          setData([])
+          }}>
+          <View style={{backgroundColor:'white',borderBottomLeftRadius:8,borderBottomRightRadius:8}}>
+            <TaxiImageText12 
+                image={imageKeys.stayyellow} 
+                text={textKeys.destination} 
+                text1={item.place_id}
+                text2= {item.description}
+            />
+          </View>
+        </Pressable>
+      );
+
+      
+  if (location) {   return (
     <View style={{height:'100%'}}>
        <ImageBackground source={imageKeys.map} style={styles.image}>
             <View style={{marginLeft:20,marginRight:15, }}> 
@@ -55,8 +187,15 @@ const HomeRiderDestinationScreen: (props) => React$Node = (props) => {
                         placeholder={textKeys.destination}
                         inputStyle={{borderWidth:0,marginRight:24,marginTop :17,
                         }}
+                        func={onChangeText}
+                        value={value?  value.description.split(',')[0] : textInput}
                     /> 
-                    
+                     <FlatList
+                        data={data}
+                        renderItem={renderItem}
+                        keyExtractor={item => item.place_id}
+                    />
+
                 <ScrollView 
                     style={{
                         backgroundColor:'white',
@@ -64,16 +203,7 @@ const HomeRiderDestinationScreen: (props) => React$Node = (props) => {
                         borderBottomRightRadius:8,
                     }}
                 >
-                    <TaxiImageText12 
-                        image={imageKeys.stayyellow} 
-                        text={textKeys.destination} 
-                        text1={textKeys.home}
-                        text2= "308 Raleigh Dr. Raleigh,NC"
-                    />
-                    <TaxiImageText12 
-                        image={imageKeys.stayyellow} 
-                        text={textKeys.destination} 
-                    />
+                   
                 </ScrollView>
                   </>}
                 <Image source={imageKeys.yourlocation} style={{marginTop:props.option? 'auto':80,alignSelf:'flex-end',marginRight:60,marginBottom:41}} />
@@ -116,7 +246,7 @@ const HomeRiderDestinationScreen: (props) => React$Node = (props) => {
                         fontSize:14
                     }} 
 
-                    text={textKeys.rider.request.taxiOption} 
+                    text={textKeys.rider.request.taxiOption}   
                 />
             </>}
 
@@ -148,6 +278,8 @@ const HomeRiderDestinationScreen: (props) => React$Node = (props) => {
         </ImageBackground>
     </View>
   );
+            }
+  else return null
 };
 
 const styles = StyleSheet.create({

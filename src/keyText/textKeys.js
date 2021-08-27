@@ -66,6 +66,7 @@ const textKeys = {
         "earning": "Earning",
         "cashOut": "Cash Out",
         "trip": "Trip",
+        "tripHistory": "Trip History",
         "stats": "Stats",
         "payment": "Payment",
         "info": "Info",
@@ -73,7 +74,8 @@ const textKeys = {
         "settings": "Settings",
         "contact": "Contact US",
         "logout":" Log Out",
-        "schedule":"Scheduled Pickups"
+        "schedule":"Scheduled Pickups",
+        "saved": "Saved Places"
     },
     "acceptTrip":{
         "acceptTrip": "Accept Trip?",

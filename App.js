@@ -14,23 +14,46 @@ import {
   StatusBar,
   AppState,
   ImageBackground,
+  ActivityIndicator
 } from 'react-native';
 
 import fontKeys from './src/keyText/fontKeys';
 import imageKeys from './src/keyText/imageKeys';
+
+import MenuScreen from './src/components/menu/MenuScreen';
+import LoginRoute from './src/routes/LoginRoute';
+import HomeRoute from './src/routes/HomeRoute';
+
 import SetDestinationScreen from './src/components/rider/destination/SetDestinationScreen';
 import LoginScreen from './src/components/login/LoginScreen';
-import LoginRoute from './src/routes/LoginRoute';
-import ComponentBackgroundHOC from './src/components/common/ComponentBackgroundHOC';
-import GradientPolylines from './src/components/maps/GradientPolylines';
-import MapsScreen from './src/components/maps/MapsScreen';
 
+import ComponentBackgroundHOC from './src/components/common/ComponentBackgroundHOC';
+import MapsScreen from './src/components/maps/MapsScreen'; 
+import HomeScreen from './src/components/home/HomeScreen'; //for driver ...
+import HomeRiderDestinationScreen from './src/components/home/HomeRiderDestinationScreen';
+ 
+import auth from '@react-native-firebase/auth';
 import { NavigationContainer } from '@react-navigation/native';
 
 const App: () => React$Node = () => {
 
   const appState = useRef(AppState.currentState);
   const [appStateVisible, setAppStateVisible] = useState(appState.current);
+  const [initializing, setInitializing] = useState(true);
+  const [user, setUser] = useState();
+
+
+   // Handle user state changes
+   function onAuthStateChanged(user) {
+    setUser(user);
+    if (initializing) setInitializing(false);
+  }
+
+
+  useEffect(() => {
+    const subscriber = auth().onAuthStateChanged(onAuthStateChanged);
+    return subscriber; // unsubscribe on unmount
+  }, []);
 
   useEffect(() => {
     AppState.addEventListener("change", _handleAppStateChange);
@@ -61,11 +84,21 @@ const App: () => React$Node = () => {
         </ImageBackground>
       </SafeAreaView>
    */
-  return (
-    <NavigationContainer>
-    <MapsScreen/>
-    </NavigationContainer>
-  );
+
+      if (initializing) return <ActivityIndicator size="large" color="#00ff00" />; 
+      if (!user) {
+        return (
+          <NavigationContainer>
+            <LoginRoute/>
+          </NavigationContainer>
+        );
+      }
+    
+      return (
+        <NavigationContainer>
+          <HomeRoute/>
+        </NavigationContainer>
+      );
 };
 
 const styles = StyleSheet.create({

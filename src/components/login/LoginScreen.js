@@ -31,7 +31,16 @@ const LoginScreen: () => React$Node = (props) => {
   // Set an initializing state whilst Firebase connects
   const [initializing, setInitializing] = useState(true);
   const [user, setUser] = useState();
+  const [username,setUsername] = useState('');
+  const [password,setPassword] = useState('');
 
+  settingUserName = (val) => {
+    setUsername(val);
+  }
+
+  settingPassword = (val) => {
+    setPassword(val);
+  }
   // Handle user state changes
   function onAuthStateChanged(user) {
     setUser(user);
@@ -43,11 +52,13 @@ const LoginScreen: () => React$Node = (props) => {
   const windowHeight = useWindowDimensions().height;
   const [isportrait,setIsPortrait] = useState(windowWidth <= windowHeight);
   
-   creatingAccount = () => {
+  
+  //change it to sign in
+  signingUp = () => {
     auth()
-    .createUserWithEmailAndPassword('jane.doe@example1234.com', 'SuperSecretPassword!')
+    .signInWithEmailAndPassword(username, password)
     .then(() => {
-      console.log('User account created & signed in!');
+      console.log('User  signed in!');
     })
     .catch(error => {
       if (error.code === 'auth/email-already-in-use') {
@@ -68,7 +79,7 @@ const LoginScreen: () => React$Node = (props) => {
 
   //const appState = useRef(Dimensions.get('screen'));
 
-  useEffect(() => {
+  /*useEffect(() => {
     Dimensions.addEventListener("change", function(ecran) {
        setIsPortrait(ecran.screen.width <=  ecran.screen.height);
      });
@@ -81,7 +92,7 @@ const LoginScreen: () => React$Node = (props) => {
       });
       subscriber;
     };
-  }, []);
+  }, []);*/
 
   /*if (initializing) return (
     (
@@ -129,17 +140,17 @@ const LoginScreen: () => React$Node = (props) => {
         </>
         :null}
         
-        <TaxiTextInput placeholder={textKeys.login.username}/>
-        <TaxiTextInput  placeholder={textKeys.password} secureTextEntry={true}/>
-        <TaxiButton  text={textKeys.login.login} func={navigatingSignUp}/>
+        <TaxiTextInput placeholder={textKeys.login.username} value={username} func={setUsername}/>
+        <TaxiTextInput  placeholder={textKeys.password} secureTextEntry={true} value={password} func={setPassword}/>
+        <TaxiButton  text={textKeys.login.login} func={signingUp}/>
         <TaxiText   
           text={textKeys.login.forgotPassword}
           style={styles.password} 
           styleText={styles.passwordText}
         />
-        <TaxiText text={textKeys.login.createAccount}/>
+        <TaxiText text={textKeys.login.createAccount} func={navigatingSignUp}/>
       </View>
-    </ScrollView> 
+    </ScrollView>   
   );
 };
 

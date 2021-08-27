@@ -1,12 +1,16 @@
-import React, { useEffect,useState } from "react"
-import { SafeAreaView, StatusBar, StyleSheet,TextInput,View,Modal ,Text,Pressable} from "react-native"
-import MapView, { PROVIDER_GOOGLE } from "react-native-maps"
+import React, { useEffect,useState ,useRef} from "react"
+import { SafeAreaView, StatusBar, StyleSheet,TextInput,View,Modal ,Text,Pressable,PanResponder,Animated,useWindowDimensions,} from "react-native"
+import MapView, { PROVIDER_GOOGLE,Marker } from "react-native-maps"
 import { check, request, PERMISSIONS, RESULTS } from "react-native-permissions" //
 import Geolocation from "react-native-geolocation-service"
 import {customStyleMap} from '../../styles/customStyleMap';
 import Geocoder from 'react-native-geocoding';
 
 import MapViewDirections from 'react-native-maps-directions';
+
+import GestureRecognizer, {swipeDirections} from 'react-native-swipe-gestures';
+import { RectButton } from 'react-native-gesture-handler';
+import Swipeable from 'react-native-gesture-handler/Swipeable';
 
 const GOOGLE_MAPS_API_KEY = 'AIzaSyB6iuVD8X4sEeHAGHY3tmMQRyM_Vyoc3UU';
 Geocoder.init(GOOGLE_MAPS_API_KEY, {language: 'en'});
@@ -16,9 +20,31 @@ const destination = {latitude: 37.771707, longitude: -122.4053769};
 
 //code bar for promotion and new products....
 const MapsScreen = () => {
+    const window = useWindowDimensions();
+
+    const pan = useRef(new Animated.ValueXY()).current;
+    const panResponder = useRef(
+        PanResponder.create({
+          onMoveShouldSetPanResponder: () => true,
+          onPanResponderMove: Animated.event([
+            null,
+            { dx: pan.x, dy: pan.y }
+          ],
+          {useNativeDriver: false}
+          ),
+          onPanResponderRelease: () => {
+            Animated.spring(pan, { toValue: { x: 0, y: 0 } }).start();
+          }
+        })
+      ).current;
+
     const [location, setLocation] = useState(null) //
     const [textInput, setTextInput] = useState("");
     const [modalVisible, setModalVisible] = useState(true);
+    const [myText,setMyText] = useState('I\'m ready to get swiped!');
+    const [gestureName,setGestureName] = useState('none');
+    const [backgroundColor,setBackgroundColor] = useState('#fff');
+    
     const handleLocationPermission = async () => { 
         let permissionCheck = ""
         if (Platform.OS === "ios") {
@@ -69,6 +95,17 @@ const MapsScreen = () => {
                 location: {lat, lng},
               },
             } = res.results[0];
+
+            //same for revere geocoding 
+            /*
+            // Search by geo-location (reverse geo-code)
+Geocoder.from(41.89, 12.49)
+		.then(json => {
+        		var addressComponent = json.results[0].address_components[0];
+			console.log(addressComponent);
+		})
+		.catch(error => console.warn(error));
+            */
         })
             setLocation({ latitude, longitude })
           },
@@ -91,6 +128,7 @@ const MapsScreen = () => {
               location: {lat, lng},
             },
           } = res.results[0];
+          
           console.log('formatted_address',place_id);
         });
       };
@@ -102,6 +140,9 @@ const MapsScreen = () => {
           return fetch(URL)
             .then(resp => resp.json())
             .then (result => console.log('inside resultat of the auto complete search',result))
+            ////ici il faut filtrer les valeurs avec la ville et le pays pour diminuer les valeurs envoyer ....  
+          // et pour cela on peut prendre les valeur de geocoder comme reference ......   et il faut verifier que le format est le meme cest a dire le nombre de virgule qui separe les villes et les pays est le meme que les resultats qui sont 
+          //produits
             .catch(error => error);
         } else {
           return 'No destination Address provided';
@@ -148,6 +189,98 @@ const MapsScreen = () => {
         return deg * (Math.PI/180)
       }
       if (location) console.log("voici la distance qui me separe de yaounde",getDistanceFromLatLonInKm(location.latitude,location.longitude,3.866667,11.516667))
+
+      /*onSwipeUp = (gestureState) =>{
+        setMyText('You swiped up!')
+      }
+     
+      onSwipeDown =(gestureState) =>{
+        setMyText('You swiped dowb!')
+      }
+     
+      onSwipeLeft = (gestureState) =>{
+        setMyText('You swiped left!')
+      }
+     
+      onSwipeRight = (gestureState) =>{
+        setMyText('You swiped right!')
+      }
+
+     const  onSwipe =(gestureName, gestureState) =>{
+        const {SWIPE_UP, SWIPE_DOWN, SWIPE_LEFT, SWIPE_RIGHT} = swipeDirections;
+        setGestureName(gestureName);
+        switch (gestureName) {
+          case SWIPE_UP:
+            setBackgroundColor('red')
+            break;
+          case SWIPE_DOWN:
+            setBackgroundColor('green')
+            break;
+          case SWIPE_LEFT:
+              setBackgroundColor('blue')
+            break;
+          case SWIPE_RIGHT:
+            setBackgroundColor('yellow')
+            break;
+        }
+      }
+
+      const config = {
+        velocityThreshold: 0.3,
+        directionalOffsetThreshold: 80
+      };
+
+const renderLeftActions = (progress, dragX) => {
+    const trans = dragX.interpolate({
+      inputRange: [0, 50, 100, 101],
+      outputRange: [-20, 0, 0, 1],
+    });
+    return (
+      <RectButton style={styles.leftAction} onPress={this.close}>
+        <Animated.Text
+          style={[
+            styles.actionText,
+            {
+              transform: [{ translateX: trans }],
+            },
+          ]}>
+          Archive
+        </Animated.Text>
+      </RectButton>
+    );
+  };
+
+  const renderRightActions = (progress, dragX) => {
+    const trans = dragX.interpolate({
+      inputRange: [101, 150, 200, 251],
+      outputRange: [1, 0, 0, 20],
+    });
+    return (
+      <RectButton style={styles.leftAction} onPress={this.close}>
+        <Animated.Text
+          style={[
+            styles.actionText,
+            {
+              transform: [{ translateX: trans }],
+            },
+          ]}>
+          Archive
+        </Animated.Text>
+      </RectButton>
+    );
+  };
+
+      return (
+        <View style={{flex:1,alignContent:'center',justifyContent:'center'}}>
+                 <Swipeable renderLeftActions={renderLeftActions}>
+        <Text>"hello"</Text>
+      </Swipeable>
+        </View>
+       
+        
+      );*/
+
+      const destination = {latitude: 3.866667, longitude: 11.516667};
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar barStyle="dark-content" />
@@ -199,14 +332,25 @@ const MapsScreen = () => {
                 origin={{latitude: location.latitude, longitude: location.longitude}}
                 destination={{latitude: 3.866667, longitude: 11.516667}}
                 apikey={GOOGLE_MAPS_API_KEY}
-                strokeWidth ={3}
-                strokeColor="red"
+                strokeWidth ={5}
+                strokeColor="black"
                 onReady={result => {
                     console.log(`Distance: ${result.distance} km`)
                     console.log(`Duration: ${result.duration} min.`)
-                    this.forceUpdate()
+                   
                 }}
             />
+            <Marker
+        ref={(ref) => { this.marker = ref; }}
+        draggable
+        onDragEnd={(e) => {console.log('dragEnd', e.nativeEvent.coordinate)}}
+        coordinate={destination}
+        position={destination}
+        /*centerOffset={{ x: -18, y: -60 }}
+        anchor={{ x: 0.69, y: 1 }}
+        pinColor={COLOR.marker}
+        onDragStart={() => this.setMarkerPosition()}*/
+      />
       </MapView>
     )}
     </SafeAreaView>
@@ -223,7 +367,7 @@ container: {
   },
   centeredView: {
     flex: 1,
-    justifyContent: "center",
+    justifyContent: "flex-end",
     alignItems: "center",
     marginTop: 22
   },

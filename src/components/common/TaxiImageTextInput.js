@@ -10,7 +10,7 @@ const TaxiImageTextInput= (props) =>{
         <View style={props.style? [styles.container,props.style] : styles.container}> 
              <Image  style={props.imageStyle? [styles.image,props.imageStyle]  :styles.image} source={ props.image? props.image: imageKeys.profile} />
              <View style={{justifyContent:'center',alignItems:'center'}}>
-                <TaxiTextInput style={props.inputStyle? [styles.input,props.inputStyle]  : styles.input} placeholder={props.placeholder? props.placeholder:"placeholder"}/>
+                <TaxiTextInput style={props.inputStyle? [styles.input,props.inputStyle]  : styles.input} placeholder={props.placeholder? props.placeholder:"placeholder"} func={props.func} value={props.value}/>
              </View>
         </View>     
     )

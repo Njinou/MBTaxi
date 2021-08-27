@@ -8,7 +8,7 @@ const TaxiImageText= (props) =>{
     return (
         <View style={props.style? [styles.container,props.style] : styles.container}> 
              <Image  style={props.imageStyle? [styles.image,props.imageStyle]  :styles.image} source={ props.image? props.image: imageKeys.profile} />
-            <TaxiText styleText={props.textStyle? [styles.text,props.textStyle]  : styles.text} text={props.text? props.text:"John Smith"}/>
+            <TaxiText styleText={props.textStyle? [styles.text,props.textStyle]  : styles.text} text={props.text? props.text:"John Smith"} func={props.func}/>
         </View>
        
     )

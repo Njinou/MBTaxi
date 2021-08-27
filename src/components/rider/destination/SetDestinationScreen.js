@@ -20,7 +20,7 @@ const SetDestinationScreen = (props) =>{
         const [meRider,setMeRider] = useState(textKeys.rider.address.forme);
         const [scheduledRide,scheduleARide] = useState (false);
 
-        const AjouterStop = () => SetStop(false);
+        const AjouterStop = () => {SetStop(true);}
         const removeStop = () => SetStop(false);
         const addRiders = () => setMeRider(textKeys.rider.address.whor);
     return (
