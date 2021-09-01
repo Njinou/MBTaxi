@@ -34,6 +34,7 @@
 
 
  const MenuScreenRider: (props) => React$Node = (props) => {
+    const [user,setUser] = useState (auth().currentUser);
 
    /* const [user,setUser] = useState(null);
      useEffect(() => setUser(auth.currentUser), [])*/
@@ -43,13 +44,12 @@
     }
     // home history saved payment scheduled help settings contact
  //maplightgrey@2x.png
- console.log("USER AND THEIR BULLSHIT IN LINE 46 MENU SCREEN RIDER", props.user);
    return (
      <SafeAreaView style={{height:'100%',width:'80%',alignSelf:'stretch',backgroundColor:'#222222'}}>       
          <View style={{width:'100%',height:67,justifyContent:'center'}}>
              <View style={{flexDirection:'row'}}>
-                {props.user? <Image  style={{marginLeft:15,width:35,height:35,marginRight:15,borderRadius:20}} source={{uri:props.user.photoURL}} />: <Image  style={{marginLeft:15,marginRight:15}} source={imageKeys.profile} /> }
-             <TaxiText styleText={{color:'white',fontSize:15,fontWeight:'bold'}} text="John Smith"/>
+                {user? <Image  style={{marginLeft:15,width:35,height:35,marginRight:15,borderRadius:20}} source={{uri:user.photoURL}} />: <Image  style={{marginLeft:15,marginRight:15}} source={imageKeys.profile} /> }
+             <TaxiText styleText={{color:'white',fontSize:15,fontWeight:'bold'}} text={user? user.displayName:'update your Name'}/>
              </View>
              <Text style={{paddingLeft:60,color:'white'}}>rating here...</Text>
          </View>
