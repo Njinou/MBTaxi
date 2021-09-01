@@ -70,3 +70,5 @@ je me dis qu'on devrait utiliser soit le user id propose par google... soit cree
 
  POUR SOUCIS De coherence et de user experience je  vais permettre linteraction ou lintervention dune tierce personne juste au paiement .... pas avant donc en attendant cet aspect ou on fera intervenir les utilisateurs, 
  on maintient que lutilisateur est sur son compte et rien dautre.... cela peut annuler l'entete  de change ... et la logique derriere...
+
+ json value 2 of type NSNumber cannot be converted to CGSize 

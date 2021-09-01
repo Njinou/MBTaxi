@@ -25,7 +25,73 @@
 		475A50EFBFCC4B9CAB7D2EF4 /* Montserrat-BlackItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A0ECA69AB3D547DC81DA0B28 /* Montserrat-BlackItalic.ttf */; };
 		515E231B55FB4E93BC642214 /* Montserrat-ExtraLightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 01DAE1527F2A492B8D972142 /* Montserrat-ExtraLightItalic.ttf */; };
 		5CC11462C7E34FEA89D17676 /* Montserrat-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B3D5F97985A64A5E948B7549 /* Montserrat-LightItalic.ttf */; };
-		5F8B93BA25E89B3300C6D6D4 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5F8B93B925E89B3300C6D6D4 /* GoogleService-Info.plist */; };
+		5FE6938226E00E6E00D48D6D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5FE6938126E00E6E00D48D6D /* GoogleService-Info.plist */; };
+		5FE6938326E00E6E00D48D6D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5FE6938126E00E6E00D48D6D /* GoogleService-Info.plist */; };
+		5FE6938426E00E6E00D48D6D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5FE6938126E00E6E00D48D6D /* GoogleService-Info.plist */; };
+		5FE6938526E00E6E00D48D6D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5FE6938126E00E6E00D48D6D /* GoogleService-Info.plist */; };
+		5FE693CD26E00E9F00D48D6D /* libCocoaAsyncSocket.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FE6938E26E00E9F00D48D6D /* libCocoaAsyncSocket.a */; };
+		5FE693CE26E00E9F00D48D6D /* libDoubleConversion.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FE6938F26E00E9F00D48D6D /* libDoubleConversion.a */; };
+		5FE693CF26E00E9F00D48D6D /* libFBReactNativeSpec.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FE6939026E00E9F00D48D6D /* libFBReactNativeSpec.a */; };
+		5FE693D026E00E9F00D48D6D /* libFirebaseAuth.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FE6939126E00E9F00D48D6D /* libFirebaseAuth.a */; };
+		5FE693D126E00E9F00D48D6D /* libFirebaseCore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FE6939226E00E9F00D48D6D /* libFirebaseCore.a */; };
+		5FE693D226E00E9F00D48D6D /* libFirebaseCoreDiagnostics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FE6939326E00E9F00D48D6D /* libFirebaseCoreDiagnostics.a */; };
+		5FE693D326E00E9F00D48D6D /* libFirebaseDatabase.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FE6939426E00E9F00D48D6D /* libFirebaseDatabase.a */; };
+		5FE693D426E00E9F00D48D6D /* libFirebaseInstallations.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FE6939526E00E9F00D48D6D /* libFirebaseInstallations.a */; };
+		5FE693D526E00E9F00D48D6D /* libFirebaseStorage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FE6939626E00E9F00D48D6D /* libFirebaseStorage.a */; };
+		5FE693D626E00E9F00D48D6D /* libFlipper-DoubleConversion.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FE6939726E00E9F00D48D6D /* libFlipper-DoubleConversion.a */; };
+		5FE693D726E00E9F00D48D6D /* libFlipper-Folly.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FE6939826E00E9F00D48D6D /* libFlipper-Folly.a */; };
+		5FE693D826E00E9F00D48D6D /* libFlipper-Glog.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FE6939926E00E9F00D48D6D /* libFlipper-Glog.a */; };
+		5FE693D926E00E9F00D48D6D /* libFlipper-PeerTalk.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FE6939A26E00E9F00D48D6D /* libFlipper-PeerTalk.a */; };
+		5FE693DA26E00E9F00D48D6D /* libFlipper-RSocket.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FE6939B26E00E9F00D48D6D /* libFlipper-RSocket.a */; };
+		5FE693DB26E00E9F00D48D6D /* libFlipper.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FE6939C26E00E9F00D48D6D /* libFlipper.a */; };
+		5FE693DC26E00E9F00D48D6D /* libFlipperKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FE6939D26E00E9F00D48D6D /* libFlipperKit.a */; };
+		5FE693DD26E00E9F00D48D6D /* libFolly.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FE6939E26E00E9F00D48D6D /* libFolly.a */; };
+		5FE693DE26E00E9F00D48D6D /* libglog.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FE6939F26E00E9F00D48D6D /* libglog.a */; };
+		5FE693DF26E00E9F00D48D6D /* libGoogle-Maps-iOS-Utils.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FE693A026E00E9F00D48D6D /* libGoogle-Maps-iOS-Utils.a */; };
+		5FE693E026E00E9F00D48D6D /* libGoogleDataTransport.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FE693A126E00E9F00D48D6D /* libGoogleDataTransport.a */; };
+		5FE693E126E00E9F00D48D6D /* libGoogleUtilities.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FE693A226E00E9F00D48D6D /* libGoogleUtilities.a */; };
+		5FE693E226E00E9F00D48D6D /* libGTMSessionFetcher.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FE693A326E00E9F00D48D6D /* libGTMSessionFetcher.a */; };
+		5FE693E326E00E9F00D48D6D /* libleveldb-library.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FE693A426E00E9F00D48D6D /* libleveldb-library.a */; };
+		5FE693E426E00E9F00D48D6D /* liblibevent.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FE693A526E00E9F00D48D6D /* liblibevent.a */; };
+		5FE693E526E00E9F00D48D6D /* libnanopb.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FE693A626E00E9F00D48D6D /* libnanopb.a */; };
+		5FE693E626E00E9F00D48D6D /* libPermission-LocationWhenInUse.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FE693A726E00E9F00D48D6D /* libPermission-LocationWhenInUse.a */; };
+		5FE693E726E00E9F00D48D6D /* libPods-MBTaxi-MBTaxiTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FE693A826E00E9F00D48D6D /* libPods-MBTaxi-MBTaxiTests.a */; };
+		5FE693E826E00E9F00D48D6D /* libPods-MBTaxi-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FE693A926E00E9F00D48D6D /* libPods-MBTaxi-tvOS.a */; };
+		5FE693E926E00E9F00D48D6D /* libPods-MBTaxi-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FE693AA26E00E9F00D48D6D /* libPods-MBTaxi-tvOSTests.a */; };
+		5FE693EA26E00E9F00D48D6D /* libPods-MBTaxi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FE693AB26E00E9F00D48D6D /* libPods-MBTaxi.a */; };
+		5FE693EB26E00E9F00D48D6D /* libPromisesObjC.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FE693AC26E00E9F00D48D6D /* libPromisesObjC.a */; };
+		5FE693EC26E00EA000D48D6D /* libRCTTypeSafety.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FE693AD26E00E9F00D48D6D /* libRCTTypeSafety.a */; };
+		5FE693ED26E00EA000D48D6D /* libReact-Core.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FE693AE26E00E9F00D48D6D /* libReact-Core.a */; };
+		5FE693EE26E00EA000D48D6D /* libReact-CoreModules.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FE693AF26E00E9F00D48D6D /* libReact-CoreModules.a */; };
+		5FE693EF26E00EA000D48D6D /* libReact-cxxreact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FE693B026E00E9F00D48D6D /* libReact-cxxreact.a */; };
+		5FE693F026E00EA000D48D6D /* libReact-jsi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FE693B126E00E9F00D48D6D /* libReact-jsi.a */; };
+		5FE693F126E00EA000D48D6D /* libReact-jsiexecutor.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FE693B226E00E9F00D48D6D /* libReact-jsiexecutor.a */; };
+		5FE693F226E00EA000D48D6D /* libReact-jsinspector.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FE693B326E00E9F00D48D6D /* libReact-jsinspector.a */; };
+		5FE693F326E00EA000D48D6D /* libreact-native-geolocation-service.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FE693B426E00E9F00D48D6D /* libreact-native-geolocation-service.a */; };
+		5FE693F426E00EA000D48D6D /* libreact-native-google-maps.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FE693B526E00E9F00D48D6D /* libreact-native-google-maps.a */; };
+		5FE693F526E00EA000D48D6D /* libreact-native-image-picker.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FE693B626E00E9F00D48D6D /* libreact-native-image-picker.a */; };
+		5FE693F626E00EA000D48D6D /* libreact-native-maps.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FE693B726E00E9F00D48D6D /* libreact-native-maps.a */; };
+		5FE693F726E00EA000D48D6D /* libreact-native-safe-area-context.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FE693B826E00E9F00D48D6D /* libreact-native-safe-area-context.a */; };
+		5FE693F826E00EA000D48D6D /* libReact-RCTAnimation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FE693B926E00E9F00D48D6D /* libReact-RCTAnimation.a */; };
+		5FE693F926E00EA000D48D6D /* libReact-RCTBlob.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FE693BA26E00E9F00D48D6D /* libReact-RCTBlob.a */; };
+		5FE693FA26E00EA000D48D6D /* libReact-RCTImage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FE693BB26E00E9F00D48D6D /* libReact-RCTImage.a */; };
+		5FE693FB26E00EA000D48D6D /* libReact-RCTLinking.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FE693BC26E00E9F00D48D6D /* libReact-RCTLinking.a */; };
+		5FE693FC26E00EA000D48D6D /* libReact-RCTNetwork.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FE693BD26E00E9F00D48D6D /* libReact-RCTNetwork.a */; };
+		5FE693FD26E00EA000D48D6D /* libReact-RCTSettings.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FE693BE26E00E9F00D48D6D /* libReact-RCTSettings.a */; };
+		5FE693FE26E00EA000D48D6D /* libReact-RCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FE693BF26E00E9F00D48D6D /* libReact-RCTText.a */; };
+		5FE693FF26E00EA000D48D6D /* libReact-RCTVibration.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FE693C026E00E9F00D48D6D /* libReact-RCTVibration.a */; };
+		5FE6940026E00EA000D48D6D /* libReactCommon.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FE693C126E00E9F00D48D6D /* libReactCommon.a */; };
+		5FE6940126E00EA000D48D6D /* libRNCMaskedView.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FE693C226E00E9F00D48D6D /* libRNCMaskedView.a */; };
+		5FE6940226E00EA000D48D6D /* libRNFBApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FE693C326E00E9F00D48D6D /* libRNFBApp.a */; };
+		5FE6940326E00EA000D48D6D /* libRNFBAuth.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FE693C426E00E9F00D48D6D /* libRNFBAuth.a */; };
+		5FE6940426E00EA000D48D6D /* libRNFBDatabase.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FE693C526E00E9F00D48D6D /* libRNFBDatabase.a */; };
+		5FE6940526E00EA100D48D6D /* libRNFBStorage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FE693C626E00E9F00D48D6D /* libRNFBStorage.a */; };
+		5FE6940626E00EA100D48D6D /* libRNGestureHandler.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FE693C726E00E9F00D48D6D /* libRNGestureHandler.a */; };
+		5FE6940726E00EA100D48D6D /* libRNPermissions.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FE693C826E00E9F00D48D6D /* libRNPermissions.a */; };
+		5FE6940826E00EA100D48D6D /* libRNReanimated.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FE693C926E00E9F00D48D6D /* libRNReanimated.a */; };
+		5FE6940926E00EA100D48D6D /* libRNScreens.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FE693CA26E00E9F00D48D6D /* libRNScreens.a */; };
+		5FE6940A26E00EA100D48D6D /* libYoga.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FE693CB26E00E9F00D48D6D /* libYoga.a */; };
+		5FE6940B26E00EA100D48D6D /* libYogaKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FE693CC26E00E9F00D48D6D /* libYogaKit.a */; };
 		66ECBE10825143B892EAA6E1 /* Montserrat-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BC4663A51DF849FCBD2766DC /* Montserrat-BoldItalic.ttf */; };
 		75A5E6B1EA5E42A288B2C6C9 /* Montserrat-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2E6098F5222D415B83415A23 /* Montserrat-ExtraBold.ttf */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
@@ -81,7 +147,70 @@
 		2E6098F5222D415B83415A23 /* Montserrat-ExtraBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-ExtraBold.ttf"; path = "../src/assets/fonts/Montserrat-ExtraBold.ttf"; sourceTree = "<group>"; };
 		311A0029167D49FD9DAC565D /* Montserrat-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-Bold.ttf"; path = "../src/assets/fonts/Montserrat-Bold.ttf"; sourceTree = "<group>"; };
 		3632492E4AC5E828116D55A7 /* libPods-MBTaxi.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MBTaxi.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		5F8B93B925E89B3300C6D6D4 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		5FE6938126E00E6E00D48D6D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "MBTaxi/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		5FE6938E26E00E9F00D48D6D /* libCocoaAsyncSocket.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libCocoaAsyncSocket.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		5FE6938F26E00E9F00D48D6D /* libDoubleConversion.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libDoubleConversion.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		5FE6939026E00E9F00D48D6D /* libFBReactNativeSpec.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libFBReactNativeSpec.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		5FE6939126E00E9F00D48D6D /* libFirebaseAuth.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libFirebaseAuth.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		5FE6939226E00E9F00D48D6D /* libFirebaseCore.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libFirebaseCore.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		5FE6939326E00E9F00D48D6D /* libFirebaseCoreDiagnostics.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libFirebaseCoreDiagnostics.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		5FE6939426E00E9F00D48D6D /* libFirebaseDatabase.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libFirebaseDatabase.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		5FE6939526E00E9F00D48D6D /* libFirebaseInstallations.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libFirebaseInstallations.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		5FE6939626E00E9F00D48D6D /* libFirebaseStorage.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libFirebaseStorage.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		5FE6939726E00E9F00D48D6D /* libFlipper-DoubleConversion.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libFlipper-DoubleConversion.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5FE6939826E00E9F00D48D6D /* libFlipper-Folly.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libFlipper-Folly.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5FE6939926E00E9F00D48D6D /* libFlipper-Glog.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libFlipper-Glog.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5FE6939A26E00E9F00D48D6D /* libFlipper-PeerTalk.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libFlipper-PeerTalk.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5FE6939B26E00E9F00D48D6D /* libFlipper-RSocket.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libFlipper-RSocket.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5FE6939C26E00E9F00D48D6D /* libFlipper.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libFlipper.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		5FE6939D26E00E9F00D48D6D /* libFlipperKit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libFlipperKit.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		5FE6939E26E00E9F00D48D6D /* libFolly.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libFolly.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		5FE6939F26E00E9F00D48D6D /* libglog.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libglog.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		5FE693A026E00E9F00D48D6D /* libGoogle-Maps-iOS-Utils.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libGoogle-Maps-iOS-Utils.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5FE693A126E00E9F00D48D6D /* libGoogleDataTransport.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libGoogleDataTransport.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		5FE693A226E00E9F00D48D6D /* libGoogleUtilities.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libGoogleUtilities.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		5FE693A326E00E9F00D48D6D /* libGTMSessionFetcher.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libGTMSessionFetcher.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		5FE693A426E00E9F00D48D6D /* libleveldb-library.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libleveldb-library.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5FE693A526E00E9F00D48D6D /* liblibevent.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = liblibevent.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		5FE693A626E00E9F00D48D6D /* libnanopb.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libnanopb.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		5FE693A726E00E9F00D48D6D /* libPermission-LocationWhenInUse.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libPermission-LocationWhenInUse.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5FE693A826E00E9F00D48D6D /* libPods-MBTaxi-MBTaxiTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libPods-MBTaxi-MBTaxiTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5FE693A926E00E9F00D48D6D /* libPods-MBTaxi-tvOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libPods-MBTaxi-tvOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5FE693AA26E00E9F00D48D6D /* libPods-MBTaxi-tvOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libPods-MBTaxi-tvOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5FE693AB26E00E9F00D48D6D /* libPods-MBTaxi.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libPods-MBTaxi.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5FE693AC26E00E9F00D48D6D /* libPromisesObjC.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libPromisesObjC.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		5FE693AD26E00E9F00D48D6D /* libRCTTypeSafety.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libRCTTypeSafety.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		5FE693AE26E00E9F00D48D6D /* libReact-Core.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libReact-Core.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5FE693AF26E00E9F00D48D6D /* libReact-CoreModules.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libReact-CoreModules.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5FE693B026E00E9F00D48D6D /* libReact-cxxreact.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libReact-cxxreact.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5FE693B126E00E9F00D48D6D /* libReact-jsi.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libReact-jsi.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5FE693B226E00E9F00D48D6D /* libReact-jsiexecutor.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libReact-jsiexecutor.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5FE693B326E00E9F00D48D6D /* libReact-jsinspector.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libReact-jsinspector.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5FE693B426E00E9F00D48D6D /* libreact-native-geolocation-service.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libreact-native-geolocation-service.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5FE693B526E00E9F00D48D6D /* libreact-native-google-maps.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libreact-native-google-maps.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5FE693B626E00E9F00D48D6D /* libreact-native-image-picker.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libreact-native-image-picker.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5FE693B726E00E9F00D48D6D /* libreact-native-maps.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libreact-native-maps.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5FE693B826E00E9F00D48D6D /* libreact-native-safe-area-context.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libreact-native-safe-area-context.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5FE693B926E00E9F00D48D6D /* libReact-RCTAnimation.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libReact-RCTAnimation.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5FE693BA26E00E9F00D48D6D /* libReact-RCTBlob.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libReact-RCTBlob.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5FE693BB26E00E9F00D48D6D /* libReact-RCTImage.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libReact-RCTImage.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5FE693BC26E00E9F00D48D6D /* libReact-RCTLinking.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libReact-RCTLinking.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5FE693BD26E00E9F00D48D6D /* libReact-RCTNetwork.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libReact-RCTNetwork.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5FE693BE26E00E9F00D48D6D /* libReact-RCTSettings.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libReact-RCTSettings.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5FE693BF26E00E9F00D48D6D /* libReact-RCTText.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libReact-RCTText.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5FE693C026E00E9F00D48D6D /* libReact-RCTVibration.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libReact-RCTVibration.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5FE693C126E00E9F00D48D6D /* libReactCommon.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libReactCommon.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		5FE693C226E00E9F00D48D6D /* libRNCMaskedView.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libRNCMaskedView.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		5FE693C326E00E9F00D48D6D /* libRNFBApp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libRNFBApp.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		5FE693C426E00E9F00D48D6D /* libRNFBAuth.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libRNFBAuth.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		5FE693C526E00E9F00D48D6D /* libRNFBDatabase.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libRNFBDatabase.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		5FE693C626E00E9F00D48D6D /* libRNFBStorage.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libRNFBStorage.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		5FE693C726E00E9F00D48D6D /* libRNGestureHandler.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libRNGestureHandler.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		5FE693C826E00E9F00D48D6D /* libRNPermissions.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libRNPermissions.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		5FE693C926E00E9F00D48D6D /* libRNReanimated.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libRNReanimated.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		5FE693CA26E00E9F00D48D6D /* libRNScreens.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libRNScreens.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		5FE693CB26E00E9F00D48D6D /* libYoga.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libYoga.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		5FE693CC26E00E9F00D48D6D /* libYogaKit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libYogaKit.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		6650D675617C4CA0934EE034 /* Montserrat-ThinItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-ThinItalic.ttf"; path = "../src/assets/fonts/Montserrat-ThinItalic.ttf"; sourceTree = "<group>"; };
 		76A382A1606BEF16DD16DD14 /* Pods-MBTaxi-MBTaxiTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MBTaxi-MBTaxiTests.debug.xcconfig"; path = "Target Support Files/Pods-MBTaxi-MBTaxiTests/Pods-MBTaxi-MBTaxiTests.debug.xcconfig"; sourceTree = "<group>"; };
 		7A3EE2E5583F04D3FE500543 /* Pods-MBTaxi-MBTaxiTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MBTaxi-MBTaxiTests.release.xcconfig"; path = "Target Support Files/Pods-MBTaxi-MBTaxiTests/Pods-MBTaxi-MBTaxiTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -120,7 +249,70 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5FE693E926E00E9F00D48D6D /* libPods-MBTaxi-tvOSTests.a in Frameworks */,
+				5FE693D026E00E9F00D48D6D /* libFirebaseAuth.a in Frameworks */,
+				5FE6940426E00EA000D48D6D /* libRNFBDatabase.a in Frameworks */,
+				5FE693E226E00E9F00D48D6D /* libGTMSessionFetcher.a in Frameworks */,
+				5FE693EA26E00E9F00D48D6D /* libPods-MBTaxi.a in Frameworks */,
+				5FE693E826E00E9F00D48D6D /* libPods-MBTaxi-tvOS.a in Frameworks */,
+				5FE693F126E00EA000D48D6D /* libReact-jsiexecutor.a in Frameworks */,
+				5FE693E626E00E9F00D48D6D /* libPermission-LocationWhenInUse.a in Frameworks */,
+				5FE693E326E00E9F00D48D6D /* libleveldb-library.a in Frameworks */,
+				5FE6940026E00EA000D48D6D /* libReactCommon.a in Frameworks */,
+				5FE6940B26E00EA100D48D6D /* libYogaKit.a in Frameworks */,
+				5FE6940626E00EA100D48D6D /* libRNGestureHandler.a in Frameworks */,
+				5FE693F726E00EA000D48D6D /* libreact-native-safe-area-context.a in Frameworks */,
+				5FE693EB26E00E9F00D48D6D /* libPromisesObjC.a in Frameworks */,
+				5FE693FE26E00EA000D48D6D /* libReact-RCTText.a in Frameworks */,
+				5FE6940226E00EA000D48D6D /* libRNFBApp.a in Frameworks */,
+				5FE6940326E00EA000D48D6D /* libRNFBAuth.a in Frameworks */,
+				5FE6940726E00EA100D48D6D /* libRNPermissions.a in Frameworks */,
+				5FE693D326E00E9F00D48D6D /* libFirebaseDatabase.a in Frameworks */,
 				96830ADAA39F0F96F6512CF6 /* libPods-MBTaxi.a in Frameworks */,
+				5FE693D226E00E9F00D48D6D /* libFirebaseCoreDiagnostics.a in Frameworks */,
+				5FE6940A26E00EA100D48D6D /* libYoga.a in Frameworks */,
+				5FE693DE26E00E9F00D48D6D /* libglog.a in Frameworks */,
+				5FE693DB26E00E9F00D48D6D /* libFlipper.a in Frameworks */,
+				5FE693D626E00E9F00D48D6D /* libFlipper-DoubleConversion.a in Frameworks */,
+				5FE6940826E00EA100D48D6D /* libRNReanimated.a in Frameworks */,
+				5FE693ED26E00EA000D48D6D /* libReact-Core.a in Frameworks */,
+				5FE6940126E00EA000D48D6D /* libRNCMaskedView.a in Frameworks */,
+				5FE693D826E00E9F00D48D6D /* libFlipper-Glog.a in Frameworks */,
+				5FE693F826E00EA000D48D6D /* libReact-RCTAnimation.a in Frameworks */,
+				5FE693FC26E00EA000D48D6D /* libReact-RCTNetwork.a in Frameworks */,
+				5FE693EC26E00EA000D48D6D /* libRCTTypeSafety.a in Frameworks */,
+				5FE6940526E00EA100D48D6D /* libRNFBStorage.a in Frameworks */,
+				5FE693D726E00E9F00D48D6D /* libFlipper-Folly.a in Frameworks */,
+				5FE693EE26E00EA000D48D6D /* libReact-CoreModules.a in Frameworks */,
+				5FE693F926E00EA000D48D6D /* libReact-RCTBlob.a in Frameworks */,
+				5FE693DD26E00E9F00D48D6D /* libFolly.a in Frameworks */,
+				5FE6940926E00EA100D48D6D /* libRNScreens.a in Frameworks */,
+				5FE693F326E00EA000D48D6D /* libreact-native-geolocation-service.a in Frameworks */,
+				5FE693D526E00E9F00D48D6D /* libFirebaseStorage.a in Frameworks */,
+				5FE693D926E00E9F00D48D6D /* libFlipper-PeerTalk.a in Frameworks */,
+				5FE693F526E00EA000D48D6D /* libreact-native-image-picker.a in Frameworks */,
+				5FE693FB26E00EA000D48D6D /* libReact-RCTLinking.a in Frameworks */,
+				5FE693CF26E00E9F00D48D6D /* libFBReactNativeSpec.a in Frameworks */,
+				5FE693F226E00EA000D48D6D /* libReact-jsinspector.a in Frameworks */,
+				5FE693EF26E00EA000D48D6D /* libReact-cxxreact.a in Frameworks */,
+				5FE693F426E00EA000D48D6D /* libreact-native-google-maps.a in Frameworks */,
+				5FE693DF26E00E9F00D48D6D /* libGoogle-Maps-iOS-Utils.a in Frameworks */,
+				5FE693F626E00EA000D48D6D /* libreact-native-maps.a in Frameworks */,
+				5FE693D426E00E9F00D48D6D /* libFirebaseInstallations.a in Frameworks */,
+				5FE693E426E00E9F00D48D6D /* liblibevent.a in Frameworks */,
+				5FE693E026E00E9F00D48D6D /* libGoogleDataTransport.a in Frameworks */,
+				5FE693E526E00E9F00D48D6D /* libnanopb.a in Frameworks */,
+				5FE693FA26E00EA000D48D6D /* libReact-RCTImage.a in Frameworks */,
+				5FE693CD26E00E9F00D48D6D /* libCocoaAsyncSocket.a in Frameworks */,
+				5FE693E126E00E9F00D48D6D /* libGoogleUtilities.a in Frameworks */,
+				5FE693FF26E00EA000D48D6D /* libReact-RCTVibration.a in Frameworks */,
+				5FE693E726E00E9F00D48D6D /* libPods-MBTaxi-MBTaxiTests.a in Frameworks */,
+				5FE693CE26E00E9F00D48D6D /* libDoubleConversion.a in Frameworks */,
+				5FE693F026E00EA000D48D6D /* libReact-jsi.a in Frameworks */,
+				5FE693FD26E00EA000D48D6D /* libReact-RCTSettings.a in Frameworks */,
+				5FE693DC26E00E9F00D48D6D /* libFlipperKit.a in Frameworks */,
+				5FE693DA26E00E9F00D48D6D /* libFlipper-RSocket.a in Frameworks */,
+				5FE693D126E00E9F00D48D6D /* libFirebaseCore.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -163,7 +355,7 @@
 		13B07FAE1A68108700A75B9A /* MBTaxi */ = {
 			isa = PBXGroup;
 			children = (
-				5F8B93B925E89B3300C6D6D4 /* GoogleService-Info.plist */,
+				5FE6938126E00E6E00D48D6D /* GoogleService-Info.plist */,
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
@@ -178,6 +370,69 @@
 		2D16E6871FA4F8E400B85C8A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				5FE6938E26E00E9F00D48D6D /* libCocoaAsyncSocket.a */,
+				5FE6938F26E00E9F00D48D6D /* libDoubleConversion.a */,
+				5FE6939026E00E9F00D48D6D /* libFBReactNativeSpec.a */,
+				5FE6939126E00E9F00D48D6D /* libFirebaseAuth.a */,
+				5FE6939226E00E9F00D48D6D /* libFirebaseCore.a */,
+				5FE6939326E00E9F00D48D6D /* libFirebaseCoreDiagnostics.a */,
+				5FE6939426E00E9F00D48D6D /* libFirebaseDatabase.a */,
+				5FE6939526E00E9F00D48D6D /* libFirebaseInstallations.a */,
+				5FE6939626E00E9F00D48D6D /* libFirebaseStorage.a */,
+				5FE6939726E00E9F00D48D6D /* libFlipper-DoubleConversion.a */,
+				5FE6939826E00E9F00D48D6D /* libFlipper-Folly.a */,
+				5FE6939926E00E9F00D48D6D /* libFlipper-Glog.a */,
+				5FE6939A26E00E9F00D48D6D /* libFlipper-PeerTalk.a */,
+				5FE6939B26E00E9F00D48D6D /* libFlipper-RSocket.a */,
+				5FE6939C26E00E9F00D48D6D /* libFlipper.a */,
+				5FE6939D26E00E9F00D48D6D /* libFlipperKit.a */,
+				5FE6939E26E00E9F00D48D6D /* libFolly.a */,
+				5FE6939F26E00E9F00D48D6D /* libglog.a */,
+				5FE693A026E00E9F00D48D6D /* libGoogle-Maps-iOS-Utils.a */,
+				5FE693A126E00E9F00D48D6D /* libGoogleDataTransport.a */,
+				5FE693A226E00E9F00D48D6D /* libGoogleUtilities.a */,
+				5FE693A326E00E9F00D48D6D /* libGTMSessionFetcher.a */,
+				5FE693A426E00E9F00D48D6D /* libleveldb-library.a */,
+				5FE693A526E00E9F00D48D6D /* liblibevent.a */,
+				5FE693A626E00E9F00D48D6D /* libnanopb.a */,
+				5FE693A726E00E9F00D48D6D /* libPermission-LocationWhenInUse.a */,
+				5FE693A826E00E9F00D48D6D /* libPods-MBTaxi-MBTaxiTests.a */,
+				5FE693A926E00E9F00D48D6D /* libPods-MBTaxi-tvOS.a */,
+				5FE693AA26E00E9F00D48D6D /* libPods-MBTaxi-tvOSTests.a */,
+				5FE693AB26E00E9F00D48D6D /* libPods-MBTaxi.a */,
+				5FE693AC26E00E9F00D48D6D /* libPromisesObjC.a */,
+				5FE693AD26E00E9F00D48D6D /* libRCTTypeSafety.a */,
+				5FE693AE26E00E9F00D48D6D /* libReact-Core.a */,
+				5FE693AF26E00E9F00D48D6D /* libReact-CoreModules.a */,
+				5FE693B026E00E9F00D48D6D /* libReact-cxxreact.a */,
+				5FE693B126E00E9F00D48D6D /* libReact-jsi.a */,
+				5FE693B226E00E9F00D48D6D /* libReact-jsiexecutor.a */,
+				5FE693B326E00E9F00D48D6D /* libReact-jsinspector.a */,
+				5FE693B426E00E9F00D48D6D /* libreact-native-geolocation-service.a */,
+				5FE693B526E00E9F00D48D6D /* libreact-native-google-maps.a */,
+				5FE693B626E00E9F00D48D6D /* libreact-native-image-picker.a */,
+				5FE693B726E00E9F00D48D6D /* libreact-native-maps.a */,
+				5FE693B826E00E9F00D48D6D /* libreact-native-safe-area-context.a */,
+				5FE693B926E00E9F00D48D6D /* libReact-RCTAnimation.a */,
+				5FE693BA26E00E9F00D48D6D /* libReact-RCTBlob.a */,
+				5FE693BB26E00E9F00D48D6D /* libReact-RCTImage.a */,
+				5FE693BC26E00E9F00D48D6D /* libReact-RCTLinking.a */,
+				5FE693BD26E00E9F00D48D6D /* libReact-RCTNetwork.a */,
+				5FE693BE26E00E9F00D48D6D /* libReact-RCTSettings.a */,
+				5FE693BF26E00E9F00D48D6D /* libReact-RCTText.a */,
+				5FE693C026E00E9F00D48D6D /* libReact-RCTVibration.a */,
+				5FE693C126E00E9F00D48D6D /* libReactCommon.a */,
+				5FE693C226E00E9F00D48D6D /* libRNCMaskedView.a */,
+				5FE693C326E00E9F00D48D6D /* libRNFBApp.a */,
+				5FE693C426E00E9F00D48D6D /* libRNFBAuth.a */,
+				5FE693C526E00E9F00D48D6D /* libRNFBDatabase.a */,
+				5FE693C626E00E9F00D48D6D /* libRNFBStorage.a */,
+				5FE693C726E00E9F00D48D6D /* libRNGestureHandler.a */,
+				5FE693C826E00E9F00D48D6D /* libRNPermissions.a */,
+				5FE693C926E00E9F00D48D6D /* libRNReanimated.a */,
+				5FE693CA26E00E9F00D48D6D /* libRNScreens.a */,
+				5FE693CB26E00E9F00D48D6D /* libYoga.a */,
+				5FE693CC26E00E9F00D48D6D /* libYogaKit.a */,
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
 				ED2971642150620600B7C4FE /* JavaScriptCore.framework */,
 				3632492E4AC5E828116D55A7 /* libPods-MBTaxi.a */,
@@ -274,7 +529,7 @@
 				00E356EB1AD99517003FC87E /* Frameworks */,
 				00E356EC1AD99517003FC87E /* Resources */,
 				CA1EC5A15D4B23BA23F15517 /* [CP] Copy Pods Resources */,
-				59FB19320C26E51DA5D14CB0 /* [CP] Embed Pods Frameworks */,
+				EBD89228E76E2971F9847A5A /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -298,7 +553,7 @@
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
 				6BB5A8444D8CF32ED7D0ACD0 /* [CP] Copy Pods Resources */,
 				FB91E62BD83CDC05AA466114 /* [CP-User] [RNFB] Core Configuration */,
-				2F384B2F07CBDD9B9808594D /* [CP] Embed Pods Frameworks */,
+				DE893EB1211526151F35B674 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -400,6 +655,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5FE6938326E00E6E00D48D6D /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -426,8 +682,8 @@
 				10E19419418D4CED91F65E8A /* Montserrat-SemiBold.ttf in Resources */,
 				16BE1BF1ABA54AAB9CEA9A64 /* Montserrat-SemiBoldItalic.ttf in Resources */,
 				A30D525426E54AC790CD804B /* Montserrat-Thin.ttf in Resources */,
-				5F8B93BA25E89B3300C6D6D4 /* GoogleService-Info.plist in Resources */,
 				2D6AA12B836A4BEBAB911768 /* Montserrat-ThinItalic.ttf in Resources */,
+				5FE6938226E00E6E00D48D6D /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -436,6 +692,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2D02E4BD1E0B4A84006451C7 /* Images.xcassets in Resources */,
+				5FE6938426E00E6E00D48D6D /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -443,6 +700,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5FE6938526E00E6E00D48D6D /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -476,42 +734,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "export NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh";
-		};
-		2F384B2F07CBDD9B9808594D /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-MBTaxi/Pods-MBTaxi-frameworks.sh",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/OpenSSL/OpenSSL.framework/OpenSSL",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/OpenSSL.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MBTaxi/Pods-MBTaxi-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		59FB19320C26E51DA5D14CB0 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-MBTaxi-MBTaxiTests/Pods-MBTaxi-MBTaxiTests-frameworks.sh",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/OpenSSL/OpenSSL.framework/OpenSSL",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/OpenSSL.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MBTaxi-MBTaxiTests/Pods-MBTaxi-MBTaxiTests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
 		};
 		6BB5A8444D8CF32ED7D0ACD0 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -641,6 +863,42 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		DE893EB1211526151F35B674 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MBTaxi/Pods-MBTaxi-frameworks.sh",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/OpenSSL/OpenSSL.framework/OpenSSL",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/OpenSSL.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MBTaxi/Pods-MBTaxi-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		EBD89228E76E2971F9847A5A /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MBTaxi-MBTaxiTests/Pods-MBTaxi-MBTaxiTests-frameworks.sh",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/OpenSSL/OpenSSL.framework/OpenSSL",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/OpenSSL.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MBTaxi-MBTaxiTests/Pods-MBTaxi-MBTaxiTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		FB91E62BD83CDC05AA466114 /* [CP-User] [RNFB] Core Configuration */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -757,6 +1015,10 @@
 				INFOPLIST_FILE = MBTaxiTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(SDKROOT)/usr/lib/swift",
+					"$(inherited)",
+				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-lc++",
@@ -777,6 +1039,10 @@
 				INFOPLIST_FILE = MBTaxiTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(SDKROOT)/usr/lib/swift",
+					"$(inherited)",
+				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-lc++",
@@ -798,6 +1064,10 @@
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = MBTaxi/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(SDKROOT)/usr/lib/swift",
+					"$(inherited)",
+				);
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -820,6 +1090,10 @@
 				CURRENT_PROJECT_VERSION = 1;
 				INFOPLIST_FILE = MBTaxi/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(SDKROOT)/usr/lib/swift",
+					"$(inherited)",
+				);
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -847,6 +1121,10 @@
 				GCC_NO_COMMON_BLOCKS = YES;
 				INFOPLIST_FILE = "MBTaxi-tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(SDKROOT)/usr/lib/swift",
+					"$(inherited)",
+				);
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -875,6 +1153,10 @@
 				GCC_NO_COMMON_BLOCKS = YES;
 				INFOPLIST_FILE = "MBTaxi-tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(SDKROOT)/usr/lib/swift",
+					"$(inherited)",
+				);
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -902,6 +1184,10 @@
 				GCC_NO_COMMON_BLOCKS = YES;
 				INFOPLIST_FILE = "MBTaxi-tvOSTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(SDKROOT)/usr/lib/swift",
+					"$(inherited)",
+				);
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -929,6 +1215,10 @@
 				GCC_NO_COMMON_BLOCKS = YES;
 				INFOPLIST_FILE = "MBTaxi-tvOSTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(SDKROOT)/usr/lib/swift",
+					"$(inherited)",
+				);
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
