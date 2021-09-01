@@ -33,7 +33,9 @@
                 }
 
 
+
  const MenuScreenRider: (props) => React$Node = (props) => {
+
     const [user,setUser] = useState (auth().currentUser);
 
    /* const [user,setUser] = useState(null);
