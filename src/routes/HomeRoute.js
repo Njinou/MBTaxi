@@ -3,7 +3,6 @@ import * as React from 'react';
 import { View, Text } from 'react-native';
 import DisplayFareScreen from '../components/rider/fare/DisplayFareScreen';
 import DisplayFareSplittedScreen from '../components/rider/fare/DisplayFareSplittedScreen';
-import SetDestinationScreen from '../components/rider/destination/SetDestinationScreen';
 
 import MenuScreenRider from '../components/menu/MenuScreenRider';
 
@@ -15,6 +14,16 @@ import HelpScreen from '../components/rider/help/HelpScreen';
 import SettingsScreen from '../components/rider/settings/SettingsScreen';
 import ContactScreen from '../components/rider/contact/ContactScreen';
 import HomeScreen from '../components/rider/home/HomeScreen';
+import HomeRiderDestinationScreen from '../components/rider/home/HomeRiderDestinationScreen';
+import SetDestinationScreen from '../components/rider/destination/SetDestinationScreen';
+
+import HeaderSelectDestination from '../components/common/HeaderSelectDestination';
+
+import  RideOtherOptions from '../components/rider/rideOptions/RideOtherOptions';
+
+
+import textKeys from '../keyText/textKeys';
+import imageKeys from '../keyText/imageKeys';
 
 
 import { NavigationContainer } from '@react-navigation/native';
@@ -25,10 +34,21 @@ const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
 
 //{props => <HomeScreen {...props} extraData={someData} />} 
-const  HomeRoute = ()=> {
+//changer la tof de profil de celui qui prendra le taxi pour la reconnaissance
+
+//par defaut who is the rider ....
+const  HomeRoute = (props)=> {
+  const [whoRiderText,setWhoRiderText] = React.useState(textKeys.rider.address.forme);
+  const [isUserRider,setIsUserRider] = React.useState(true);
+  const [selectingUser,setSelectingUser] = React.useState (false); 
+  const [user,setUser] = React.useState(null);
+
+   changeRider = () => setSelectingUser(!selectingUser);
+   whoRiderFunc = (text, user) => { setWhoRiderText(text); setUser(user); setSelectingUser(!selectingUser);}
+  console.log('Inside Home Route line 48 ',props);
   return (
-    <Drawer.Navigator initialRouteName="home"  drawerContent={MenuScreenRider}>
-    <Drawer.Screen name="home" component={HomeScreen}  options={{ title: 'Request a Ride! ' }}/>
+    <Drawer.Navigator initialRouteName="destination"  drawerContent={props => <MenuScreenRider {...props}  user={user} />}>
+    <Drawer.Screen name="destination" component={HomeRiderDestinationScreen} />
     <Drawer.Screen name="history" component={RideHistoryComponent}  options={{ title: 'history' }}/>
     <Drawer.Screen name="saved" component={SavedScreen}  options={{ title: 'Saved Places' }}/>
     <Drawer.Screen name="payment" component={PaymentScreen}  options={{ title: 'Payment' }}/>
@@ -37,6 +57,16 @@ const  HomeRoute = ()=> {
     <Drawer.Screen name="help" component={HelpScreen}  options={{ title: 'FAQ & Help' }}/>
     <Drawer.Screen name="settings" component={SettingsScreen}  options={{ title: 'Settings' }}/>
     <Drawer.Screen name="contact" component={ContactScreen}  options={{ title: 'Contact Us' }}/>
+    
+    <Drawer.Screen name="dest2" options={{ 
+        title: null,
+        headerRight: () => (
+          <HeaderSelectDestination  image1={imageKeys.profilegrey} image2={imageKeys.dropdown} text1={whoRiderText} text2={textKeys.rider.address.change} func2={changeRider} func={changeRider}/>
+        ),
+      }}>
+      {props => <SetDestinationScreen {...props} selectingUser={selectingUser}  func={whoRiderFunc}/>}
+    </Drawer.Screen>
+    <Drawer.Screen name="option" component={RideOtherOptions}  options={{ title: null }}/>
 
   </Drawer.Navigator>
   );

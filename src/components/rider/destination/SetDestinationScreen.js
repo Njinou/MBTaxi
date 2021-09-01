@@ -12,23 +12,62 @@ import TaxiImageText12 from '../../common/TaxiImageText12';
 import HeaderSelectDestination from '../../common/HeaderSelectDestination';
 import TaxiButton from '../../common/TaxiButton';
 
+import auth from '@react-native-firebase/auth';
+
 //org.reactjs.native.example.MBTaxi
 //com.mbouendeu.MBTaxi
+//select rider present Me iff rider is different from Me... otherwise Modal textinput and displays users by username... 
+//set prefer friends rider, and most frequent.....
 
+//on peut commencer par who is the rider et puis donner la possibilite a l'utilisateur de faire son choix.. 
+// on devra prendre user depuis homeRoute et obtenir a liste des users ..
 const SetDestinationScreen = (props) =>{
         const [addStop,SetStop] = useState(false);
-        const [meRider,setMeRider] = useState(textKeys.rider.address.forme);
-        const [scheduledRide,scheduleARide] = useState (false);
+        const [meRider,setMeRider] = useState(textKeys.rider.address.whor); //textKeys.rider.address.forme
+        const [scheduledRide,scheduleARide] = useState ('schedule' === props.route.params.option);
+        const [allUsers,setAllUsers] = useState ([]); // la liste de tous les utilisateurs .... 
 
+        const [meUser,setMeUser] = useState (auth().currentUser);
         const AjouterStop = () => {SetStop(true);}
         const removeStop = () => SetStop(false);
         const addRiders = () => setMeRider(textKeys.rider.address.whor);
+        
+        //console.log('itemsss itemaaa',props.route.params.item)//.state.params.item)
+       // console.log('option',props.route.params.option)//.state.params.option)
     return (
         <ScrollView style={{height:'100%',backgroundColor:'white'}}>
-            <HeaderSelectDestination  image1={imageKeys.profilegrey} image2={imageKeys.dropdown} text1={meRider} text2={textKeys.rider.address.change  }/>
+           { props.selectingUser? <View style={{paddingTop:9,}}>  
+                <TaxiImageText 
+                    image={imageKeys.profilegrey} 
+                    style={{ borderStyle:'solid',
+                            borderBottomWidth:1,
+                            borderBottomColor:'rgba(170,170,170,0.5)',
+                            alignItems:'center',
+                            padding:0,
+                            marginTop:23,
+                            paddingLeft:100,
+                    }}  
+                    textStyle={{color:'#000000',fontSize:14,fontFamily:fontKeys.MR}} 
+                    text= {textKeys.rider.address.me}
+                    func={()=>props.func("Me and me",meUser )}
+                />
+                <TaxiImageText 
+                    image={imageKeys.plusgreen} 
+                    style={{borderStyle:'solid',
+                            borderBottomColor:'rgba(170,170,170,0.5)',
+                            borderBottomWidth:1,
+                            alignItems:'center',
+                            marginTop:23,
+                            paddingLeft:100,
+                    }} 
+                    text={textKeys.rider.address.who} 
+                    textStyle={{color:'#5BE39B',fontSize:14,fontFamily:fontKeys.MR}}
+                    func={()=>props.func("you and you ", {photoURL:'https://reactnative.dev/img/tiny_logo.png',displayName:'test once', uid:123314242432})}
+                />
 
+            </View> :null}
             {scheduledRide ?
-                <View style={{paddingTop:36,paddingBottom:30,borderBottomStyle:'solid',borderBottomWidth:1,borderBottomColor:'#F2F2F2'}}>
+                <View style={{borderBottomStyle:'solid',borderBottomWidth:1,borderBottomColor:'#F2F2F2'}}>
                     <TaxiText12Row textTopLeft={'date'} textTopRight={'pickup'}
                         textTopLeftStyle={{
                             color:'#878787',
@@ -54,14 +93,6 @@ const SetDestinationScreen = (props) =>{
                  
             </View> : null
             }
-
-            <View style={{paddingTop:9,}}>  
-                <TaxiImageText image={imageKeys.profilegrey} style={{ borderStyle:'solid',
-                    borderBottomWidth:1,
-                    borderBottomColor:'rgba(170,170,170,0.5)',alignItems:'center',padding:0,marginTop:23,paddingLeft:100,}}  textStyle={{color:'#000000',fontSize:14,fontFamily:fontKeys.MR}} text= {textKeys.rider.address.me}/>
-                <TaxiImageText image={imageKeys.plusgreen} style={{alignItems:'center',marginTop:23,paddingLeft:100,}} text={textKeys.rider.address.who} textStyle={{color:'#5BE39B',fontSize:14,fontFamily:fontKeys.MR}}/>
-            </View>
-            
 
             <View style={{
                     flexDirection:'row',

@@ -14,7 +14,7 @@ import {
   StatusBar,
   AppState,
   ImageBackground,
-  ActivityIndicator
+  ActivityIndicator,
 } from 'react-native';
 
 import fontKeys from './src/keyText/fontKeys';
@@ -23,6 +23,8 @@ import imageKeys from './src/keyText/imageKeys';
 import MenuScreen from './src/components/menu/MenuScreen';
 import LoginRoute from './src/routes/LoginRoute';
 import HomeRoute from './src/routes/HomeRoute';
+import ConfirmationRoute from './src/routes/ConfirmationRoute';
+
 
 import SetDestinationScreen from './src/components/rider/destination/SetDestinationScreen';
 import LoginScreen from './src/components/login/LoginScreen';
@@ -30,10 +32,13 @@ import LoginScreen from './src/components/login/LoginScreen';
 import ComponentBackgroundHOC from './src/components/common/ComponentBackgroundHOC';
 import MapsScreen from './src/components/maps/MapsScreen'; 
 import HomeScreen from './src/components/home/HomeScreen'; //for driver ...
-import HomeRiderDestinationScreen from './src/components/home/HomeRiderDestinationScreen';
  
 import auth from '@react-native-firebase/auth';
 import { NavigationContainer } from '@react-navigation/native';
+
+
+
+const image = { uri: "https://reactjs.org/logo-og.png" };
 
 const App: () => React$Node = () => {
 
@@ -84,7 +89,7 @@ const App: () => React$Node = () => {
         </ImageBackground>
       </SafeAreaView>
    */
-
+  
       if (initializing) return <ActivityIndicator size="large" color="#00ff00" />; 
       if (!user) {
         return (
@@ -95,9 +100,11 @@ const App: () => React$Node = () => {
       }
     
       return (
+        
         <NavigationContainer>
           <HomeRoute/>
         </NavigationContainer>
+       
       );
 };
 

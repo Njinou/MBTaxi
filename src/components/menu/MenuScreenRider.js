@@ -6,8 +6,7 @@
  * @flow strict-local
  */
 //await firebase.auth().currentUser.updateProfile(update);
-//phoneNumber
- import React from 'react';
+ import React,{useState,useEffect} from 'react';
  import {StyleSheet,View,Image,Text,ImageBackground,ScrollView,SafeAreaView} from 'react-native';
  
  import fontKeys from '../../keyText/fontKeys';
@@ -34,18 +33,22 @@
                 }
 
 
- const MenuScreenRider: () => React$Node = ({ navigation }) => {
-    navigateRoute = (route) =>{
-        navigation.navigate(route);
-    }
+ const MenuScreenRider: (props) => React$Node = (props) => {
 
+   /* const [user,setUser] = useState(null);
+     useEffect(() => setUser(auth.currentUser), [])*/
+    // {user? <Image source ={{uri:user.photoURL}} />: <Image  style={{marginLeft:15,marginRight:15}} source={imageKeys.profile} />} //{ navigation },
+    navigateRoute = (route) =>{
+        props.navigation.navigate(route);
+    }
     // home history saved payment scheduled help settings contact
  //maplightgrey@2x.png
+ console.log("USER AND THEIR BULLSHIT IN LINE 46 MENU SCREEN RIDER", props.user);
    return (
      <SafeAreaView style={{height:'100%',width:'80%',alignSelf:'stretch',backgroundColor:'#222222'}}>       
          <View style={{width:'100%',height:67,justifyContent:'center'}}>
              <View style={{flexDirection:'row'}}>
-                 <Image  style={{marginLeft:15,marginRight:15}} source={imageKeys.profile} />
+                {props.user? <Image  style={{marginLeft:15,width:35,height:35,marginRight:15,borderRadius:20}} source={{uri:props.user.photoURL}} />: <Image  style={{marginLeft:15,marginRight:15}} source={imageKeys.profile} /> }
              <TaxiText styleText={{color:'white',fontSize:15,fontWeight:'bold'}} text="John Smith"/>
              </View>
              <Text style={{paddingLeft:60,color:'white'}}>rating here...</Text>
@@ -55,6 +58,10 @@
              <ImageBackground source={imageKeys.maplightgrey} style={styles.image}>
                 
                  <ScrollView style={{marginBottom:'auto',marginTop:22,flex:1}} contentContainerStyle={{justifyContent:'space-around'}}>
+                   
+                    
+                 <TaxiImageText  image={imageKeys.taxiicon} text={'Home'} func={()=>navigateRoute('destination')}/>
+                 
                      <TaxiImageText  image={imageKeys.scheduledridesgrey} text={textKeys.menu.schedule} func={()=>navigateRoute('scheduled')}/>
                      <TaxiImageText image={imageKeys.history} text={textKeys.menu.tripHistory} func={()=>navigateRoute('history')}/>
                      <TaxiImageText image={imageKeys.payment} text={textKeys.menu.payment} func={()=>navigateRoute('payment')}/>

@@ -30,6 +30,8 @@ const SignUp = (props) =>{
   const [email,setEmail] = useState('');
   const [error,setError] = useState('');
   const [user,setUser] = useState(null);
+  const [creating,setCreating] = useState(false);
+
   //MEDIA 
   const [uploading, setUploading] = useState(false);
   const [uploadTaskSnapshot, setUploadTaskSnapshot] = useState({});
@@ -46,17 +48,19 @@ const SignUp = (props) =>{
   onSubmitEditing= ()=> Keyboard.dismiss();
 
   creatingAccount = () => {
+    setCreating(true);
     auth()
     .createUserWithEmailAndPassword(email, password)
-    .then(async (user) => {
+    .then( (user) => {
       const update = {
         displayName: username,
         photoURL: photoURL,
         phoneNumber:phoneNumber
       };
-      await user.updateProfile(update);
+      // user.updateProfile(update);
+        auth().currentUser.updateProfile(update);
     })
-    .then(() => console.log("Updated successfully!"))
+    .then(() => {console.log("Updated successfully!"); setCreating(false);}) //setCreating(false);
     .catch(error => {
       if (error.code === 'auth/email-already-in-use') {
         console.log('That email address is already in use!');
@@ -65,7 +69,10 @@ const SignUp = (props) =>{
       if (error.code === 'auth/invalid-email') {
         console.log('That email address is invalid!');
       }
-      setError(error.code);
+     // if (error.includes('/')) setError(error.code.split('/')[1]) //TO NOT GET the first parth auth
+     // if (error.code.includes('\/')) setError(error.code.split('/')[1])
+     setError(error.code);
+      setCreating(false);
       console.error(error);
     });
   }
@@ -117,7 +124,6 @@ const SignUp = (props) =>{
       setUser(auth().currentUser);
   }, []);
   
-
     return (
         <ScrollView style={{alignSelf:'stretch',}} contentContainerStyle={{alignItems:'center',paddingBottom:54}} >  
          <View style={{alignSelf:'stretch',alignItems:'center'}}>
@@ -139,14 +145,20 @@ const SignUp = (props) =>{
             
             {uploading && (
               <View style={styles.uploading}>
-                <ActivityIndicator size={20} color="#47477b"></ActivityIndicator>
+                <ActivityIndicator size={20} color="#F2B84D"></ActivityIndicator>
                 <Text style={styles.statusText}>Uploading</Text>
                 <Text style={styles.statusText}>
                   {`${((uploadTaskSnapshot.bytesTransferred / uploadTaskSnapshot.totalBytes) * 100).toFixed(2)}% / 100%`}
                 </Text>
               </View>
             )}
-
+            
+            {creating && (
+              <View style={{marginTop:10}}>
+                <ActivityIndicator size={30} style={{marginTop:5}} color="#F2B84D"></ActivityIndicator>
+                <TaxiText text='Creating Account' styleText={{marginBottom:5,fontSize:15,fontWeight:'normal'}}/>
+              </View>
+            )}
 
             <TaxiText text={error} styleText={{marginBottom:5,fontSize:18,color:'red',fontWeight:'normal'}}/>
             <TaxiTextInput  placeholder={textKeys.fullName} func={settingUsername} value={username}/>

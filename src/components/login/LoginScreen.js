@@ -15,7 +15,8 @@ import {
   Text,
   useWindowDimensions,
   Dimensions,
-  ScrollView
+  ScrollView,
+  ActivityIndicator
 } from 'react-native';
 
 import fontKeys from '../../keyText/fontKeys';
@@ -33,7 +34,7 @@ const LoginScreen: () => React$Node = (props) => {
   const [user, setUser] = useState();
   const [username,setUsername] = useState('');
   const [password,setPassword] = useState('');
-
+  const [disabledButton,setDisableButton] = useState(false);
   settingUserName = (val) => {
     setUsername(val);
   }
@@ -51,25 +52,32 @@ const LoginScreen: () => React$Node = (props) => {
   const windowWidth = useWindowDimensions().width;
   const windowHeight = useWindowDimensions().height;
   const [isportrait,setIsPortrait] = useState(windowWidth <= windowHeight);
-  
-  
+  const [error,setError] = useState('');
+  const [creating,setCreating] = useState(false);
+
   //change it to sign in
   signingUp = () => {
+    setCreating(true)
     auth()
     .signInWithEmailAndPassword(username, password)
     .then(() => {
       console.log('User  signed in!');
+      setDisableButton(true);
+      setCreating(false)
     })
     .catch(error => {
       if (error.code === 'auth/email-already-in-use') {
         console.log('That email address is already in use!');
+        setCreating(false)
       }
 
       if (error.code === 'auth/invalid-email') {
         console.log('That email address is invalid!');
+        
       }
-
+      setCreating(false);
       console.error(error);
+      if (error.code.includes('\/')) setError(error.code.split('/')[1])
     });
   }
 
@@ -113,8 +121,8 @@ const LoginScreen: () => React$Node = (props) => {
 
   return (
     <ScrollView style={{alignSelf:'stretch',}} contentContainerStyle={{alignItems:'center',paddingBottom:54}} >  
-        <View style={{alignSelf:'stretch',alignItems:'center'}}>
-         <Text style={{color:'red',fontSize:22,marginBottom:10,fontFamily:fontKeys.MEBI,color:'#F2B84D',marginTop:10,
+        <SafeAreaView style={{alignSelf:'stretch',alignItems:'center'}}>
+         <Text style={{color:'red',fontSize:22,fontFamily:fontKeys.MEBI,color:'#F2B84D', 
           textShadowColor: 'rgba(4,80,110,0.5)',
           textShadowOffset: {width: 1, height: 1},
           textShadowRadius: 5
@@ -139,17 +147,24 @@ const LoginScreen: () => React$Node = (props) => {
         <View style={[styles.triangle,styles.arrowDown]}/> 
         </>
         :null}
-        
+        {creating && (
+              <View style={{marginTop:10}}>
+                <ActivityIndicator size={30} style={{marginTop:5}} color="#F2B84D"></ActivityIndicator>
+                <TaxiText text='Authentification' styleText={{marginBottom:5,fontSize:15,fontWeight:'normal'}}/>
+              </View>
+            )}
+
+         <TaxiText text={error} styleText={{marginBottom:5,fontSize:18,color:'red',fontWeight:'normal'}}/>
         <TaxiTextInput placeholder={textKeys.login.username} value={username} func={setUsername}/>
         <TaxiTextInput  placeholder={textKeys.password} secureTextEntry={true} value={password} func={setPassword}/>
-        <TaxiButton  text={textKeys.login.login} func={signingUp}/>
+        <TaxiButton  text={textKeys.login.login} func={signingUp} disabled={disabledButton}/>
         <TaxiText   
           text={textKeys.login.forgotPassword}
           style={styles.password} 
           styleText={styles.passwordText}
         />
         <TaxiText text={textKeys.login.createAccount} func={navigatingSignUp}/>
-      </View>
+      </SafeAreaView>
     </ScrollView>   
   );
 };
@@ -190,7 +205,7 @@ driverDot: {
   fontStyle:'italic'
 },
 password:{
-  marginTop:73,
+  marginTop:43,
   marginBottom:32
 },
 passwordText:{

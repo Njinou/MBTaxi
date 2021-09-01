@@ -6,7 +6,7 @@
  * @flow strict-local
  */
 
-import React from 'react';
+import React,{useState,useEffect} from 'react';
 import {StyleSheet,View,Image,Text,ImageBackground,ScrollView,SafeAreaView} from 'react-native';
 
 import fontKeys from '../../keyText/fontKeys';
@@ -19,23 +19,22 @@ import TaxiTextInput from '../common/TaxiTextInput'
 import TaxiText from  '../common/TaxiText';
 
 import TaxiImageText  from '../common/TaxiImageText';
+import auth from '@react-native-firebase/auth';
 
-import { createDrawerNavigator } from '@react-navigation/drawer';
-
-
-const Drawer = createDrawerNavigator();
 
 /*<Drawer.Navigator initialRouteName="Home">
         <Drawer.Screen name="Home" component={HomeScreen} />
         <Drawer.Screen name="Notifications" component={NotificationsScreen} />
       </Drawer.Navigator>*/
 const MenuScreen: () => React$Node = () => {
+    const [user,setUser] = useState(null);
+     useEffect(() => setUser(auth.currentUser), [])
 //maplightgrey@2x.png
   return (
     <SafeAreaView style={{height:'100%',width:'80%',alignSelf:'stretch',backgroundColor:'#222222'}}>       
         <View style={{width:'100%',height:67,justifyContent:'center'}}>
             <View style={{flexDirection:'row'}}>
-                <Image  style={{marginLeft:15,marginRight:15}} source={imageKeys.profile} />
+                {user? <Image source ={{uri:user.photoURL}} />: <Image  style={{marginLeft:15,marginRight:15}} source={imageKeys.profile} />}
             <TaxiText styleText={{color:'white',fontSize:15,fontWeight:'bold'}} text="John Smith"/>
             </View>
             <Text style={{paddingLeft:60,color:'white'}}>rating here...</Text>

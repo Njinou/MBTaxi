@@ -18,7 +18,7 @@ import TaxiButton from '../common/TaxiButton'
 import TaxiTextInput from '../common/TaxiTextInput'
 import TaxiText from  '../common/TaxiText';
 
-const SignUpConfirmationCode: () => React$Node = () => {
+const SignUpConfirmationCode: () => React$Node = ({navigation}) => {
 
 
   return (
@@ -29,7 +29,7 @@ const SignUpConfirmationCode: () => React$Node = () => {
         <TaxiText styleText={{paddingBottom:111,alignSelf:'center',fontSize:16,fontFamily:fontKeys.MR,color:'white'}} text={'nitcheupascal@gmail.com'}/>
         <View style={{justifyContent:'flex-start',alignItems:'center',marginTop:'auto'}}>
         <TaxiTextInput  placeholder={textKeys.confirmAccount.codeVerification}/>
-        <TaxiButton  text={textKeys.submit}/>
+        <TaxiButton  text={textKeys.submit} func={()=> navigation.navigate('success')}/>
         <TaxiText style={{paddingBottom:44,paddingTop:25}} text={textKeys.confirmAccount.resendCode}/>
         </View>
         

@@ -4,9 +4,9 @@ import imageKeys from "../../../keyText/imageKeys";
 import textKeys from "../../../keyText/textKeys";
 import ModalText from '../../common/ModalText';
 
-const RideOtherOptions = () => {
-  const [modalVisible, setModalVisible] = useState(true);
-   setModalFunc = () => setModalVisible(!modalVisible);
+const RideOtherOptions = (props) => {
+  const [modalVisible, setModalVisible] = useState(props.setModalVisible);
+   setModalFunc = () => {setModalVisible(!modalVisible);  }
   return (
       <Modal
       supportedOrientations={['portrait', 'landscape']}
@@ -16,15 +16,15 @@ const RideOtherOptions = () => {
         visible={modalVisible}
         onRequestClose={() => {
           Alert.alert("Modal has been closed.");
-          setModalVisible(!modalVisible);
+          setModalVisible(props.setModalVisible);
         }}
       >
          
         <View style={{flexDirection:'row',alignItems:'center',height:'100%',justifyContent:'center',flexWrap:'wrap',marginTop:85}}>
-            <ModalText text1={textKeys.rider.options.goBack} func={setModalFunc} Component={<Image source={imageKeys.backarrowlarge} style={{alignSelf:'flex-start'}}/>}/>
-            <ModalText text1={textKeys.rider.options.course} text2={textKeys.rider.options.bookCourse} func={setModalFunc}/>
-            <ModalText text1={textKeys.rider.options.schedule} text2={textKeys.rider.options.setTime} func={setModalFunc}/>
-            <ModalText text1={textKeys.rider.options.subscribe} text2={textKeys.rider.options.monthSubscribe} func={setModalFunc}/>
+            <ModalText text1={textKeys.rider.options.goBack} func={()=>props.func('now')} Component={<Image source={imageKeys.backarrowlarge} style={{alignSelf:'flex-start'}}/>}/>
+            <ModalText text1={textKeys.rider.options.course} text2={textKeys.rider.options.bookCourse} func={()=>props.func('course')}/>
+            <ModalText text1={textKeys.rider.options.schedule} text2={textKeys.rider.options.setTime} func={()=>props.func('schedule')}/>
+            <ModalText text1={textKeys.rider.options.subscribe} text2={textKeys.rider.options.monthSubscribe} func={()=>props.func('subscribe')}/>
         </View>
 
       </Modal>
