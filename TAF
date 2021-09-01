@@ -1,0 +1,69 @@
+Choses a faire .... remplacer dans le menu les infos par celui de lutilisateur 
+sauvegarder dans le real database les informations de chaque utilisateur aussibien ses trajets et les detais du trajet,
+les informations personnelles...
+mettre sur pieds tous es composants du menu 
+ ajouter les logiques sur tous es ecrans 
+
+
+ pour le back end..... 
+ ire es requets utilisateurs ...
+selectionner les taxi allant dans cette destination la.... ou passant par la ...
+choisir les taxis selon la notion de plus proche voisin et agrandir le rayon de voisinage si dans les alentours les chauffeurs n'acceptent pas la destination
+cacher au chauffeur le client ou la destination pour qu'il puisse choisir et transporter tout le monde 
+
+
+POUR LE CHAUFFEUR 
+ajouter les couches logiques similaires a ceux des  passagers et peut etre meme definir une option pour choisir si tu es chauffeur ou bien passager et en fonction de cela le tabbleau de bord peut etre different 
+mettre sur pieds le montant travaille dans la semaine et le mois et etre en mesure de recuperer en cash toutes les sommes payees par mesomb.... 
+selectionner une requete 
+CEPENDANT donner la possibilite aux chauffeurs de definir les zones ou il ne souhaiterait pas travailler et les horaires aussi..
+
+
+
+// trois routes ... login 
+sign up 
+et home 
+si un gars login et cest bon on le send sur home ... 
+
+
+
+METTRE IMAGEBACKGROUND  sur le confirmation code screen et le confirmation success screen aussi... 
+et conduire le success vers le Home route ... pour poursuivre le request..... 
+
+
+header dans home  la fleche
+SET THE IMAGEBACKGROUND  to match the comp
+
+once the user allow permission there should be a refresh to open the home screen THAT IS A BUG  that need to be fixed quickly 
+FILTRER LES options en fonction des villes et pays ....  un gars ne peut pas etre en France je lui montre makepe douala....!!!!!!!!!!!
+
+
+il ya deux composants dont  qui ne prennent pas les hooks 
+
+ajouter es reference pour que lutilisateur nait pas a cliquer dans chaque champ avant de remplir 
+
+ride option s'ouvre plusieurs fois et e background disparait ...
+
+
+les bordures des propositions de destination ne sont pas arrondis dans lapplication android...
+
+
+schedule ride and pick up ride ne restent pas au bas de la page ... lorsque les options s'affichent ...
+
+text input in destination is squashed and need to be stretch......
+
+select who is riding should be a textinput for username avec autocompletion ou lutilisateur peut choisir le passager quil veut.... pour tous les utilisateurs... 
+
+DANS Les deplacements des utilisateurs... on proposera les dernieres destinations et les plus frequentes donc on doit avoir un index pour calculer les frequences et pour cela 
+je me dis qu'on devrait utiliser soit le user id propose par google... soit creer le notre et choisir celui la lorsqu'il est disponible 
+ 
+
+ donner la possibilite aux utilisateurs de referencer certains lieux ou quartiers dont les noms ne correspondront pas a ceux presentes ou dispoonibes....
+ goback pou changer de schedul ride a requst now ou bien continuous pick up ..
+
+
+ creer le serveeur de MBTaxi pour pouvoir fetech les utilisateurs a partir de cete url et penser a authentifier les utilisateurs .... 
+ les notifications ..... quand un taxi est trouve ,,,, quand le taxi arrive et quand le taxi est la ou quand quelqu'un request un taxi pour soi....
+ REGARDEER LE FORWARD SLASH DU CREATE USER ET LOGIN 
+
+ le 1er septembre => listall Users and select it for who is the rider .... , tous les eleents qui sont dans le menu et lie cela au compte ..... dans real database.... arranger le soucis avec iphone 
