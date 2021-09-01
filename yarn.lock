@@ -1196,6 +1196,11 @@
   resolved "https://registry.yarnpkg.com/@react-native-firebase/auth/-/auth-12.7.3.tgz#ff225a8661a6197a562ca99bc5451f0e80e202b7"
   integrity sha512-BksvXxIJLxxnAY0v476XxIZA9F46p+wRCX5VMpLBnfXN7BThpT1nl0aqTs1Da4pIEmYTOuGcV+afbs46uklQ4A==
 
+"@react-native-firebase/database@^12.7.4":
+  version "12.7.4"
+  resolved "https://registry.yarnpkg.com/@react-native-firebase/database/-/database-12.7.4.tgz#3429f324ea99cf107c930ecf31c7764e8bd5c06a"
+  integrity sha512-iUJUPzgoX7jCS+jwyyIekQx3TkflNc5rS9CJ/zueagSoQ06WZ649cCv5QNh5RVX1qJn3ICbLiCjKldwJz7IgqQ==
+
 "@react-native-firebase/storage@^12.7.3":
   version "12.7.3"
   resolved "https://registry.yarnpkg.com/@react-native-firebase/storage/-/storage-12.7.3.tgz#df016373ad4babab7df81030e8e2e29f36ed4642"
@@ -4724,12 +4729,7 @@ lodash.throttle@^4.1.1:
   resolved "https://registry.yarnpkg.com/lodash.throttle/-/lodash.throttle-4.1.1.tgz"
   integrity sha1-wj6RtxAkKscMN/HhzaknTMOb8vQ=
 
-lodash@^4.17.10, lodash@^4.17.14, lodash@^4.17.15, lodash@^4.17.19, lodash@^4.3.0:
-  version "4.17.21"
-  resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.21.tgz"
-  integrity sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg==
-
-lodash@^4.17.21:
+lodash@^4.17.10, lodash@^4.17.14, lodash@^4.17.15, lodash@^4.17.19, lodash@^4.17.21, lodash@^4.3.0:
   version "4.17.21"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.21.tgz#679591c564c3bffaae8454cf0b3df370c3d6911c"
   integrity sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg==
