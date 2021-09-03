@@ -1,8 +1,7 @@
-Choses a faire .... remplacer dans le menu les infos par celui de lutilisateur 
-sauvegarder dans le real database les informations de chaque utilisateur aussibien ses trajets et les detais du trajet,
-les informations personnelles...
-mettre sur pieds tous es composants du menu 
- ajouter les logiques sur tous es ecrans 
+Choses a faire .... remplacer dans le menu les infos par celui de lutilisateur (in Progress)
+sauvegarder dans le real database les informations de chaque utilisateur aussibien ses trajets et les detais du trajet, les informations personnelles... (in progress)
+mettre sur pieds tous es composants du menu (in progress)
+ ajouter les logiques sur tous es ecrans (in progress )
 
 
  pour le back end..... 
@@ -27,7 +26,7 @@ si un gars login et cest bon on le send sur home ...
 
 
 
-METTRE IMAGEBACKGROUND  sur le confirmation code screen et le confirmation success screen aussi... 
+METTRE    sur le confirmation code screen et le confirmation success screen aussi... 
 et conduire le success vers le Home route ... pour poursuivre le request..... 
 
 
@@ -69,6 +68,12 @@ je me dis qu'on devrait utiliser soit le user id propose par google... soit cree
  le 1er septembre => listall Users and select it for who is the rider .... , tous les eleents qui sont dans le menu et lie cela au compte ..... dans real database.... arranger le soucis avec iphone 
 
  POUR SOUCIS De coherence et de user experience je  vais permettre linteraction ou lintervention dune tierce personne juste au paiement .... pas avant donc en attendant cet aspect ou on fera intervenir les utilisateurs, 
- on maintient que lutilisateur est sur son compte et rien dautre.... cela peut annuler l'entete  de change ... et la logique derriere...
+ on maintient que lutilisateur est sur son compte et rien dautre.... cela
+ 
+  peut annuler l'entete  de change ... et la logique derriere...
 
  json value 2 of type NSNumber cannot be converted to CGSize 
+
+
+ 4)- Decider si chaque utilisateur peut appeler son taxi et faire recourt a klk un juste pour payer  (done)
+5)- se rassurer que le trajet a été paye a l’avance avant d’envoyer la requête vers les chauffeurs sinon tu ferais déplacer des chauffeurs pour rien ou des trajets gratuits…. 

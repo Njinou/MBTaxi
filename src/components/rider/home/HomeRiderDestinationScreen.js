@@ -33,16 +33,38 @@ import auth from '@react-native-firebase/auth';
 const GOOGLE_MAPS_API_KEY = 'AIzaSyB6iuVD8X4sEeHAGHY3tmMQRyM_Vyoc3UU';
 //DANS SCHEDULE RIDE IL PEUT CHOISIR LE POINT DE PICK UP 
 //IL FAUT IMPOSER D'ACTIVER L'AUTORISATION  de la position pour permettre a l'utilisateur de pouvoir utiliser lappli sinon on ne pourra pas afficher le message d'erreuur au niveau de la destination et le point de depart 
+
+function compareString (str1,str2){
+  var words1 = str1.split(/\s+/g),
+   words2 = str2.split(/\s+/g),
+   i,
+   j;
+  var total =0;
+
+for (i = 0; i < words1.length; i++) {
+   for (j = 0; j < words2.length; j++) {
+       if (words1[i].toLowerCase() == words2[j].toLowerCase()) {
+       //   console.log('word '+words1[i]+' was found in both strings');
+          total++;
+       }
+   }
+}
+return total;
+}
+
 const HomeRiderDestinationScreen: (props) => React$Node = (props) => {
     const [destination,setDestination] = useState(null);
     const [isSearching,setIsSearching] = useState(false);
     const [value,setValue] = useState(null);
     const [location, setLocation] = useState(null) //
+    const [locationAddress, setLocationAddress] = useState(null) //
     const [textInput, setTextInput] = useState("");
     const [error, setError] = useState("");
     const [data,setData] = useState([]);
     const [option,setOption] = useState(false);
     const [optionValue,setOptionValue] = useState(null);
+    const [currentAddress,setCurrentAddress] = useState("");
+
     const handleLocationPermission = async () => { 
         let permissionCheck = ""
         if (Platform.OS === "ios") {
@@ -94,17 +116,18 @@ const HomeRiderDestinationScreen: (props) => React$Node = (props) => {
                 location: {lat, lng},
               },
             } = res.results[0];
-
+            setCurrentAddress(formatted_address);
+            setLocationAddress(res.results[0]);
             //same for revere geocoding 
-            /*
+            
             // Search by geo-location (reverse geo-code)
-Geocoder.from(41.89, 12.49)
+      /*Geocoder.from(location)
 		.then(json => {
         		var addressComponent = json.results[0].address_components[0];
-			console.log(addressComponent);
+			console.log('addressComponent .........??????????????!!!!!',addressComponent);
 		})
-		.catch(error => console.warn(error));
-            */
+		.catch(error => console.warn(error));*/
+            
         })
             setLocation({ latitude, longitude })
           },
@@ -137,14 +160,21 @@ onChangeText={onChangeText}
         return (<Text> JE suis desole ..</Text>)
      }
 
-     const setModalFunc = (val) => {setOption(false); props.navigation.navigate('dest2',{ option:val,item:value },); setOptionValue(val)} //va dans option ride 
+     const setModalFunc = (val) => {setOption(false); props.navigation.navigate('dest2',{ option:val,destination:value,location:locationAddress,currentPosition:location },); setOptionValue(val)} //va dans option ride 
 
      APIPlaceAutocomplete = (destination, currentPlace) => {
        const URL = `https://maps.googleapis.com/maps/api/place/autocomplete/json?key=${GOOGLE_MAPS_API_KEY}&input=${destination}&location=${currentPlace.latitude},${currentPlace.longitude}&radius=2000`;
         if (destination.length > 0) {
           return fetch(URL)
             .then(resp => resp.json())
-            .then (result => setData(result.predictions))
+            .then (result => {
+             // console.log(result.predictions);
+             console.log(result);
+              let localAddress = result.predictions.filter( element => compareString(element.description, currentAddress)>1);
+              setData(localAddress); //(result.predictions);
+            // setData (result.predictions);
+            }) // compareString 
+            //result.predictions.filter( element => compareString(element, currentAddress)) 
             ////ici il faut filtrer les valeurs avec la ville et le pays pour diminuer les valeurs envoyer ....  
           // et pour cela on peut prendre les valeur de geocoder comme reference ......   et il faut verifier que le format est le meme cest a dire le nombre de virgule qui separe les villes et les pays est le meme que les resultats qui sont 
           //produits

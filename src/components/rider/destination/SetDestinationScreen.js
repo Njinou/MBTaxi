@@ -14,6 +14,8 @@ import TaxiButton from '../../common/TaxiButton';
 
 import auth from '@react-native-firebase/auth';
 
+const GOOGLE_MAPS_API_KEY = 'AIzaSyB6iuVD8X4sEeHAGHY3tmMQRyM_Vyoc3UU';
+
 //org.reactjs.native.example.MBTaxi
 //com.mbouendeu.MBTaxi
 //select rider present Me iff rider is different from Me... otherwise Modal textinput and displays users by username... 
@@ -26,14 +28,51 @@ const SetDestinationScreen = (props) =>{
         const [meRider,setMeRider] = useState(textKeys.rider.address.whor); //textKeys.rider.address.forme
         const [scheduledRide,scheduleARide] = useState ('schedule' === props.route.params.option);
         const [allUsers,setAllUsers] = useState ([]); // la liste de tous les utilisateurs .... 
-
         const [meUser,setMeUser] = useState (auth().currentUser);
+        const [destination, setDestination] = useState(props.route.params.destination);
+        const [location, setLocation] = useState(props.route.params.location);
+        const [longLat, setLongLat] = useState(props.route.params.currentPosition);
+
+        const [addressStop, setAddressStop] = useState(null);
+
         const AjouterStop = () => {SetStop(true);}
         const removeStop = () => SetStop(false);
         const addRiders = () => setMeRider(textKeys.rider.address.whor);
         
         //console.log('itemsss itemaaa',props.route.params.item)//.state.params.item)
        // console.log('option',props.route.params.option)//.state.params.option)
+       const {
+        formatted_address,
+        place_id,
+        geometry: {
+          location: {lat, lng},
+        },
+      } = location;
+
+      APIPlaceAutocomplete = (destination, currentPlace) => {
+        const URL = `https://maps.googleapis.com/maps/api/place/autocomplete/json?key=${GOOGLE_MAPS_API_KEY}&input=${destination}&location=${currentPlace.latitude},${currentPlace.longitude}&radius=2000`;
+         if (destination.length > 0) {
+           return fetch(URL)
+             .then(resp => resp.json())
+             .then (result => {
+              // console.log(result.predictions);
+              console.log(result);
+               let localAddress = result.predictions.filter( element => compareString(element.description, formatted_address)>1);
+               setData(localAddress); //(result.predictions);
+             // setData (result.predictions);
+             }) // compareString 
+             //result.predictions.filter( element => compareString(element, currentAddress)) 
+             ////ici il faut filtrer les valeurs avec la ville et le pays pour diminuer les valeurs envoyer ....  
+           // et pour cela on peut prendre les valeur de geocoder comme reference ......   et il faut verifier que le format est le meme cest a dire le nombre de virgule qui separe les villes et les pays est le meme que les resultats qui sont 
+           //produits
+             .catch(error => console.log('voici l\'erreur ',error));
+         } else {
+             console.log("No address corresponding ..")
+           return 'No destination Address provided';
+         }
+       };
+//APIPlaceAutocomplete(input, latlong)
+
     return (
         <ScrollView style={{height:'100%',backgroundColor:'white'}}>
            { props.selectingUser? <View style={{paddingTop:9,}}>  
@@ -68,7 +107,7 @@ const SetDestinationScreen = (props) =>{
             </View> :null}
             {scheduledRide ?
                 <View style={{borderBottomStyle:'solid',borderBottomWidth:1,borderBottomColor:'#F2F2F2'}}>
-                    <TaxiText12Row textTopLeft={'date'} textTopRight={'pickup'}
+                    <TaxiText12Row textTopLeft={'Date'} textTopRight={'Time'}
                         textTopLeftStyle={{
                             color:'#878787',
                             fontSize:11,
@@ -126,7 +165,7 @@ const SetDestinationScreen = (props) =>{
                     }}
                 >
                         <TaxiText text={textKeys.rider.address.pickup}  style={{alignSelf:'flex-start',paddingLeft:40,paddingBottom:10}} styleText={{color:'#878787',fontSize:11,fontFamily:fontKeys.MR}}/>
-                        <TaxiTextInput placeholder="12213 wasdqe ad " style={{backgroundColor:'#F2F2F2',alignSelf:'stretch',marginBottom:16}}/>
+                        <TaxiTextInput placeholder={formatted_address} value={formatted_address} style={{backgroundColor:'#F2F2F2',alignSelf:'stretch',marginBottom:16}}/>
                         
                         {addStop?  
                              <TaxiText12Row textTopLeft={textKeys.rider.address.stop} textTopRight={textKeys.rider.address.remove}
@@ -142,23 +181,28 @@ const SetDestinationScreen = (props) =>{
                              }} 
                              style={{borderWidth:0,paddingLeft:40,paddingRight:40,paddingBottom:3}}
                              text2Func={removeStop}
-                         /> : <TaxiText text= {textKeys.rider.address.destination}  style={{alignSelf:'flex-start',paddingLeft:40,paddingBottom:3}} styleText={{color:'#878787',fontSize:11,fontFamily:fontKeys.MR}}/>
+                         /> :null
                         }
                         
-                        <View style={{flexDirection:'row',justifyContent:'space-between',alignItems:'center'}}>
+                        {addStop?<View style={{flexDirection:'row',justifyContent:'space-between',alignItems:'center'}}>
                             <TaxiTextInput placeholder="Bonamoussadi Douala" style={{backgroundColor:'#F2F2F2',marginBottom:16,flex:1,paddingRight:0, marginRight:0}}/>
                             <View  style={{marginLeft:18,marginRight:18,justifyContent:'center',alignSelf:'center',paddingBottom:15}}>
-                                <Pressable onPress={AjouterStop}>
-                                    <Image source={imageKeys.plus} />
-                                </Pressable>
+                               
                             </View>
                             
-                        </View>
-                       
-                        {addStop ? <>
-                            <TaxiText text= {textKeys.rider.address.destination}  style={{alignSelf:'flex-start',paddingLeft:40,paddingBottom:3}} styleText={{color:'#878787',fontSize:11,fontFamily:fontKeys.MR}}/>
-                            <TaxiTextInput placeholder="Ongola Tongolo" style={{backgroundColor:'#F2F2F2'}}/>
-                            </> : null}
+                        </View> : null}
+                         
+                        <TaxiText text= {textKeys.rider.address.destination}  style={{alignSelf:'flex-start',paddingLeft:40,paddingBottom:3}} styleText={{color:'#878787',fontSize:11,fontFamily:fontKeys.MR}}/>
+                        <View style={{flexDirection:'row',justifyContent:'space-between',alignItems:'center'}}>
+                            <TaxiTextInput placeholder="Bonamoussadi bonakanwa" value={destination.description} style={{backgroundColor:'#F2F2F2',marginBottom:16,flex:1,paddingRight:0, marginRight:0}}/>
+                           <View  style={{marginLeft:18,marginRight:18,justifyContent:'center',alignSelf:'center',paddingBottom:15}}>
+                           {!addStop?  <Pressable onPress={AjouterStop}>
+                                    <Image source={imageKeys.plus} />
+                                </Pressable>:null}
+                            </View>
+                            
+                        </View> 
+
                         
                 </View>
             </View>

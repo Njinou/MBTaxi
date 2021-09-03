@@ -7,6 +7,22 @@ export default function SettingsScreen() {
       <Text>
             Settings!!!!!!
       </Text>
+
+      <Text>
+           Notifications
+      </Text>
+
+      <Text>
+            Account  Information..... email change, phone number, Display name
+      </Text>
+      <Text>
+            Invite a friend 
+      </Text>
+
+      <Text>
+            Storage and Data (network usage and auto-download)
+      </Text>
+
     </SafeAreaView>
   );
 }

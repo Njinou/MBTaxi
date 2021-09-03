@@ -7,6 +7,14 @@ export default function ContactScreen() {
       <Text>
             Contact Us At 415-888-0978
       </Text>
+
+      <Text>
+            Live Chat.... chat with us live .....
+      </Text>
+
+      <Text>
+            email  us ...... 
+      </Text>
     </SafeAreaView>
   );
 }

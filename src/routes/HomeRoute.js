@@ -7,6 +7,8 @@ import DisplayFareSplittedScreen from '../components/rider/fare/DisplayFareSplit
 import MenuScreenRider from '../components/menu/MenuScreenRider';
 
 import RideHistoryComponent from '../components/rider/history/RideHistoryComponent';
+import HistoryDetailScreen from '../components/rider/history/HistoryDetailScreen';
+
 import SavedScreen from '../components/rider/saved/SavedScreen';
 import PaymentScreen from '../components/rider/payment/PaymentScreen';
 import ScheduleScreen from '../components/rider/scheduled/ScheduleScreen';
@@ -44,12 +46,18 @@ const  HomeRoute = (props)=> {
   const [user,setUser] = React.useState(null);
 
    changeRider = () => setSelectingUser(!selectingUser);
-   whoRiderFunc = (text, user) => { setWhoRiderText(text); setUser(user); setSelectingUser(!selectingUser);}
+   whoRiderFunc = (text, user) => { 
+      setWhoRiderText(text); 
+      setUser(user); 
+      setSelectingUser(!selectingUser);
+    }
   console.log('Inside Home Route line 48 ',props);
   return (
     <Drawer.Navigator initialRouteName="destination"  drawerContent={props => <MenuScreenRider {...props}  user={user} />}>
     <Drawer.Screen name="destination" component={HomeRiderDestinationScreen} />
     <Drawer.Screen name="history" component={RideHistoryComponent}  options={{ title: 'history' }}/>
+    <Drawer.Screen name="historyDetails" component={HistoryDetailScreen}  options={{ title: 'History Details' }}/>
+    
     <Drawer.Screen name="saved" component={SavedScreen}  options={{ title: 'Saved Places' }}/>
     <Drawer.Screen name="payment" component={PaymentScreen}  options={{ title: 'Payment' }}/>
 
@@ -59,10 +67,7 @@ const  HomeRoute = (props)=> {
     <Drawer.Screen name="contact" component={ContactScreen}  options={{ title: 'Contact Us' }}/>
     
     <Drawer.Screen name="dest2" options={{ 
-        title: null,
-        headerRight: () => (
-          <HeaderSelectDestination  image1={imageKeys.profilegrey} image2={imageKeys.dropdown} text1={whoRiderText} text2={textKeys.rider.address.change} func2={changeRider} func={changeRider}/>
-        ),
+        title: 'title to be  changed',
       }}>
       {props => <SetDestinationScreen {...props} selectingUser={selectingUser}  func={whoRiderFunc}/>}
     </Drawer.Screen>
