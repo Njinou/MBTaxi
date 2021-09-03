@@ -35,6 +35,8 @@ const sample = [
 //duration of the traject
 //cost
 //riders
+
+//TRANSFORM IN in string once saving it and just returning the value .... to display ... 
   const Item = ({ item,navigation }) => {
       const [itemDetails, setItemDetails] = useState(null);
 
@@ -43,6 +45,7 @@ const sample = [
         setItemDetails(item);
         navigation.navigate('historyDetails',{item:item});
     }}>
+        
         <RideHistoryBlock  textTopLeft={item.datetime.toLocaleDateString('en-US')? item.datetime.toLocaleDateString('en-US'): item.datetime}  textTopRight={item.price + " FCFA"} textBottomLeft={item.datetime.toLocaleTimeString('en-US')? item.datetime.toLocaleTimeString('en-US'): item.datetime} textBottomRight={item.rating}/>
     </Pressable>
       );

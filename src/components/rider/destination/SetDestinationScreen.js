@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import {Text,View,Image,ScrollView, Pressable} from 'react-native';
+import {Text,View,Image,ScrollView, Pressable,Button} from 'react-native';
 import imageKeys from '../../../keyText/imageKeys';
 import TaxiImageText from '../../common/TaxiImageText';
 import TaxiTextImage from '../../common/TaxiTextImage';
@@ -13,6 +13,7 @@ import HeaderSelectDestination from '../../common/HeaderSelectDestination';
 import TaxiButton from '../../common/TaxiButton';
 
 import auth from '@react-native-firebase/auth';
+import DateTimePickerModal from "react-native-modal-datetime-picker";
 
 const GOOGLE_MAPS_API_KEY = 'AIzaSyB6iuVD8X4sEeHAGHY3tmMQRyM_Vyoc3UU';
 
@@ -24,20 +25,24 @@ const GOOGLE_MAPS_API_KEY = 'AIzaSyB6iuVD8X4sEeHAGHY3tmMQRyM_Vyoc3UU';
 //on peut commencer par who is the rider et puis donner la possibilite a l'utilisateur de faire son choix.. 
 // on devra prendre user depuis homeRoute et obtenir a liste des users ..
 const SetDestinationScreen = (props) =>{
-        const [addStop,SetStop] = useState(false);
-        const [meRider,setMeRider] = useState(textKeys.rider.address.whor); //textKeys.rider.address.forme
-        const [scheduledRide,scheduleARide] = useState ('schedule' === props.route.params.option);
-        const [allUsers,setAllUsers] = useState ([]); // la liste de tous les utilisateurs .... 
-        const [meUser,setMeUser] = useState (auth().currentUser);
-        const [destination, setDestination] = useState(props.route.params.destination);
-        const [location, setLocation] = useState(props.route.params.location);
-        const [longLat, setLongLat] = useState(props.route.params.currentPosition);
+    const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
+    const [isTimePickerVisible, setTimePickerVisibility] = useState(false);
+    const [Date, setDate] = useState("Select Date");
+    const [Time, setTime] = useState("Select Time");
+    const [addStop,SetStop] = useState(false);
+    const [meRider,setMeRider] = useState(textKeys.rider.address.whor); //textKeys.rider.address.forme
+    const [scheduledRide,scheduleARide] = useState ('schedule' === props.route.params.option);
+    const [allUsers,setAllUsers] = useState ([]); // la liste de tous les utilisateurs .... 
+    const [meUser,setMeUser] = useState (auth().currentUser);
+    const [destination, setDestination] = useState(props.route.params.destination);
+    const [location, setLocation] = useState(props.route.params.location);
+    const [longLat, setLongLat] = useState(props.route.params.currentPosition);
 
-        const [addressStop, setAddressStop] = useState(null);
+    const [addressStop, setAddressStop] = useState(null);
 
-        const AjouterStop = () => {SetStop(true);}
-        const removeStop = () => SetStop(false);
-        const addRiders = () => setMeRider(textKeys.rider.address.whor);
+    const AjouterStop = () => {SetStop(true);}
+    const removeStop = () => SetStop(false);
+    const addRiders = () => setMeRider(textKeys.rider.address.whor);
         
         //console.log('itemsss itemaaa',props.route.params.item)//.state.params.item)
        // console.log('option',props.route.params.option)//.state.params.option)
@@ -73,6 +78,35 @@ const SetDestinationScreen = (props) =>{
        };
 //APIPlaceAutocomplete(input, latlong)
 
+const showDatePicker = () => {
+    setDatePickerVisibility(true);
+  };
+
+  const hideDatePicker = () => {
+    setDatePickerVisibility(false);
+  };
+
+  const handleDateConfirm = (date) => {
+      setDate(date.toLocaleDateString('en-US'));
+    console.warn("A date has been picked: ", date.toLocaleDateString('en-US'));
+    hideDatePicker();
+  };
+
+  const showTimePicker = () => {
+    setTimePickerVisibility(true);
+  };
+
+  const hideTimePicker = () => {
+    setTimePickerVisibility(false);
+  };
+
+  const handleTimeConfirm = (time) => {
+      setTime(time.toLocaleTimeString('en-US'));
+    console.warn("A time  has been selected : ", time.toLocaleTimeString('en-US'));
+    hideTimePicker();
+  };
+
+
     return (
         <ScrollView style={{height:'100%',backgroundColor:'white'}}>
            { props.selectingUser? <View style={{paddingTop:9,}}>  
@@ -107,7 +141,7 @@ const SetDestinationScreen = (props) =>{
             </View> :null}
             {scheduledRide ?
                 <View style={{borderBottomStyle:'solid',borderBottomWidth:1,borderBottomColor:'#F2F2F2'}}>
-                    <TaxiText12Row textTopLeft={'Date'} textTopRight={'Time'}
+                     <TaxiText12Row textTopLeft={'Date'} textTopRight={'Time'}
                         textTopLeftStyle={{
                             color:'#878787',
                             fontSize:11,
@@ -120,13 +154,32 @@ const SetDestinationScreen = (props) =>{
                         }} 
                         style={{borderWidth:0,paddingBottom:3,paddingLeft:40}}
                         textTopLeftStyle={{marginRight:150}}
-                        textTopRightStyle={{marginRight:20}}
+                        textTopRightStyle={{marginRight:40}}
                         petitStyle={{justifyContent:'space-around'}}
                         text2Func={removeStop}
                     /> 
-                    <View style={{justifyContent:'space-between',alignItems:'center',flexDirection:'row',}}>
-                        <TaxiTextInput placeholder="Assdsadasd" />
-                        <TaxiTextInput placeholder="Assdsadasd"/>
+
+                    <View style={{justifyContent:'space-around',alignItems:'center',flexDirection:'row'}}>
+                        <View>
+                            <Button title={Date} onPress={showDatePicker} />
+                            <DateTimePickerModal
+                                isVisible={isDatePickerVisible}
+                                mode="date"
+                                onConfirm={handleDateConfirm}
+                                onCancel={hideDatePicker}
+                            />
+                        </View>
+                        
+                        <View>
+                            <Button title={Time} onPress={showTimePicker} />
+                            <DateTimePickerModal
+                                isVisible={isTimePickerVisible}
+                                mode="time"
+                                onConfirm={handleTimeConfirm}
+                                onCancel={hideTimePicker}
+                            />
+                        </View>
+
                     </View>
 
                  

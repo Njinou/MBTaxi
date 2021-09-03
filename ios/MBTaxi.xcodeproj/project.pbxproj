@@ -55,9 +55,6 @@
 		5FE693E426E00E9F00D48D6D /* liblibevent.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FE693A526E00E9F00D48D6D /* liblibevent.a */; };
 		5FE693E526E00E9F00D48D6D /* libnanopb.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FE693A626E00E9F00D48D6D /* libnanopb.a */; };
 		5FE693E626E00E9F00D48D6D /* libPermission-LocationWhenInUse.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FE693A726E00E9F00D48D6D /* libPermission-LocationWhenInUse.a */; };
-		5FE693E726E00E9F00D48D6D /* libPods-MBTaxi-MBTaxiTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FE693A826E00E9F00D48D6D /* libPods-MBTaxi-MBTaxiTests.a */; };
-		5FE693E826E00E9F00D48D6D /* libPods-MBTaxi-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FE693A926E00E9F00D48D6D /* libPods-MBTaxi-tvOS.a */; };
-		5FE693E926E00E9F00D48D6D /* libPods-MBTaxi-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FE693AA26E00E9F00D48D6D /* libPods-MBTaxi-tvOSTests.a */; };
 		5FE693EA26E00E9F00D48D6D /* libPods-MBTaxi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FE693AB26E00E9F00D48D6D /* libPods-MBTaxi.a */; };
 		5FE693EB26E00E9F00D48D6D /* libPromisesObjC.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FE693AC26E00E9F00D48D6D /* libPromisesObjC.a */; };
 		5FE693EC26E00EA000D48D6D /* libRCTTypeSafety.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FE693AD26E00E9F00D48D6D /* libRCTTypeSafety.a */; };
@@ -174,9 +171,6 @@
 		5FE693A526E00E9F00D48D6D /* liblibevent.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = liblibevent.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		5FE693A626E00E9F00D48D6D /* libnanopb.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libnanopb.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		5FE693A726E00E9F00D48D6D /* libPermission-LocationWhenInUse.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libPermission-LocationWhenInUse.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		5FE693A826E00E9F00D48D6D /* libPods-MBTaxi-MBTaxiTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libPods-MBTaxi-MBTaxiTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		5FE693A926E00E9F00D48D6D /* libPods-MBTaxi-tvOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libPods-MBTaxi-tvOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		5FE693AA26E00E9F00D48D6D /* libPods-MBTaxi-tvOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libPods-MBTaxi-tvOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5FE693AB26E00E9F00D48D6D /* libPods-MBTaxi.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libPods-MBTaxi.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5FE693AC26E00E9F00D48D6D /* libPromisesObjC.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libPromisesObjC.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		5FE693AD26E00E9F00D48D6D /* libRCTTypeSafety.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libRCTTypeSafety.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -249,12 +243,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5FE693E926E00E9F00D48D6D /* libPods-MBTaxi-tvOSTests.a in Frameworks */,
 				5FE693D026E00E9F00D48D6D /* libFirebaseAuth.a in Frameworks */,
 				5FE6940426E00EA000D48D6D /* libRNFBDatabase.a in Frameworks */,
 				5FE693E226E00E9F00D48D6D /* libGTMSessionFetcher.a in Frameworks */,
 				5FE693EA26E00E9F00D48D6D /* libPods-MBTaxi.a in Frameworks */,
-				5FE693E826E00E9F00D48D6D /* libPods-MBTaxi-tvOS.a in Frameworks */,
 				5FE693F126E00EA000D48D6D /* libReact-jsiexecutor.a in Frameworks */,
 				5FE693E626E00E9F00D48D6D /* libPermission-LocationWhenInUse.a in Frameworks */,
 				5FE693E326E00E9F00D48D6D /* libleveldb-library.a in Frameworks */,
@@ -306,7 +298,6 @@
 				5FE693CD26E00E9F00D48D6D /* libCocoaAsyncSocket.a in Frameworks */,
 				5FE693E126E00E9F00D48D6D /* libGoogleUtilities.a in Frameworks */,
 				5FE693FF26E00EA000D48D6D /* libReact-RCTVibration.a in Frameworks */,
-				5FE693E726E00E9F00D48D6D /* libPods-MBTaxi-MBTaxiTests.a in Frameworks */,
 				5FE693CE26E00E9F00D48D6D /* libDoubleConversion.a in Frameworks */,
 				5FE693F026E00EA000D48D6D /* libReact-jsi.a in Frameworks */,
 				5FE693FD26E00EA000D48D6D /* libReact-RCTSettings.a in Frameworks */,
@@ -396,9 +387,6 @@
 				5FE693A526E00E9F00D48D6D /* liblibevent.a */,
 				5FE693A626E00E9F00D48D6D /* libnanopb.a */,
 				5FE693A726E00E9F00D48D6D /* libPermission-LocationWhenInUse.a */,
-				5FE693A826E00E9F00D48D6D /* libPods-MBTaxi-MBTaxiTests.a */,
-				5FE693A926E00E9F00D48D6D /* libPods-MBTaxi-tvOS.a */,
-				5FE693AA26E00E9F00D48D6D /* libPods-MBTaxi-tvOSTests.a */,
 				5FE693AB26E00E9F00D48D6D /* libPods-MBTaxi.a */,
 				5FE693AC26E00E9F00D48D6D /* libPromisesObjC.a */,
 				5FE693AD26E00E9F00D48D6D /* libRCTTypeSafety.a */,
