@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import {Text,View,Image,ScrollView, Pressable,Button} from 'react-native';
+import React, { useEffect, useState } from 'react';
+import {Text,View,Image,ScrollView, Pressable,Button,FlatList,SafeAreaView} from 'react-native';
 import imageKeys from '../../../keyText/imageKeys';
 import TaxiImageText from '../../common/TaxiImageText';
 import TaxiTextImage from '../../common/TaxiTextImage';
@@ -13,10 +13,12 @@ import HeaderSelectDestination from '../../common/HeaderSelectDestination';
 import TaxiButton from '../../common/TaxiButton';
 
 import auth from '@react-native-firebase/auth';
+import database from '@react-native-firebase/database';
+
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 
 const GOOGLE_MAPS_API_KEY = 'AIzaSyB6iuVD8X4sEeHAGHY3tmMQRyM_Vyoc3UU';
-
+//nestedScrollEnabled = {true}
 //org.reactjs.native.example.MBTaxi
 //com.mbouendeu.MBTaxi
 //select rider present Me iff rider is different from Me... otherwise Modal textinput and displays users by username... 
@@ -24,6 +26,28 @@ const GOOGLE_MAPS_API_KEY = 'AIzaSyB6iuVD8X4sEeHAGHY3tmMQRyM_Vyoc3UU';
 
 //on peut commencer par who is the rider et puis donner la possibilite a l'utilisateur de faire son choix.. 
 // on devra prendre user depuis homeRoute et obtenir a liste des users ..
+
+
+// LIMIT NUMBER OF ITEM TO A CERTAIN NUMBER AND INCREASING IT BY 5 
+
+
+const Item = ({ item }) => (
+    <TaxiImageText12 
+        style={{alignSelf:'stretch',maxWidth:'100%'}}
+        styleText1={{flex:1}}
+        styleText2={{flex:1,alignContent:'stretch'}}
+        textOnlyStyle={{flex:1}}
+        image={imageKeys.stayyellow} 
+        text={textKeys.destination} 
+        text1={item.title? item.title: textKeys.home}
+        text2= {item.destination? item.description: item.destination.address_components? item.destination.address_components.formatted_address: "308 Raleigh Dr. Raleigh,NC 308 Raleigh Dr. Raleigh,NC 308 Raleigh Dr. Raleigh,NC 308 Raleigh Dr. Raleigh,NC"}
+    />
+  );
+
+  const ItemSaved = ({ item }) => {
+    return (<TaxiImageText image={imageKeys.history} text={item.destination.description? item.destination.description:JSON.stringify(item)}   style={{ flex: 1 }}  textStyle={{color:'#000000',fontFamily:fontKeys.MR,fontSize:14,flex:1}}/>)
+  };
+
 const SetDestinationScreen = (props) =>{
     const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
     const [isTimePickerVisible, setTimePickerVisibility] = useState(false);
@@ -37,13 +61,19 @@ const SetDestinationScreen = (props) =>{
     const [destination, setDestination] = useState(props.route.params.destination);
     const [location, setLocation] = useState(props.route.params.location);
     const [longLat, setLongLat] = useState(props.route.params.currentPosition);
-
     const [addressStop, setAddressStop] = useState(null);
-
     const AjouterStop = () => {SetStop(true);}
     const removeStop = () => SetStop(false);
     const addRiders = () => setMeRider(textKeys.rider.address.whor);
-        
+    
+    const [recentsPlaces,setRecentsPlaces] = useState([]); //afficher les directions recentes
+    const [savedPlaces,setSavedPlaces] = useState([]);
+
+    const [recentResults,setRecentsResults]  = useState(5); 
+    //setRecentsResults (recentResults + 5 > recentsPlaces.length ? recentsPlaces.length : recentResults + 5 ) 
+    const [savedResults,setSavedResults] = useState (5); 
+    //setSavedResults (savedResults + 5 > savedPlaces.length ? savedPlaces.length : savedResults + 5 ) 
+
         //console.log('itemsss itemaaa',props.route.params.item)//.state.params.item)
        // console.log('option',props.route.params.option)//.state.params.option)
        const {
@@ -53,7 +83,45 @@ const SetDestinationScreen = (props) =>{
           location: {lat, lng},
         },
       } = location;
+    
+      const renderItem = ({ item }) => (
+        <Item item={item} />
+      );
 
+      const renderItemSaved = ({ item }) => (
+        <ItemSaved item={item} />
+      );
+      useEffect (()=>{
+        const url = 'users/' + auth().currentUser.uid;
+        const reference = database().ref(url);
+        reference
+                .child ('recents')
+                .on('value', snapshot => {
+                    if (snapshot.exists()) {
+                        // Exist! Do whatever.
+                   // console.log('Recents places: ', snapshot.val());
+                    setRecentsPlaces(Object.values(snapshot.val()));
+                    } else {
+                        // Don't exist! Do something.
+                        console.log("does not exists has to be")
+                    }
+                });
+
+        reference
+        .child ('saved')
+        .on('value', snapshot => {
+            if (snapshot.exists()) {
+                // Exist! Do whatever.
+          //  console.log('Saved data: ', snapshot.val());
+            setSavedPlaces(Object.values(snapshot.val()));
+            } else {
+                // Don't exist! Do something.
+                console.log("does not exists has to be")
+            }
+        });
+
+
+      },[])
       APIPlaceAutocomplete = (destination, currentPlace) => {
         const URL = `https://maps.googleapis.com/maps/api/place/autocomplete/json?key=${GOOGLE_MAPS_API_KEY}&input=${destination}&location=${currentPlace.latitude},${currentPlace.longitude}&radius=2000`;
          if (destination.length > 0) {
@@ -61,7 +129,7 @@ const SetDestinationScreen = (props) =>{
              .then(resp => resp.json())
              .then (result => {
               // console.log(result.predictions);
-              console.log(result);
+             // console.log(result);
                let localAddress = result.predictions.filter( element => compareString(element.description, formatted_address)>1);
                setData(localAddress); //(result.predictions);
              // setData (result.predictions);
@@ -87,7 +155,8 @@ const showDatePicker = () => {
   };
 
   const handleDateConfirm = (date) => {
-      setDate(date.toLocaleDateString('en-US'));
+    // SE RASSURER QUE LA DATE ET LET TEMPS SONT BIEN CHOISI.... 
+    setDate(date.toLocaleDateString('en-US'));
     console.warn("A date has been picked: ", date.toLocaleDateString('en-US'));
     hideDatePicker();
   };
@@ -102,13 +171,37 @@ const showDatePicker = () => {
 
   const handleTimeConfirm = (time) => {
       setTime(time.toLocaleTimeString('en-US'));
+      // on peut meme commencer par comparer l'heure.... si l'heure est plus petite que lheure actuel on check la date alors... 
+      // parce que l'utilisateur peut commander un taxi pour la meme journee mais a une heure differente
     console.warn("A time  has been selected : ", time.toLocaleTimeString('en-US'));
     hideTimePicker();
   };
 
+  function uuidv4() {
+    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+      var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+      return v.toString(16);
+    });
+  }
 
+  SchedulingRide = () =>{
+    const url = 'users/' + auth().currentUser.uid;
+    const reference = database().ref(url);
+
+    let scheduled = {
+        id: uuidv4(),
+        date:Date,
+        time:Time,
+        pickup:location,
+        destination:destination
+    }
+    reference.child('scheduled').push(scheduled)
+    .then( (res) =>console.log("Ride scheduled !!!!!1",res))
+    .catch (error => alert('error is /...',error))
+  }
+  
     return (
-        <ScrollView style={{height:'100%',backgroundColor:'white'}}>
+        <ScrollView style={{height:'100%',backgroundColor:'white'}} nestedScrollEnabled={true}>
            { props.selectingUser? <View style={{paddingTop:9,}}>  
                 <TaxiImageText 
                     image={imageKeys.profilegrey} 
@@ -259,77 +352,33 @@ const showDatePicker = () => {
                         
                 </View>
             </View>
-            <ScrollView style={{flex:1,paddingLeft:35
-                }} >
-                 <TaxiImageText12 
-                    style={{alignSelf:'stretch',maxWidth:'100%'}}
-                    styleText1={{flex:1}}
-                    styleText2={{flex:1,alignContent:'stretch'}}
-                    textOnlyStyle={{flex:1}}
-                    image={imageKeys.stayyellow} 
-                    text={textKeys.destination} 
-                    text1={textKeys.home}
-                    text2= "308 Raleigh Dr. Raleigh,NC 308 Raleigh Dr. Raleigh,NC 308 Raleigh Dr. Raleigh,NC 308 Raleigh Dr. Raleigh,NC"
-                    />
-                    <TaxiImageText12 
-                    style={{alignSelf:'stretch',marginBottom:16}}
-                    styleText1={{flex:1}}
-                    image={imageKeys.stayyellow} 
-                    text={textKeys.destination} 
-                    text1={textKeys.home}
-                    text2= "308 Raleigh Dr. Raleigh,NC"
-                    />
-                    <TaxiImageText12 
-                    style={{alignSelf:'stretch',marginBottom:16}}
-                    styleText1={{flex:1}}
-                    image={imageKeys.stayyellow} 
-                    text={textKeys.destination} 
-                    text1={textKeys.home}
-                    text2= "308 Raleigh Dr. Raleigh,NC"
-                    />
-                    <TaxiImageText12 
-                    style={{alignSelf:'stretch',marginBottom:16}}
-                    styleText1={{flex:1}}
-                    image={imageKeys.stayyellow} 
-                    text={textKeys.destination} 
-                    text1={textKeys.home}
-                    text2= "308 Raleigh Dr. Raleigh,NC"
-                    />
-                    <TaxiImageText12 
-                    style={{alignSelf:'stretch',marginBottom:16}}
-                    styleText1={{flex:1}}
-                    image={imageKeys.stayyellow} 
-                    text={textKeys.destination} 
-                    text1={textKeys.home}
-                    text2= "308 Raleigh Dr. Raleigh,NC"
-                    />
-            </ScrollView>
-            <TaxiTextImage  image={imageKeys.dropdownblack}  
-                style={{alignSelf:'center', borderColor:'#222222',borderStyle:'solid',borderWidth:1,alignSelf:'stretch',justifyContent:'center',paddingTop:5,paddingBottom:8}} 
-                text= {textKeys.rider.address.places} 
-                textStyle={{color:'#222222',fontSize:14,fontFamily:fontKeys.MR}} 
+            <View style={{flex:1,marginLeft:35
+                }} nestedScrollEnabled={true}> 
+            <FlatList
+                data={recentsPlaces.length>0 ? recentsPlaces.slice(0,recentResults): recentsPlaces}
+                renderItem={renderItem}
+                keyExtractor={item => item.id}
             />
-            <View>
-            <ScrollView  style={{flex:1,paddingLeft:37,paddingTop:12}}>
-                <TaxiImageText image={imageKeys.history} text=" Marche Mokolo"  textStyle={{color:'#000000',fontFamily:fontKeys.MR,fontSize:14}}/>
-                <TaxiImageText image={imageKeys.history} text="Marche Essos" textStyle={{color:'#000000',fontFamily:fontKeys.MR,fontSize:14}}/>
-                <TaxiImageText image={imageKeys.history} text="Marche Djombe" textStyle={{color:'#000000',fontFamily:fontKeys.MR,fontSize:14}}/>
-                <TaxiImageText image={imageKeys.history} text="Marche Ngousso" textStyle={{color:'#000000',fontFamily:fontKeys.MR,fontSize:14}}/>
-                <TaxiImageText image={imageKeys.history} text="Marche Etoudi" textStyle={{color:'#000000',fontFamily:fontKeys.MR,fontSize:14}}/>
-                <TaxiImageText image={imageKeys.history} text="Marche Elig Edzoa" textStyle={{color:'#000000',fontFamily:fontKeys.MR,fontSize:14}}/>
-                <TaxiImageText image={imageKeys.history} text="Marche Nkululu" textStyle={{color:'#000000',fontFamily:fontKeys.MR,fontSize:14}}/>
-                <TaxiImageText image={imageKeys.history} text="Marche Dakar" textStyle={{color:'#000000',fontFamily:fontKeys.MR,fontSize:14}}/>
-                <TaxiImageText image={imageKeys.history} text="Marche !4ieme" textStyle={{color:'#000000',fontFamily:fontKeys.MR,fontSize:14}}/>
-                <TaxiImageText image={imageKeys.history} text="Marche Pa'nshi" textStyle={{color:'#000000',fontFamily:fontKeys.MR,fontSize:14}}/>
-                <TaxiImageText image={imageKeys.history} text="Marche Faasdas" textStyle={{color:'#000000',fontFamily:fontKeys.MR,fontSize:14}}/>
-                <TaxiImageText image={imageKeys.history} text="Marche asada" textStyle={{color:'#000000',fontFamily:fontKeys.MR,fontSize:14}}/>
-                <TaxiImageText image={imageKeys.history} text="Marche asd" textStyle={{color:'#000000',fontFamily:fontKeys.MR,fontSize:14}}/>
-                <TaxiImageText image={imageKeys.history} text="Marche asd" textStyle={{color:'#000000',fontFamily:fontKeys.MR,fontSize:14}}/>
-                <TaxiImageText image={imageKeys.history} text="Marche asd" textStyle={{color:'#000000',fontFamily:fontKeys.MR,fontSize:14}}/>
+            </View>
 
+            <Pressable onPress={()=> {if (recentResults <recentsPlaces.length) setRecentsResults (recentResults + 5 > recentsPlaces.length ? recentsPlaces.length : recentResults + 5 ) } }>
+                <TaxiTextImage  image={imageKeys.dropdownblack}  
+                    style={{alignSelf:'center', borderColor:'#222222',borderStyle:'solid',borderWidth:1,alignSelf:'stretch',justifyContent:'center',paddingTop:5,paddingBottom:8}} 
+                    text= {textKeys.rider.address.places} 
+                    textStyle={{color:'#222222',fontSize:14,fontFamily:fontKeys.MR}} 
+                />
+            </Pressable>
+            <View>
+            
+            <ScrollView  style={{flex:1,paddingLeft:37,paddingTop:12,marginRight:37}} nestedScrollEnabled={true}>
+            <FlatList
+                data={savedPlaces.length>0 ? savedPlaces.slice(0,savedResults): savedPlaces}
+                renderItem={renderItemSaved}
+                keyExtractor={item => item.id}
+            />
             </ScrollView>
             </View>
-            <TaxiButton  text="Continue" style={{marginBottom:27}}/>
+            <TaxiButton  text="Schedule Ride" style={{marginBottom:'auto'}} func={SchedulingRide}/>
         </ScrollView>        
     );
 }

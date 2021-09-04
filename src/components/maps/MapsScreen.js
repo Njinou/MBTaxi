@@ -3,14 +3,9 @@ import { SafeAreaView, StatusBar, StyleSheet,TextInput,View,Modal ,Text,Pressabl
 import MapView, { PROVIDER_GOOGLE,Marker } from "react-native-maps"
 import { check, request, PERMISSIONS, RESULTS } from "react-native-permissions" //
 import Geolocation from "react-native-geolocation-service"
-import {customStyleMap} from '../../styles/customStyleMap';
 import Geocoder from 'react-native-geocoding';
 
 import MapViewDirections from 'react-native-maps-directions';
-
-import GestureRecognizer, {swipeDirections} from 'react-native-swipe-gestures';
-import { RectButton } from 'react-native-gesture-handler';
-import Swipeable from 'react-native-gesture-handler/Swipeable';
 
 const GOOGLE_MAPS_API_KEY = 'AIzaSyB6iuVD8X4sEeHAGHY3tmMQRyM_Vyoc3UU';
 Geocoder.init(GOOGLE_MAPS_API_KEY, {language: 'en'});

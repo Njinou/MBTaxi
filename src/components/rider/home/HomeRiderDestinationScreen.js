@@ -168,8 +168,6 @@ onChangeText={onChangeText}
           return fetch(URL)
             .then(resp => resp.json())
             .then (result => {
-             // console.log(result.predictions);
-             console.log(result);
               let localAddress = result.predictions.filter( element => compareString(element.description, currentAddress)>1);
               setData(localAddress); //(result.predictions);
             // setData (result.predictions);
