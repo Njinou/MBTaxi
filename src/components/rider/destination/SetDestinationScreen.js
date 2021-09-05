@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import {Text,View,Image,ScrollView, Pressable,Button,FlatList,SafeAreaView} from 'react-native';
+import {Text,View,Image,ScrollView, Pressable,Button,FlatList,SafeAreaView,StyleSheet} from 'react-native';
 import imageKeys from '../../../keyText/imageKeys';
 import TaxiImageText from '../../common/TaxiImageText';
 import TaxiTextImage from '../../common/TaxiTextImage';
@@ -318,7 +318,7 @@ const showDatePicker = () => {
                  
             </View> : null
             }
-
+    
             <View style={{
                     flexDirection:'row',
                     paddingBottom:23,
@@ -392,6 +392,14 @@ const showDatePicker = () => {
                         
                 </View>
             </View>
+
+            <View style={{flex:1,flexDirection:'row',justifyContent:'space-around',alignItems:'center',paddingTop:10,paddingBottom:10}}>
+               <TaxiText text={'Nombre de Passager'}  styleText={styles.prixText}/>
+                <TaxiText text={'Prix par Passager'} styleText={styles.prixText}/>
+                <TaxiText text={'Prix  Total'}  styleText={styles.prixText}/>
+            </View>
+
+
             <View style={{flex:1,marginLeft:35
                 }} nestedScrollEnabled={true}> 
             <FlatList
@@ -410,7 +418,7 @@ const showDatePicker = () => {
             </Pressable>
             <View>
             
-            <ScrollView  style={{flex:1,paddingLeft:37,paddingTop:12,marginRight:37}} nestedScrollEnabled={true}>
+            <ScrollView  style={{flex:1,paddingLeft:37,paddingTop:12,marginRight:37,marginBottom:10,}} nestedScrollEnabled={true}>
             <FlatList
                 data={savedPlaces.length>0 ? savedPlaces.slice(0,savedResults): savedPlaces}
                 renderItem={renderItemSaved}
@@ -418,8 +426,13 @@ const showDatePicker = () => {
             />
             </ScrollView>
             </View>
+            
             <TaxiButton  text={buttonTitle} style={{marginBottom:'auto'}} func={SchedulingRide}/>
         </ScrollView>        
     );
 }
 export default SetDestinationScreen;
+
+const styles= StyleSheet.create({
+  prixText: {color:'black',fontSize:14,fontFamily:fontKeys.MR}
+})
