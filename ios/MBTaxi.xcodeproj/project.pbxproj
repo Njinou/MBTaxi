@@ -25,10 +25,70 @@
 		475A50EFBFCC4B9CAB7D2EF4 /* Montserrat-BlackItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A0ECA69AB3D547DC81DA0B28 /* Montserrat-BlackItalic.ttf */; };
 		515E231B55FB4E93BC642214 /* Montserrat-ExtraLightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 01DAE1527F2A492B8D972142 /* Montserrat-ExtraLightItalic.ttf */; };
 		5CC11462C7E34FEA89D17676 /* Montserrat-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B3D5F97985A64A5E948B7549 /* Montserrat-LightItalic.ttf */; };
-		5FA22B7325E60D35007818CE /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5FA22B7225E60D35007818CE /* GoogleService-Info.plist */; };
-		5FA22B7425E60D35007818CE /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5FA22B7225E60D35007818CE /* GoogleService-Info.plist */; };
-		5FA22B7525E60D35007818CE /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5FA22B7225E60D35007818CE /* GoogleService-Info.plist */; };
-		5FA22B7625E60D35007818CE /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5FA22B7225E60D35007818CE /* GoogleService-Info.plist */; };
+		5FE6938226E00E6E00D48D6D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5FE6938126E00E6E00D48D6D /* GoogleService-Info.plist */; };
+		5FE6938326E00E6E00D48D6D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5FE6938126E00E6E00D48D6D /* GoogleService-Info.plist */; };
+		5FE6938426E00E6E00D48D6D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5FE6938126E00E6E00D48D6D /* GoogleService-Info.plist */; };
+		5FE6938526E00E6E00D48D6D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5FE6938126E00E6E00D48D6D /* GoogleService-Info.plist */; };
+		5FE693CD26E00E9F00D48D6D /* libCocoaAsyncSocket.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FE6938E26E00E9F00D48D6D /* libCocoaAsyncSocket.a */; };
+		5FE693CE26E00E9F00D48D6D /* libDoubleConversion.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FE6938F26E00E9F00D48D6D /* libDoubleConversion.a */; };
+		5FE693CF26E00E9F00D48D6D /* libFBReactNativeSpec.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FE6939026E00E9F00D48D6D /* libFBReactNativeSpec.a */; };
+		5FE693D026E00E9F00D48D6D /* libFirebaseAuth.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FE6939126E00E9F00D48D6D /* libFirebaseAuth.a */; };
+		5FE693D126E00E9F00D48D6D /* libFirebaseCore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FE6939226E00E9F00D48D6D /* libFirebaseCore.a */; };
+		5FE693D226E00E9F00D48D6D /* libFirebaseCoreDiagnostics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FE6939326E00E9F00D48D6D /* libFirebaseCoreDiagnostics.a */; };
+		5FE693D326E00E9F00D48D6D /* libFirebaseDatabase.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FE6939426E00E9F00D48D6D /* libFirebaseDatabase.a */; };
+		5FE693D426E00E9F00D48D6D /* libFirebaseInstallations.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FE6939526E00E9F00D48D6D /* libFirebaseInstallations.a */; };
+		5FE693D526E00E9F00D48D6D /* libFirebaseStorage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FE6939626E00E9F00D48D6D /* libFirebaseStorage.a */; };
+		5FE693D626E00E9F00D48D6D /* libFlipper-DoubleConversion.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FE6939726E00E9F00D48D6D /* libFlipper-DoubleConversion.a */; };
+		5FE693D726E00E9F00D48D6D /* libFlipper-Folly.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FE6939826E00E9F00D48D6D /* libFlipper-Folly.a */; };
+		5FE693D826E00E9F00D48D6D /* libFlipper-Glog.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FE6939926E00E9F00D48D6D /* libFlipper-Glog.a */; };
+		5FE693D926E00E9F00D48D6D /* libFlipper-PeerTalk.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FE6939A26E00E9F00D48D6D /* libFlipper-PeerTalk.a */; };
+		5FE693DA26E00E9F00D48D6D /* libFlipper-RSocket.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FE6939B26E00E9F00D48D6D /* libFlipper-RSocket.a */; };
+		5FE693DB26E00E9F00D48D6D /* libFlipper.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FE6939C26E00E9F00D48D6D /* libFlipper.a */; };
+		5FE693DC26E00E9F00D48D6D /* libFlipperKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FE6939D26E00E9F00D48D6D /* libFlipperKit.a */; };
+		5FE693DD26E00E9F00D48D6D /* libFolly.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FE6939E26E00E9F00D48D6D /* libFolly.a */; };
+		5FE693DE26E00E9F00D48D6D /* libglog.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FE6939F26E00E9F00D48D6D /* libglog.a */; };
+		5FE693DF26E00E9F00D48D6D /* libGoogle-Maps-iOS-Utils.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FE693A026E00E9F00D48D6D /* libGoogle-Maps-iOS-Utils.a */; };
+		5FE693E026E00E9F00D48D6D /* libGoogleDataTransport.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FE693A126E00E9F00D48D6D /* libGoogleDataTransport.a */; };
+		5FE693E126E00E9F00D48D6D /* libGoogleUtilities.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FE693A226E00E9F00D48D6D /* libGoogleUtilities.a */; };
+		5FE693E226E00E9F00D48D6D /* libGTMSessionFetcher.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FE693A326E00E9F00D48D6D /* libGTMSessionFetcher.a */; };
+		5FE693E326E00E9F00D48D6D /* libleveldb-library.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FE693A426E00E9F00D48D6D /* libleveldb-library.a */; };
+		5FE693E426E00E9F00D48D6D /* liblibevent.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FE693A526E00E9F00D48D6D /* liblibevent.a */; };
+		5FE693E526E00E9F00D48D6D /* libnanopb.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FE693A626E00E9F00D48D6D /* libnanopb.a */; };
+		5FE693E626E00E9F00D48D6D /* libPermission-LocationWhenInUse.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FE693A726E00E9F00D48D6D /* libPermission-LocationWhenInUse.a */; };
+		5FE693EA26E00E9F00D48D6D /* libPods-MBTaxi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FE693AB26E00E9F00D48D6D /* libPods-MBTaxi.a */; };
+		5FE693EB26E00E9F00D48D6D /* libPromisesObjC.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FE693AC26E00E9F00D48D6D /* libPromisesObjC.a */; };
+		5FE693EC26E00EA000D48D6D /* libRCTTypeSafety.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FE693AD26E00E9F00D48D6D /* libRCTTypeSafety.a */; };
+		5FE693ED26E00EA000D48D6D /* libReact-Core.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FE693AE26E00E9F00D48D6D /* libReact-Core.a */; };
+		5FE693EE26E00EA000D48D6D /* libReact-CoreModules.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FE693AF26E00E9F00D48D6D /* libReact-CoreModules.a */; };
+		5FE693EF26E00EA000D48D6D /* libReact-cxxreact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FE693B026E00E9F00D48D6D /* libReact-cxxreact.a */; };
+		5FE693F026E00EA000D48D6D /* libReact-jsi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FE693B126E00E9F00D48D6D /* libReact-jsi.a */; };
+		5FE693F126E00EA000D48D6D /* libReact-jsiexecutor.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FE693B226E00E9F00D48D6D /* libReact-jsiexecutor.a */; };
+		5FE693F226E00EA000D48D6D /* libReact-jsinspector.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FE693B326E00E9F00D48D6D /* libReact-jsinspector.a */; };
+		5FE693F326E00EA000D48D6D /* libreact-native-geolocation-service.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FE693B426E00E9F00D48D6D /* libreact-native-geolocation-service.a */; };
+		5FE693F426E00EA000D48D6D /* libreact-native-google-maps.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FE693B526E00E9F00D48D6D /* libreact-native-google-maps.a */; };
+		5FE693F526E00EA000D48D6D /* libreact-native-image-picker.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FE693B626E00E9F00D48D6D /* libreact-native-image-picker.a */; };
+		5FE693F626E00EA000D48D6D /* libreact-native-maps.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FE693B726E00E9F00D48D6D /* libreact-native-maps.a */; };
+		5FE693F726E00EA000D48D6D /* libreact-native-safe-area-context.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FE693B826E00E9F00D48D6D /* libreact-native-safe-area-context.a */; };
+		5FE693F826E00EA000D48D6D /* libReact-RCTAnimation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FE693B926E00E9F00D48D6D /* libReact-RCTAnimation.a */; };
+		5FE693F926E00EA000D48D6D /* libReact-RCTBlob.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FE693BA26E00E9F00D48D6D /* libReact-RCTBlob.a */; };
+		5FE693FA26E00EA000D48D6D /* libReact-RCTImage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FE693BB26E00E9F00D48D6D /* libReact-RCTImage.a */; };
+		5FE693FB26E00EA000D48D6D /* libReact-RCTLinking.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FE693BC26E00E9F00D48D6D /* libReact-RCTLinking.a */; };
+		5FE693FC26E00EA000D48D6D /* libReact-RCTNetwork.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FE693BD26E00E9F00D48D6D /* libReact-RCTNetwork.a */; };
+		5FE693FD26E00EA000D48D6D /* libReact-RCTSettings.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FE693BE26E00E9F00D48D6D /* libReact-RCTSettings.a */; };
+		5FE693FE26E00EA000D48D6D /* libReact-RCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FE693BF26E00E9F00D48D6D /* libReact-RCTText.a */; };
+		5FE693FF26E00EA000D48D6D /* libReact-RCTVibration.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FE693C026E00E9F00D48D6D /* libReact-RCTVibration.a */; };
+		5FE6940026E00EA000D48D6D /* libReactCommon.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FE693C126E00E9F00D48D6D /* libReactCommon.a */; };
+		5FE6940126E00EA000D48D6D /* libRNCMaskedView.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FE693C226E00E9F00D48D6D /* libRNCMaskedView.a */; };
+		5FE6940226E00EA000D48D6D /* libRNFBApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FE693C326E00E9F00D48D6D /* libRNFBApp.a */; };
+		5FE6940326E00EA000D48D6D /* libRNFBAuth.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FE693C426E00E9F00D48D6D /* libRNFBAuth.a */; };
+		5FE6940426E00EA000D48D6D /* libRNFBDatabase.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FE693C526E00E9F00D48D6D /* libRNFBDatabase.a */; };
+		5FE6940526E00EA100D48D6D /* libRNFBStorage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FE693C626E00E9F00D48D6D /* libRNFBStorage.a */; };
+		5FE6940626E00EA100D48D6D /* libRNGestureHandler.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FE693C726E00E9F00D48D6D /* libRNGestureHandler.a */; };
+		5FE6940726E00EA100D48D6D /* libRNPermissions.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FE693C826E00E9F00D48D6D /* libRNPermissions.a */; };
+		5FE6940826E00EA100D48D6D /* libRNReanimated.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FE693C926E00E9F00D48D6D /* libRNReanimated.a */; };
+		5FE6940926E00EA100D48D6D /* libRNScreens.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FE693CA26E00E9F00D48D6D /* libRNScreens.a */; };
+		5FE6940A26E00EA100D48D6D /* libYoga.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FE693CB26E00E9F00D48D6D /* libYoga.a */; };
+		5FE6940B26E00EA100D48D6D /* libYogaKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FE693CC26E00E9F00D48D6D /* libYogaKit.a */; };
 		66ECBE10825143B892EAA6E1 /* Montserrat-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BC4663A51DF849FCBD2766DC /* Montserrat-BoldItalic.ttf */; };
 		75A5E6B1EA5E42A288B2C6C9 /* Montserrat-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2E6098F5222D415B83415A23 /* Montserrat-ExtraBold.ttf */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
@@ -84,7 +144,67 @@
 		2E6098F5222D415B83415A23 /* Montserrat-ExtraBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-ExtraBold.ttf"; path = "../src/assets/fonts/Montserrat-ExtraBold.ttf"; sourceTree = "<group>"; };
 		311A0029167D49FD9DAC565D /* Montserrat-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-Bold.ttf"; path = "../src/assets/fonts/Montserrat-Bold.ttf"; sourceTree = "<group>"; };
 		3632492E4AC5E828116D55A7 /* libPods-MBTaxi.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MBTaxi.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		5FA22B7225E60D35007818CE /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		5FE6938126E00E6E00D48D6D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "MBTaxi/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		5FE6938E26E00E9F00D48D6D /* libCocoaAsyncSocket.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libCocoaAsyncSocket.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		5FE6938F26E00E9F00D48D6D /* libDoubleConversion.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libDoubleConversion.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		5FE6939026E00E9F00D48D6D /* libFBReactNativeSpec.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libFBReactNativeSpec.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		5FE6939126E00E9F00D48D6D /* libFirebaseAuth.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libFirebaseAuth.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		5FE6939226E00E9F00D48D6D /* libFirebaseCore.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libFirebaseCore.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		5FE6939326E00E9F00D48D6D /* libFirebaseCoreDiagnostics.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libFirebaseCoreDiagnostics.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		5FE6939426E00E9F00D48D6D /* libFirebaseDatabase.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libFirebaseDatabase.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		5FE6939526E00E9F00D48D6D /* libFirebaseInstallations.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libFirebaseInstallations.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		5FE6939626E00E9F00D48D6D /* libFirebaseStorage.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libFirebaseStorage.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		5FE6939726E00E9F00D48D6D /* libFlipper-DoubleConversion.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libFlipper-DoubleConversion.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5FE6939826E00E9F00D48D6D /* libFlipper-Folly.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libFlipper-Folly.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5FE6939926E00E9F00D48D6D /* libFlipper-Glog.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libFlipper-Glog.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5FE6939A26E00E9F00D48D6D /* libFlipper-PeerTalk.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libFlipper-PeerTalk.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5FE6939B26E00E9F00D48D6D /* libFlipper-RSocket.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libFlipper-RSocket.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5FE6939C26E00E9F00D48D6D /* libFlipper.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libFlipper.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		5FE6939D26E00E9F00D48D6D /* libFlipperKit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libFlipperKit.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		5FE6939E26E00E9F00D48D6D /* libFolly.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libFolly.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		5FE6939F26E00E9F00D48D6D /* libglog.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libglog.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		5FE693A026E00E9F00D48D6D /* libGoogle-Maps-iOS-Utils.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libGoogle-Maps-iOS-Utils.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5FE693A126E00E9F00D48D6D /* libGoogleDataTransport.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libGoogleDataTransport.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		5FE693A226E00E9F00D48D6D /* libGoogleUtilities.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libGoogleUtilities.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		5FE693A326E00E9F00D48D6D /* libGTMSessionFetcher.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libGTMSessionFetcher.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		5FE693A426E00E9F00D48D6D /* libleveldb-library.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libleveldb-library.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5FE693A526E00E9F00D48D6D /* liblibevent.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = liblibevent.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		5FE693A626E00E9F00D48D6D /* libnanopb.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libnanopb.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		5FE693A726E00E9F00D48D6D /* libPermission-LocationWhenInUse.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libPermission-LocationWhenInUse.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5FE693AB26E00E9F00D48D6D /* libPods-MBTaxi.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libPods-MBTaxi.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5FE693AC26E00E9F00D48D6D /* libPromisesObjC.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libPromisesObjC.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		5FE693AD26E00E9F00D48D6D /* libRCTTypeSafety.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libRCTTypeSafety.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		5FE693AE26E00E9F00D48D6D /* libReact-Core.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libReact-Core.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5FE693AF26E00E9F00D48D6D /* libReact-CoreModules.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libReact-CoreModules.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5FE693B026E00E9F00D48D6D /* libReact-cxxreact.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libReact-cxxreact.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5FE693B126E00E9F00D48D6D /* libReact-jsi.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libReact-jsi.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5FE693B226E00E9F00D48D6D /* libReact-jsiexecutor.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libReact-jsiexecutor.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5FE693B326E00E9F00D48D6D /* libReact-jsinspector.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libReact-jsinspector.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5FE693B426E00E9F00D48D6D /* libreact-native-geolocation-service.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libreact-native-geolocation-service.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5FE693B526E00E9F00D48D6D /* libreact-native-google-maps.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libreact-native-google-maps.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5FE693B626E00E9F00D48D6D /* libreact-native-image-picker.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libreact-native-image-picker.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5FE693B726E00E9F00D48D6D /* libreact-native-maps.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libreact-native-maps.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5FE693B826E00E9F00D48D6D /* libreact-native-safe-area-context.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libreact-native-safe-area-context.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5FE693B926E00E9F00D48D6D /* libReact-RCTAnimation.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libReact-RCTAnimation.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5FE693BA26E00E9F00D48D6D /* libReact-RCTBlob.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libReact-RCTBlob.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5FE693BB26E00E9F00D48D6D /* libReact-RCTImage.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libReact-RCTImage.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5FE693BC26E00E9F00D48D6D /* libReact-RCTLinking.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libReact-RCTLinking.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5FE693BD26E00E9F00D48D6D /* libReact-RCTNetwork.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libReact-RCTNetwork.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5FE693BE26E00E9F00D48D6D /* libReact-RCTSettings.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libReact-RCTSettings.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5FE693BF26E00E9F00D48D6D /* libReact-RCTText.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libReact-RCTText.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5FE693C026E00E9F00D48D6D /* libReact-RCTVibration.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libReact-RCTVibration.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5FE693C126E00E9F00D48D6D /* libReactCommon.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libReactCommon.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		5FE693C226E00E9F00D48D6D /* libRNCMaskedView.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libRNCMaskedView.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		5FE693C326E00E9F00D48D6D /* libRNFBApp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libRNFBApp.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		5FE693C426E00E9F00D48D6D /* libRNFBAuth.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libRNFBAuth.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		5FE693C526E00E9F00D48D6D /* libRNFBDatabase.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libRNFBDatabase.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		5FE693C626E00E9F00D48D6D /* libRNFBStorage.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libRNFBStorage.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		5FE693C726E00E9F00D48D6D /* libRNGestureHandler.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libRNGestureHandler.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		5FE693C826E00E9F00D48D6D /* libRNPermissions.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libRNPermissions.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		5FE693C926E00E9F00D48D6D /* libRNReanimated.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libRNReanimated.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		5FE693CA26E00E9F00D48D6D /* libRNScreens.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libRNScreens.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		5FE693CB26E00E9F00D48D6D /* libYoga.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libYoga.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		5FE693CC26E00E9F00D48D6D /* libYogaKit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libYogaKit.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		6650D675617C4CA0934EE034 /* Montserrat-ThinItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-ThinItalic.ttf"; path = "../src/assets/fonts/Montserrat-ThinItalic.ttf"; sourceTree = "<group>"; };
 		76A382A1606BEF16DD16DD14 /* Pods-MBTaxi-MBTaxiTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MBTaxi-MBTaxiTests.debug.xcconfig"; path = "Target Support Files/Pods-MBTaxi-MBTaxiTests/Pods-MBTaxi-MBTaxiTests.debug.xcconfig"; sourceTree = "<group>"; };
 		7A3EE2E5583F04D3FE500543 /* Pods-MBTaxi-MBTaxiTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MBTaxi-MBTaxiTests.release.xcconfig"; path = "Target Support Files/Pods-MBTaxi-MBTaxiTests/Pods-MBTaxi-MBTaxiTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -123,7 +243,67 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5FE693D026E00E9F00D48D6D /* libFirebaseAuth.a in Frameworks */,
+				5FE6940426E00EA000D48D6D /* libRNFBDatabase.a in Frameworks */,
+				5FE693E226E00E9F00D48D6D /* libGTMSessionFetcher.a in Frameworks */,
+				5FE693EA26E00E9F00D48D6D /* libPods-MBTaxi.a in Frameworks */,
+				5FE693F126E00EA000D48D6D /* libReact-jsiexecutor.a in Frameworks */,
+				5FE693E626E00E9F00D48D6D /* libPermission-LocationWhenInUse.a in Frameworks */,
+				5FE693E326E00E9F00D48D6D /* libleveldb-library.a in Frameworks */,
+				5FE6940026E00EA000D48D6D /* libReactCommon.a in Frameworks */,
+				5FE6940B26E00EA100D48D6D /* libYogaKit.a in Frameworks */,
+				5FE6940626E00EA100D48D6D /* libRNGestureHandler.a in Frameworks */,
+				5FE693F726E00EA000D48D6D /* libreact-native-safe-area-context.a in Frameworks */,
+				5FE693EB26E00E9F00D48D6D /* libPromisesObjC.a in Frameworks */,
+				5FE693FE26E00EA000D48D6D /* libReact-RCTText.a in Frameworks */,
+				5FE6940226E00EA000D48D6D /* libRNFBApp.a in Frameworks */,
+				5FE6940326E00EA000D48D6D /* libRNFBAuth.a in Frameworks */,
+				5FE6940726E00EA100D48D6D /* libRNPermissions.a in Frameworks */,
+				5FE693D326E00E9F00D48D6D /* libFirebaseDatabase.a in Frameworks */,
 				96830ADAA39F0F96F6512CF6 /* libPods-MBTaxi.a in Frameworks */,
+				5FE693D226E00E9F00D48D6D /* libFirebaseCoreDiagnostics.a in Frameworks */,
+				5FE6940A26E00EA100D48D6D /* libYoga.a in Frameworks */,
+				5FE693DE26E00E9F00D48D6D /* libglog.a in Frameworks */,
+				5FE693DB26E00E9F00D48D6D /* libFlipper.a in Frameworks */,
+				5FE693D626E00E9F00D48D6D /* libFlipper-DoubleConversion.a in Frameworks */,
+				5FE6940826E00EA100D48D6D /* libRNReanimated.a in Frameworks */,
+				5FE693ED26E00EA000D48D6D /* libReact-Core.a in Frameworks */,
+				5FE6940126E00EA000D48D6D /* libRNCMaskedView.a in Frameworks */,
+				5FE693D826E00E9F00D48D6D /* libFlipper-Glog.a in Frameworks */,
+				5FE693F826E00EA000D48D6D /* libReact-RCTAnimation.a in Frameworks */,
+				5FE693FC26E00EA000D48D6D /* libReact-RCTNetwork.a in Frameworks */,
+				5FE693EC26E00EA000D48D6D /* libRCTTypeSafety.a in Frameworks */,
+				5FE6940526E00EA100D48D6D /* libRNFBStorage.a in Frameworks */,
+				5FE693D726E00E9F00D48D6D /* libFlipper-Folly.a in Frameworks */,
+				5FE693EE26E00EA000D48D6D /* libReact-CoreModules.a in Frameworks */,
+				5FE693F926E00EA000D48D6D /* libReact-RCTBlob.a in Frameworks */,
+				5FE693DD26E00E9F00D48D6D /* libFolly.a in Frameworks */,
+				5FE6940926E00EA100D48D6D /* libRNScreens.a in Frameworks */,
+				5FE693F326E00EA000D48D6D /* libreact-native-geolocation-service.a in Frameworks */,
+				5FE693D526E00E9F00D48D6D /* libFirebaseStorage.a in Frameworks */,
+				5FE693D926E00E9F00D48D6D /* libFlipper-PeerTalk.a in Frameworks */,
+				5FE693F526E00EA000D48D6D /* libreact-native-image-picker.a in Frameworks */,
+				5FE693FB26E00EA000D48D6D /* libReact-RCTLinking.a in Frameworks */,
+				5FE693CF26E00E9F00D48D6D /* libFBReactNativeSpec.a in Frameworks */,
+				5FE693F226E00EA000D48D6D /* libReact-jsinspector.a in Frameworks */,
+				5FE693EF26E00EA000D48D6D /* libReact-cxxreact.a in Frameworks */,
+				5FE693F426E00EA000D48D6D /* libreact-native-google-maps.a in Frameworks */,
+				5FE693DF26E00E9F00D48D6D /* libGoogle-Maps-iOS-Utils.a in Frameworks */,
+				5FE693F626E00EA000D48D6D /* libreact-native-maps.a in Frameworks */,
+				5FE693D426E00E9F00D48D6D /* libFirebaseInstallations.a in Frameworks */,
+				5FE693E426E00E9F00D48D6D /* liblibevent.a in Frameworks */,
+				5FE693E026E00E9F00D48D6D /* libGoogleDataTransport.a in Frameworks */,
+				5FE693E526E00E9F00D48D6D /* libnanopb.a in Frameworks */,
+				5FE693FA26E00EA000D48D6D /* libReact-RCTImage.a in Frameworks */,
+				5FE693CD26E00E9F00D48D6D /* libCocoaAsyncSocket.a in Frameworks */,
+				5FE693E126E00E9F00D48D6D /* libGoogleUtilities.a in Frameworks */,
+				5FE693FF26E00EA000D48D6D /* libReact-RCTVibration.a in Frameworks */,
+				5FE693CE26E00E9F00D48D6D /* libDoubleConversion.a in Frameworks */,
+				5FE693F026E00EA000D48D6D /* libReact-jsi.a in Frameworks */,
+				5FE693FD26E00EA000D48D6D /* libReact-RCTSettings.a in Frameworks */,
+				5FE693DC26E00E9F00D48D6D /* libFlipperKit.a in Frameworks */,
+				5FE693DA26E00E9F00D48D6D /* libFlipper-RSocket.a in Frameworks */,
+				5FE693D126E00E9F00D48D6D /* libFirebaseCore.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -166,7 +346,7 @@
 		13B07FAE1A68108700A75B9A /* MBTaxi */ = {
 			isa = PBXGroup;
 			children = (
-				5FA22B7225E60D35007818CE /* GoogleService-Info.plist */,
+				5FE6938126E00E6E00D48D6D /* GoogleService-Info.plist */,
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
@@ -181,6 +361,66 @@
 		2D16E6871FA4F8E400B85C8A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				5FE6938E26E00E9F00D48D6D /* libCocoaAsyncSocket.a */,
+				5FE6938F26E00E9F00D48D6D /* libDoubleConversion.a */,
+				5FE6939026E00E9F00D48D6D /* libFBReactNativeSpec.a */,
+				5FE6939126E00E9F00D48D6D /* libFirebaseAuth.a */,
+				5FE6939226E00E9F00D48D6D /* libFirebaseCore.a */,
+				5FE6939326E00E9F00D48D6D /* libFirebaseCoreDiagnostics.a */,
+				5FE6939426E00E9F00D48D6D /* libFirebaseDatabase.a */,
+				5FE6939526E00E9F00D48D6D /* libFirebaseInstallations.a */,
+				5FE6939626E00E9F00D48D6D /* libFirebaseStorage.a */,
+				5FE6939726E00E9F00D48D6D /* libFlipper-DoubleConversion.a */,
+				5FE6939826E00E9F00D48D6D /* libFlipper-Folly.a */,
+				5FE6939926E00E9F00D48D6D /* libFlipper-Glog.a */,
+				5FE6939A26E00E9F00D48D6D /* libFlipper-PeerTalk.a */,
+				5FE6939B26E00E9F00D48D6D /* libFlipper-RSocket.a */,
+				5FE6939C26E00E9F00D48D6D /* libFlipper.a */,
+				5FE6939D26E00E9F00D48D6D /* libFlipperKit.a */,
+				5FE6939E26E00E9F00D48D6D /* libFolly.a */,
+				5FE6939F26E00E9F00D48D6D /* libglog.a */,
+				5FE693A026E00E9F00D48D6D /* libGoogle-Maps-iOS-Utils.a */,
+				5FE693A126E00E9F00D48D6D /* libGoogleDataTransport.a */,
+				5FE693A226E00E9F00D48D6D /* libGoogleUtilities.a */,
+				5FE693A326E00E9F00D48D6D /* libGTMSessionFetcher.a */,
+				5FE693A426E00E9F00D48D6D /* libleveldb-library.a */,
+				5FE693A526E00E9F00D48D6D /* liblibevent.a */,
+				5FE693A626E00E9F00D48D6D /* libnanopb.a */,
+				5FE693A726E00E9F00D48D6D /* libPermission-LocationWhenInUse.a */,
+				5FE693AB26E00E9F00D48D6D /* libPods-MBTaxi.a */,
+				5FE693AC26E00E9F00D48D6D /* libPromisesObjC.a */,
+				5FE693AD26E00E9F00D48D6D /* libRCTTypeSafety.a */,
+				5FE693AE26E00E9F00D48D6D /* libReact-Core.a */,
+				5FE693AF26E00E9F00D48D6D /* libReact-CoreModules.a */,
+				5FE693B026E00E9F00D48D6D /* libReact-cxxreact.a */,
+				5FE693B126E00E9F00D48D6D /* libReact-jsi.a */,
+				5FE693B226E00E9F00D48D6D /* libReact-jsiexecutor.a */,
+				5FE693B326E00E9F00D48D6D /* libReact-jsinspector.a */,
+				5FE693B426E00E9F00D48D6D /* libreact-native-geolocation-service.a */,
+				5FE693B526E00E9F00D48D6D /* libreact-native-google-maps.a */,
+				5FE693B626E00E9F00D48D6D /* libreact-native-image-picker.a */,
+				5FE693B726E00E9F00D48D6D /* libreact-native-maps.a */,
+				5FE693B826E00E9F00D48D6D /* libreact-native-safe-area-context.a */,
+				5FE693B926E00E9F00D48D6D /* libReact-RCTAnimation.a */,
+				5FE693BA26E00E9F00D48D6D /* libReact-RCTBlob.a */,
+				5FE693BB26E00E9F00D48D6D /* libReact-RCTImage.a */,
+				5FE693BC26E00E9F00D48D6D /* libReact-RCTLinking.a */,
+				5FE693BD26E00E9F00D48D6D /* libReact-RCTNetwork.a */,
+				5FE693BE26E00E9F00D48D6D /* libReact-RCTSettings.a */,
+				5FE693BF26E00E9F00D48D6D /* libReact-RCTText.a */,
+				5FE693C026E00E9F00D48D6D /* libReact-RCTVibration.a */,
+				5FE693C126E00E9F00D48D6D /* libReactCommon.a */,
+				5FE693C226E00E9F00D48D6D /* libRNCMaskedView.a */,
+				5FE693C326E00E9F00D48D6D /* libRNFBApp.a */,
+				5FE693C426E00E9F00D48D6D /* libRNFBAuth.a */,
+				5FE693C526E00E9F00D48D6D /* libRNFBDatabase.a */,
+				5FE693C626E00E9F00D48D6D /* libRNFBStorage.a */,
+				5FE693C726E00E9F00D48D6D /* libRNGestureHandler.a */,
+				5FE693C826E00E9F00D48D6D /* libRNPermissions.a */,
+				5FE693C926E00E9F00D48D6D /* libRNReanimated.a */,
+				5FE693CA26E00E9F00D48D6D /* libRNScreens.a */,
+				5FE693CB26E00E9F00D48D6D /* libYoga.a */,
+				5FE693CC26E00E9F00D48D6D /* libYogaKit.a */,
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
 				ED2971642150620600B7C4FE /* JavaScriptCore.framework */,
 				3632492E4AC5E828116D55A7 /* libPods-MBTaxi.a */,
@@ -276,8 +516,8 @@
 				00E356EA1AD99517003FC87E /* Sources */,
 				00E356EB1AD99517003FC87E /* Frameworks */,
 				00E356EC1AD99517003FC87E /* Resources */,
-				EC8EBBA1C73E311DAFE3BCCD /* [CP] Embed Pods Frameworks */,
 				CA1EC5A15D4B23BA23F15517 /* [CP] Copy Pods Resources */,
+				EBD89228E76E2971F9847A5A /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -299,9 +539,9 @@
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
-				A744484B3EAE4FFD854668F6 /* [CP] Embed Pods Frameworks */,
 				6BB5A8444D8CF32ED7D0ACD0 /* [CP] Copy Pods Resources */,
 				FB91E62BD83CDC05AA466114 /* [CP-User] [RNFB] Core Configuration */,
+				DE893EB1211526151F35B674 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -403,7 +643,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5FA22B7425E60D35007818CE /* GoogleService-Info.plist in Resources */,
+				5FE6938326E00E6E00D48D6D /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -431,7 +671,7 @@
 				16BE1BF1ABA54AAB9CEA9A64 /* Montserrat-SemiBoldItalic.ttf in Resources */,
 				A30D525426E54AC790CD804B /* Montserrat-Thin.ttf in Resources */,
 				2D6AA12B836A4BEBAB911768 /* Montserrat-ThinItalic.ttf in Resources */,
-				5FA22B7325E60D35007818CE /* GoogleService-Info.plist in Resources */,
+				5FE6938226E00E6E00D48D6D /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -440,7 +680,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2D02E4BD1E0B4A84006451C7 /* Images.xcassets in Resources */,
-				5FA22B7525E60D35007818CE /* GoogleService-Info.plist in Resources */,
+				5FE6938426E00E6E00D48D6D /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -448,7 +688,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5FA22B7625E60D35007818CE /* GoogleService-Info.plist in Resources */,
+				5FE6938526E00E6E00D48D6D /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -490,10 +730,12 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-MBTaxi/Pods-MBTaxi-resources.sh",
+				"${PODS_ROOT}/GoogleMaps/Maps/Frameworks/GoogleMaps.framework/Resources/GoogleMaps.bundle",
 				"${PODS_CONFIGURATION_BUILD_DIR}/React-Core/AccessibilityResources.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleMaps.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AccessibilityResources.bundle",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -545,24 +787,6 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		A744484B3EAE4FFD854668F6 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-MBTaxi/Pods-MBTaxi-frameworks.sh",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/OpenSSL/OpenSSL.framework/OpenSSL",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/OpenSSL.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MBTaxi/Pods-MBTaxi-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		AA05E6DD5A3F6B4E9A59E97B /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -592,10 +816,12 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-MBTaxi-MBTaxiTests/Pods-MBTaxi-MBTaxiTests-resources.sh",
+				"${PODS_ROOT}/GoogleMaps/Maps/Frameworks/GoogleMaps.framework/Resources/GoogleMaps.bundle",
 				"${PODS_CONFIGURATION_BUILD_DIR}/React-Core/AccessibilityResources.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleMaps.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AccessibilityResources.bundle",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -625,7 +851,25 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		EC8EBBA1C73E311DAFE3BCCD /* [CP] Embed Pods Frameworks */ = {
+		DE893EB1211526151F35B674 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MBTaxi/Pods-MBTaxi-frameworks.sh",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/OpenSSL/OpenSSL.framework/OpenSSL",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/OpenSSL.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MBTaxi/Pods-MBTaxi-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		EBD89228E76E2971F9847A5A /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -648,10 +892,13 @@
 			buildActionMask = 2147483647;
 			files = (
 			);
+			inputPaths = (
+				"$(SRCROOT)/$(BUILT_PRODUCTS_DIR)/$(INFOPLIST_PATH)",
+			);
 			name = "[CP-User] [RNFB] Core Configuration";
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "#!/usr/bin/env bash\n#\n# Copyright (c) 2016-present Invertase Limited & Contributors\n#\n# Licensed under the Apache License, Version 2.0 (the \"License\");\n# you may not use this library except in compliance with the License.\n# You may obtain a copy of the License at\n#\n#   http://www.apache.org/licenses/LICENSE-2.0\n#\n# Unless required by applicable law or agreed to in writing, software\n# distributed under the License is distributed on an \"AS IS\" BASIS,\n# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n# See the License for the specific language governing permissions and\n# limitations under the License.\n#\nset -e\n\n_MAX_LOOKUPS=2;\n_SEARCH_RESULT=''\n_RN_ROOT_EXISTS=''\n_CURRENT_LOOKUPS=1\n_JSON_ROOT=\"'react-native'\"\n_JSON_FILE_NAME='firebase.json'\n_JSON_OUTPUT_BASE64='e30=' # { }\n_CURRENT_SEARCH_DIR=${PROJECT_DIR}\n_PLIST_BUDDY=/usr/libexec/PlistBuddy\n_TARGET_PLIST=\"${BUILT_PRODUCTS_DIR}/${INFOPLIST_PATH}\"\n_DSYM_PLIST=\"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Info.plist\"\n\n# plist arrays\n_PLIST_ENTRY_KEYS=()\n_PLIST_ENTRY_TYPES=()\n_PLIST_ENTRY_VALUES=()\n\nfunction setPlistValue {\n  echo \"info:      setting plist entry '$1' of type '$2' in file '$4'\"\n  ${_PLIST_BUDDY} -c \"Add :$1 $2 '$3'\" $4 || echo \"info:      '$1' already exists\"\n}\n\nfunction getFirebaseJsonKeyValue () {\n  if [[ ${_RN_ROOT_EXISTS} ]]; then\n    ruby -e \"require 'rubygems';require 'json'; output=JSON.parse('$1'); puts output[$_JSON_ROOT]['$2']\"\n  else\n    echo \"\"\n  fi;\n}\n\nfunction jsonBoolToYesNo () {\n  if [[ $1 == \"false\" ]]; then\n    echo \"NO\"\n  elif [[ $1 == \"true\" ]]; then\n    echo \"YES\"\n  else echo \"NO\"\n  fi\n}\n\necho \"info: -> RNFB build script started\"\necho \"info: 1) Locating ${_JSON_FILE_NAME} file:\"\n\nif [[ -z ${_CURRENT_SEARCH_DIR} ]]; then\n  _CURRENT_SEARCH_DIR=$(pwd)\nfi;\n\nwhile true; do\n  _CURRENT_SEARCH_DIR=$(dirname \"$_CURRENT_SEARCH_DIR\")\n  if [[ \"$_CURRENT_SEARCH_DIR\" == \"/\" ]] || [[ ${_CURRENT_LOOKUPS} -gt ${_MAX_LOOKUPS} ]]; then break; fi;\n  echo \"info:      ($_CURRENT_LOOKUPS of $_MAX_LOOKUPS) Searching in '$_CURRENT_SEARCH_DIR' for a ${_JSON_FILE_NAME} file.\"\n  _SEARCH_RESULT=$(find \"$_CURRENT_SEARCH_DIR\" -maxdepth 2 -name ${_JSON_FILE_NAME} -print | head -n 1)\n  if [[ ${_SEARCH_RESULT} ]]; then\n    echo \"info:      ${_JSON_FILE_NAME} found at $_SEARCH_RESULT\"\n    break;\n  fi;\n  _CURRENT_LOOKUPS=$((_CURRENT_LOOKUPS+1))\ndone\n\nif [[ ${_SEARCH_RESULT} ]]; then\n  _JSON_OUTPUT_RAW=$(cat \"${_SEARCH_RESULT}\")\n  _RN_ROOT_EXISTS=$(ruby -e \"require 'rubygems';require 'json'; output=JSON.parse('$_JSON_OUTPUT_RAW'); puts output[$_JSON_ROOT]\" || echo '')\n\n  if [[ ${_RN_ROOT_EXISTS} ]]; then\n    _JSON_OUTPUT_BASE64=$(python -c 'import json,sys,base64;print(base64.b64encode(json.dumps(json.loads(open('\"'${_SEARCH_RESULT}'\"').read())['${_JSON_ROOT}'])))' || echo \"e30=\")\n  fi\n\n  _PLIST_ENTRY_KEYS+=(\"firebase_json_raw\")\n  _PLIST_ENTRY_TYPES+=(\"string\")\n  _PLIST_ENTRY_VALUES+=(\"$_JSON_OUTPUT_BASE64\")\n\n  # config.analytics_auto_collection_enabled\n  _ANALYTICS_AUTO_COLLECTION=$(getFirebaseJsonKeyValue \"$_JSON_OUTPUT_RAW\" \"analytics_auto_collection_enabled\")\n  if [[ $_ANALYTICS_AUTO_COLLECTION ]]; then\n    _PLIST_ENTRY_KEYS+=(\"FIREBASE_ANALYTICS_COLLECTION_ENABLED\")\n    _PLIST_ENTRY_TYPES+=(\"bool\")\n    _PLIST_ENTRY_VALUES+=(\"$(jsonBoolToYesNo \"$_ANALYTICS_AUTO_COLLECTION\")\")\n  fi\n\n  # config.perf_auto_collection_enabled\n  _PERF_AUTO_COLLECTION=$(getFirebaseJsonKeyValue \"$_JSON_OUTPUT_RAW\" \"perf_auto_collection_enabled\")\n  if [[ $_PERF_AUTO_COLLECTION ]]; then\n    _PLIST_ENTRY_KEYS+=(\"firebase_performance_collection_enabled\")\n    _PLIST_ENTRY_TYPES+=(\"bool\")\n    _PLIST_ENTRY_VALUES+=(\"$(jsonBoolToYesNo \"$_PERF_AUTO_COLLECTION\")\")\n  fi\n\n  # config.messaging_auto_init_enabled\n  _MESSAGING_AUTO_INIT=$(getFirebaseJsonKeyValue \"$_JSON_OUTPUT_RAW\" \"messaging_auto_init_enabled\")\n  if [[ $_MESSAGING_AUTO_INIT ]]; then\n    _PLIST_ENTRY_KEYS+=(\"FirebaseMessagingAutoInitEnabled\")\n    _PLIST_ENTRY_TYPES+=(\"bool\")\n    _PLIST_ENTRY_VALUES+=(\"$(jsonBoolToYesNo \"$_MESSAGING_AUTO_INIT\")\")\n  fi\n\n  # config.crashlytics_disable_auto_disabler - undocumented for now - mainly for debugging, document if becomes useful\n  _CRASHLYTICS_AUTO_DISABLE_ENABLED=$(getFirebaseJsonKeyValue \"$_JSON_OUTPUT_RAW\" \"crashlytics_disable_auto_disabler\")\n  if [[ $_CRASHLYTICS_AUTO_DISABLE_ENABLED == \"true\" ]]; then\n    echo \"Disabled Crashlytics auto disabler.\" # do nothing\n  else\n    _PLIST_ENTRY_KEYS+=(\"FirebaseCrashlyticsCollectionEnabled\")\n    _PLIST_ENTRY_TYPES+=(\"bool\")\n    _PLIST_ENTRY_VALUES+=(\"NO\")\n  fi\n\n  # config.admob_delay_app_measurement_init\n  _ADMOB_DELAY_APP_MEASUREMENT=$(getFirebaseJsonKeyValue \"$_JSON_OUTPUT_RAW\" \"admob_delay_app_measurement_init\")\n  if [[ $_ADMOB_DELAY_APP_MEASUREMENT == \"true\" ]]; then\n    _PLIST_ENTRY_KEYS+=(\"GADDelayAppMeasurementInit\")\n    _PLIST_ENTRY_TYPES+=(\"bool\")\n    _PLIST_ENTRY_VALUES+=(\"YES\")\n  fi\n\n  # config.admob_ios_app_id\n  _ADMOB_IOS_APP_ID=$(getFirebaseJsonKeyValue \"$_JSON_OUTPUT_RAW\" \"admob_ios_app_id\")\n  if [[ $_ADMOB_IOS_APP_ID ]]; then\n    _PLIST_ENTRY_KEYS+=(\"GADApplicationIdentifier\")\n    _PLIST_ENTRY_TYPES+=(\"string\")\n    _PLIST_ENTRY_VALUES+=(\"$_ADMOB_IOS_APP_ID\")\n  fi\nelse\n  _PLIST_ENTRY_KEYS+=(\"firebase_json_raw\")\n  _PLIST_ENTRY_TYPES+=(\"string\")\n  _PLIST_ENTRY_VALUES+=(\"$_JSON_OUTPUT_BASE64\")\n  echo \"warning:   A firebase.json file was not found, whilst this file is optional it is recommended to include it to configure firebase services in React Native Firebase.\"\nfi;\n\necho \"info: 2) Injecting Info.plist entries: \"\n\n# Log out the keys we're adding\nfor i in \"${!_PLIST_ENTRY_KEYS[@]}\"; do\n  echo \"    ->  $i) ${_PLIST_ENTRY_KEYS[$i]}\" \"${_PLIST_ENTRY_TYPES[$i]}\" \"${_PLIST_ENTRY_VALUES[$i]}\"\ndone\n\nfor plist in \"${_TARGET_PLIST}\" \"${_DSYM_PLIST}\" ; do\n  if [[ -f \"${plist}\" ]]; then\n\n    # paths with spaces break the call to setPlistValue. temporarily modify\n    # the shell internal field separator variable (IFS), which normally\n    # includes spaces, to consist only of line breaks\n    oldifs=$IFS\n    IFS=\"\n\"\n\n    for i in \"${!_PLIST_ENTRY_KEYS[@]}\"; do\n      setPlistValue \"${_PLIST_ENTRY_KEYS[$i]}\" \"${_PLIST_ENTRY_TYPES[$i]}\" \"${_PLIST_ENTRY_VALUES[$i]}\" \"${plist}\"\n    done\n\n    # restore the original internal field separator value\n    IFS=$oldifs\n  else\n    echo \"warning:   A Info.plist build output file was not found (${plist})\"\n  fi\ndone\n\necho \"info: <- RNFB build script finished\"\n";
+			shellScript = "#!/usr/bin/env bash\n#\n# Copyright (c) 2016-present Invertase Limited & Contributors\n#\n# Licensed under the Apache License, Version 2.0 (the \"License\");\n# you may not use this library except in compliance with the License.\n# You may obtain a copy of the License at\n#\n#   http://www.apache.org/licenses/LICENSE-2.0\n#\n# Unless required by applicable law or agreed to in writing, software\n# distributed under the License is distributed on an \"AS IS\" BASIS,\n# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n# See the License for the specific language governing permissions and\n# limitations under the License.\n#\nset -e\n\n_MAX_LOOKUPS=2;\n_SEARCH_RESULT=''\n_RN_ROOT_EXISTS=''\n_CURRENT_LOOKUPS=1\n_JSON_ROOT=\"'react-native'\"\n_JSON_FILE_NAME='firebase.json'\n_JSON_OUTPUT_BASE64='e30=' # { }\n_CURRENT_SEARCH_DIR=${PROJECT_DIR}\n_PLIST_BUDDY=/usr/libexec/PlistBuddy\n_TARGET_PLIST=\"${BUILT_PRODUCTS_DIR}/${INFOPLIST_PATH}\"\n_DSYM_PLIST=\"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Info.plist\"\n\n# plist arrays\n_PLIST_ENTRY_KEYS=()\n_PLIST_ENTRY_TYPES=()\n_PLIST_ENTRY_VALUES=()\n\nfunction setPlistValue {\n  echo \"info:      setting plist entry '$1' of type '$2' in file '$4'\"\n  ${_PLIST_BUDDY} -c \"Add :$1 $2 '$3'\" $4 || echo \"info:      '$1' already exists\"\n}\n\nfunction getFirebaseJsonKeyValue () {\n  if [[ ${_RN_ROOT_EXISTS} ]]; then\n    ruby -e \"require 'rubygems';require 'json'; output=JSON.parse('$1'); puts output[$_JSON_ROOT]['$2']\"\n  else\n    echo \"\"\n  fi;\n}\n\nfunction jsonBoolToYesNo () {\n  if [[ $1 == \"false\" ]]; then\n    echo \"NO\"\n  elif [[ $1 == \"true\" ]]; then\n    echo \"YES\"\n  else echo \"NO\"\n  fi\n}\n\necho \"info: -> RNFB build script started\"\necho \"info: 1) Locating ${_JSON_FILE_NAME} file:\"\n\nif [[ -z ${_CURRENT_SEARCH_DIR} ]]; then\n  _CURRENT_SEARCH_DIR=$(pwd)\nfi;\n\nwhile true; do\n  _CURRENT_SEARCH_DIR=$(dirname \"$_CURRENT_SEARCH_DIR\")\n  if [[ \"$_CURRENT_SEARCH_DIR\" == \"/\" ]] || [[ ${_CURRENT_LOOKUPS} -gt ${_MAX_LOOKUPS} ]]; then break; fi;\n  echo \"info:      ($_CURRENT_LOOKUPS of $_MAX_LOOKUPS) Searching in '$_CURRENT_SEARCH_DIR' for a ${_JSON_FILE_NAME} file.\"\n  _SEARCH_RESULT=$(find \"$_CURRENT_SEARCH_DIR\" -maxdepth 2 -name ${_JSON_FILE_NAME} -print | head -n 1)\n  if [[ ${_SEARCH_RESULT} ]]; then\n    echo \"info:      ${_JSON_FILE_NAME} found at $_SEARCH_RESULT\"\n    break;\n  fi;\n  _CURRENT_LOOKUPS=$((_CURRENT_LOOKUPS+1))\ndone\n\nif [[ ${_SEARCH_RESULT} ]]; then\n  _JSON_OUTPUT_RAW=$(cat \"${_SEARCH_RESULT}\")\n  _RN_ROOT_EXISTS=$(ruby -e \"require 'rubygems';require 'json'; output=JSON.parse('$_JSON_OUTPUT_RAW'); puts output[$_JSON_ROOT]\" || echo '')\n\n  if [[ ${_RN_ROOT_EXISTS} ]]; then\n    _JSON_OUTPUT_BASE64=$(python -c 'import json,sys,base64;print(base64.b64encode(json.dumps(json.loads(open('\"'${_SEARCH_RESULT}'\"').read())['${_JSON_ROOT}'])))' || echo \"e30=\")\n  fi\n\n  _PLIST_ENTRY_KEYS+=(\"firebase_json_raw\")\n  _PLIST_ENTRY_TYPES+=(\"string\")\n  _PLIST_ENTRY_VALUES+=(\"$_JSON_OUTPUT_BASE64\")\n\n  # config.app_data_collection_default_enabled\n  _APP_DATA_COLLECTION_ENABLED=$(getFirebaseJsonKeyValue \"$_JSON_OUTPUT_RAW\" \"app_data_collection_default_enabled\")\n  if [[ $_APP_DATA_COLLECTION_ENABLED ]]; then\n    _PLIST_ENTRY_KEYS+=(\"FirebaseDataCollectionDefaultEnabled\")\n    _PLIST_ENTRY_TYPES+=(\"bool\")\n    _PLIST_ENTRY_VALUES+=(\"$(jsonBoolToYesNo \"$_APP_DATA_COLLECTION_ENABLED\")\")\n  fi\n\n  # config.analytics_auto_collection_enabled\n  _ANALYTICS_AUTO_COLLECTION=$(getFirebaseJsonKeyValue \"$_JSON_OUTPUT_RAW\" \"analytics_auto_collection_enabled\")\n  if [[ $_ANALYTICS_AUTO_COLLECTION ]]; then\n    _PLIST_ENTRY_KEYS+=(\"FIREBASE_ANALYTICS_COLLECTION_ENABLED\")\n    _PLIST_ENTRY_TYPES+=(\"bool\")\n    _PLIST_ENTRY_VALUES+=(\"$(jsonBoolToYesNo \"$_ANALYTICS_AUTO_COLLECTION\")\")\n  fi\n\n  # config.analytics_collection_deactivated\n  _ANALYTICS_DEACTIVATED=$(getFirebaseJsonKeyValue \"$_JSON_OUTPUT_RAW\" \"analytics_collection_deactivated\")\n  if [[ $_ANALYTICS_DEACTIVATED ]]; then\n    _PLIST_ENTRY_KEYS+=(\"FIREBASE_ANALYTICS_COLLECTION_DEACTIVATED\")\n    _PLIST_ENTRY_TYPES+=(\"bool\")\n    _PLIST_ENTRY_VALUES+=(\"$(jsonBoolToYesNo \"$_ANALYTICS_DEACTIVATED\")\")\n  fi\n\n  # config.analytics_idfv_collection_enabled\n  _ANALYTICS_IDFV_COLLECTION=$(getFirebaseJsonKeyValue \"$_JSON_OUTPUT_RAW\" \"analytics_idfv_collection_enabled\")\n  if [[ $_ANALYTICS_IDFV_COLLECTION ]]; then\n    _PLIST_ENTRY_KEYS+=(\"GOOGLE_ANALYTICS_IDFV_COLLECTION_ENABLED\")\n    _PLIST_ENTRY_TYPES+=(\"bool\")\n    _PLIST_ENTRY_VALUES+=(\"$(jsonBoolToYesNo \"$_ANALYTICS_IDFV_COLLECTION\")\")\n  fi\n\n  # config.analytics_default_allow_ad_personalization_signals\n  _ANALYTICS_PERSONALIZATION=$(getFirebaseJsonKeyValue \"$_JSON_OUTPUT_RAW\" \"analytics_default_allow_ad_personalization_signals\")\n  if [[ $_ANALYTICS_PERSONALIZATION ]]; then\n    _PLIST_ENTRY_KEYS+=(\"GOOGLE_ANALYTICS_DEFAULT_ALLOW_AD_PERSONALIZATION_SIGNALS\")\n    _PLIST_ENTRY_TYPES+=(\"bool\")\n    _PLIST_ENTRY_VALUES+=(\"$(jsonBoolToYesNo \"$_ANALYTICS_PERSONALIZATION\")\")\n  fi\n\n  # config.perf_auto_collection_enabled\n  _PERF_AUTO_COLLECTION=$(getFirebaseJsonKeyValue \"$_JSON_OUTPUT_RAW\" \"perf_auto_collection_enabled\")\n  if [[ $_PERF_AUTO_COLLECTION ]]; then\n    _PLIST_ENTRY_KEYS+=(\"firebase_performance_collection_enabled\")\n    _PLIST_ENTRY_TYPES+=(\"bool\")\n    _PLIST_ENTRY_VALUES+=(\"$(jsonBoolToYesNo \"$_PERF_AUTO_COLLECTION\")\")\n  fi\n\n  # config.perf_collection_deactivated\n  _PERF_DEACTIVATED=$(getFirebaseJsonKeyValue \"$_JSON_OUTPUT_RAW\" \"perf_collection_deactivated\")\n  if [[ $_PERF_DEACTIVATED ]]; then\n    _PLIST_ENTRY_KEYS+=(\"firebase_performance_collection_deactivated\")\n    _PLIST_ENTRY_TYPES+=(\"bool\")\n    _PLIST_ENTRY_VALUES+=(\"$(jsonBoolToYesNo \"$_PERF_DEACTIVATED\")\")\n  fi\n\n  # config.messaging_auto_init_enabled\n  _MESSAGING_AUTO_INIT=$(getFirebaseJsonKeyValue \"$_JSON_OUTPUT_RAW\" \"messaging_auto_init_enabled\")\n  if [[ $_MESSAGING_AUTO_INIT ]]; then\n    _PLIST_ENTRY_KEYS+=(\"FirebaseMessagingAutoInitEnabled\")\n    _PLIST_ENTRY_TYPES+=(\"bool\")\n    _PLIST_ENTRY_VALUES+=(\"$(jsonBoolToYesNo \"$_MESSAGING_AUTO_INIT\")\")\n  fi\n\n  # config.in_app_messaging_auto_colllection_enabled\n  _FIAM_AUTO_INIT=$(getFirebaseJsonKeyValue \"$_JSON_OUTPUT_RAW\" \"in_app_messaging_auto_collection_enabled\")\n  if [[ $_FIAM_AUTO_INIT ]]; then\n    _PLIST_ENTRY_KEYS+=(\"FirebaseInAppMessagingAutomaticDataCollectionEnabled\")\n    _PLIST_ENTRY_TYPES+=(\"bool\")\n    _PLIST_ENTRY_VALUES+=(\"$(jsonBoolToYesNo \"$_FIAM_AUTO_INIT\")\")\n  fi\n\n  # config.app_check_token_auto_refresh\n  _APP_CHECK_TOKEN_AUTO_REFRESH=$(getFirebaseJsonKeyValue \"$_JSON_OUTPUT_RAW\" \"app_check_token_auto_refresh\")\n  if [[ $_APP_CHECK_TOKEN_AUTO_REFRESH ]]; then\n    _PLIST_ENTRY_KEYS+=(\"FirebaseAppCheckTokenAutoRefreshEnabled\")\n    _PLIST_ENTRY_TYPES+=(\"bool\")\n    _PLIST_ENTRY_VALUES+=(\"$(jsonBoolToYesNo \"$_APP_CHECK_TOKEN_AUTO_REFRESH\")\")\n  fi\n\n  # config.crashlytics_disable_auto_disabler - undocumented for now - mainly for debugging, document if becomes useful\n  _CRASHLYTICS_AUTO_DISABLE_ENABLED=$(getFirebaseJsonKeyValue \"$_JSON_OUTPUT_RAW\" \"crashlytics_disable_auto_disabler\")\n  if [[ $_CRASHLYTICS_AUTO_DISABLE_ENABLED == \"true\" ]]; then\n    echo \"Disabled Crashlytics auto disabler.\" # do nothing\n  else\n    _PLIST_ENTRY_KEYS+=(\"FirebaseCrashlyticsCollectionEnabled\")\n    _PLIST_ENTRY_TYPES+=(\"bool\")\n    _PLIST_ENTRY_VALUES+=(\"NO\")\n  fi\nelse\n  _PLIST_ENTRY_KEYS+=(\"firebase_json_raw\")\n  _PLIST_ENTRY_TYPES+=(\"string\")\n  _PLIST_ENTRY_VALUES+=(\"$_JSON_OUTPUT_BASE64\")\n  echo \"warning:   A firebase.json file was not found, whilst this file is optional it is recommended to include it to configure firebase services in React Native Firebase.\"\nfi;\n\necho \"info: 2) Injecting Info.plist entries: \"\n\n# Log out the keys we're adding\nfor i in \"${!_PLIST_ENTRY_KEYS[@]}\"; do\n  echo \"    ->  $i) ${_PLIST_ENTRY_KEYS[$i]}\" \"${_PLIST_ENTRY_TYPES[$i]}\" \"${_PLIST_ENTRY_VALUES[$i]}\"\ndone\n\nfor plist in \"${_TARGET_PLIST}\" \"${_DSYM_PLIST}\" ; do\n  if [[ -f \"${plist}\" ]]; then\n\n    # paths with spaces break the call to setPlistValue. temporarily modify\n    # the shell internal field separator variable (IFS), which normally\n    # includes spaces, to consist only of line breaks\n    oldifs=$IFS\n    IFS=\"\n\"\n\n    for i in \"${!_PLIST_ENTRY_KEYS[@]}\"; do\n      setPlistValue \"${_PLIST_ENTRY_KEYS[$i]}\" \"${_PLIST_ENTRY_TYPES[$i]}\" \"${_PLIST_ENTRY_VALUES[$i]}\" \"${plist}\"\n    done\n\n    # restore the original internal field separator value\n    IFS=$oldifs\n  else\n    echo \"warning:   A Info.plist build output file was not found (${plist})\"\n  fi\ndone\n\necho \"info: <- RNFB build script finished\"\n";
 		};
 		FD10A7F022414F080027D42C /* Start Packager */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -756,6 +1003,10 @@
 				INFOPLIST_FILE = MBTaxiTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(SDKROOT)/usr/lib/swift",
+					"$(inherited)",
+				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-lc++",
@@ -776,6 +1027,10 @@
 				INFOPLIST_FILE = MBTaxiTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(SDKROOT)/usr/lib/swift",
+					"$(inherited)",
+				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-lc++",
@@ -797,6 +1052,10 @@
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = MBTaxi/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(SDKROOT)/usr/lib/swift",
+					"$(inherited)",
+				);
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -819,6 +1078,10 @@
 				CURRENT_PROJECT_VERSION = 1;
 				INFOPLIST_FILE = MBTaxi/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(SDKROOT)/usr/lib/swift",
+					"$(inherited)",
+				);
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -846,6 +1109,10 @@
 				GCC_NO_COMMON_BLOCKS = YES;
 				INFOPLIST_FILE = "MBTaxi-tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(SDKROOT)/usr/lib/swift",
+					"$(inherited)",
+				);
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -874,6 +1141,10 @@
 				GCC_NO_COMMON_BLOCKS = YES;
 				INFOPLIST_FILE = "MBTaxi-tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(SDKROOT)/usr/lib/swift",
+					"$(inherited)",
+				);
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -901,6 +1172,10 @@
 				GCC_NO_COMMON_BLOCKS = YES;
 				INFOPLIST_FILE = "MBTaxi-tvOSTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(SDKROOT)/usr/lib/swift",
+					"$(inherited)",
+				);
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -928,6 +1203,10 @@
 				GCC_NO_COMMON_BLOCKS = YES;
 				INFOPLIST_FILE = "MBTaxi-tvOSTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(SDKROOT)/usr/lib/swift",
+					"$(inherited)",
+				);
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",

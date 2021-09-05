@@ -9,9 +9,9 @@ const TaxiText = (props) =>{
     return (
         <View style={props.style? props.style: styles.container}>
             <Text 
-              onPress={props.func? props.func: setTexting}
+              onPress={props.func}
               style={props.styleText? [styles.text,props.styleText]: styles.text}>
-                    {props.text ? props.text: 'TEXT'}
+                    {props.text ? props.text: ''}
             </Text>
         </View>
     )

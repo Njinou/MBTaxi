@@ -9,6 +9,8 @@ const TaxiTextInput = (props) =>{
     return (
         <TextInput
             secureTextEntry={props.secureTextEntry?props.secureTextEntry:false}
+            blurOnSubmit={props.blurOnSubmit}
+            onSubmitEditing={props.onSubmitEditing}
             placeholder= {props.placeholder? props.placeholder:'enter the text here'}
             placeholderTextColor= 'blue'
             style={props.style? [styles.input,props.style]: [styles.input,{ marginLeft:'14%', marginRight:'14%'}]}

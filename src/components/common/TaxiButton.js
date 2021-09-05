@@ -10,8 +10,9 @@ const TaxiButton= (props) =>{
         <Pressable 
             style={{alignSelf:'stretch',marginLeft:'14%', marginRight:'14%'}}
             onPress={props.func? props.func: pressed}
+            disabled={props.disabled?props.disabled:false}
             >
-            <View style={props.style? [styles.button,props.style]: styles.button}>
+            <View style={props.style? [styles.button,props.style]: styles.button,{backgroundColor:props.disabled? 'gray':"#F2B84D"}}>
                 <Text style={props.textStyle?props.textStyle:styles.text}>  
                     {props.text? props.text: 'Button' } 
                 </Text>
