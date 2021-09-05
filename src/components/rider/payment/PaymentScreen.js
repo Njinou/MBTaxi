@@ -20,7 +20,7 @@ const Item = ({ item,navigation }) => {
     setItemDetails(item);
     navigation.navigate('paymentDetail',{item:item});
 }}>
-    <RideHistoryBlock  textTopLeft={item.datetime.toLocaleDateString('en-US')? item.datetime.toLocaleDateString('en-US'): item.datetime}  textTopRight={item.price + " FCFA"} textBottomLeft={item.datetime.toLocaleTimeString('en-US')? item.datetime.toLocaleTimeString('en-US'): item.datetime} textBottomRight={item.rating}/>
+    <RideHistoryBlock  textTopLeft={item.datetime}  textTopRight={item.price + " FCFA"} textBottomLeft={item.datetime} rating={item.rating}/>
 </Pressable>
   );
 };
@@ -38,7 +38,7 @@ export default function PaymentScreen() {
                 if (snapshot.exists()) {
                     // Exist! Do whatever.
                 console.log('User data: ', snapshot.val());
-                setPayments(snapshot.val());
+                setPayments(Object.values(snapshot.val()));
                 } else {
                     // Don't exist! Do something.
                     console.log("does not exists has to be")
