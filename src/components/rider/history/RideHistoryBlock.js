@@ -15,7 +15,7 @@ const RideHistoryBlock = (props) => {
 
             <View style={{justifyContent:'space-between',flexDirection:'row'}}>  
                 <Text style={[styles.topText,{color:'#878787',fontSize:11}]}>{props.textBottomLeft? props.textBottomLeft : 'MBTaxi' }</Text>
-                <SmallStarComponent nbre={5}/>
+                {props.BottomRightComponent? props.BottomRightComponent: <SmallStarComponent nbre={props.rating?props.rating:5}/>}
             </View>
         </View>
     );
