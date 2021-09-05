@@ -1,10 +1,31 @@
 import React,{useEffect,useState} from 'react';
-import {View,Text,SafeAreaView,Button} from 'react-native';
+import {View,Text,SafeAreaView,Button,StatusBar,FlatList,Pressable,StyleSheet} from 'react-native';
 
+import RideHistoryBlock from '../history/RideHistoryBlock';
+import fontKeys from '../../../keyText/fontKeys';
 import auth from '@react-native-firebase/auth';
 import database from '@react-native-firebase/database';
 
-export default function ScheduleScreen() {
+
+const ComponentBottomRight = (props) =>{
+  return (
+  <Text style={[styles.topText,{fontFamily:fontKeys.MB}]}> {props.time}</Text>
+  )
+};
+const Item = ({ item,navigation }) => {
+  const [itemDetails, setItemDetails] = useState(null);
+  return (
+<Pressable onPress={() => {
+    setItemDetails(item);
+    navigation.navigate('scheduledRideDetails',{item:item});
+}}>
+    <RideHistoryBlock   textTopRight ={item.date}  textTopLeft={item.destination.description} textBottomLeft={item.price? item.price : '2.500 F CFA'}  rating={item.rating} BottomRightComponent={<ComponentBottomRight time={item.time}/>}/>
+</Pressable>
+  );
+};
+
+
+export default function ScheduleScreen(props) {
 
   const [scheduledPlaces,setScheduledPlaces] = useState([]);
 
@@ -22,7 +43,8 @@ export default function ScheduleScreen() {
               if (snapshot.exists()) {
                   // Exist! Do whatever.
               console.log('User data: ', snapshot.val());
-              setScheduledPlaces(snapshot.val());
+            //  setScheduledPlaces(snapshot.val());
+              setScheduledPlaces(Object.values(snapshot.val()));
               } else {
                   // Don't exist! Do something.
                   console.log("does not exists has to be")
@@ -30,19 +52,24 @@ export default function ScheduleScreen() {
           });
  },[])
 
-  return (
-    <SafeAreaView style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Text>
-      Schedules Rides !!!!!!
-      </Text>
-      <Button onPress={() =>{
-          alert("reading button will come back to it later ")
-      }} title="READING" />
-      <Text>{scheduledPlaces.age}</Text>
-      <Button onPress={() =>{
-          alert ('saving places')
-      }} title="saving" />
+ const renderItem = ({ item }) => (
+  <Item item={item} navigation={props.navigation}/>
+);
 
-    </SafeAreaView>
+  return (
+    <SafeAreaView style={{ flex: 1,
+      marginTop: StatusBar.currentHeight || 0,backgroundColor:'white'}} > 
+      <FlatList
+          data={scheduledPlaces}
+          renderItem={renderItem}
+          keyExtractor={item => item.id}
+    />
+  </SafeAreaView>
   );
 }
+
+const styles = StyleSheet.create({
+  topText:{
+      color:'#000000',fontFamily:fontKeys.MR,fontSize:14
+  },
+});
