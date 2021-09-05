@@ -18,7 +18,7 @@ import ContactScreen from '../components/rider/contact/ContactScreen';
 import HomeScreen from '../components/rider/home/HomeScreen';
 import HomeRiderDestinationScreen from '../components/rider/home/HomeRiderDestinationScreen';
 import SetDestinationScreen from '../components/rider/destination/SetDestinationScreen';
-import ScheduleRideDetails from '../components/rider/scheduled/ScheduledRideDetails.';
+import ScheduleRideDetails from '../components/rider/scheduled/ScheduledRideDetails';
 import HeaderSelectDestination from '../components/common/HeaderSelectDestination';
 
 import  RideOtherOptions from '../components/rider/rideOptions/RideOtherOptions';
