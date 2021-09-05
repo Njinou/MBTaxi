@@ -48,6 +48,37 @@ const Item = ({ item }) => (
     return (<TaxiImageText image={imageKeys.history} text={item.destination.description? item.destination.description:JSON.stringify(item)}   style={{ flex: 1 }}  textStyle={{color:'#000000',fontFamily:fontKeys.MR,fontSize:14,flex:1}}/>)
   };
 
+  function childSaving(val){
+    switch(val){
+      case 'schedule': return "scheduled";
+      case 'now': return "history";
+      case 'subscribe': return "subscribed";
+      case 'course': return "course";
+      default: return 'history';
+    }
+  }
+
+  function buttonText(val){
+    switch(val){
+      case 'schedule': return "Reservez Votre Course";
+      case 'now': return "Appeler Taxi";
+      case 'subscribe': return "Validez les selections";
+      case 'course': return "Taxi Course";
+      default: return 'Appeler Taxi';
+    }
+  }
+
+  function confirmationRide(val){
+    switch(val){
+      case 'schedule': return "Votre Course a ete Bel et bien Reserve";
+      case 'now': return "Nous appelons votre taxi";
+      case 'subscribe': return "Votre souscription a ete enregistree";
+      case 'course': return "Nous recherchons votre taxi";
+      default: return 'Nous appelons votre taxi';
+    }
+  }
+
+
 const SetDestinationScreen = (props) =>{
     const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
     const [isTimePickerVisible, setTimePickerVisibility] = useState(false);
@@ -74,8 +105,9 @@ const SetDestinationScreen = (props) =>{
     //setRecentsResults (recentResults + 5 > recentsPlaces.length ? recentsPlaces.length : recentResults + 5 ) 
     const [savedResults,setSavedResults] = useState (5); 
     //setSavedResults (savedResults + 5 > savedPlaces.length ? savedPlaces.length : savedResults + 5 ) 
-
-        //console.log('itemsss itemaaa',props.route.params.item)//.state.params.item)
+    const [childTable, setChildTable] = useState(childSaving(typeOfRide));
+    const [buttonTitle,setButtonTitle] =useState(buttonText(typeOfRide));
+    //console.log('itemsss itemaaa',props.route.params.item)//.state.params.item)
        // console.log('option',props.route.params.option)//.state.params.option)
        const {
         formatted_address,
@@ -199,9 +231,9 @@ const showDatePicker = () => {
     //should check the value picke to decide wether it is a schedule ride, a continuous pick up, or book for a certain amount of time 
     // leave place for bidding ... 
 
-    reference.child('scheduled').push(scheduled)
+    reference.child(childTable).push(scheduled)
     .then( (res) => {console.log("Ride scheduled !!!!!1",res);
-    alert("Your ride has been successfully scheduled!!")
+    alert(confirmationRide());
     props.navigation.navigate('destination');
     }
     )
@@ -386,7 +418,7 @@ const showDatePicker = () => {
             />
             </ScrollView>
             </View>
-            <TaxiButton  text={typeOfRide} style={{marginBottom:'auto'}} func={SchedulingRide}/>
+            <TaxiButton  text={buttonTitle} style={{marginBottom:'auto'}} func={SchedulingRide}/>
         </ScrollView>        
     );
 }

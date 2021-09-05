@@ -27,7 +27,7 @@ const RideOtherOptions = (props) => {
             <ModalText text1={textKeys.rider.options.subscribe} text2={textKeys.rider.options.monthSubscribe} func={()=>props.func('subscribe')}/>
         </View>
 
-      </Modal>
+      </Modal> 
   );
 };
 
