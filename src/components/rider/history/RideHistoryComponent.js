@@ -46,7 +46,7 @@ const sample = [
         navigation.navigate('historyDetails',{item:item});
     }}>
         
-        <RideHistoryBlock  textTopLeft={item.datetime.toLocaleDateString('en-US')? item.datetime.toLocaleDateString('en-US'): item.datetime}  textTopRight={item.price + " FCFA"} textBottomLeft={item.datetime.toLocaleTimeString('en-US')? item.datetime.toLocaleTimeString('en-US'): item.datetime} textBottomRight={item.rating}/>
+        <RideHistoryBlock  textTopLeft={item.datetime}  textTopRight={item.price + " FCFA"} textBottomLeft={item.datetime} textBottomRight={item.rating}/>
     </Pressable>
       );
   };
@@ -63,7 +63,7 @@ const RideHistoryComponent = (props) => {
                     if (snapshot.exists()) {
                         // Exist! Do whatever.
                     console.log('User data: ', snapshot.val());
-                    setHistory(snapshot.val());
+                    setHistory(Object.values(snapshot.val()));
                     } else {
                         // Don't exist! Do something.
                         console.log("does not exists has to be")
