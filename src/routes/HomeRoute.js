@@ -18,7 +18,7 @@ import ContactScreen from '../components/rider/contact/ContactScreen';
 import HomeScreen from '../components/rider/home/HomeScreen';
 import HomeRiderDestinationScreen from '../components/rider/home/HomeRiderDestinationScreen';
 import SetDestinationScreen from '../components/rider/destination/SetDestinationScreen';
-
+import ScheduleRideDetails from '../components/rider/scheduled/ScheduledRideDetails.';
 import HeaderSelectDestination from '../components/common/HeaderSelectDestination';
 
 import  RideOtherOptions from '../components/rider/rideOptions/RideOtherOptions';
@@ -57,6 +57,8 @@ const  HomeRoute = (props)=> {
     <Drawer.Screen name="destination" component={HomeRiderDestinationScreen} />
     <Drawer.Screen name="history" component={RideHistoryComponent}  options={{ title: 'history' }}/>
     <Drawer.Screen name="historyDetails" component={HistoryDetailScreen}  options={{ title: 'History Details' }}/>
+    <Drawer.Screen name="scheduledRideDetails" component={ScheduleRideDetails}  options={{ title: 'History Details' }}/>
+    
     
     <Drawer.Screen name="saved" component={SavedScreen}  options={{ title: 'Saved Places' }}/>
     <Drawer.Screen name="payment" component={PaymentScreen}  options={{ title: 'Payment' }}/>
