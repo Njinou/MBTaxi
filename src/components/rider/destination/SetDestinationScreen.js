@@ -56,6 +56,7 @@ const SetDestinationScreen = (props) =>{
     const [addStop,SetStop] = useState(false);
     const [meRider,setMeRider] = useState(textKeys.rider.address.whor); //textKeys.rider.address.forme
     const [scheduledRide,scheduleARide] = useState ('schedule' === props.route.params.option);
+    const [typeOfRide,setTypeOfRide] = useState (props.route.params.option);
     const [allUsers,setAllUsers] = useState ([]); // la liste de tous les utilisateurs .... 
     const [meUser,setMeUser] = useState (auth().currentUser);
     const [destination, setDestination] = useState(props.route.params.destination);
@@ -195,8 +196,15 @@ const showDatePicker = () => {
         pickup:location,
         destination:destination
     }
+    //should check the value picke to decide wether it is a schedule ride, a continuous pick up, or book for a certain amount of time 
+    // leave place for bidding ... 
+
     reference.child('scheduled').push(scheduled)
-    .then( (res) =>console.log("Ride scheduled !!!!!1",res))
+    .then( (res) => {console.log("Ride scheduled !!!!!1",res);
+    alert("Your ride has been successfully scheduled!!")
+    props.navigation.navigate('destination');
+    }
+    )
     .catch (error => alert('error is /...',error))
   }
   
@@ -232,7 +240,7 @@ const showDatePicker = () => {
                 />
 
             </View> :null}
-            {scheduledRide ?
+            {'schedule' === typeOfRide ?
                 <View style={{borderBottomStyle:'solid',borderBottomWidth:1,borderBottomColor:'#F2F2F2'}}>
                      <TaxiText12Row textTopLeft={'Date'} textTopRight={'Time'}
                         textTopLeftStyle={{
@@ -378,7 +386,7 @@ const showDatePicker = () => {
             />
             </ScrollView>
             </View>
-            <TaxiButton  text="Schedule Ride" style={{marginBottom:'auto'}} func={SchedulingRide}/>
+            <TaxiButton  text={typeOfRide} style={{marginBottom:'auto'}} func={SchedulingRide}/>
         </ScrollView>        
     );
 }
