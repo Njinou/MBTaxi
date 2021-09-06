@@ -320,11 +320,12 @@ onChangeText={onChangeText}
                     backgroundColor:'#222222',
                     shadowOffset:(0,-1),
                     shadowColor:'rgba(0,0,0,0.09)',
-                    shadowOpacity:4
+                    shadowOpacity:4,
+                   // marginBottom:30
                 }}
 
             >   
-                <View style={{alignItems:'center',justifyContent:'center',paddingBottom:10,paddingTop:10}}>
+                <View style={{alignItems:'center',justifyContent:'center'}}>
                     <Image  source={imageKeys.requesttaxiyellow}/>
                     <Text style={{color:'#F2B84D',fontSize:10,textShadowColor:'#F2B84D',textShadowRadius:1,fontFamily:fontKeys.MSB}}>{textKeys.rider.request.request}</Text>
                 </View>
