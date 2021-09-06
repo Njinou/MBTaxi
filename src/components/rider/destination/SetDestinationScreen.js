@@ -30,6 +30,15 @@ const GOOGLE_MAPS_API_KEY = 'AIzaSyB6iuVD8X4sEeHAGHY3tmMQRyM_Vyoc3UU';
 
 // LIMIT NUMBER OF ITEM TO A CERTAIN NUMBER AND INCREASING IT BY 5 
 
+/*
+
+            <View style={{flex:1,flexDirection:'row',justifyContent:'space-around',alignItems:'center',paddingTop:10,paddingBottom:10}}>
+               <TaxiText text={'Nombre de Passager'}  styleText={styles.prixText}/>
+                <TaxiText text={'Prix par Passager'} styleText={styles.prixText}/>
+                <TaxiText text={'Prix  Total'}  styleText={styles.prixText}/>
+            </View>
+
+*/
 
 const Item = ({ item }) => (
     <TaxiImageText12 
@@ -392,13 +401,6 @@ const showDatePicker = () => {
                         
                 </View>
             </View>
-
-            <View style={{flex:1,flexDirection:'row',justifyContent:'space-around',alignItems:'center',paddingTop:10,paddingBottom:10}}>
-               <TaxiText text={'Nombre de Passager'}  styleText={styles.prixText}/>
-                <TaxiText text={'Prix par Passager'} styleText={styles.prixText}/>
-                <TaxiText text={'Prix  Total'}  styleText={styles.prixText}/>
-            </View>
-
 
             <View style={{flex:1,marginLeft:35
                 }} nestedScrollEnabled={true}> 
