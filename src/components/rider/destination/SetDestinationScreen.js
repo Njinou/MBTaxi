@@ -264,7 +264,16 @@ adaRef..child(key).remove()
         });
       },[setSavedPlaces])*/
 
+
+
       useEffect(function() {
+
+        /*
+         useEffect(() => () => {
+        onInfoChange(null); // pass null info back to parent, on unmount
+    }, []);
+        
+        */
         async function getData() {
             try{
               const url = 'users/' + auth().currentUser.uid;

@@ -46,7 +46,7 @@ const sample = [
         navigation.navigate('historyDetails',{item:item});
     }}>
         
-        <RideHistoryBlock  textTopLeft={item.datetime}  textTopRight={item.price + " FCFA"} textBottomLeft={item.datetime} textBottomRight={item.rating}/>
+        <RideHistoryBlock  textTopLeft={item.datetime}  textTopRight={item.price + " FCFA"} textBottomLeft={item.datetime} rating={item.rating}/>
     </Pressable>
       );
   };

@@ -6,10 +6,26 @@ import textKeys from '../../../keyText/textKeys';
 import TaxiTextInput from '../../common/TaxiTextInput';
 import TaxiText from  '../../common/TaxiText';
 import TaxiImageText from '../../common/TaxiImageText';
+import TaxiText12Row from '../../common/TaxiText12Row';
 
 import Rate from '../../rate/Rate';
 import imageKeys from "../../../keyText/imageKeys";
 
+import RideHistoryBlock from '../history/RideHistoryBlock';
+
+//select mobile ... #FAFAFA
+const Automobile =()=> {
+  return (
+    <View style={{flex:1,justifyContent:'space-between',flexDirection:'row',paddingLeft:22,paddingTop:29}}>
+      <View style={{flex:1,flexDirection:'column'}}>
+        <Text style={{color:'#000000',fontSize:16,fontFamily:fontKeys.MR}}> Hellooo </Text>
+        <Text style={{paddingBottom:22,color:'#878787',fontSize:12,fontFamily:fontKeys.MR}}>  Hellooo </Text>
+      </View>
+      <View >
+        <Text style={{flex:1,paddingRight:21,color:'#3F4D5F',fontSize:18,fontFamily:fontKeys.MR}}> Helloooo </Text>
+      </View>
+  </View>)
+}
 const SelectTaxiTypeScreen = () => {
     const [modalVisible, setModalVisible] = useState(true);
     const [isSearching,setIsSearching] = useState(false); 
@@ -19,6 +35,30 @@ const SelectTaxiTypeScreen = () => {
                                 setInput (val);
                                 val.length >0 ? setIsSearching(true) : setIsSearching(false);
                             }
+
+    /*
+    <TaxiImageText 
+                    image={imageKeys.plusgreen} 
+                    style={{borderStyle:'solid',
+                            borderBottomColor:'rgba(170,170,170,0.5)',
+                            borderBottomWidth:1,
+                            alignItems:'center',
+                            marginTop:23,
+                            paddingLeft:100,
+                    }} 
+                    text={textKeys.rider.address.who} 
+                    textStyle={{color:'#5BE39B',fontSize:14,fontFamily:fontKeys.MR}}
+                    func={()=>props.func("you and you ", {photoURL:'https://reactnative.dev/img/tiny_logo.png',displayName:'test once', uid:123314242432})}
+                />
+
+    */
+   //BottomRightComponent
+//rider select size
+const RenderText = () =>(
+  <Text>
+     
+  </Text>
+);
 
   return (
     <View style={styles.centeredView}>
@@ -31,8 +71,8 @@ const SelectTaxiTypeScreen = () => {
           setModalVisible(!modalVisible);
         }}
       >
-        <View  style={[{marginTop:'auto',justifyContent:'center'}]}>
-            <TaxiImageText image={imageKeys.taxisearch} text={textKeys.rider.driver.match}  
+        <View  style={[{justifyContent:'center',flex:1}]}>
+            <TaxiImageText image={imageKeys.taxisearch} text={textKeys.rider.select.size}  
             style={{
                 marginLeft:-38,borderBottomColor:'#EAEAEA',borderBottomStyle:'solid',
                 borderBottomWidth:1,width:'100%',
@@ -44,10 +84,22 @@ const SelectTaxiTypeScreen = () => {
             }}
             textStyle={{color:'#000000',fontFamily:fontKeys.MR,fontSize:18}}
             />
-            <View style={{justifyContent:'center',alignItems:'center',paddingTop:58,paddingBottom:71}}>
-                <TaxiText text={textKeys.rider.driver.wait} styleText={{paddingBottom:22,color:'#878787',fontSize:14,fontFamily:fontKeys.MR}}/>
-                <Image source={imageKeys.loading} />
-            </View>
+             <RideHistoryBlock  
+             textTopRight={{fontSize:18}}
+              textTopLeft={'Taxi'}  
+              textTopRight={'$6'} 
+              textBottomLeft={textKeys.rider.select.cheap} 
+              BottomRightComponent={<RenderText/>}
+              style={{borderColor:'color'}}
+             />
+
+          <View style={{flex:1,borderColor:'#EAEAEA',borderTopWidth:1,borderStyle:'solid',borderBottomWidth:1,}}>
+            <Automobile/>
+            <Automobile/>
+            <Automobile/>
+
+          </View>
+              <Text style={{flex:1}}> Text Text </Text>
         </View>
       </Modal>
     </View>
