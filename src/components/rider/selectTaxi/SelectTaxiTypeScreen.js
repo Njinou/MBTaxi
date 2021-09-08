@@ -13,7 +13,10 @@ import imageKeys from "../../../keyText/imageKeys";
 
 import RideHistoryBlock from '../history/RideHistoryBlock';
 
+import {Picker} from '@react-native-picker/picker';
+
 //select mobile ... #FAFAFA
+//setSelectedLanguage
 const Automobile =()=> {
   return (
     <View style={{flex:1,justifyContent:'space-between',flexDirection:'row',paddingLeft:22,paddingTop:29}}>
