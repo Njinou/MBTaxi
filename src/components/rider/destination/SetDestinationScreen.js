@@ -40,18 +40,6 @@ const GOOGLE_MAPS_API_KEY = 'AIzaSyB6iuVD8X4sEeHAGHY3tmMQRyM_Vyoc3UU';
 
 */
 
-const Item = ({ item }) => (
-    <TaxiImageText12 
-        style={{alignSelf:'stretch',maxWidth:'100%'}}
-        styleText1={{flex:1}}
-        styleText2={{flex:1,alignContent:'stretch'}}
-        textOnlyStyle={{flex:1}}
-        image={imageKeys.stayyellow} 
-        text={textKeys.destination} 
-        text1={item.title? item.title: textKeys.home}
-        text2= {item.destination? item.description: item.destination.address_components? item.destination.address_components.formatted_address: "308 Raleigh Dr. Raleigh,NC 308 Raleigh Dr. Raleigh,NC 308 Raleigh Dr. Raleigh,NC 308 Raleigh Dr. Raleigh,NC"}
-    />
-  );
 
   const ItemSaved = ({ item }) => {
     return (<TaxiImageText image={imageKeys.history} text={item.destination.description? item.destination.description:JSON.stringify(item)}   style={{ flex: 1 }}  textStyle={{color:'#000000',fontFamily:fontKeys.MR,fontSize:14,flex:1}}/>)
@@ -66,13 +54,13 @@ const Item = ({ item }) => (
       default: return 'history';
     }
   }
-
+  
   function buttonText(val){
     switch(val){
       case 'schedule': return "Reservez Votre Course";
       case 'now': return "Appeler Taxi";
-      case 'subscribe': return "Validez les selections";
-      case 'course': return "Taxi Course";
+      case 'subscribe': return "Selectionnez les dates et horaires";
+      case 'course': return "Appeler Taxi Course";
       default: return 'Appeler Taxi';
     }
   }
@@ -86,6 +74,25 @@ const Item = ({ item }) => (
       default: return 'Nous appelons votre taxi';
     }
   }
+
+  function compareString (str1,str2){
+    var words1 = str1.split(/\s+/g),
+     words2 = str2.split(/\s+/g),
+     i,
+     j;
+    var total =0;
+  
+  for (i = 0; i < words1.length; i++) {
+     for (j = 0; j < words2.length; j++) {
+         if (words1[i].toLowerCase() == words2[j].toLowerCase()) {
+         //   console.log('word '+words1[i]+' was found in both strings');
+            total++;
+         }
+     }
+  }
+  return total;
+  }
+
 
 
 const SetDestinationScreen = (props) =>{
@@ -107,6 +114,7 @@ const SetDestinationScreen = (props) =>{
     const removeStop = () => SetStop(false);
     const addRiders = () => setMeRider(textKeys.rider.address.whor);
     
+    const [data,setData] = useState([]);
     const [recentsPlaces,setRecentsPlaces] = useState([]); //afficher les directions recentes
     const [savedPlaces,setSavedPlaces] = useState([]);
 
@@ -118,26 +126,113 @@ const SetDestinationScreen = (props) =>{
     const [buttonTitle,setButtonTitle] =useState(buttonText(typeOfRide));
     //console.log('itemsss itemaaa',props.route.params.item)//.state.params.item)
        // console.log('option',props.route.params.option)//.state.params.option)
+
+       /*
+       var adaRef = firebase.database().ref('users/ada');
+adaRef..child(key).remove()
+  .then(function() {
+    console.log("Remove succeeded.")
+  })
+  .catch(function(error) {
+    console.log("Remove failed: " + error.message)
+  });
+       */
        const {
         formatted_address,
         place_id,
-        geometry: {
+        geometry: { 
           location: {lat, lng},
         },
       } = location;
-    
+      //setDestination
       const renderItem = ({ item }) => (
         <Item item={item} />
       );
+      
+      const savingPlace = (val) => {
+        
+        const url = 'users/' + auth().currentUser.uid;
+              const reference = database().ref(url);
+              
+      //verifier qu'il nexiste pas deja dans les saved un qui a cette id...
+      let savedIDs = savedPlaces.map( item => item.destination.place_id)
+         //ici demande plus de travail....
+         
+         //changer la valeur de saved.... et enregistrer la valeur....
+          //enregistrer la valeur dans la colonne saved..
+
+         //LES SAVED NE SAFFICHENT PAS AVANT LAJOUT DUN NOUVEAU
+
+          if (!savedIDs.includes(val.destination.place_id))
+            {  
+              let obj = {};
+              obj = JSON.parse(JSON.stringify(val));
+              obj.saved = true;
+              database().ref(url + '/history').child(obj.key).set(obj);
+              database().ref(url + '/saved').child(obj.key).set(obj);
+              console.log("saving.....",obj.saved);
+            }
+          else {
+            let obj = {};
+              obj = JSON.parse(JSON.stringify(val));   
+              obj.saved = false;
+              database().ref(url + '/history').child(obj.key).set(obj);
+              var removeSavedItem = database().ref(url + '/saved');
+              removeSavedItem.child(obj.key).remove()
+                .then(function() {
+                  console.log("Remove succeeded.");
+              
+                  const url = 'users/' + auth().currentUser.uid;
+                const reference = database().ref(url);
+                reference
+                .child ('saved')
+                .on('value', snapshot => {
+                    if (snapshot.exists()) {
+                        // Exist! Do whatever.
+                  //  console.log('Saved data: ', snapshot.val());
+                    setSavedPlaces(Object.values(snapshot.val()));
+                    } else {
+                        // Don't exist! Do something.
+                        console.log("does not exists has to be")
+                    }
+                });
+
+                })
+                .catch(function(error) {
+                  console.log("Remove failed: " + error.message)
+                });         
+          }
+
+      };
+
+      const Item = ({ item }) => (
+        <Pressable onPress={()=> {setDestination(item.destination); console.log(item)}}>
+        <TaxiImageText12 
+            imageFunc={()=>savingPlace(item)}
+            style={{alignSelf:'stretch',maxWidth:'100%'}}
+            styleText1={{flex:1}}
+            styleText2={{flex:1,alignContent:'stretch'}}
+            textOnlyStyle={{flex:1}}
+            image={item.saved? imageKeys.stayyellow : imageKeys.Stargrey} 
+            text={textKeys.destination} 
+            text1={item.date? item.date: textKeys.home}
+            text2= {item.destination.description}
+        />
+        </Pressable>
+      );
+
+      
 
       const renderItemSaved = ({ item }) => (
         <ItemSaved item={item} />
       );
       useEffect (()=>{
+       
         const url = 'users/' + auth().currentUser.uid;
         const reference = database().ref(url);
         reference
-                .child ('recents')
+                .child ('history')
+                .limitToLast(5)
                 .on('value', snapshot => {
                     if (snapshot.exists()) {
                         // Exist! Do whatever.
@@ -148,7 +243,13 @@ const SetDestinationScreen = (props) =>{
                         console.log("does not exists has to be")
                     }
                 });
+      },[setRecentsPlaces])
 
+
+      /*useEffect (()=>{
+       
+        const url = 'users/' + auth().currentUser.uid;
+        const reference = database().ref(url);
         reference
         .child ('saved')
         .on('value', snapshot => {
@@ -161,9 +262,33 @@ const SetDestinationScreen = (props) =>{
                 console.log("does not exists has to be")
             }
         });
+      },[setSavedPlaces])*/
+
+      useEffect(function() {
+        async function getData() {
+            try{
+              const url = 'users/' + auth().currentUser.uid;
+              const reference = database().ref(url);
+              reference
+              .child ('saved')
+              .on('value', snapshot => {
+                  if (snapshot.exists()) {
+                      // Exist! Do whatever.
+                //  console.log('Saved data: ', snapshot.val());
+                  setSavedPlaces(Object.values(snapshot.val()));
+                  } else {
+                      // Don't exist! Do something.
+                      console.log("does not exists has to be")
+                  }
+              });
+            }catch(error){
+                console.log('error', error);
+            }
+        }
+        getData();
+    }, [setSavedPlaces]);
 
 
-      },[])
       APIPlaceAutocomplete = (destination, currentPlace) => {
         const URL = `https://maps.googleapis.com/maps/api/place/autocomplete/json?key=${GOOGLE_MAPS_API_KEY}&input=${destination}&location=${currentPlace.latitude},${currentPlace.longitude}&radius=2000`;
          if (destination.length > 0) {
@@ -227,28 +352,35 @@ const showDatePicker = () => {
   }
 
   SchedulingRide = () =>{
-    const url = 'users/' + auth().currentUser.uid;
+    const url = 'users/' + auth().currentUser.uid + '/' +childTable;
     const reference = database().ref(url);
 
-    let scheduled = {
-        id: uuidv4(),
-        date:Date,
-        time:Time,
-        pickup:location,
-        destination:destination
-    }
     //should check the value picke to decide wether it is a schedule ride, a continuous pick up, or book for a certain amount of time 
     // leave place for bidding ... 
-
-    reference.child(childTable).push(scheduled)
-    .then( (res) => {console.log("Ride scheduled !!!!!1",res);
-    alert(confirmationRide());
-    props.navigation.navigate('destination');
+//ref.child(key).set(....)
+//ref.push().key
+    let newVal = reference.child(childTable).push();
+    
+    let ride = {
+      key: newVal.key,
+      saved:false,
+      id: uuidv4(),
+      date:Date,
+      time:Time,
+      pickup:location,
+      destination:destination
+  }
+  reference.child(newVal.key).set(ride).then( (res) => {
+    console.log("Ride save !!!!!",res);
+    //select
+     props.navigation.navigate('match'); //destination
     }
     )
-    .catch (error => alert('error is /...',error))
+    .catch (error => console('error is ...',error))
   }
   
+  console.log("new printing of props extrada shit...",savedPlaces);
+
     return (
         <ScrollView style={{height:'100%',backgroundColor:'white'}} nestedScrollEnabled={true}>
            { props.selectingUser? <View style={{paddingTop:9,}}>  
@@ -405,6 +537,7 @@ const showDatePicker = () => {
             <View style={{flex:1,marginLeft:35
                 }} nestedScrollEnabled={true}> 
             <FlatList
+                extraData={recentsPlaces}
                 data={recentsPlaces.length>0 ? recentsPlaces.slice(0,recentResults): recentsPlaces}
                 renderItem={renderItem}
                 keyExtractor={item => item.id}
@@ -422,6 +555,7 @@ const showDatePicker = () => {
             
             <ScrollView  style={{flex:1,paddingLeft:37,paddingTop:12,marginRight:37,marginBottom:10,}} nestedScrollEnabled={true}>
             <FlatList
+                extraData={savedPlaces}
                 data={savedPlaces.length>0 ? savedPlaces.slice(0,savedResults): savedPlaces}
                 renderItem={renderItemSaved}
                 keyExtractor={item => item.id}

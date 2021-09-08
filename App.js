@@ -36,10 +36,13 @@ import HomeScreen from './src/components/home/HomeScreen'; //for driver ...
 import auth from '@react-native-firebase/auth';
 import { NavigationContainer } from '@react-navigation/native';
 
+import AcceptTripModal from './src/components/accepttrip/AcceptTripModal'; // driver .... accepting ride ... 
+import DriverStatsScreen from './src/components/driverstats/DriverStatsScreen'; //driver earnings...
+import MapDirectionScreen from './src/components/duringtrip/MapDirectionScreen'; // during trip could be rider and driver ...
+import SelectTaxiTypeScreen from './src/components/rider/selectTaxi/SelectTaxiTypeScreen'; // orienting drivers where the riders are crowded... 
 
 
-const image = { uri: "https://reactjs.org/logo-og.png" };
-
+ 
 const App: () => React$Node = () => {
 
   const appState = useRef(AppState.currentState);
@@ -102,7 +105,7 @@ const App: () => React$Node = () => {
       return (
         
         <NavigationContainer>
-          <HomeRoute/>
+          <SelectTaxiTypeScreen/>
         </NavigationContainer>
        
       );

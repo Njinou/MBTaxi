@@ -56,6 +56,7 @@ const HomeRiderDestinationScreen: (props) => React$Node = (props) => {
     const [destination,setDestination] = useState(null);
     const [isSearching,setIsSearching] = useState(false);
     const [value,setValue] = useState(null);
+    const [insertDestinationValue,setInsertDestinationValue] = useState(false);
     const [location, setLocation] = useState(null) //
     const [locationAddress, setLocationAddress] = useState(null) //
     const [textInput, setTextInput] = useState("");
@@ -184,6 +185,7 @@ onChangeText={onChangeText}
       };
 
       const onChangeText = (val) =>{
+       // setInsertDestinationValue(false);
         setTextInput(val);
      APIPlaceAutocomplete(val,location);
       }
@@ -198,6 +200,7 @@ onChangeText={onChangeText}
       );
       const Item = ({ item}) => (
         <Pressable onPress={() =>  {
+          //setInsertDestinationValue(true);
           setValue(item);
           setData([]);
           //setTimeout(function(){ props.navigation.navigate('option') }, 1000);
@@ -247,7 +250,7 @@ onChangeText={onChangeText}
                         }}
                         func={onChangeText}
                         onSubmitEditing={onSubmitEditing}
-                        value={value?  value.description.split(',')[0] : textInput}
+                        value= {value?  value.description.split(',')[0] : textInput}
                     /> 
                      <FlatList
                         data={data}
