@@ -40,7 +40,7 @@ import AcceptTripModal from './src/components/accepttrip/AcceptTripModal'; // dr
 import DriverStatsScreen from './src/components/driverstats/DriverStatsScreen'; //driver earnings...
 import MapDirectionScreen from './src/components/duringtrip/MapDirectionScreen'; // during trip could be rider and driver ...
 import SelectTaxiTypeScreen from './src/components/rider/selectTaxi/SelectTaxiTypeScreen'; // orienting drivers where the riders are crowded... 
-
+import RideDetailsScreen from './src/components/rider/rideDetails/RideDetailsScreen';
 
  
 const App: () => React$Node = () => {
@@ -105,7 +105,7 @@ const App: () => React$Node = () => {
       return (
         
         <NavigationContainer>
-          <SelectTaxiTypeScreen/>
+          <RideDetailsScreen/>
         </NavigationContainer>
        
       );
