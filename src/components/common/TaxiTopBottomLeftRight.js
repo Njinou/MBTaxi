@@ -1,9 +1,9 @@
 import React from 'react';
 import {View,Text,StyleSheet} from 'react-native';
 
-import SmallStarComponent from '../../rate/SmallStarComponent';
-import TaxiImageText12 from '../../common/TaxiImageText12';
-import fontKeys from '../../../keyText/fontKeys';
+import SmallStarComponent from '../rate/SmallStarComponent';
+import TaxiImageText12 from '../common/TaxiImageText12';
+import fontKeys from '../../keyText/fontKeys';
 
 const TaxiTopBottomLeftRight = (props) => {
     return (
