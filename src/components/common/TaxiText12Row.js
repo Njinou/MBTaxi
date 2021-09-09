@@ -12,7 +12,7 @@ const TaxiText12Row = (props) => {
                 {props.RightComponent?  props.RightComponent :<Text style={[styles.topText,{fontFamily:fontKeys.MB},props.textTopRightStyle]} onPress={props.text2Func}> {props.textTopRight? props.textTopRight : '$15'}</Text>}
             </View>
         </View>
-    );
+    );//textTopLeft textTopRight
 }
 
 const styles = StyleSheet.create({

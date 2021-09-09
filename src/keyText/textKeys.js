@@ -129,7 +129,7 @@ const textKeys = {
             'regular': "Regular",
             'large': "Large",
             'estimate': "Estimated Price",
-            'hurry': "In a hurry? Propose your price to increase speed of being accepted by a driver",
+            'hurry': "Propose your price to drivers",
             'visa': "Visa ending in",
             'request': "Request Taxi",
         },

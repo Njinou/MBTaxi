@@ -7,7 +7,7 @@ import fontKeys from '../../../keyText/fontKeys';
 
 const RideHistoryBlock = (props) => {
     return (
-        <View  style={{borderStyle:'solid',borderColor:'#F2F2F2',borderWidth:1,padding:15}}>
+        <View  style={[{borderStyle:'solid',borderColor:'#F2F2F2',borderWidth:1,padding:15},props.style]}>
             <View style={{justifyContent:'space-between',flexDirection:'row'}}>  
                 <Text style={styles.topText}>{props.textTopLeft? props.textTopLeft : 'Ride With' }</Text>
                 <Text style={[styles.topText,{fontFamily:fontKeys.MB}]}> {props.textTopRight? props.textTopRight : '$15'}</Text>
