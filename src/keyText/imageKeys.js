@@ -48,5 +48,6 @@ const imageKeys = {
     visa: require("../assets/images/visa.png"),
     map: require("../assets/images/map.png"),
    yourlocation: require("../assets/images/yourlocation.png"),
+   arrow: require("../assets/images/arrow.png"),
  };
  export default imageKeys;
