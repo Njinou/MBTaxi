@@ -282,7 +282,7 @@ adaRef..child(key).remove()
               .child ('saved')
               .on('value', snapshot => {
                   if (snapshot.exists()) {
-                      // Exist! Do whatever.
+                      // Exist! Do whatever.select
                 //  console.log('Saved data: ', snapshot.val());
                   setSavedPlaces(Object.values(snapshot.val()));
                   } else {
