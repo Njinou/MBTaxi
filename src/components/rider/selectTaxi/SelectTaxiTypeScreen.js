@@ -232,7 +232,7 @@ const RenderText = () =>(
            
           </View>
           <View style={{marginBottom:19,paddingTop:18}}>
-            <Text> Mesomb solution here to be integrated today</Text>
+            <Text style={{color:'red'}}> Mesomb solution here to be integrated today ... Verifier le paiment avant d'activer le bouton pour eviter les requetes inutiles </Text>
           </View>
           <TaxiButton  text={textKeys.rider.select.request} style={{marginBottom:31}} func={requestRide}/>
         </ScrollView>
