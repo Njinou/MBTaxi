@@ -9,12 +9,12 @@ const TaxiTopBottomLeftRight = (props) => {
     return (
         <View  style={[{borderStyle:'solid',borderColor:'#F2F2F2',borderWidth:1,padding:15},props.style]}>
             <View style={{justifyContent:'space-between',flexDirection:'row'}}>  
-                <Text style={styles.topText}>{props.textTopLeft? props.textTopLeft : 'Ride With' }</Text>
-                <Text style={[styles.topText,{fontFamily:fontKeys.MB}]}> {props.textTopRight? props.textTopRight : '$15'}</Text>
+                <Text style={[styles.topText,props.styleTopLeft]}>{props.textTopLeft? props.textTopLeft : 'Ride With' }</Text>
+                <Text style={[styles.topText,{fontFamily:fontKeys.MB},props.styleTopRight]}> {props.textTopRight? props.textTopRight : '$15'}</Text>
             </View>
 
             <View style={{justifyContent:'space-between',flexDirection:'row'}}>  
-                <Text style={[styles.topText,{color:'#878787',fontSize:11}]}>{props.textBottomLeft? props.textBottomLeft : 'MBTaxi' }</Text>
+                <Text style={[styles.topText,{color:'#878787',fontSize:11},props.styleBottomLeft]}>{props.textBottomLeft? props.textBottomLeft : 'MBTaxi' }</Text>
                 {props.BottomRightComponent? props.BottomRightComponent: <SmallStarComponent nbre={props.rating?props.rating:5}/>}
             </View>
         </View>
