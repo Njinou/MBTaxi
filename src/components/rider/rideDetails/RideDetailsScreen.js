@@ -26,6 +26,7 @@ const RideDetailsScreen = () => {
 
     const [modalVisible, setModalVisible] = useState(false);
     const [user,setUser] = useState(null);
+    const [details,setDetails] = useState(false);
 
   return (
         <SafeAreaView  style={{flex:1}}>
@@ -64,8 +65,10 @@ const RideDetailsScreen = () => {
                             <View style={{backgroundColor:'#222222',width:10,height:10,borderRadius:20}}/>
                         </View>
                         <View style={{flex:1,paddingBottom:28,marginTop:-3}}>
-                             <TaxiText text={'departure'} styleText={{fontSize:12,color:'#878787',fontFamily:fontKeys.MR,paddingBottom:20}} style={{paddingTop:0, paddingBottom:0, marginTop:0,marginBottom:0}}/>
-                             <TaxiText text="destination" styleText={{fontSize:12,color:'#878787',fontFamily:fontKeys.MR}}  style={{paddingTop:0, paddingBottom:0, marginTop:0, marginBottom:0}}/>
+                             <TaxiText text={'departure'} styleText={{fontSize:12,color:'#878787',fontFamily:fontKeys.MR,paddingBottom:20}} 
+                             style={{paddingTop:0, paddingBottom:0, marginTop:0,marginBottom:0}}/>
+                             <TaxiText text="destination" styleText={{fontSize:12,color:'#878787',fontFamily:fontKeys.MR}} 
+                              style={{paddingTop:0, paddingBottom:0, marginTop:0, marginBottom:0}}/>
                         </View>
                     </View>
             </View>
@@ -74,7 +77,16 @@ const RideDetailsScreen = () => {
                 textTopLeft={textKeys.rider.arrival} 
                 textTopLeftStyle={{color:'#000000',fontSize:16,fontFamily:fontKeys.MR}} 
                 textTopRight="9:34 PM" /> 
-           <TaxiTopBottomLeftRight 
+
+           
+
+            {details?  <TaxiText12Row 
+                style={{paddingLeft:22}}
+                textTopLeft={textKeys.rider.price} 
+                textTopLeftStyle={{color:'#000000',fontSize:16,fontFamily:fontKeys.MR}} 
+                textTopRight="1000 F FCFA" 
+            /> :
+            <TaxiTopBottomLeftRight 
                 style={{paddingLeft:22}}
                 textTopLeft={textKeys.rider.price}
                 styleTopLeft={{color:'#000000',fontSize:16,fontFamily:fontKeys.MR}} 
@@ -84,6 +96,10 @@ const RideDetailsScreen = () => {
                  textBottomLeft={textKeys.rider.split} 
                  rating={'rating'}
             />
+            } 
+
+           {details?  <TaxiTextImage  text={textKeys.rider.share}  textStyle={{color:'#FFFFFF',fontFamily:fontKeys.MMR,fontSize:14}} image={imageKeys.arrow} style={{backgroundColor:'#222222',alignItems:'center',justifyContent:'center',paddingVertical:14}} imageStyle={{height:14,width:14,marginLeft:4}}/>
+            :
             <View style={{flex:1,backgroundColor:'#222222',flexDirection:'row',justifyContent:'center',paddingVertical:20}}>
                 <TaxiTextImage  style={{justifyContent:'center',alignItems:'center',paddingRight:29}} 
                 textStyle ={{fontSize:14, color:'#F2B84D',fontFamily:fontKeys.MMR}}
@@ -92,8 +108,9 @@ const RideDetailsScreen = () => {
                 <TaxiTextImage style={{justifyContent:'center',alignItems:'center',paddingLeft:41}}  
                 textStyle ={{fontSize:14, color:'#FFFFFF',fontFamily:fontKeys.MMR}} 
                 text={textKeys.rider.cancel} image={imageKeys.closewhite}  
-            />
-            </View>
+            /> 
+            </View>}
+            
         </ScrollView>
         </SafeAreaView>
   );
