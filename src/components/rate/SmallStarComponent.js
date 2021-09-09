@@ -31,7 +31,7 @@ const SmallStarComponent: () => React$Node = (props) => {
   return (
     <View style={{flexDirection:'row',justifyContent:'space-evenly',alignItems:'center'}}> 
     { number.map( x => {
-        return <Image   key={x} source={star >=x ? imageKeys.smallstar : imageKeys.stayyellow } />
+        return <Image   key={x} source={star >=x ? (props.color? imageKeys.starblacksmall: imageKeys.smallstar) : null } />
       })
     }   
     </View>
