@@ -11,6 +11,8 @@ import HistoryDetailScreen from '../components/rider/history/HistoryDetailScreen
 import SelectTaxiTypeScreen from '../components/rider/selectTaxi/SelectTaxiTypeScreen';
 import MatchDriverScreen from '../components/rider/MatchDriver/MatchDriverScreen';
 
+import RideDetailsScreen from '../components/rider/rideDetails/RideDetailsScreen';
+
 import SavedScreen from '../components/rider/saved/SavedScreen';
 import PaymentScreen from '../components/rider/payment/PaymentScreen';
 import ScheduleScreen from '../components/rider/scheduled/ScheduleScreen';
@@ -68,6 +70,8 @@ const  HomeRoute = (props)=> {
     
     <Drawer.Screen name="match" component={MatchDriverScreen}  options={{ title: 'Matching your driver' }}/>
     <Drawer.Screen name="select" component={SelectTaxiTypeScreen}  options={{ title: 'Select Ride' }}/>
+    <Drawer.Screen name="rideDetails" component={RideDetailsScreen}  options={{ title: 'Ride Details' }}/>
+    
     <Drawer.Screen name="scheduled" component={ScheduleScreen}  options={{ title: 'Scheduled rides' }}/>
     <Drawer.Screen name="help" component={HelpScreen}  options={{ title: 'FAQ & Help' }}/>
     <Drawer.Screen name="settings" component={SettingsScreen}  options={{ title: 'Settings' }}/>
