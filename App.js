@@ -25,7 +25,6 @@ import LoginRoute from './src/routes/LoginRoute';
 import HomeRoute from './src/routes/HomeRoute';
 import ConfirmationRoute from './src/routes/ConfirmationRoute';
 
-
 import SetDestinationScreen from './src/components/rider/destination/SetDestinationScreen';
 import LoginScreen from './src/components/login/LoginScreen';
 import DisplayFareScreen from './src/components/rider/fare/DisplayFareScreen';
