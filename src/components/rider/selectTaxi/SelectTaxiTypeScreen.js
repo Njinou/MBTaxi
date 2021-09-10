@@ -275,7 +275,7 @@ if (matchingDriver) return (
           {
             openModal &&  (
             <View style={styles.centeredView}>
-                <DisplayFareScreen rideDetails={rideDetails} closingSplitPaymentModal={closingSplitPaymentModal} />
+                <DisplayFareScreen rideDetails={rideDetails} closingSplitPaymentModal={closingSplitPaymentModal}  />
             </View>)
           }
         </ScrollView>

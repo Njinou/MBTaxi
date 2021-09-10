@@ -340,14 +340,14 @@ onChangeText={onChangeText}
                     <Text style={{color:'#C3C1C1',fontSize:10,fontFamily:fontKeys.MSB}}>{textKeys.rider.request.schedule}</Text>
                 </View> 
             </View> 
-            <RatingScreen 
+            {props.openingRatingModal ?<RatingScreen 
               openingModal={props.openingRatingModal} 
               setVisibleFunc={props.closingRatingModalFunc} 
               rate={props.rate}
               settingRating={props.settingRating}
               comment={props.comment}
               getComment= {props.getComment}
-              />          
+              />    : null}      
         </ImageBackground>
     </View>
   );

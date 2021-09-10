@@ -573,7 +573,7 @@ const showDatePicker = () => {
             </ScrollView>
             </View>
             
-            <TaxiButton  text={buttonTitle} style={{marginBottom:'auto'}} func={SchedulingRide}/>
+            <TaxiButton  text={textKeys.continue} style={{marginBottom:'auto'}} func={SchedulingRide}/>
         </ScrollView>        
     );
 }
