@@ -15,23 +15,6 @@ const destination = {latitude: 37.771707, longitude: -122.4053769};
 
 //code bar for promotion and new products....
 const MapsScreen = () => {
-    const window = useWindowDimensions();
-
-    const pan = useRef(new Animated.ValueXY()).current;
-    const panResponder = useRef(
-        PanResponder.create({
-          onMoveShouldSetPanResponder: () => true,
-          onPanResponderMove: Animated.event([
-            null,
-            { dx: pan.x, dy: pan.y }
-          ],
-          {useNativeDriver: false}
-          ),
-          onPanResponderRelease: () => {
-            Animated.spring(pan, { toValue: { x: 0, y: 0 } }).start();
-          }
-        })
-      ).current;
 
     const [location, setLocation] = useState(null) //
     const [textInput, setTextInput] = useState("");
@@ -39,7 +22,9 @@ const MapsScreen = () => {
     const [myText,setMyText] = useState('I\'m ready to get swiped!');
     const [gestureName,setGestureName] = useState('none');
     const [backgroundColor,setBackgroundColor] = useState('#fff');
-    
+    const [distance,setDistance] = useState(0);
+    const [timing,setTiming] = useState(0);
+
     const handleLocationPermission = async () => { 
         let permissionCheck = ""
         if (Platform.OS === "ios") {
@@ -128,7 +113,7 @@ Geocoder.from(41.89, 12.49)
         });
       };
 
-      const APIPlaceAutocomplete = (destination, currentPlace) => {
+     /* const APIPlaceAutocomplete = (destination, currentPlace) => {
         const URL = `https://maps.googleapis.com/maps/api/place/autocomplete/json?key=${GOOGLE_MAPS_API_KEY}&input=${destination}&location=${currentPlace.latitude},${currentPlace.longitude}&radius=2000`;
       
         if (destination.length > 0) {
@@ -142,30 +127,13 @@ Geocoder.from(41.89, 12.49)
         } else {
           return 'No destination Address provided';
         }
-      };
+      };*/
 
-      const onChangeText = (val) =>{
+     /* const onChangeText = (val) =>{
         setTextInput(val);
         APIPlaceAutocomplete(val,location);
-      }
+      }*/
 
-      /*
-      1)-request taxi cab 
-      is user destination close to driver route or path  ? 
-      is user location on user destination or traject ? or 
-      is driver nearby user or increase the circle of search?
-      mutex once the driver select the ride....... 
-
-      Add user destination in the ride queue 
-      from here driver  path should consider picking the user up 
-      2)-driver is near the user 
-       confirmation of identity before approving the ride.. 
-
-       driver drops users by priority queue....
-      distance from current location 
-      distance 
-
-      */
       function getDistanceFromLatLonInKm(lat1,lon1,lat2,lon2) {
         var R = 6371; // Radius of the earth in km
         var dLat = deg2rad(lat2-lat1);  // deg2rad below
@@ -185,101 +153,16 @@ Geocoder.from(41.89, 12.49)
       }
       if (location) console.log("voici la distance qui me separe de yaounde",getDistanceFromLatLonInKm(location.latitude,location.longitude,3.866667,11.516667))
 
-      /*onSwipeUp = (gestureState) =>{
-        setMyText('You swiped up!')
-      }
-     
-      onSwipeDown =(gestureState) =>{
-        setMyText('You swiped dowb!')
-      }
-     
-      onSwipeLeft = (gestureState) =>{
-        setMyText('You swiped left!')
-      }
-     
-      onSwipeRight = (gestureState) =>{
-        setMyText('You swiped right!')
-      }
-
-     const  onSwipe =(gestureName, gestureState) =>{
-        const {SWIPE_UP, SWIPE_DOWN, SWIPE_LEFT, SWIPE_RIGHT} = swipeDirections;
-        setGestureName(gestureName);
-        switch (gestureName) {
-          case SWIPE_UP:
-            setBackgroundColor('red')
-            break;
-          case SWIPE_DOWN:
-            setBackgroundColor('green')
-            break;
-          case SWIPE_LEFT:
-              setBackgroundColor('blue')
-            break;
-          case SWIPE_RIGHT:
-            setBackgroundColor('yellow')
-            break;
-        }
-      }
-
-      const config = {
-        velocityThreshold: 0.3,
-        directionalOffsetThreshold: 80
-      };
-
-const renderLeftActions = (progress, dragX) => {
-    const trans = dragX.interpolate({
-      inputRange: [0, 50, 100, 101],
-      outputRange: [-20, 0, 0, 1],
-    });
-    return (
-      <RectButton style={styles.leftAction} onPress={this.close}>
-        <Animated.Text
-          style={[
-            styles.actionText,
-            {
-              transform: [{ translateX: trans }],
-            },
-          ]}>
-          Archive
-        </Animated.Text>
-      </RectButton>
-    );
-  };
-
-  const renderRightActions = (progress, dragX) => {
-    const trans = dragX.interpolate({
-      inputRange: [101, 150, 200, 251],
-      outputRange: [1, 0, 0, 20],
-    });
-    return (
-      <RectButton style={styles.leftAction} onPress={this.close}>
-        <Animated.Text
-          style={[
-            styles.actionText,
-            {
-              transform: [{ translateX: trans }],
-            },
-          ]}>
-          Archive
-        </Animated.Text>
-      </RectButton>
-    );
-  };
-
-      return (
-        <View style={{flex:1,alignContent:'center',justifyContent:'center'}}>
-                 <Swipeable renderLeftActions={renderLeftActions}>
-        <Text>"hello"</Text>
-      </Swipeable>
-        </View>
-       
-        
-      );*/
-
       const destination = {latitude: 3.866667, longitude: 11.516667};
+
+      /*
+      Distance: 244.741 km
+[Fri Sep 10 2021 23:24:07.434]  LOG      Duration: 257.25 min
+      */
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar barStyle="dark-content" />
-      <Modal
+      {/*<Modal
         animationType="slide"
         transparent={true}
         visible={modalVisible}
@@ -302,7 +185,7 @@ const renderLeftActions = (progress, dragX) => {
       />
           </View>
         </View>
-      </Modal>
+      </Modal>*/}
 
       {location && (<MapView
         paddingAdjustmentBehavior="automatic" 
@@ -322,17 +205,18 @@ const renderLeftActions = (progress, dragX) => {
           longitudeDelta: 0.0421,
         }}
         showsUserLocation={true}
-      >
+      >   
           <MapViewDirections
                 origin={{latitude: location.latitude, longitude: location.longitude}}
-                destination={{latitude: 3.866667, longitude: 11.516667}}
+                destination={{latitude: 4.061536, longitude: 9.786072}}
                 apikey={GOOGLE_MAPS_API_KEY}
                 strokeWidth ={5}
                 strokeColor="black"
                 onReady={result => {
-                    console.log(`Distance: ${result.distance} km`)
-                    console.log(`Duration: ${result.duration} min.`)
-                   
+                  setDistance(result.distance)
+                  setTiming(result.duration)
+                  console.log(`Distance: ${result.distance} km`)
+                  console.log(`Duration: ${result.duration} min.`)   
                 }}
             />
             <Marker
@@ -348,6 +232,9 @@ const renderLeftActions = (progress, dragX) => {
       />
       </MapView>
     )}
+     <View style={{ position: 'absolute', top: 150, left: 100, right: 100, height: 50, borderWidth: 1 ,borderRadius:10,backgroundColor:'#222222' }}>
+          <Text style={{flex:1,color:'white',padding:20}}>{distance + 'km'}</Text>
+        </View>
     </SafeAreaView>
   )
 }

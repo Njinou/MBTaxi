@@ -108,7 +108,7 @@ const App: () => React$Node = () => {
       return (
         
         <NavigationContainer>
-          <HomeRoute/>
+          <MapsScreen/>
         </NavigationContainer>
        
       );

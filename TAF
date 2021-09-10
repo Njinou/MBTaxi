@@ -95,4 +95,24 @@ je me dis qu'on devrait utiliser soit le user id propose par google... soit cree
   // leur envoyer des notifications pour leur faire savoir kil ya des taxi ki vont dans leur zone.... et pour gagner en temps ils peuvent les appeler ... 
 
 
-  
+
+
+        /*
+      1)-request taxi cab 
+      is user destination close to driver route or path  ? 
+      is user location on user destination or traject ? or 
+      is driver nearby user or increase the circle of search?
+      mutex once the driver select the ride....... 
+
+      Add user destination in the ride queue 
+      from here driver  path should consider picking the user up 
+      2)-driver is near the user 
+       confirmation of identity before approving the ride.. 
+
+       driver drops users by priority queue....
+      distance from current location 
+      distance 
+
+      */
+
+      
