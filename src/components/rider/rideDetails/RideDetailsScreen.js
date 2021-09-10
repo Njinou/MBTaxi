@@ -10,7 +10,7 @@ import TaxiText12Row from '../../common/TaxiText12Row';
 import TaxiImageTextInput from '../../common/TaxiImageTextInput';
 import TaxiTopBottomLeftRight from '../../common/TaxiTopBottomLeftRight';
 import TaxiTextImage from '../../common/TaxiTextImage';
-
+import DisplayFareScreen  from "../fare/DisplayFareScreen";
 import TaxiButton from '../../common/TaxiButton';
 import TaxiImageText12 from '../../common/TaxiImageText12';
 import SmallStarComponent from '../../rate/SmallStarComponent';
@@ -22,12 +22,23 @@ import RideHistoryBlock from '../history/RideHistoryBlock';
 
 import {Picker} from '@react-native-picker/picker';
 
+import CheckBox from '@react-native-community/checkbox';
+
 const RideDetailsScreen = () => {
 
     const [modalVisible, setModalVisible] = useState(false);
     const [user,setUser] = useState(null);
     const [details,setDetails] = useState(false);
-
+    const [openModal,setOpenModal] = useState(false);
+    const [toggleCheckBox, setToggleCheckBox] = useState(false)
+    openingSharePrice = () =>{setOpenModal(true); setDetails(true)} //en principe Details ride with contact driver should be set to true once there is a match only....
+    /* 
+    <CheckBox
+                disabled={false}
+                value={toggleCheckBox}
+                onValueChange={(newValue) => {setToggleCheckBox(newValue);console.log("WElcome... to this bitch again...",toggleCheckBox)}}
+            />
+    */
   return (
         <SafeAreaView  style={{flex:1}}>
         <ScrollView  style={{flex:1,}}>
@@ -91,10 +102,11 @@ const RideDetailsScreen = () => {
                 textTopLeft={textKeys.rider.price}
                 styleTopLeft={{color:'#000000',fontSize:16,fontFamily:fontKeys.MR}} 
                  styleBottomLeft={{color:'#5BE39B',fontSize:16,fontFamily:fontKeys.MR}} 
+                 textBottomLeft={textKeys.rider.split} 
                  styleTopRight={{color:'#000000',fontSize:16,fontFamily:fontKeys.MB}} 
                  textTopRight={ "1000 F FCFA"} 
-                 textBottomLeft={textKeys.rider.split} 
                  rating={'rating'}
+                 funcBottomLeft={openingSharePrice}
             />
             } 
 
@@ -110,16 +122,13 @@ const RideDetailsScreen = () => {
                 text={textKeys.rider.cancel} image={imageKeys.closewhite}  
             /> 
             </View>}
-            
         </ScrollView>
         </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
-  button:{
-
-  }
+    
 });
 
 export default RideDetailsScreen;

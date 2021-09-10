@@ -8,7 +8,7 @@
  */
 
 import React, { useState,useEffect } from 'react';
-import {StyleSheet,View,Image,ImageBackground, ScrollView,Text,TextInput,FlatList, Pressable} from 'react-native';
+import {StyleSheet,View,Image,ImageBackground, ScrollView,Text,TextInput,FlatList, Pressable, Button} from 'react-native';
 
 import fontKeys from '../../../keyText/fontKeys';
 import imageKeys from '../../../keyText/imageKeys';
@@ -25,6 +25,8 @@ import RideOtherOptions from '../../rider/rideOptions/RideOtherOptions';
 import Geolocation from "react-native-geolocation-service"
 import Geocoder from 'react-native-geocoding';
 import { check, request, PERMISSIONS, RESULTS } from "react-native-permissions" //
+import RatingScreen from '../../rate/RatingScreen';
+
 import { Value } from 'react-native-reanimated';
 
 import auth from '@react-native-firebase/auth';
@@ -60,7 +62,7 @@ const HomeRiderDestinationScreen: (props) => React$Node = (props) => {
     const [location, setLocation] = useState(null) //
     const [locationAddress, setLocationAddress] = useState(null) //
     const [textInput, setTextInput] = useState("");
-    const [error, setError] = useState("");
+    const [error, setError] = useState(null);
     const [data,setData] = useState([]);
     const [option,setOption] = useState(false);
     const [optionValue,setOptionValue] = useState(null);
@@ -177,7 +179,7 @@ onChangeText={onChangeText}
             ////ici il faut filtrer les valeurs avec la ville et le pays pour diminuer les valeurs envoyer ....  
           // et pour cela on peut prendre les valeur de geocoder comme reference ......   et il faut verifier que le format est le meme cest a dire le nombre de virgule qui separe les villes et les pays est le meme que les resultats qui sont 
           //produits
-            .catch(error => console.log('voici l\'erreur ',error));
+            .catch(error => console.log('voici l\'erreur ',setError(error)));
         } else {
             console.log("No address corresponding ..")
           return 'No destination Address provided';
@@ -220,7 +222,7 @@ onChangeText={onChangeText}
 
    // const actionCodeInfo =  auth().checkActionCode('ABCD');
     //console.log('Action code operation: ', actionCodeInfo.operation);
-
+  if (error) return null;
   if (location) {   return (
     <View style={{height:'100%'}}>
        <ImageBackground source={imageKeys.map} style={styles.image}>
@@ -337,7 +339,15 @@ onChangeText={onChangeText}
                     <Image  source={imageKeys.scheduledridesgrey} />
                     <Text style={{color:'#C3C1C1',fontSize:10,fontFamily:fontKeys.MSB}}>{textKeys.rider.request.schedule}</Text>
                 </View> 
-            </View>           
+            </View> 
+            <RatingScreen 
+              openingModal={props.openingRatingModal} 
+              setVisibleFunc={props.closingRatingModalFunc} 
+              rate={props.rate}
+              settingRating={props.settingRating}
+              comment={props.comment}
+              getComment= {props.getComment}
+              />          
         </ImageBackground>
     </View>
   );

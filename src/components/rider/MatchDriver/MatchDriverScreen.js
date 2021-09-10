@@ -9,29 +9,20 @@ import TaxiImageText from '../../common/TaxiImageText';
 
 import Rate from '../../rate/Rate';
 import imageKeys from "../../../keyText/imageKeys";
+import RideDetailsScreen from "../rideDetails/RideDetailsScreen";
 
-const MatchDriverScreen = () => {
-    const [modalVisible, setModalVisible] = useState(true);
+const MatchDriverScreen = (props) => {
+    const [modalVisible, setModalVisible] = useState(false);
     const [isSearching,setIsSearching] = useState(false); 
      const [input,setInput] = useState(null); 
      setVisibleFunc = () =>  setModalVisible(!modalVisible);
-     getTextInput = (val) =>  {
-                                setInput (val);
-                                val.length >0 ? setIsSearching(true) : setIsSearching(false);
-                            }
-
+    getTextInput = (val) =>  {
+      setInput (val);
+      val.length >0 ? setIsSearching(true) : setIsSearching(false);
+    }
   return (
     <View style={styles.centeredView}>
-      <Modal
-        animationType="slide"
-        transparent={true}
-        visible={modalVisible}
-        onRequestClose={() => {
-          Alert.alert("Modal has been closed.");
-          setModalVisible(!modalVisible);
-        }}
-      >
-        <View  style={[{marginTop:'auto',justifyContent:'center'}]}>
+      <View  style={[{marginTop:'auto',justifyContent:'center'}]}>
             <TaxiImageText image={imageKeys.taxisearch} text={textKeys.rider.driver.match}  
             style={{
                 marginLeft:-38,borderBottomColor:'#EAEAEA',borderBottomStyle:'solid',
@@ -49,7 +40,6 @@ const MatchDriverScreen = () => {
                 <Image source={imageKeys.loading} />
             </View>
         </View>
-      </Modal>
     </View>
   );
 };

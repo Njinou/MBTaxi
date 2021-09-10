@@ -26,17 +26,26 @@ import TaxiImageText  from '../common/TaxiImageText';
 //ratefilled
 //StarCopy5
 //set the number of star rated...
-const Rate: () => React$Node = (props) => {
-    const [star,setStar] = useState(0);
+const Rate: (props) => React$Node = (props) => {
+    const [star,setStar] = useState(props.star);
     const number = [1,2,3,4,5];
 
+    const gettingStars =(nbre) => {
+
+      if (props.star>=0 && props.setStar) {
+        props.setStar(nbre);
+      } else {
+        setStar(nbre)
+      }
+    }
   return (
     <View style={{flexDirection:'row',justifyContent:'space-evenly',alignItems:'center'}}> 
     { number.map( x => {
-        return <Pressable key={x} onPress={()=> {setStar(x);
-        console.log("Etoile " + x)
+        return <Pressable key={x} onPress={()=> {
+          gettingStars(x);
+          console.log("Etoile " + x)
         }}>
-        <Image   source={star >=x ? imageKeys.ratefilled : imageKeys.StarCopy5 } />
+        <Image   source={  props.star >=x ? imageKeys.ratefilled : imageKeys.StarCopy5 } />
         </Pressable>
         })
     }   

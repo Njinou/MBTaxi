@@ -9,6 +9,9 @@ import TaxiImageText from '../../common/TaxiImageText';
 import TaxiText12Row from '../../common/TaxiText12Row';
 import TaxiImageTextInput from '../../common/TaxiImageTextInput';
 import TaxiButton from '../../common/TaxiButton';
+import MatchDriverScreen from '../MatchDriver/MatchDriverScreen';
+import RideDetailsScreen from '../rideDetails/RideDetailsScreen';
+import DisplayFareScreen from '../fare/DisplayFareScreen';
 
 import Rate from '../../rate/Rate';
 import imageKeys from "../../../keyText/imageKeys";
@@ -45,6 +48,7 @@ const DATA = [
     taxiType:'Clando-Bus',
   },
 ];
+
 const PriceMoto =(props)=> {
   return (
     <View style={[{flex:1,justifyContent:'space-between',flexDirection:'row',paddingTop:29},props.style]}>
@@ -85,24 +89,54 @@ const MotoPicket = () =>{
 
 // check if nbrePeople > nbrePlaces
 // anticiper et mettre le nombre de people disponible  = nmbre place au max... 
-const SelectTaxiTypeScreen = () => {
+const SelectTaxiTypeScreen = (props) => {
 
     const [modalVisible, setModalVisible] = useState(false);
     const [isSearching,setIsSearching] = useState(false); 
     const [input,setInput] = useState(null); 
     const [selectedPeople, setSelectedPeople] = useState(1);
-    const [selectedTaxi,setSelectedTaxi] = useState(null);
+    const [selectedTaxi,setSelectedTaxi] = useState(DATA[0]); //data[0]
+    const [data,setData] = useState(DATA);
     const [prixUnitaire,setPrixUnitaire]  = useState(250);
     const [prixTotal,setPrixTotal]  = useState(prixUnitaire);
     const [bid,setBidding]  = useState(false);
-   const  bidding = (val) =>  {setPrixTotal(val); setBidding(true)}
+    const [matchingDriver,setMatchingDriver] = useState(false);
+    const [driverMatched,setDriverMatched] = useState(false);
+    const [openModal,setOpenModal] = useState(false);
+    const [rideDetails,setRideDetails] = useState(null);
+    const  bidding = (val) =>  {setPrixTotal(val); setBidding(true)}
+    const openingSplitPaymentModal = () =>  {
+      setOpenModal(true); 
+      let obj = selectedTaxi;
+     obj.nbrePeople = selectedPeople;
+     obj.prixTotal = prixTotal;
+     obj.bid= bid
+     setRideDetails(obj);
+    }
+
+    const closingSplitPaymentModal = () =>  {
+      setOpenModal(false); 
+    }
+
+
+   //setDriverMatched (true) once driver is found
+  /* useEffect ( ()=>{
+    //FETCHING DATA FROM FIREBASE...
+    //setSelectedTaxi(data[0])
+    setSelectedTaxi(DATA[0])
+  })*/
+
    requestRide = () =>{ 
      let obj = selectedTaxi;
      obj.nbrePeople = selectedPeople;
      obj.prixTotal = prixTotal;
      obj.bid= bid
+     setRideDetails(obj);
      console.log(obj);
+     setTimeout(function(){setMatchingDriver(true); }, 1500); //AUTOMATIC TO BE CHANGED
+     setTimeout(function(){setMatchingDriver(false);  setDriverMatched(true)}, 3000);
    }
+
     const ViewPrice = (item) =>{
       return (
         <View style={{flex:1,flexDirection:'row',alignItems:'center'}}>
@@ -159,12 +193,14 @@ const SelectTaxiTypeScreen = () => {
     */
    //BottomRightComponent
 //rider select size
-const RenderText = () =>(
-  <Text>
-     
-  </Text>
-);
 
+
+
+if (driverMatched) return <RideDetailsScreen />
+//useEffect or function to match the driver..... 
+if (matchingDriver) return (
+  <MatchDriverScreen/>
+);
   return (
         <SafeAreaView  style={{flex:1}}>
         <ScrollView  style={{flex:1,paddingHorizontal:22,}}>
@@ -177,7 +213,8 @@ const RenderText = () =>(
                 shadowColor: 'red',//'rgba(170,170,170,0.5)',
                 shadowOffset:{width:0,height:2},
                 shadowOpacity:0,
-                shadowRadius:22
+                shadowRadius:22,
+                paddingBottom:0
             }}
             textStyle={{color:'#000000',fontFamily:fontKeys.MR,fontSize:18}}
             />
@@ -203,7 +240,7 @@ const RenderText = () =>(
           <View style={{flex:1,borderColor:'#EAEAEA',borderTopWidth:1,borderStyle:'solid',borderBottomWidth:1,}}>
               <View>
               <FlatList
-                data={DATA}
+                data={data}
                 renderItem={renderItem}
                 keyExtractor={item => item.id}
               />
@@ -220,7 +257,7 @@ const RenderText = () =>(
                         
                         <View style={{flex:1,flexDirection:'row',alignItems:'center',justifyContent:'space-between',marginBottom:19}}>
                             <TaxiTextInput keyboardType='numeric' style={{flex:1, marginBottom:0,marginLeft:0,marginRight:0}} styleText={{flex:1,fontFamily:fontKeys.MR,color:'#878787',fontSize:14}} placeholder={'enter amount here'} func={bidding}
-                              value={prixTotal}
+                              value={prixTotal +""}
                             />
                             <View style={{flex:1,justifyContent:'center'}}>
                               <Text style={{color:'#F2B84D',fontSize:14,fontFamily:fontKeys.MB}}> Franc CFA </Text>
@@ -232,9 +269,15 @@ const RenderText = () =>(
            
           </View>
           <View style={{marginBottom:19,paddingTop:18}}>
-            <Text style={{color:'red'}}> Mesomb solution here to be integrated today ... Verifier le paiment avant d'activer le bouton pour eviter les requetes inutiles </Text>
+            <TaxiText func={openingSplitPaymentModal} styleText={{color:'#5BE39B',fontSize:16,fontFamily:fontKeys.MR}}  text="Mesomb solution here to be integrated today ... Verifier le paiment avant d'activer le bouton pour eviter les requetes inutiles"/>
           </View>
           <TaxiButton  text={textKeys.rider.select.request} style={{marginBottom:31}} func={requestRide}/>
+          {
+            openModal &&  (
+            <View style={styles.centeredView}>
+                <DisplayFareScreen rideDetails={rideDetails} closingSplitPaymentModal={closingSplitPaymentModal} />
+            </View>)
+          }
         </ScrollView>
         </SafeAreaView>
   );
@@ -293,7 +336,7 @@ const styles = StyleSheet.create({
     paddingBottom:16,
     paddingTop:16,
     fontSize:18,
-}
+},
 });
 
 export default SelectTaxiTypeScreen;

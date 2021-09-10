@@ -28,10 +28,15 @@ import ConfirmationRoute from './src/routes/ConfirmationRoute';
 
 import SetDestinationScreen from './src/components/rider/destination/SetDestinationScreen';
 import LoginScreen from './src/components/login/LoginScreen';
+import DisplayFareScreen from './src/components/rider/fare/DisplayFareScreen';
+import DisplayFareSplittedScreen from './src/components/rider/fare/DisplayFareSplittedScreen';
+
 
 import ComponentBackgroundHOC from './src/components/common/ComponentBackgroundHOC';
 import MapsScreen from './src/components/maps/MapsScreen'; 
 import HomeScreen from './src/components/home/HomeScreen'; //for driver ...
+import RatingScreen from './src/components/rate/RatingScreen';
+
  
 import auth from '@react-native-firebase/auth';
 import { NavigationContainer } from '@react-navigation/native';
@@ -42,7 +47,6 @@ import MapDirectionScreen from './src/components/duringtrip/MapDirectionScreen';
 import SelectTaxiTypeScreen from './src/components/rider/selectTaxi/SelectTaxiTypeScreen'; // orienting drivers where the riders are crowded... 
 import RideDetailsScreen from './src/components/rider/rideDetails/RideDetailsScreen';
 
- 
 const App: () => React$Node = () => {
 
   const appState = useRef(AppState.currentState);
@@ -105,7 +109,7 @@ const App: () => React$Node = () => {
       return (
         
         <NavigationContainer>
-          <RideDetailsScreen/>
+          <HomeRoute/>
         </NavigationContainer>
        
       );
