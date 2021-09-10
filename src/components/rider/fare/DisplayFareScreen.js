@@ -1,5 +1,5 @@
 import React, { useState,useEffect } from "react";
-import { Alert, Modal, StyleSheet, Text, Pressable, View, ScrollView } from "react-native";
+import { Alert, Modal, StyleSheet, Text, Pressable, View, ScrollView,FlatList } from "react-native";
 
 import fontKeys from '../../../keyText/fontKeys';
 import textKeys from '../../../keyText/textKeys';
@@ -10,18 +10,93 @@ import TaxiImageText from '../../common/TaxiImageText';
 import Rate from '../../rate/Rate';
 import imageKeys from "../../../keyText/imageKeys";
 
-const DisplayFareScreen = () => {
-    const [modalVisible, setModalVisible] = useState(false);
+import DisplayFareSplittedScreen from './DisplayFareSplittedScreen';
+
+const DATA = [
+  {
+    id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
+    displayName: 'First Item',
+  },
+  {
+    id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
+    displayName: 'Second Item',
+  },
+  {
+    id: '58694a0f-3da1-471f-bd96-145571e29d72',
+    displayName: 'Third Item',
+  },
+];
+
+
+const DisplayFareScreen = (props) => {
+    const [modalVisible, setModalVisible] = useState(true);
     const [isSearching,setIsSearching] = useState(false); 
      const [input,setInput] = useState(null); 
+     const [data,SetData] = useState(DATA);
+     const [intialData,SetInitialData] = useState(DATA); //CHANGER CETTE VALEUR SI LES DONNEES CHANGENT MEME DANS UN USEFFECT...
+     const [copayer,setCopayer] = useState([
+      {
+        id: '58694a0f-3da1-471f-bd96-145571e29d72',
+        displayName: 'Me A AJOUTER'
+      }
+     ]); //useState([]);
+     const [isaddingCcopayer,setIsAddingCopayer] = useState(true);
+     const [cherching,setCherching] = useState(false);
+     const [displayFareSplit,setDisplayFareSplit] = useState(false);
      setVisibleFunc = () =>  setModalVisible(!modalVisible);
-     getTextInput = (val) =>  {
-                                setInput (val);
-                                val.length >0 ? setIsSearching(true) : setIsSearching(false);
-                            }
+     addPayerFunc = () => setIsAddingCopayer(true);
 
+     getTextInput = (val) =>  {
+        setInput (val);
+       // val.length >0 ? setIsSearching(true) : setIsSearching(false);  
+        setCherching(true); 
+        let text = val.toLowerCase()
+        
+        let filteredName = intialData.filter((item) => {
+          return item.displayName.toLowerCase().match(text)
+        })
+        if (!text || text === '') {
+          //setIsAddingCopayer(false);
+          SetData(intialData);
+        } else if (!Array.isArray(filteredName) && !filteredName.length) {
+          console.log('Empty Array');
+          SetData([]);
+         // setIsAddingCopayer(false);
+        } else if (Array.isArray(filteredName)) {
+          console.log('filteredName',filteredName);
+          SetData(filteredName);
+        }
+    }
+    selectingCoPayer =(item)=>{
+      let obj =copayer;
+      obj.push(item);
+      setCopayer(obj);
+      //console.log("inside ",item)
+      setInput(item.displayName);
+     // setTimeout ( () =>setCopayer(item),500);
+     //  setTimeout ( () =>console.log("copaying... shit...."),500);
+      setCherching(false);
+      setIsAddingCopayer(false);
+ }  
+  const Item = ({ item }) => (
+    <TaxiImageText  func ={()=>selectingCoPayer(item)} image={imageKeys.smallprofileblack} text={item.displayName} />
+  );
+  const renderItem = ({ item }) => (
+    <Item item={item} />
+  );
+ 
+  //if (copayer) return <DisplayFareSplittedScreen modalVisible={true}/>;
+  //double check the items are not doubled ..
+  //select the amount ..
+  //split the amount among users.... by default 
+  //select the amount per user.... 
+  //let each user select his amount... 
+  // when requesting ride taking in consideration the fact that 2 people or more might want to go in the same cab  or request each a cab ..
+  //leur proposer deux taxi differents...
+  //prendre l'itineraire ou l'emploi de temps et les horaires et  appeler des taxi des kils sont pret ou avant... pour kil nattendent pas.... 
+  // leur envoyer des notifications pour leur faire savoir kil ya des taxi ki vont dans leur zone.... et pour gagner en temps ils peuvent les appeler ... 
+  console.log('ride details inside simple .... ',props.rideDetails?.prixTotal);
   return (
-    <View style={styles.centeredView}>
       <Modal
         animationType="slide"
         transparent={true}
@@ -30,9 +105,11 @@ const DisplayFareScreen = () => {
           Alert.alert("Modal has been closed.");
           setModalVisible(!modalVisible);
         }}
-      >
+      > 
+      {isaddingCcopayer ? 
         <View style={styles.centeredView}>
           <View style={[styles.modalView,]}>
+             
                 <View 
                     style={{ 
                         borderBottomStyle:'solid',
@@ -56,42 +133,27 @@ const DisplayFareScreen = () => {
                 >
                     <Text>
                         <Text style={[styles.textInfo,{fontSize:24}]}>{textKeys.rider.fare.split.price}</Text>
-                        <Text style={[styles.textInfo,{fontSize:24,fontFamily:fontKeys.MB}]}> $15</Text>
+                        <Text style={[styles.textInfo,{fontSize:24,fontFamily:fontKeys.MB}]}> {props.rideDetails.prixTotal + "F"}</Text>
                     </Text>
                    
               </View>
             <View>
                 <TaxiTextInput placeholder={textKeys.rider.fare.split.username} func={getTextInput}  value={input} style={{borderStyle:'solid',borderColor:'#DBDBDB'}}/>
+                <TaxiText text="Annuler"  styleText={{color:'#000000',fontSize:16,fontFamily:fontKeys.MB}} func={props.closingSplitPaymentModal} />
              </View>
-             {isSearching ?
+             {cherching ?
+                
                 <ScrollView  style={{marginTop:-26,}} contentContainerStyle={[styles.modalView,{justifyContent:'flex-start',marginRight:38,marginLeft:38,borderRadius: 0,borderBottomLeftRadius:8,borderBottomRightRadius:8}]}>
-                    <TaxiImageText image={imageKeys.smallprofileblack} text="Nitcheu Mbouendeu" style={{marginLeft:-38}}/>
-                    <TaxiImageText image={imageKeys.smallprofileblack} text="Nitcheu" style={{marginLeft:-38}}/>
-                    <TaxiImageText image={imageKeys.smallprofileblack} text="John Smith" style={{marginLeft:-38}}/>
-                    <TaxiImageText image={imageKeys.smallprofileblack} text="Nitcheu Mbouendeu" style={{marginLeft:-38}}/>
-                    <TaxiImageText image={imageKeys.smallprofileblack} text="Nitcheu" style={{marginLeft:-38}}/>
-                    <TaxiImageText image={imageKeys.smallprofileblack} text="John Smith" style={{marginLeft:-38}}/>
-                    <TaxiImageText image={imageKeys.smallprofileblack} text="Nitcheu Mbouendeu" style={{marginLeft:-38}}/>
-                    <TaxiImageText image={imageKeys.smallprofileblack} text="Nitcheu" style={{marginLeft:-38}}/>
-                    <TaxiImageText image={imageKeys.smallprofileblack} text="John Smith" style={{marginLeft:-38}}/>
-                    <TaxiImageText image={imageKeys.smallprofileblack} text="Nitcheu Mbouendeu" style={{marginLeft:-38}}/>
-                    <TaxiImageText image={imageKeys.smallprofileblack} text="Nitcheu" style={{marginLeft:-38}}/>
-                    <TaxiImageText image={imageKeys.smallprofileblack} text="John Smith" style={{marginLeft:-38}}/>
-                    <TaxiImageText image={imageKeys.smallprofileblack} text="Nitcheu Mbouendeu" style={{marginLeft:-38}}/>
-                    <TaxiImageText image={imageKeys.smallprofileblack} text="Nitcheu" style={{marginLeft:-38}}/>
-                    <TaxiImageText image={imageKeys.smallprofileblack} text="John Smith" style={{marginLeft:-38}}/>
+                  <FlatList
+                    data={data}
+                    renderItem={renderItem}
+                    keyExtractor={item => item.id}
+                  />
                 </ScrollView>  : null}
             </View>
-        </View>
+        </View> : <DisplayFareSplittedScreen copayer={copayer}  func={addPayerFunc}  rideDetails={props.rideDetails}/>}
+
       </Modal>
-      <Pressable
-        style={[styles.button, styles.buttonOpen]}
-        onPress={() => setModalVisible(true)}
-      >
-        <Text style={styles.textStyle}>Show Modal</Text>
-        
-      </Pressable>
-    </View>
   );
 };
 

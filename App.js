@@ -28,10 +28,15 @@ import ConfirmationRoute from './src/routes/ConfirmationRoute';
 
 import SetDestinationScreen from './src/components/rider/destination/SetDestinationScreen';
 import LoginScreen from './src/components/login/LoginScreen';
+import DisplayFareScreen from './src/components/rider/fare/DisplayFareScreen';
+import DisplayFareSplittedScreen from './src/components/rider/fare/DisplayFareSplittedScreen';
+
 
 import ComponentBackgroundHOC from './src/components/common/ComponentBackgroundHOC';
 import MapsScreen from './src/components/maps/MapsScreen'; 
 import HomeScreen from './src/components/home/HomeScreen'; //for driver ...
+import RatingScreen from './src/components/rate/RatingScreen';
+
  
 import auth from '@react-native-firebase/auth';
 import { NavigationContainer } from '@react-navigation/native';

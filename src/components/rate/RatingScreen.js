@@ -10,39 +10,31 @@ import TaxiText from  '../common/TaxiText';
 import TaxiImageText  from '../common/TaxiImageText';
 import SmallStarComponent from '../rate/SmallStarComponent';
 import Rate from './Rate';
-
-const RatingScreen = () => {
+//props.rate
+const RatingScreen = (props) => {
   const [modalVisible, setModalVisible] = useState(false);
-   setVisibleFunc = () =>  setModalVisible(!modalVisible);
   return (
     <View style={styles.centeredView}>
       <Modal
         animationType="slide"
         transparent={true}
-        visible={modalVisible}
+        visible={props.openingModal}
         onRequestClose={() => {
           Alert.alert("Modal has been closed.");
-          setModalVisible(!modalVisible);
+          props.setModalVisible(!props.openingModal);
         }}
       >
         <View style={styles.centeredView}>
           <View style={styles.modalView}>
-          <TaxiText style={{paddingBottom:40}} styleText={{color:'#000000',fontFamily:fontKeys.MR,fontSize:18,textAlign:'center'}} func={setVisibleFunc}  text={textKeys.rideReview + " "+ "Mary" +"?"}/>  
+          <TaxiText style={{paddingBottom:40}} styleText={{color:'#000000',fontFamily:fontKeys.MR,fontSize:18,textAlign:'center'}} func={props.setVisibleFunc}  text={textKeys.rideReview + " "+ "Mary" +"?"}/>  
             <View style={{paddingBottom:40}}>    
-                <Rate/>
+                <Rate star={props.rate} setStar={props.settingRating}/>
             </View>
-            <TaxiTextInput placeholder={textKeys.comment} style={{alignSelf:'stretch',marginBottom:54}}/>
-            <TaxiText style={{marginTop:'auto'}} styleText={{color:'#F2B84D',fontFamily:fontKeys.MSB,fontSize:12,textAlign:'center'}} func={setVisibleFunc}  text={textKeys.done}/>           
+            <TaxiTextInput placeholder={textKeys.comment} style={{alignSelf:'stretch',marginBottom:54}} value={props.comment} func={getComment} />
+            <TaxiText style={{marginTop:'auto'}} styleText={{color:'#F2B84D',fontFamily:fontKeys.MSB,fontSize:12,textAlign:'center'}} func={props.setVisibleFunc}  text={textKeys.done}/>           
           </View>
         </View>
       </Modal>
-      <Pressable
-        style={[styles.button, styles.buttonOpen]}
-        onPress={() => setModalVisible(true)}
-      >
-        <Text style={styles.textStyle}>Show Modal</Text>
-        
-      </Pressable>
     </View>
   );
 };

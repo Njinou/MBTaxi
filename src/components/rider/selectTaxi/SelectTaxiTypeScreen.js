@@ -11,6 +11,7 @@ import TaxiImageTextInput from '../../common/TaxiImageTextInput';
 import TaxiButton from '../../common/TaxiButton';
 import MatchDriverScreen from '../MatchDriver/MatchDriverScreen';
 import RideDetailsScreen from '../rideDetails/RideDetailsScreen';
+import DisplayFareScreen from '../fare/DisplayFareScreen';
 
 import Rate from '../../rate/Rate';
 import imageKeys from "../../../keyText/imageKeys";
@@ -101,8 +102,22 @@ const SelectTaxiTypeScreen = (props) => {
     const [bid,setBidding]  = useState(false);
     const [matchingDriver,setMatchingDriver] = useState(false);
     const [driverMatched,setDriverMatched] = useState(false);
-   const  bidding = (val) =>  {setPrixTotal(val); setBidding(true)}
-   
+    const [openModal,setOpenModal] = useState(false);
+    const [rideDetails,setRideDetails] = useState(null);
+    const  bidding = (val) =>  {setPrixTotal(val); setBidding(true)}
+    const openingSplitPaymentModal = () =>  {
+      setOpenModal(true); 
+      let obj = selectedTaxi;
+     obj.nbrePeople = selectedPeople;
+     obj.prixTotal = prixTotal;
+     obj.bid= bid
+     setRideDetails(obj);
+    }
+
+    const closingSplitPaymentModal = () =>  {
+      setOpenModal(false); 
+    }
+
 
    //setDriverMatched (true) once driver is found
   /* useEffect ( ()=>{
@@ -116,7 +131,7 @@ const SelectTaxiTypeScreen = (props) => {
      obj.nbrePeople = selectedPeople;
      obj.prixTotal = prixTotal;
      obj.bid= bid
-
+     setRideDetails(obj);
      console.log(obj);
      setTimeout(function(){setMatchingDriver(true); }, 1500); //AUTOMATIC TO BE CHANGED
      setTimeout(function(){setMatchingDriver(false);  setDriverMatched(true)}, 3000);
@@ -254,9 +269,15 @@ if (matchingDriver) return (
            
           </View>
           <View style={{marginBottom:19,paddingTop:18}}>
-            <Text style={{color:'red'}}> Mesomb solution here to be integrated today ... Verifier le paiment avant d'activer le bouton pour eviter les requetes inutiles </Text>
+            <TaxiText func={openingSplitPaymentModal} styleText={{color:'#5BE39B',fontSize:16,fontFamily:fontKeys.MR}}  text="Mesomb solution here to be integrated today ... Verifier le paiment avant d'activer le bouton pour eviter les requetes inutiles"/>
           </View>
           <TaxiButton  text={textKeys.rider.select.request} style={{marginBottom:31}} func={requestRide}/>
+          {
+            openModal &&  (
+            <View style={styles.centeredView}>
+                <DisplayFareScreen rideDetails={rideDetails} closingSplitPaymentModal={closingSplitPaymentModal} />
+            </View>)
+          }
         </ScrollView>
         </SafeAreaView>
   );
@@ -315,7 +336,7 @@ const styles = StyleSheet.create({
     paddingBottom:16,
     paddingTop:16,
     fontSize:18,
-}
+},
 });
 
 export default SelectTaxiTypeScreen;

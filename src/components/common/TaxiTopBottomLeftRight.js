@@ -14,7 +14,7 @@ const TaxiTopBottomLeftRight = (props) => {
             </View>
 
             <View style={{justifyContent:'space-between',flexDirection:'row'}}>  
-                {props.ComponentBottomLeft? props.ComponentBottomLeft : <Text style={[styles.topText,{color:'#878787',fontSize:11},props.styleBottomLeft]}>{props.textBottomLeft? props.textBottomLeft : 'MBTaxi' }</Text>}
+                {props.ComponentBottomLeft? props.ComponentBottomLeft : <Text style={[styles.topText,{color:'#878787',fontSize:11},props.styleBottomLeft]} onPress={props.funcBottomLeft}>{props.textBottomLeft? props.textBottomLeft : 'MBTaxi' }</Text>}
                 {props.BottomRightComponent? props.BottomRightComponent: <SmallStarComponent nbre={props.rating?props.rating:5}/>}
             </View>
         </View>

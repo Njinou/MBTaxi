@@ -8,7 +8,7 @@
  */
 
 import React, { useState,useEffect } from 'react';
-import {StyleSheet,View,Image,ImageBackground, ScrollView,Text,TextInput,FlatList, Pressable} from 'react-native';
+import {StyleSheet,View,Image,ImageBackground, ScrollView,Text,TextInput,FlatList, Pressable, Button} from 'react-native';
 
 import fontKeys from '../../../keyText/fontKeys';
 import imageKeys from '../../../keyText/imageKeys';
@@ -25,6 +25,8 @@ import RideOtherOptions from '../../rider/rideOptions/RideOtherOptions';
 import Geolocation from "react-native-geolocation-service"
 import Geocoder from 'react-native-geocoding';
 import { check, request, PERMISSIONS, RESULTS } from "react-native-permissions" //
+import RatingScreen from '../../rate/RatingScreen';
+
 import { Value } from 'react-native-reanimated';
 
 import auth from '@react-native-firebase/auth';
@@ -220,7 +222,6 @@ onChangeText={onChangeText}
 
    // const actionCodeInfo =  auth().checkActionCode('ABCD');
     //console.log('Action code operation: ', actionCodeInfo.operation);
-
   if (error) return null;
   if (location) {   return (
     <View style={{height:'100%'}}>
@@ -338,7 +339,15 @@ onChangeText={onChangeText}
                     <Image  source={imageKeys.scheduledridesgrey} />
                     <Text style={{color:'#C3C1C1',fontSize:10,fontFamily:fontKeys.MSB}}>{textKeys.rider.request.schedule}</Text>
                 </View> 
-            </View>           
+            </View> 
+            <RatingScreen 
+              openingModal={props.openingRatingModal} 
+              setVisibleFunc={props.closingRatingModalFunc} 
+              rate={props.rate}
+              settingRating={props.settingRating}
+              comment={props.comment}
+              getComment= {props.getComment}
+              />          
         </ImageBackground>
     </View>
   );
