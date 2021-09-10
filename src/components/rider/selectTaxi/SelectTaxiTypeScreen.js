@@ -126,6 +126,38 @@ const SelectTaxiTypeScreen = (props) => {
     setSelectedTaxi(DATA[0])
   })*/
 
+
+  const mesombPayment = async () => {
+    try {
+        console.log("je ne vais pas ");
+     const response = await fetch('https://mesomb.hachther.com/api/v1.0/payment/online/',{
+       method: 'POST',
+       headers: {
+       'X-MeSomb-Application': 'be6190b6ba9506f2dfd6abeb9a02aa98fe02247c',
+       'User-Agent' : 'Mozilla',
+       Accept: 'application/json',
+       'Content-Type': 'application/json',
+       },
+       body: JSON.stringify({
+           amount :100,
+         payer : '237672634842',//'237696603582',//'237400001019',
+         fees:true,
+         service : 'MTN',//'ORANGE', //MTN
+         currency : 'XAF',
+         message : "Message"
+         })
+     });
+     console.log(response);
+     const json = await response.json();
+     console.log(" helloooo hello helloo",json);
+   } catch (error) {
+     console.error(error);
+   } finally {
+     setLoading(false);
+   }
+ }
+
+
    requestRide = () =>{ 
      let obj = selectedTaxi;
      obj.nbrePeople = selectedPeople;
@@ -194,7 +226,14 @@ const SelectTaxiTypeScreen = (props) => {
    //BottomRightComponent
 //rider select size
 
+/*
 
+<TaxiText func={openingSplitPaymentModal} 
+              styleText={{color:'#5BE39B',fontSize:16,fontFamily:fontKeys.MR}}  
+              text="Mesomb solution here to be integrated today ... 
+              Verifier le paiment avant d'activer le bouton pour eviter les requetes inutiles"
+            />
+*/
 
 if (driverMatched) return <RideDetailsScreen />
 //useEffect or function to match the driver..... 
@@ -260,22 +299,73 @@ if (matchingDriver) return (
                               value={prixTotal +""}
                             />
                             <View style={{flex:1,justifyContent:'center'}}>
-                              <Text style={{color:'#F2B84D',fontSize:14,fontFamily:fontKeys.MB}}> Franc CFA </Text>
+                              <Text style={{color:'#F2B84D',fontSize:14,fontFamily:fontKeys.MB}}> F. CFA </Text>
                             </View>
-                           
+
+                            <TaxiText func={openingSplitPaymentModal} 
+                              styleText={{color:'#5BE39B',fontSize:16,fontFamily:fontKeys.MB}}  
+                              text="Frais Separes"
+                              style={{borderColor:'red',borderRadius:8,borderStyle:'solid'}}
+                            />
+                            
                         </View>
                    </View>
                 </View>
            
           </View>
-          <View style={{marginBottom:19,paddingTop:18}}>
-            <TaxiText func={openingSplitPaymentModal} styleText={{color:'#5BE39B',fontSize:16,fontFamily:fontKeys.MR}}  text="Mesomb solution here to be integrated today ... Verifier le paiment avant d'activer le bouton pour eviter les requetes inutiles"/>
+          <View style={{marginBottom:19,paddingTop:18,flex:1,flexDirection:'row',justifyContent:'space-evenly'}}>
+              <View style={{ 
+                    borderColor:'red', //'#EAEAEA',
+                    borderStyle:'solid',
+                    borderWidth:2,
+                    shadowColor: 'red',//'rgba(170,170,170,0.5)',
+                    shadowOffset:{width:0,height:2},
+                    shadowOpacity:0,
+                    shadowRadius:22,
+                    paddingBottom:0,
+                    paddingTop:10,
+                    paddingTop:12,
+                    paddingHorizontal:10,
+                    paddingBottom:15,
+                    borderRadius:10,
+                    alignItems:'center',
+                    justifyContent:'center'
+                }}>  
+                  <TaxiText func={()=>alert("PAYER EN CASH")} 
+                    styleText={{color:'red',fontSize:16,fontFamily:fontKeys.MB}}  
+                    text="Payer Cash "
+                    style={{borderColor:'red',borderRadius:8,borderStyle:'solid'}}
+                  />
+              </View>
+              <View style={{ 
+                    borderColor:'#5BE39B',
+                    borderStyle:'solid',
+                    borderWidth:2,
+                    shadowColor: 'red',//'rgba(170,170,170,0.5)',
+                    shadowOffset:{width:0,height:2},
+                    shadowOpacity:0,
+                    shadowRadius:22,
+                    paddingBottom:0,
+                    paddingTop:10,
+                    paddingTop:12,
+                    paddingHorizontal:10,
+                    paddingBottom:15,
+                    borderRadius:10,
+                    alignItems:'center',
+                    justifyContent:'center'
+                }}>  
+                <TaxiText func={mesombPayment} 
+                  styleText={{color:'#5BE39B',fontSize:16,fontFamily:fontKeys.MB}}  
+                  text="Mobile Money"
+                  style={{borderColor:'red',borderRadius:8,borderStyle:'solid'}}
+                />
+              </View>
           </View>
           <TaxiButton  text={textKeys.rider.select.request} style={{marginBottom:31}} func={requestRide}/>
           {
             openModal &&  (
             <View style={styles.centeredView}>
-                <DisplayFareScreen rideDetails={rideDetails} closingSplitPaymentModal={closingSplitPaymentModal}  />
+                <DisplayFareScreen rideDetails={rideDetails} closingSplitPaymentModal={closingSplitPaymentModal} />
             </View>)
           }
         </ScrollView>
