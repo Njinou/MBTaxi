@@ -95,6 +95,7 @@ const SelectTaxiTypeScreen = (props) => {
     const [input,setInput] = useState(null); 
     const [selectedPeople, setSelectedPeople] = useState(1);
     const [selectedTaxi,setSelectedTaxi] = useState(DATA[0]); //data[0]
+    const [data,setData] = useState(DATA);
     const [prixUnitaire,setPrixUnitaire]  = useState(250);
     const [prixTotal,setPrixTotal]  = useState(prixUnitaire);
     const [bid,setBidding]  = useState(false);
@@ -224,7 +225,7 @@ if (matchingDriver) return (
           <View style={{flex:1,borderColor:'#EAEAEA',borderTopWidth:1,borderStyle:'solid',borderBottomWidth:1,}}>
               <View>
               <FlatList
-                data={DATA}
+                data={data}
                 renderItem={renderItem}
                 keyExtractor={item => item.id}
               />
