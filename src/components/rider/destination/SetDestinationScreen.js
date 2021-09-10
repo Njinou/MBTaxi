@@ -368,6 +368,7 @@ const showDatePicker = () => {
     // leave place for bidding ... 
 //ref.child(key).set(....)
 //ref.push().key
+
     let newVal = reference.child(childTable).push();
     
     let ride = {
@@ -382,7 +383,7 @@ const showDatePicker = () => {
   reference.child(newVal.key).set(ride).then( (res) => {
     console.log("Ride save !!!!!",res);
     //select
-     props.navigation.navigate('match'); //destination
+     props.navigation.navigate('select');
     }
     )
     .catch (error => console('error is ...',error))

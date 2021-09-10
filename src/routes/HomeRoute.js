@@ -11,8 +11,6 @@ import HistoryDetailScreen from '../components/rider/history/HistoryDetailScreen
 import SelectTaxiTypeScreen from '../components/rider/selectTaxi/SelectTaxiTypeScreen';
 import MatchDriverScreen from '../components/rider/MatchDriver/MatchDriverScreen';
 
-import RideDetailsScreen from '../components/rider/rideDetails/RideDetailsScreen';
-
 import SavedScreen from '../components/rider/saved/SavedScreen';
 import PaymentScreen from '../components/rider/payment/PaymentScreen';
 import ScheduleScreen from '../components/rider/scheduled/ScheduleScreen';
@@ -24,6 +22,9 @@ import HomeRiderDestinationScreen from '../components/rider/home/HomeRiderDestin
 import SetDestinationScreen from '../components/rider/destination/SetDestinationScreen';
 import ScheduleRideDetails from '../components/rider/scheduled/ScheduledRideDetails';
 import HeaderSelectDestination from '../components/common/HeaderSelectDestination';
+
+import RideDetailsScreen from '../components/rider/rideDetails/RideDetailsScreen';
+
 
 import  RideOtherOptions from '../components/rider/rideOptions/RideOtherOptions';
 
@@ -55,7 +56,7 @@ const  HomeRoute = (props)=> {
       setUser(user); 
       setSelectingUser(!selectingUser);
     }
-  console.log('Inside Home Route line 48 ',props);
+    
   return (
     <Drawer.Navigator initialRouteName="destination"  drawerContent={props => <MenuScreenRider {...props}  user={user} />}>
     <Drawer.Screen name="destination" component={HomeRiderDestinationScreen} />

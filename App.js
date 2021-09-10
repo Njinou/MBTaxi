@@ -42,7 +42,6 @@ import MapDirectionScreen from './src/components/duringtrip/MapDirectionScreen';
 import SelectTaxiTypeScreen from './src/components/rider/selectTaxi/SelectTaxiTypeScreen'; // orienting drivers where the riders are crowded... 
 import RideDetailsScreen from './src/components/rider/rideDetails/RideDetailsScreen';
 
- 
 const App: () => React$Node = () => {
 
   const appState = useRef(AppState.currentState);
@@ -105,7 +104,7 @@ const App: () => React$Node = () => {
       return (
         
         <NavigationContainer>
-          <RideDetailsScreen/>
+          <HomeRoute/>
         </NavigationContainer>
        
       );

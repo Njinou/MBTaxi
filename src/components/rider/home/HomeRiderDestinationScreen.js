@@ -60,7 +60,7 @@ const HomeRiderDestinationScreen: (props) => React$Node = (props) => {
     const [location, setLocation] = useState(null) //
     const [locationAddress, setLocationAddress] = useState(null) //
     const [textInput, setTextInput] = useState("");
-    const [error, setError] = useState("");
+    const [error, setError] = useState(null);
     const [data,setData] = useState([]);
     const [option,setOption] = useState(false);
     const [optionValue,setOptionValue] = useState(null);
@@ -177,7 +177,7 @@ onChangeText={onChangeText}
             ////ici il faut filtrer les valeurs avec la ville et le pays pour diminuer les valeurs envoyer ....  
           // et pour cela on peut prendre les valeur de geocoder comme reference ......   et il faut verifier que le format est le meme cest a dire le nombre de virgule qui separe les villes et les pays est le meme que les resultats qui sont 
           //produits
-            .catch(error => console.log('voici l\'erreur ',error));
+            .catch(error => console.log('voici l\'erreur ',setError(error)));
         } else {
             console.log("No address corresponding ..")
           return 'No destination Address provided';
@@ -221,6 +221,7 @@ onChangeText={onChangeText}
    // const actionCodeInfo =  auth().checkActionCode('ABCD');
     //console.log('Action code operation: ', actionCodeInfo.operation);
 
+  if (error) return null;
   if (location) {   return (
     <View style={{height:'100%'}}>
        <ImageBackground source={imageKeys.map} style={styles.image}>

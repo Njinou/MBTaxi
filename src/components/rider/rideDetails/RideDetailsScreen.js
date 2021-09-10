@@ -22,12 +22,21 @@ import RideHistoryBlock from '../history/RideHistoryBlock';
 
 import {Picker} from '@react-native-picker/picker';
 
+import CheckBox from '@react-native-community/checkbox';
 const RideDetailsScreen = () => {
 
     const [modalVisible, setModalVisible] = useState(false);
     const [user,setUser] = useState(null);
     const [details,setDetails] = useState(false);
-
+    const [toggleCheckBox, setToggleCheckBox] = useState(false)
+    /*
+    
+    <CheckBox
+                disabled={false}
+                value={toggleCheckBox}
+                onValueChange={(newValue) => {setToggleCheckBox(newValue);console.log("WElcome... to this bitch again...",toggleCheckBox)}}
+            />
+    */
   return (
         <SafeAreaView  style={{flex:1}}>
         <ScrollView  style={{flex:1,}}>
@@ -110,7 +119,7 @@ const RideDetailsScreen = () => {
                 text={textKeys.rider.cancel} image={imageKeys.closewhite}  
             /> 
             </View>}
-            
+                   
         </ScrollView>
         </SafeAreaView>
   );
