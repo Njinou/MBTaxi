@@ -6,6 +6,7 @@ import Geolocation from "react-native-geolocation-service"
 import Geocoder from 'react-native-geocoding';
 
 import MapViewDirections from 'react-native-maps-directions';
+import fontKeys from "../../keyText/fontKeys"
 
 const GOOGLE_MAPS_API_KEY = 'AIzaSyB6iuVD8X4sEeHAGHY3tmMQRyM_Vyoc3UU';
 Geocoder.init(GOOGLE_MAPS_API_KEY, {language: 'en'});
@@ -213,7 +214,7 @@ Geocoder.from(41.89, 12.49)
                 strokeWidth ={5}
                 strokeColor="black"
                 onReady={result => {
-                  setDistance(result.distance)
+                  setDistance(result.distance.toFixed(2))
                   setTiming(result.duration)
                   console.log(`Distance: ${result.distance} km`)
                   console.log(`Duration: ${result.duration} min.`)   
@@ -232,9 +233,12 @@ Geocoder.from(41.89, 12.49)
       />
       </MapView>
     )}
-     <View style={{ position: 'absolute', top: 150, left: 100, right: 100, height: 50, borderWidth: 1 ,borderRadius:10,backgroundColor:'#222222' }}>
-          <Text style={{flex:1,color:'white',padding:20}}>{distance + 'km'}</Text>
-        </View>
+        {false?<View style={{ position: 'absolute', top: 300, left: 250, right: 50, height: 50, borderWidth: 1 ,borderRadius:10,backgroundColor:'#222222' }}>
+          <Text style={{alignSelf:'center',flex:1,color:'white',textAlign:'center',fontFamily:fontKeys.MR,marginTop:15}}>{distance + 'km'}</Text>
+        </View>:
+        <View style={{ position: 'absolute', top: 300, left: 250, right: 50, height: 40 ,borderRadius:10,backgroundColor:'white' }}>
+          <Text style={{alignSelf:'center',flex:1,color:'#222222',textAlign:'center',fontFamily:fontKeys.MR,paddingTop:10,paddingBottom:10,marginHorizontal:10}}>{timing + 'min away'}</Text>
+        </View>}
     </SafeAreaView>
   )
 }
