@@ -1,5 +1,5 @@
 import React,{useState,useEffect,useRef} from 'react';
-import {Image,StyleSheet,View,Dimensions,useWindowDimensions,Text, ScrollView, Pressable,Keyboard,ActivityIndicator} from 'react-native';
+import {Image,StyleSheet,View,Dimensions,useWindowDimensions,Text, ScrollView, Pressable,Keyboard,ActivityIndicator,Alert} from 'react-native';
 import fontKeys from '../../keyText/fontKeys';
 import imageKeys from '../../keyText/imageKeys';
 
@@ -11,6 +11,8 @@ import TaxiTextInput from '../common/TaxiTextInput'
 import auth from '@react-native-firebase/auth';
 import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
 import storage from '@react-native-firebase/storage';
+
+import SignUpConfirmationCode from './SignUpConfirmationCode';
 
 import TaxiText from '../common/TaxiText';
 //displayName
@@ -36,6 +38,13 @@ const SignUp = (props) =>{
   const [uploading, setUploading] = useState(false);
   const [uploadTaskSnapshot, setUploadTaskSnapshot] = useState({});
 
+
+  const [code, setCode] = useState('');
+  const [enterCode, setEnterCode] = useState(true);
+  const [verificationID, setVerificationID] = useState('');
+  
+   getCode =(val) =>{setCode(val);console.log('code entre ici... est celui ci.....',val)};
+
   settingEmail =(val) =>setEmail(val);
   settingPassword =(val) =>{setPassword(val); console.log(val)}
   settingConfirmPassword =  (val) =>{
@@ -43,38 +52,55 @@ const SignUp = (props) =>{
     val !== password ? setPasswordMessage("Password different") : setPasswordMessage('')
   }
   settingUsername=(val) =>setUsername(val);
-  settingPhoneNumber =(val) =>setPhoneNumber(val);
+  settingPhoneNumber =(val) =>setPhoneNumber( ''+val);
   settingPhotoURL =(val) =>setPhotoURL(val);
   onSubmitEditing= ()=> Keyboard.dismiss();
 
-  creatingAccount = () => {
-    setCreating(true);
-    auth()
-    .createUserWithEmailAndPassword(email, password)
-    .then( (user) => {
-      const update = {
-        displayName: username,
-        photoURL: photoURL,
-        phoneNumber:phoneNumber
-      };
-      // user.updateProfile(update);
-        auth().currentUser.updateProfile(update);
-    })
-    .then(() => {console.log("Updated successfully!"); setCreating(false);}) //setCreating(false);
-    .catch(error => {
-      if (error.code === 'auth/email-already-in-use') {
-        console.log('That email address is already in use!');
-      }
 
-      if (error.code === 'auth/invalid-email') {
-        console.log('That email address is invalid!');
-      }
-     // if (error.includes('/')) setError(error.code.split('/')[1]) //TO NOT GET the first parth auth
-     // if (error.code.includes('\/')) setError(error.code.split('/')[1])
-     setError(error.code);
-      setCreating(false);
-      console.error(error);
-    });
+  sendingCode = () =>{
+    setCreating(true);
+      MBtaxisignInWithCredential();
+      setEnterCode(!enterCode);
+  }
+  creatingAccount = () => {
+    try {
+      setCreating(true);
+      setEnterCode(!enterCode);
+      auth().verifyPhoneNumber(phoneNumber)
+      .on('state_changed', (phoneAuthSnapshot) => {
+        setVerificationID(phoneAuthSnapshot.verificationId)
+      })
+      .catch (error => console.log('error in the creating account function... ',error))
+
+    auth()
+      .createUserWithEmailAndPassword(email, password)
+      .then( (user) => {
+        const update = {
+          displayName: username,
+          photoURL: photoURL,    
+        };
+        auth().currentUser.updateProfile(update);
+      })
+      .then(() => {console.log("Updated successfully!"); setCreating(false);}) //setCreating(false);
+      .catch(error => {
+        if (error.code === 'auth/email-already-in-use') {
+          console.log('That email address is already in use!');
+        }
+  
+        if (error.code === 'auth/invalid-email') {
+          console.log('That email address is invalid!');
+        }
+       // if (error.includes('/')) setError(error.code.split('/')[1]) //TO NOT GET the first parth auth
+       // if (error.code.includes('\/')) setError(error.code.split('/')[1])
+       setError(error.code);
+        setCreating(false);
+        console.error(error);
+      });
+    } catch (error) {
+      console.error('ERROR CAUGHT',error);
+      // expected output: ReferenceError: nonExistentFunction is not defined
+      // Note - error messages will vary depending on browser
+    }
   }
 
   const onMediaSelect = async (media) => {
@@ -124,6 +150,85 @@ const SignUp = (props) =>{
       setUser(auth().currentUser);
   }, []);
   
+
+
+//once cliquing on signup 
+//we verifiy the phone number 
+//send the code and verify 
+//back to sign up page .... 
+// once verified create profile ... 
+// on authstateChange.... loggging in.... 
+  
+  async function  MBtaxisignInWithCredential(){
+   // try{
+    console.log("sending code and shit.... in Signinwith credential ")
+    auth().verifyPhoneNumber(phoneNumber)
+ .on('state_changed', (phoneAuthSnapshot) => {
+    
+   console.log('Snapshot state: ', phoneAuthSnapshot);
+   console.log("saving the verification ID ",phoneAuthSnapshot.verificationId)
+   setVerificationID(phoneAuthSnapshot.verificationId)
+   //setEnterCode(!enterCode);
+   if (phoneAuthSnapshot.state == 'verified'){
+
+    auth()
+      .createUserWithEmailAndPassword(email, password)
+      .then( async (user) => {
+        const update = {
+          displayName: username,
+          photoURL: photoURL,    
+        };
+        auth().currentUser.updateProfile(update);
+        
+
+      })
+      .then(() => {alert("Updated successfully!"); setCreating(false);
+      props.navigation.navigate('success')
+    }) //setCreating(false);
+      .catch(error => {
+        if (error.code === 'auth/email-already-in-use') {
+          console.log('That email address is already in use!');
+        }
+  
+        if (error.code === 'auth/invalid-email') {
+          console.log('That email address is invalid!');
+        }
+       // if (error.includes('/')) setError(error.code.split('/')[1]) //TO NOT GET the first parth auth
+       // if (error.code.includes('\/')) setError(error.code.split('/')[1])
+       setError(error.code);
+        setCreating(false);
+        console.error(error);
+      });
+   }
+     });
+    /*}
+     catch (error) {
+      console.log('Invalid code.',error);
+    }*/
+}
+
+
+async function confirmCode() {
+  try {   
+        console.log('verificationID',verificationID);
+        const provider = auth.PhoneAuthProvider;
+        const authCredential = provider.credential(verificationID,
+        code);
+        console.log("Here are  the credentials for the phone number ",authCredential)
+        await auth().currentUser.updatePhoneNumber(authCredential);
+  } catch (error) {
+    console.log('Invalid code.',error);
+  }
+}
+//func={props.getCode} value={props.code}
+//value={code} onChangeText={text => setCode(text)}
+
+if (!enterCode){
+return (
+  <SignUpConfirmationCode func={confirmCode} code={code} getCode={getCode} navigation={props.navigation}/>
+);
+}
+
     return (
         <ScrollView style={{alignSelf:'stretch',}} contentContainerStyle={{alignItems:'center',paddingBottom:54}} >  
          <View style={{alignSelf:'stretch',alignItems:'center'}}>
@@ -148,7 +253,7 @@ const SignUp = (props) =>{
                 <ActivityIndicator size={20} color="#F2B84D"></ActivityIndicator>
                 <Text style={styles.statusText}>Uploading</Text>
                 <Text style={styles.statusText}>
-                  {`${((uploadTaskSnapshot.bytesTransferred / uploadTaskSnapshot.totalBytes) * 100).toFixed(2)}% / 100%`}
+                  {`${((uploadTaskSnapshot.bytesTransferred / uploadTaskSnapshot.totalBytes) * 100).toFixed(2)}%`}
                 </Text>
               </View>
             )}

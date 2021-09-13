@@ -4,7 +4,7 @@ import fontKeys from '../../keyText/fontKeys';
 
 const TaxiTextInput = (props) =>{
     const [value, onChangeTexte] = React.useState('');
-    const getInput = input => onChangeTexte(input);
+    const getInput = input => {onChangeTexte(input); console.log("inside taxi text input")}
 
     return (
         <TextInput

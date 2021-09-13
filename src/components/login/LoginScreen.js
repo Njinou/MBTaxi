@@ -35,6 +35,14 @@ const LoginScreen: () => React$Node = (props) => {
   const [username,setUsername] = useState('');
   const [password,setPassword] = useState('');
   const [disabledButton,setDisableButton] = useState(false);
+
+
+
+  const [code, setCode] = useState('');
+  const [enterCode, setEnterCode] = useState(true);
+  const [verificationID, setVerificationID] = useState('');
+
+
   settingUserName = (val) => {
     setUsername(val);
   }
@@ -55,7 +63,6 @@ const LoginScreen: () => React$Node = (props) => {
   const [error,setError] = useState('');
   const [creating,setCreating] = useState(false);
 
-  //change it to sign in
   signingUp = () => {
     setCreating(true)
     auth()
@@ -85,9 +92,7 @@ const LoginScreen: () => React$Node = (props) => {
     props.navigation.navigate('signup')
   }
 
-  //const appState = useRef(Dimensions.get('screen'));
-
-  /*useEffect(() => {
+  useEffect(() => {
     Dimensions.addEventListener("change", function(ecran) {
        setIsPortrait(ecran.screen.width <=  ecran.screen.height);
      });
@@ -100,25 +105,9 @@ const LoginScreen: () => React$Node = (props) => {
       });
       subscriber;
     };
-  }, []);*/
+  }, []);
 
-  /*if (initializing) return (
-    (
-      <View style={{}}>
-        <Text>Login.........</Text>
-      </View>
-    )
-  );//null;
-
-  if (!user) {
-    return (
-      <View>
-        <Text>Login</Text>
-      </View>
-    );
-  }
-  */
-
+  
   return (
     <ScrollView style={{alignSelf:'stretch',}} contentContainerStyle={{alignItems:'center',paddingBottom:54}} >  
         <SafeAreaView style={{alignSelf:'stretch',alignItems:'center'}}>

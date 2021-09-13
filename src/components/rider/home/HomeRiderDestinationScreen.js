@@ -140,28 +140,9 @@ const HomeRiderDestinationScreen: (props) => React$Node = (props) => {
           { enableHighAccuracy: true, timeout: 15000, maximumAge: 10000 }
         )
       }, [])
-      
+ const setModalFunc = (val) => {setOption(false); props.navigation.navigate('dest2',{ option:val,destination:value,location:locationAddress,currentPosition:location },); setOptionValue(val); } //va dans option ride 
 
-      const onRegionChange = ({latitude, longitude}) => {
-        Geocoder.from({
-          latitude,
-          longitude,
-        }).then(res => {
-          const {
-            formatted_address,
-            place_id,
-            geometry: {
-              location: {lat, lng},
-            },
-          } = res.results[0];
-          
-          console.log('formatted_address',place_id);
-        });
-      };
-
-      
-      const setModalFunc = (val) => {setOption(false); props.navigation.navigate('dest2',{ option:val,destination:value,location:locationAddress,currentPosition:location },); setOptionValue(val); } //va dans option ride 
-      APIPlaceAutocomplete = (destination, currentPlace) => {
+     APIPlaceAutocomplete = (destination, currentPlace) => {
        const URL = `https://maps.googleapis.com/maps/api/place/autocomplete/json?key=${GOOGLE_MAPS_API_KEY}&input=${destination}&location=${currentPlace.latitude},${currentPlace.longitude}&radius=2000`;
         if (destination.length > 0) {
           return fetch(URL)
@@ -222,6 +203,7 @@ const HomeRiderDestinationScreen: (props) => React$Node = (props) => {
   if (location) {   return (
     <View style={{height:'100%'}}>
        <ImageBackground source={imageKeys.map} style={styles.image}>
+         <Text style={{color:'red',fontSize:20,fontWeight:'bold'}}>{auth().currentUser.phoneNumber} </Text>
             <View style={{marginLeft:20,marginRight:15, }}> 
                   {props.option || option ? < RideOtherOptions setModalVisible={option} func={setModalFunc}/> :<>
                     <TaxiImageTextInput  

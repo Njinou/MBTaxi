@@ -18,9 +18,8 @@ import TaxiButton from '../common/TaxiButton'
 import TaxiTextInput from '../common/TaxiTextInput'
 import TaxiText from  '../common/TaxiText';
 
-const SignUpConfirmationCode: () => React$Node = ({navigation}) => {
-
-
+const SignUpConfirmationCode: (props) => React$Node = (props) => {
+  
   return (
     <View style={{height:'100%'}}>
         <Image style={{marginBottom:36,marginTop:'auto',alignSelf:'center'}} source={imageKeys.verifyEmail} />
@@ -28,8 +27,8 @@ const SignUpConfirmationCode: () => React$Node = ({navigation}) => {
         <TaxiText styleText={{alignSelf:'center',fontSize:16,fontFamily:fontKeys.MR,color:'white'}} text={textKeys.confirmAccount.textcodeVerification}/>
         <TaxiText styleText={{paddingBottom:111,alignSelf:'center',fontSize:16,fontFamily:fontKeys.MR,color:'white'}} text={'nitcheupascal@gmail.com'}/>
         <View style={{justifyContent:'flex-start',alignItems:'center',marginTop:'auto'}}>
-        <TaxiTextInput  placeholder={textKeys.confirmAccount.codeVerification}/>
-        <TaxiButton  text={textKeys.submit} func={()=> navigation.navigate('success')}/>
+        <TaxiTextInput  placeholder={textKeys.confirmAccount.codeVerification} func={props.getCode} value={props.code}/>
+        <TaxiButton  text={textKeys.submit} func={props.func}/>
         <TaxiText style={{paddingBottom:44,paddingTop:25}} text={textKeys.confirmAccount.resendCode}/>
         </View>
         

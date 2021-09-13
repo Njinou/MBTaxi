@@ -46,6 +46,8 @@ import MapDirectionScreen from './src/components/duringtrip/MapDirectionScreen';
 import SelectTaxiTypeScreen from './src/components/rider/selectTaxi/SelectTaxiTypeScreen'; // orienting drivers where the riders are crowded... 
 import RideDetailsScreen from './src/components/rider/rideDetails/RideDetailsScreen';
 
+import PhoneSignIn from './PhoneSignIn';
+
 const App: () => React$Node = () => {
 
   const appState = useRef(AppState.currentState);
@@ -87,16 +89,9 @@ const App: () => React$Node = () => {
     console.log("AppState", appState.current);
   };
 
-  /**
-   * <StatusBar barStyle="dark-content" />
-      <SafeAreaView style={{alignItems:'center'}}>
-      <ImageBackground source={imageKeys.background} style={styles.image}>
-        <LoginRoute/>
-        </ImageBackground>
-      </SafeAreaView>
-   */
-  
-      if (initializing) return <ActivityIndicator size="large" color="#00ff00" />; 
+
+
+    if (initializing) return <ActivityIndicator size="large" color="#00ff00" />; 
       if (!user) {
         return (
           <NavigationContainer>
@@ -108,7 +103,7 @@ const App: () => React$Node = () => {
       return (
         
         <NavigationContainer>
-          <MapsScreen/>
+          <HomeRoute/>
         </NavigationContainer>
        
       );

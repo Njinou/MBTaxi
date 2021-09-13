@@ -55,6 +55,7 @@ const  HomeRoute = (props)=> {
   const [rating,setRating] = useState(0);
   const [comment,setComment] = useState("");
 
+  //GET THE LAST RIDE IN THE HISTORY AND CHECK IF THE RATE FIELD IS ZERO....  THEN ON ACTIVE LE MODULE DE NOTE POUR OBLIGER LES UTILISATEURS A NOTER LES CHAUFFEURS
    changeRider = () => setSelectingUser(!selectingUser);
    whoRiderFunc = (text, user) => { 
       setWhoRiderText(text); 
