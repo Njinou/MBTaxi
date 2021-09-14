@@ -67,6 +67,9 @@ const HomeRiderDestinationScreen: (props) => React$Node = (props) => {
     const [option,setOption] = useState(false);
     const [optionValue,setOptionValue] = useState(null);
     const [currentAddress,setCurrentAddress] = useState("");
+    const [phoneNumber,setPhoneNumber] = useState('');
+    const [openingRating,setOpeningRating] = useState(false);
+    const getPhoneNumber = (val) => setPhoneNumber(val);
 
     const handleLocationPermission = async () => { 
         let permissionCheck = ""
@@ -100,6 +103,31 @@ const HomeRiderDestinationScreen: (props) => React$Node = (props) => {
       useEffect(() => {
         handleLocationPermission()
       }, [])
+
+      useEffect (()=>{
+       
+        const url = 'users/' + auth().currentUser.uid ;
+      
+        const reference = database().ref(url);
+        reference
+                .child ('history')
+                .orderByKey()
+               .limitToLast(1)
+                .once('value', snapshot => {
+                    if (snapshot.exists()) {
+                        // Exist! Do whatever.
+                   let elmnt = Object.values(snapshot.val())[0];
+                   setLastRide(elmnt);
+                   //testing the water to see if 
+                   elmnt.hasOwnProperty('rate') ? setOpeningRating(false): setOpeningRating(true);
+    
+                 } else {
+                      console.log(" DANS LE COMPOSANT HOME ROUTE ...   does not exists has to be")
+                      setOpeningRating(false)
+                     // setOpeningRating(true)
+                    }
+                });
+      },[])
 
 
       useEffect(() => { 
@@ -203,7 +231,6 @@ const HomeRiderDestinationScreen: (props) => React$Node = (props) => {
   if (location) {   return (
     <View style={{height:'100%'}}>
        <ImageBackground source={imageKeys.map} style={styles.image}>
-         <Text style={{color:'red',fontSize:20,fontWeight:'bold'}}>{auth().currentUser.phoneNumber} </Text>
             <View style={{marginLeft:20,marginRight:15, }}> 
                   {props.option || option ? < RideOtherOptions setModalVisible={option} func={setModalFunc}/> :<>
                     <TaxiImageTextInput  
@@ -318,14 +345,17 @@ const HomeRiderDestinationScreen: (props) => React$Node = (props) => {
                     <Text style={{color:'#C3C1C1',fontSize:10,fontFamily:fontKeys.MSB}}>{textKeys.rider.request.schedule}</Text>
                 </View> 
             </View> 
-            {props.openingRatingModal ?<RatingScreen 
+            {
+                phoneNumber? null : <RatingScreen noRate={true} keyboardType='numeric' placeholder="+237666666556" text="Enter your Phone Number"  textButton="SEND CODE" getComment={getPhoneNumber} comment={phoneNumber} setVisibleFunc={()=> console.log('Anabellla..... ')} />
+            }
+            {props.openingRatingModal && <RatingScreen 
               openingModal={props.openingRatingModal} 
               setVisibleFunc={props.closingRatingModalFunc} 
               rate={props.rate}
               settingRating={props.settingRating}
               comment={props.comment}
               getComment= {props.getComment}
-              />    : null}      
+              />   }      
         </ImageBackground>
     </View>
   );

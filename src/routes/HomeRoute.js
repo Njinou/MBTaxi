@@ -28,6 +28,7 @@ import RideDetailsScreen from '../components/rider/rideDetails/RideDetailsScreen
 
 import  RideOtherOptions from '../components/rider/rideOptions/RideOtherOptions';
 
+import database from '@react-native-firebase/database';
 
 import textKeys from '../keyText/textKeys';
 import imageKeys from '../keyText/imageKeys';
@@ -37,7 +38,7 @@ import auth from '@react-native-firebase/auth';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createDrawerNavigator } from '@react-navigation/drawer';
-import { useState } from 'react/cjs/react.development';
+import { useEffect, useState } from 'react/cjs/react.development';
 
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -50,10 +51,36 @@ const  HomeRoute = (props)=> {
   const [whoRiderText,setWhoRiderText] = React.useState(textKeys.rider.address.forme);
   const [isUserRider,setIsUserRider] = React.useState(true);
   const [selectingUser,setSelectingUser] = React.useState (false); 
-  const [user,setUser] = React.useState(auth().currentUser.uid);
-  const [openingRating,setOpeningRating] = useState(true);
+  const [user,setUser] = React.useState(auth().currentUser);
+  const [openingRating,setOpeningRating] = useState(false);
   const [rating,setRating] = useState(0);
   const [comment,setComment] = useState("");
+  const[lastRide,setLastRide] = useState(null);
+
+
+  useEffect (()=>{   
+    const url = 'users/' + auth().currentUser.uid ;
+  
+    const reference = database().ref(url);
+    reference
+            .child ('history')
+            .orderByKey()
+           .limitToLast(1)
+            .once('value', snapshot => {
+                if (snapshot.exists()) {
+                    // Exist! Do whatever.
+               let elmnt = Object.values(snapshot.val())[0];
+               setLastRide(elmnt);
+               //testing the water to see if 
+               elmnt.hasOwnProperty('rate') ? setOpeningRating(false): setOpeningRating(true);
+
+             } else {
+                  console.log(" DANS LE COMPOSANT HOME ROUTE ...   does not exists has to be")
+                  setOpeningRating(false)
+                 // setOpeningRating(true)
+                }
+            });
+  },[])
 
   //GET THE LAST RIDE IN THE HISTORY AND CHECK IF THE RATE FIELD IS ZERO....  THEN ON ACTIVE LE MODULE DE NOTE POUR OBLIGER LES UTILISATEURS A NOTER LES CHAUFFEURS
    changeRider = () => setSelectingUser(!selectingUser);
@@ -64,13 +91,20 @@ const  HomeRoute = (props)=> {
     }
     savingRiderRating = () =>{
       
-      if (rating !==0){
+      if (rating !==0 && lastRide){
         setOpeningRating(!openingRating);
         let obj={};
         obj.comment= comment;
         obj.rating = rating;
-        obj.riderId = user;
-        console.log("Ffrom Home route ",obj);
+        obj.riderId = user.uid;
+        
+        var  newValue = lastRide;
+        newValue.rate = obj;
+        
+        const url = 'users/' + auth().currentUser.uid + '/history'; 
+        const reference = database().ref(url);
+        //console.log('riding riding ',lastRide);
+        if (lastRide?.key) reference.child (lastRide.key).set(newValue);
   
         //setRating(val);
         //DATABASE SAVING IN DRIVER RATING TAB.....  savin rating 

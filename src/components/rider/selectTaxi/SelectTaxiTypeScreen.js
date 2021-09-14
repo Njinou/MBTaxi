@@ -108,7 +108,8 @@ const SelectTaxiTypeScreen = (props) => {
     const [copayer,setCopayer] = useState([]);
     const [cashValue,setCashValue] = useState (0);
     const [mesombValue,setMesombValue] = useState (prixTotal);
-    
+    const [user,setUser] = useState (auth().currentUser);
+
     gettingCopayer =(val) =>   {
       setCopayer(val);
       if ( cop && Array.isArray(cop)){
@@ -183,7 +184,7 @@ let numer = '237672634842';
   }
  }
 
-const mesombPayment = async (user) => {
+const mesombPayment = async (obj) => {
   return new Promise((resolve, reject) => {
   // const response = 
     fetch('https://mesomb.hachther.com/api/v1.0/payment/online/',{
@@ -196,7 +197,7 @@ const mesombPayment = async (user) => {
      },
      body: JSON.stringify({
          amount :mesombValue,//100,
-       payer : getOperateur(user.phoneNumber),// '237672634842',//'237696603582',//'237400001019',
+       payer : getOperateur(obj.phoneNumber),// '237672634842',//'237696603582',//'237400001019',
        fees:true,
        service : 'MTN',//'ORANGE', //MTN
        currency : 'XAF',
@@ -465,7 +466,7 @@ if (matchingDriver) return (
                     alignItems:'center',
                     justifyContent:'center'
                 }}>  
-                <TaxiText func={mesombPayment} 
+                <TaxiText func={()=>mesombPayment(user)} 
                   styleText={{color:'#5BE39B',fontSize:16,fontFamily:fontKeys.MB}}  
                   text="Mobile Money"
                   style={{borderColor:'red',borderRadius:8,borderStyle:'solid'}}

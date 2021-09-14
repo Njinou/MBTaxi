@@ -42,7 +42,7 @@ const GOOGLE_MAPS_API_KEY = 'AIzaSyB6iuVD8X4sEeHAGHY3tmMQRyM_Vyoc3UU';
 
 
   const ItemSaved = ({ item }) => {
-    return (<TaxiImageText image={imageKeys.history} text={item.destination.description? item.destination.description:JSON.stringify(item)}   style={{ flex: 1 }}  textStyle={{color:'#000000',fontFamily:fontKeys.MR,fontSize:14,flex:1}}/>)
+    return (<TaxiImageText image={imageKeys.history} text={item?.destination?.description? item?.destination?.description:JSON.stringify(item)}   style={{ flex: 1 }}  textStyle={{color:'#000000',fontFamily:fontKeys.MR,fontSize:14,flex:1}}/>)
   };
 
   function childSaving(val){
@@ -216,7 +216,7 @@ adaRef..child(key).remove()
             image={item.saved? imageKeys.stayyellow : imageKeys.Stargrey} 
             text={textKeys.destination} 
             text1={item.date? item.date: textKeys.home}
-            text2= {item.destination.description}
+            text2= {item?.destination?.description? item?.destination?.description:'enter destination'}
         />
         </Pressable>
       );

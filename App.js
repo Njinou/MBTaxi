@@ -46,7 +46,7 @@ import MapDirectionScreen from './src/components/duringtrip/MapDirectionScreen';
 import SelectTaxiTypeScreen from './src/components/rider/selectTaxi/SelectTaxiTypeScreen'; // orienting drivers where the riders are crowded... 
 import RideDetailsScreen from './src/components/rider/rideDetails/RideDetailsScreen';
 
-import PhoneSignIn from './PhoneSignIn';
+import SignUpConfirmationCode from './src/components/signUp/SignUpConfirmationCode';
 
 const App: () => React$Node = () => {
 
@@ -88,8 +88,9 @@ const App: () => React$Node = () => {
     setAppStateVisible(appState.current);
     console.log("AppState", appState.current);
   };
-
-
+//signup Cree avec numero de telephone ... on peut meme send le code ici... 
+//au lieu de Home ... on peut chercher a confirmer le code .... dans Home ... si le code nest pas verifie... 
+//sil nya pas de numero de telephone on met le modal ... 
 
     if (initializing) return <ActivityIndicator size="large" color="#00ff00" />; 
       if (!user) {

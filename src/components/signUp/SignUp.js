@@ -56,12 +56,6 @@ const SignUp = (props) =>{
   settingPhotoURL =(val) =>setPhotoURL(val);
   onSubmitEditing= ()=> Keyboard.dismiss();
 
-
-  sendingCode = () =>{
-    setCreating(true);
-      MBtaxisignInWithCredential();
-      setEnterCode(!enterCode);
-  }
   creatingAccount = () => {
     try {
       setCreating(true);
@@ -72,30 +66,6 @@ const SignUp = (props) =>{
       })
       .catch (error => console.log('error in the creating account function... ',error))
 
-    auth()
-      .createUserWithEmailAndPassword(email, password)
-      .then( (user) => {
-        const update = {
-          displayName: username,
-          photoURL: photoURL,    
-        };
-        auth().currentUser.updateProfile(update);
-      })
-      .then(() => {console.log("Updated successfully!"); setCreating(false);}) //setCreating(false);
-      .catch(error => {
-        if (error.code === 'auth/email-already-in-use') {
-          console.log('That email address is already in use!');
-        }
-  
-        if (error.code === 'auth/invalid-email') {
-          console.log('That email address is invalid!');
-        }
-       // if (error.includes('/')) setError(error.code.split('/')[1]) //TO NOT GET the first parth auth
-       // if (error.code.includes('\/')) setError(error.code.split('/')[1])
-       setError(error.code);
-        setCreating(false);
-        console.error(error);
-      });
     } catch (error) {
       console.error('ERROR CAUGHT',error);
       // expected output: ReferenceError: nonExistentFunction is not defined
@@ -214,8 +184,32 @@ async function confirmCode() {
         const provider = auth.PhoneAuthProvider;
         const authCredential = provider.credential(verificationID,
         code);
-        console.log("Here are  the credentials for the phone number ",authCredential)
-        await auth().currentUser.updatePhoneNumber(authCredential);
+
+    auth()
+    .createUserWithEmailAndPassword(email, password)
+    .then( async (user) => {
+      const update = {
+        displayName: username,
+        photoURL: photoURL,    
+      };
+      auth().currentUser.updateProfile(update);
+      await auth().currentUser.updatePhoneNumber(authCredential);
+    })
+    .then(() => {console.log("Updated successfully!"); setCreating(false);}) //setCreating(false);
+    .catch(error => {
+      if (error.code === 'auth/email-already-in-use') {
+        console.log('That email address is already in use!');
+      }
+
+      if (error.code === 'auth/invalid-email') {
+        console.log('That email address is invalid!');
+      }
+     // if (error.includes('/')) setError(error.code.split('/')[1]) //TO NOT GET the first parth auth
+     // if (error.code.includes('\/')) setError(error.code.split('/')[1])
+     setError(error.code);
+      setCreating(false);
+      console.error(error);
+    });
   } catch (error) {
     console.log('Invalid code.',error);
   }
