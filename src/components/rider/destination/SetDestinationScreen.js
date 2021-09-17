@@ -42,7 +42,7 @@ const GOOGLE_MAPS_API_KEY = 'AIzaSyB6iuVD8X4sEeHAGHY3tmMQRyM_Vyoc3UU';
 
 
   const ItemSaved = ({ item }) => {
-    return (<TaxiImageText image={imageKeys.history} text={item.destination.description? item.destination.description:JSON.stringify(item)}   style={{ flex: 1 }}  textStyle={{color:'#000000',fontFamily:fontKeys.MR,fontSize:14,flex:1}}/>)
+    return (<TaxiImageText image={imageKeys.history} text={item?.destination?.description? item?.destination?.description:JSON.stringify(item)}   style={{ flex: 1 }}  textStyle={{color:'#000000',fontFamily:fontKeys.MR,fontSize:14,flex:1}}/>)
   };
 
   function childSaving(val){
@@ -124,6 +124,9 @@ const SetDestinationScreen = (props) =>{
     //setSavedResults (savedResults + 5 > savedPlaces.length ? savedPlaces.length : savedResults + 5 ) 
     const [childTable, setChildTable] = useState(childSaving(typeOfRide));
     const [buttonTitle,setButtonTitle] =useState(buttonText(typeOfRide));
+
+    const [pickupEditLocation,setPickupEditLocation] = useState(true);
+    const [destinationEditLocation,setDestinationEditLocation] = useState(true);
     //console.log('itemsss itemaaa',props.route.params.item)//.state.params.item)
        // console.log('option',props.route.params.option)//.state.params.option)
 
@@ -206,7 +209,11 @@ adaRef..child(key).remove()
       };
 
       const Item = ({ item }) => (
-        <Pressable onPress={()=> {setDestination(item.destination); console.log(item)}}>
+        <Pressable onPress={()=> {
+          setDestination(item.destination); 
+          setDestinationEditLocation(false)
+          }}
+        >
         <TaxiImageText12 
             imageFunc={()=>savingPlace(item)}
             style={{alignSelf:'stretch',maxWidth:'100%'}}
@@ -216,7 +223,7 @@ adaRef..child(key).remove()
             image={item.saved? imageKeys.stayyellow : imageKeys.Stargrey} 
             text={textKeys.destination} 
             text1={item.date? item.date: textKeys.home}
-            text2= {item.destination.description}
+            text2= {item?.destination?.description? item?.destination?.description:'enter destination'}
         />
         </Pressable>
       );

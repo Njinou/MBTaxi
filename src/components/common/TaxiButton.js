@@ -1,13 +1,14 @@
-import React from 'react';
+import React,{forwardRef} from 'react';
 import {Text,StyleSheet,TouchableOpacity,View,Pressable} from 'react-native';
 import fontKeys from '../../keyText/fontKeys';
 
-const TaxiButton= (props) =>{
+const TaxiButton= forwardRef((props, ref) => {
     const [text, setText] = React.useState('Button');
     const pressed = () => console.log("clicked");
 
     return (
         <Pressable 
+            ref={ref}
             style={{alignSelf:'stretch',marginLeft:'14%', marginRight:'14%'}}
             onPress={props.func? props.func: pressed}
             disabled={props.disabled?props.disabled:false}
@@ -20,7 +21,7 @@ const TaxiButton= (props) =>{
         </Pressable>
     )
 
-}
+})
 export default TaxiButton;
 
 const styles = StyleSheet.create({

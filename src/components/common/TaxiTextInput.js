@@ -1,13 +1,15 @@
-import React from 'react';
+import React,{forwardRef} from 'react';
 import {Text,View,TextInput,StyleSheet} from 'react-native';
 import fontKeys from '../../keyText/fontKeys';
 
-const TaxiTextInput = (props) =>{
+const TaxiTextInput  = forwardRef((props, ref) => {
     const [value, onChangeTexte] = React.useState('');
-    const getInput = input => onChangeTexte(input);
+    const getInput = input => {onChangeTexte(input); console.log("inside taxi text input")}
 
     return (
         <TextInput
+            ref={ref}
+            returnKeyType= {props.returnKeyType}
             secureTextEntry={props.secureTextEntry?props.secureTextEntry:false}
             blurOnSubmit={props.blurOnSubmit}
             onSubmitEditing={props.onSubmitEditing}
@@ -20,7 +22,7 @@ const TaxiTextInput = (props) =>{
         />
     )
 
-}
+})
 export default TaxiTextInput;
 
 const styles = StyleSheet.create({

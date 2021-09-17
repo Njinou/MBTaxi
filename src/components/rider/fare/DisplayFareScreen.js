@@ -6,6 +6,7 @@ import textKeys from '../../../keyText/textKeys';
 import TaxiTextInput from '../../common/TaxiTextInput';
 import TaxiText from  '../../common/TaxiText';
 import TaxiImageText from '../../common/TaxiImageText';
+import auth from '@react-native-firebase/auth';
 
 import Rate from '../../rate/Rate';
 import imageKeys from "../../../keyText/imageKeys";
@@ -35,17 +36,14 @@ const DisplayFareScreen = (props) => {
      const [data,SetData] = useState(DATA);
      const [intialData,SetInitialData] = useState(DATA); //CHANGER CETTE VALEUR SI LES DONNEES CHANGENT MEME DANS UN USEFFECT...
      const [copayer,setCopayer] = useState([
-      {
-        id: '58694a0f-3da1-471f-bd96-145571e29d72',
-        displayName: 'Me A AJOUTER'
-      }
+        auth().currentUser
      ]); //useState([]);
      const [isaddingCcopayer,setIsAddingCopayer] = useState(true);
      const [cherching,setCherching] = useState(false);
      const [displayFareSplit,setDisplayFareSplit] = useState(false);
      setVisibleFunc = () =>  setModalVisible(!modalVisible);
      addPayerFunc = () => setIsAddingCopayer(true);
-
+     //closingModal =() => setCherching(false);
      getTextInput = (val) =>  {
         setInput (val);
        // val.length >0 ? setIsSearching(true) : setIsSearching(false);  
@@ -72,6 +70,8 @@ const DisplayFareScreen = (props) => {
       obj.push(item);
       setCopayer(obj);
       //console.log("inside ",item)
+      props.gettingCopayer(obj);
+
       setInput(item.displayName);
      // setTimeout ( () =>setCopayer(item),500);
      //  setTimeout ( () =>console.log("copaying... shit...."),500);
@@ -151,7 +151,7 @@ const DisplayFareScreen = (props) => {
                   />
                 </ScrollView>  : null}
             </View>
-        </View> : <DisplayFareSplittedScreen copayer={copayer}  func={addPayerFunc}  rideDetails={props.rideDetails}/>}
+        </View> : <DisplayFareSplittedScreen copayer={copayer}  func={addPayerFunc} closingModal={props.closingModal}  rideDetails={props.rideDetails}/>}
 
       </Modal>
   );

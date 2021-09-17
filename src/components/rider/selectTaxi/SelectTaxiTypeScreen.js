@@ -1,5 +1,5 @@
 import React, { useState,useEffect } from "react";
-import { Alert, Modal, StyleSheet, Text, Pressable, View, ScrollView,Image, SafeAreaView, FlatList} from "react-native";
+import { Alert, Modal, StyleSheet, Text, Pressable, View, ScrollView,Image, SafeAreaView, FlatList,TextInput} from "react-native";
 
 import fontKeys from '../../../keyText/fontKeys';
 import textKeys from '../../../keyText/textKeys';
@@ -17,7 +17,7 @@ import Rate from '../../rate/Rate';
 import imageKeys from "../../../keyText/imageKeys";
 
 import RideHistoryBlock from '../history/RideHistoryBlock';
-
+import auth from '@react-native-firebase/auth';
 import {Picker} from '@react-native-picker/picker';
 
 
@@ -104,7 +104,28 @@ const SelectTaxiTypeScreen = (props) => {
     const [driverMatched,setDriverMatched] = useState(false);
     const [openModal,setOpenModal] = useState(false);
     const [rideDetails,setRideDetails] = useState(null);
-    const  bidding = (val) =>  {setPrixTotal(val); setBidding(true)}
+
+    const [copayer,setCopayer] = useState([]);
+    const [cashValue,setCashValue] = useState (0);
+    const [mesombValue,setMesombValue] = useState (prixTotal);
+    const [user,setUser] = useState (auth().currentUser);
+
+    gettingCopayer =(val) =>   {
+      setCopayer(val);
+      /*if ( cop && Array.isArray(cop)){
+        let PromiseCopayer = val.map( cop =>  mesombPayment(cop))
+        Promise.all(PromiseCopayer).then(values => {
+          console.log(values);
+        });
+      }*/  
+    }
+    settingCashValue = (val) =>  {
+      setCashValue(val); 
+      setMesombValue(prixTotal - val);
+    } 
+    closingModal = () =>setOpenModal(false);
+
+    const  bidding = (val) =>  {setPrixTotal(val); setBidding(true); setMesombValue(val-cashValue)}
     const openingSplitPaymentModal = () =>  {
       setOpenModal(true); 
       let obj = selectedTaxi;
@@ -126,37 +147,74 @@ const SelectTaxiTypeScreen = (props) => {
     setSelectedTaxi(DATA[0])
   })*/
 
+  //copayer.map (cop => mesombPayment(cop))
 
-  const mesombPayment = async () => {
-    try {
-        console.log("je ne vais pas ");
-     const response = await fetch('https://mesomb.hachther.com/api/v1.0/payment/online/',{
-       method: 'POST',
-       headers: {
-       'X-MeSomb-Application': 'be6190b6ba9506f2dfd6abeb9a02aa98fe02247c',
-       'User-Agent' : 'Mozilla',
-       Accept: 'application/json',
-       'Content-Type': 'application/json',
-       },
-       body: JSON.stringify({
-           amount :100,
-         payer : '237672634842',//'237696603582',//'237400001019',
-         fees:true,
-         service : 'MTN',//'ORANGE', //MTN
-         currency : 'XAF',
-         message : "Message"
-         })
-     });
-     console.log(response);
-     const json = await response.json();
-     console.log(" helloooo hello helloo",json);
-   } catch (error) {
-     console.error(error);
-   } finally {
-     setLoading(false);
-   }
+const operateur ={
+  MTN:['650','651','652','653','654','67X','680'],
+  ORANGE : ['655','656','657','658','659','69X'],
+  NEXTEL : ['66X'],
+  CAMTEL:['222','233','242','243'],
+}
+
+let numer = '237672634842';
+ const getOperateur =(nbre)=>{
+  let Premier = nbre.charAt(0) === '+' ? nbre.substring(4,5) : nbre.substring(3,4);
+  let deuxPremier = nbre.charAt(0) === '+' ? nbre.substring(4,6) : nbre.substring(3,5);
+  let troisPremier =  nbre.charAt(0) === '+' ? nbre.substring(4,7) : nbre.substring(3,6);
+
+  if (Premier === "2") return "CAMTEL" 
+  switch (deuxPremier){
+    case "66":  return "NEXTEL";
+    case "69": return "ORANGE";
+    case "67": return "MTN";
+    default:
+    console.log("not deux premier working ",deuxPremier);
+  }
+  switch (true){
+    case operateur.MTN.includes(troisPremier): return "MTN";
+    case operateur.ORANGE.includes(troisPremier): return "ORANGE";
+    case operateur.NEXTEL.includes(troisPremier): return "NEXTEL";
+    case operateur.CAMTEL.includes(troisPremier): return "CAMTEL";
+
+    default:
+    console.log("not TROIS PREMIERS .... working ",troisPremier);
+  }
  }
 
+const mesombPayment = async (obj) => {
+  try{
+    fetch('https://mesomb.hachther.com/api/v1.0/payment/online/',{
+     method: 'POST',
+     headers: {
+     'X-MeSomb-Application': 'be6190b6ba9506f2dfd6abeb9a02aa98fe02247c',
+     'User-Agent' : 'Mozilla',
+     Accept: 'application/json',
+     'Content-Type': 'application/json',
+     },
+     body: JSON.stringify({
+         amount : mesombValue,//100,
+       payer : obj.phoneNumber.substring(1),//'237696603582',//obj.phoneNumber.substring(1),// '237672634842',//'237696603582',//'237400001019',
+       fees:true,
+       service : getOperateur(obj.phoneNumber),//'MTN',//'ORANGE', //MTN
+       currency : 'XAF',
+       message : `You are paying for your ride with MBTaxi the amount of ${mesombValue} please approve the request to secure your taxi`
+       })
+   }).then(  response=>  { 
+      console.log("response provided by mesomb shall be",response); 
+      if (obj.status=== 200){
+        console.log("the transaction was very successful....");
+    } 
+  })
+   .catch(error => console.log('mesomb messing my day up',error))
+ }
+ //)} 
+
+ catch (error) {
+   console.error('error in mesomb payment ',error);
+ } finally {
+   console.log(false);
+ }
+}
 
    requestRide = () =>{ 
      let obj = selectedTaxi;
@@ -186,7 +244,7 @@ const SelectTaxiTypeScreen = (props) => {
     }
 
     const Item = ({ item }) => (
-      <Pressable onPress={ ()=>  {setSelectedTaxi(item); setPrixUnitaire(item.pu); setPrixTotal(selectedPeople * item.pu) }}>
+      <Pressable onPress={ ()=>  {setSelectedTaxi(item); setPrixUnitaire(item.pu); setPrixTotal(selectedPeople * item.pu);setMesombValue (selectedPeople * item.pu - cashValue) }}>
        {item.id === selectedTaxi?.id ? < PriceMoto componentTopLeft={<ViewPrice item={item}/>} textBottomLeft={<MotoPicket/>} textTopRight={item.pu} 
                  style={{flex:1,alignItems:'center'}}
                  styleTopRight={{color:'#3F4D5F',marginBottom:50,fontSize:18,fontFamily:fontKeys.MR,}}
@@ -265,7 +323,10 @@ if (matchingDriver) return (
                 selectedValue={selectedPeople}
                 onValueChange={ (itemValue, itemIndex) =>
                   {setSelectedPeople(itemValue);
-                  setPrixTotal(itemValue * prixUnitaire)
+                  setPrixTotal(itemValue * prixUnitaire);
+
+                  //setCashValue(val); 
+                setMesombValue(itemValue * prixUnitaire - cashValue);
                 } 
               }>
                 <Picker.Item label="1" value="1" />
@@ -313,6 +374,29 @@ if (matchingDriver) return (
                 </View>
            
           </View>
+          <View style={{flex:1,justifyContent:'space-between',flexDirection:'row',alignItems:'center',paddingTop:10,borderStyle:'solid',borderColor:'#EAEAEA',borderBottomWidth:1}}>
+            <Text style={{flex:1,textAlign:'left',marginRight:20}}> Montant en Cash </Text>
+            
+            <TaxiTextInput 
+              keyboardType='numeric' 
+              style={{flex:1, marginBottom:0,marginLeft:'auto',marginRight:40}} 
+              styleText={{flex:1,fontFamily:fontKeys.MEBI,color:'#878787',fontSize:14}} 
+              placeholder={'enter amount here'} 
+              func={settingCashValue}
+              value={cashValue +""}
+            />
+          </View>
+
+          <View style={{flex:1,justifyContent:'space-between',flexDirection:'row',alignItems:'center',paddingTop:10,borderStyle:'solid',borderColor:'#EAEAEA',borderBottomWidth:1,marginRight:40}}>
+            <Text style={{flex:1,textAlign:'left',marginRight:20}}> Pay sur  Mobile Money </Text>
+            <TaxiText  
+              styleText={{color:'#5BE39B',fontSize:18,fontFamily:fontKeys.MB}}  
+              text={mesombValue}
+              style={{borderColor:'red',borderRadius:8,borderStyle:'solid'}}
+            />
+          </View>
+
+          
           <View style={{marginBottom:19,paddingTop:18,flex:1,flexDirection:'row',justifyContent:'space-evenly'}}>
               <View style={{ 
                     borderColor:'red', //'#EAEAEA',
@@ -354,7 +438,7 @@ if (matchingDriver) return (
                     alignItems:'center',
                     justifyContent:'center'
                 }}>  
-                <TaxiText func={mesombPayment} 
+                <TaxiText func={async ()=> await mesombPayment(user)} 
                   styleText={{color:'#5BE39B',fontSize:16,fontFamily:fontKeys.MB}}  
                   text="Mobile Money"
                   style={{borderColor:'red',borderRadius:8,borderStyle:'solid'}}
@@ -365,7 +449,7 @@ if (matchingDriver) return (
           {
             openModal &&  (
             <View style={styles.centeredView}>
-                <DisplayFareScreen rideDetails={rideDetails} closingSplitPaymentModal={closingSplitPaymentModal} />
+                <DisplayFareScreen gettingCopayer={gettingCopayer} rideDetails={rideDetails} closingModal={closingModal} closingSplitPaymentModal={closingSplitPaymentModal} />
             </View>)
           }
         </ScrollView>

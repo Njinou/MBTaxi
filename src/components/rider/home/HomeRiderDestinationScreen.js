@@ -26,6 +26,8 @@ import Geolocation from "react-native-geolocation-service"
 import Geocoder from 'react-native-geocoding';
 import { check, request, PERMISSIONS, RESULTS } from "react-native-permissions" //
 import RatingScreen from '../../rate/RatingScreen';
+import database from '@react-native-firebase/database';
+import DestinationInputComp from '../../common/DestinationInputComp';
 
 import { Value } from 'react-native-reanimated';
 
@@ -56,7 +58,7 @@ return total;
 
 const HomeRiderDestinationScreen: (props) => React$Node = (props) => {
     const [destination,setDestination] = useState(null);
-    const [isSearching,setIsSearching] = useState(false);
+    const [isSearchingAddress,setIsSearchingAddress] = useState(true);
     const [value,setValue] = useState(null);
     const [insertDestinationValue,setInsertDestinationValue] = useState(false);
     const [location, setLocation] = useState(null) //
@@ -67,6 +69,18 @@ const HomeRiderDestinationScreen: (props) => React$Node = (props) => {
     const [option,setOption] = useState(false);
     const [optionValue,setOptionValue] = useState(null);
     const [currentAddress,setCurrentAddress] = useState("");
+    const [phoneNumber,setPhoneNumber] = useState('');
+    const [openingRating,setOpeningRating] = useState(false);
+    const getPhoneNumber = (val) =>  {setPhoneNumber(val); console.log(val) }
+    const [isPhonNumberSaved,setIsPhoneNumberSaved]= useState(auth().currentUser.phoneNumber);
+    const [maLocation,setMaLocation] = useState(null);
+    const [maDestination,setMaDestination] =useState(null);
+
+    getMalocation =(val) => console.log("ma location DATA ",data);//setMaLocation (val)
+    getMaDestination =(val) =>  console.log("Destination");//setMaDestination (val)
+    
+    console.log(" Here are the values.... maLocation ",maLocation);
+    console.log (" there it is ... maDestination ",maDestination);
 
     const handleLocationPermission = async () => { 
         let permissionCheck = ""
@@ -100,6 +114,30 @@ const HomeRiderDestinationScreen: (props) => React$Node = (props) => {
       useEffect(() => {
         handleLocationPermission()
       }, [])
+
+      useEffect (()=>{
+       
+        const url = 'users/' + auth().currentUser.uid ;
+      
+        const reference = database().ref(url);
+        reference
+                .child ('history')
+                .orderByKey()
+               .limitToLast(1)
+                .once('value', snapshot => {
+                    if (snapshot.exists()) {
+                        // Exist! Do whatever.
+                   let elmnt = Object.values(snapshot.val())[0];
+                   //testing the water to see if 
+                   elmnt.hasOwnProperty('rate') ? setOpeningRating(false): setOpeningRating(true);
+    
+                 } else {
+                      console.log(" DANS LE COMPOSANT HOME ROUTE ...   does not exists has to be")
+                      setOpeningRating(false)
+                     // setOpeningRating(true)
+                    }
+                });
+      },[])
 
 
       useEffect(() => { 
@@ -140,30 +178,7 @@ const HomeRiderDestinationScreen: (props) => React$Node = (props) => {
           { enableHighAccuracy: true, timeout: 15000, maximumAge: 10000 }
         )
       }, [])
-
-
-/*
-onChangeText={onChangeText}
-        value={textInput}
-*/
-
-//onsubmitEditing..
-//select position ... alors je passe au deuxieme truc ....
-
-/*
- this.props.navigation.navigate(
-    'DetailPage',
-    { user },
-  );
-
-  props.navigation.state.params.user.name
-  
-*/
-     const renderItemAutoCompletion = ({item}) =>{
-        return (<Text> JE suis desole ..</Text>)
-     }
-
-     const setModalFunc = (val) => {setOption(false); props.navigation.navigate('dest2',{ option:val,destination:value,location:locationAddress,currentPosition:location },); setOptionValue(val); } //va dans option ride 
+ const setModalFunc = (val) => {setOption(false); props.navigation.navigate('dest2',{ option:val,destination:value,location:locationAddress,currentPosition:location },); setOptionValue(val); } //va dans option ride 
 
      APIPlaceAutocomplete = (destination, currentPlace) => {
        const URL = `https://maps.googleapis.com/maps/api/place/autocomplete/json?key=${GOOGLE_MAPS_API_KEY}&input=${destination}&location=${currentPlace.latitude},${currentPlace.longitude}&radius=2000`;
@@ -188,6 +203,7 @@ onChangeText={onChangeText}
 
       const onChangeText = (val) =>{
        // setInsertDestinationValue(false);
+       setIsSearchingAddress(true);
         setTextInput(val);
      APIPlaceAutocomplete(val,location);
       }
@@ -203,13 +219,15 @@ onChangeText={onChangeText}
       const Item = ({ item}) => (
         <Pressable onPress={() =>  {
           //setInsertDestinationValue(true);
+          setIsSearchingAddress(false);
           setValue(item);
+
           setData([]);
           //setTimeout(function(){ props.navigation.navigate('option') }, 1000);
           setOption(true);
           //props.navigation.navigate('riderDestination');
           }}>
-          <View style={{backgroundColor:'white',borderBottomLeftRadius:8,borderBottomRightRadius:8}}>
+          <View style={{backgroundColor:'red',borderBottomLeftRadius:8,borderBottomRightRadius:8}}>
             <TaxiImageText12 
                 image={imageKeys.stayyellow} 
                 text={textKeys.destination} 
@@ -220,12 +238,28 @@ onChangeText={onChangeText}
         </Pressable>
       );
 
+    
+      savingComment =() => {
+        console.log("oh well...")
+        setOpeningRating(false)
+       // setOpeningRating(!openingRatingModal);
+       props.closingRatingModalFunc();
+      }
+
+
+
    // const actionCodeInfo =  auth().checkActionCode('ABCD');
     //console.log('Action code operation: ', actionCodeInfo.operation);
+    // <DestinationInputComp  getMaDestination={getMaDestination} getMalocation={getMalocation}/>
   if (error) return null;
   if (location) {   return (
     <View style={{height:'100%'}}>
        <ImageBackground source={imageKeys.map} style={styles.image}>
+         <View>
+         <DestinationInputComp/>
+         </View>
+         <View style={{flex:1,backgroundColor:'red'}}>     
+         </View>
             <View style={{marginLeft:20,marginRight:15, }}> 
                   {props.option || option ? < RideOtherOptions setModalVisible={option} func={setModalFunc}/> :<>
                     <TaxiImageTextInput  
@@ -252,7 +286,7 @@ onChangeText={onChangeText}
                         }}
                         func={onChangeText}
                         onSubmitEditing={onSubmitEditing}
-                        value= {value?  value.description.split(',')[0] : textInput}
+                        value= {isSearchingAddress? textInput :  value.description.split(',')[0]}
                     /> 
                      <FlatList
                         data={data}
@@ -313,7 +347,7 @@ onChangeText={onChangeText}
                     text={textKeys.rider.request.taxiOption}   
                 />
             </>}
-
+               
             <View 
                 style={{
                     marginTop: props.option? 'auto': null,
@@ -340,14 +374,17 @@ onChangeText={onChangeText}
                     <Text style={{color:'#C3C1C1',fontSize:10,fontFamily:fontKeys.MSB}}>{textKeys.rider.request.schedule}</Text>
                 </View> 
             </View> 
-            {props.openingRatingModal ?<RatingScreen 
-              openingModal={props.openingRatingModal} 
-              setVisibleFunc={props.closingRatingModalFunc} 
+            {
+                isPhonNumberSaved? null : <RatingScreen noRate={true}  placeholder="enter number here" text="Enter your Phone Number"  textButton="SEND CODE" getComment={getPhoneNumber}  comment={phoneNumber}  setVisibleFunc={()=> setOpeningRating(false)} openingModal={openingRating}  />
+            }
+            {openingRating && <RatingScreen 
+              openingModal={openingRating} 
+              setVisibleFunc={savingComment} 
               rate={props.rate}
               settingRating={props.settingRating}
               comment={props.comment}
               getComment= {props.getComment}
-              />    : null}      
+              />   }      
         </ImageBackground>
     </View>
   );

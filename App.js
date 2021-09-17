@@ -20,31 +20,15 @@ import {
 import fontKeys from './src/keyText/fontKeys';
 import imageKeys from './src/keyText/imageKeys';
 
-import MenuScreen from './src/components/menu/MenuScreen';
 import LoginRoute from './src/routes/LoginRoute';
 import HomeRoute from './src/routes/HomeRoute';
-import ConfirmationRoute from './src/routes/ConfirmationRoute';
-
-import SetDestinationScreen from './src/components/rider/destination/SetDestinationScreen';
-import LoginScreen from './src/components/login/LoginScreen';
-import DisplayFareScreen from './src/components/rider/fare/DisplayFareScreen';
-import DisplayFareSplittedScreen from './src/components/rider/fare/DisplayFareSplittedScreen';
-
-
-import ComponentBackgroundHOC from './src/components/common/ComponentBackgroundHOC';
-import MapsScreen from './src/components/maps/MapsScreen'; 
-import HomeScreen from './src/components/home/HomeScreen'; //for driver ...
-import RatingScreen from './src/components/rate/RatingScreen';
-
  
 import auth from '@react-native-firebase/auth';
-import { NavigationContainer } from '@react-navigation/native';
+import database from '@react-native-firebase/database';
 
-import AcceptTripModal from './src/components/accepttrip/AcceptTripModal'; // driver .... accepting ride ... 
-import DriverStatsScreen from './src/components/driverstats/DriverStatsScreen'; //driver earnings...
-import MapDirectionScreen from './src/components/duringtrip/MapDirectionScreen'; // during trip could be rider and driver ...
-import SelectTaxiTypeScreen from './src/components/rider/selectTaxi/SelectTaxiTypeScreen'; // orienting drivers where the riders are crowded... 
-import RideDetailsScreen from './src/components/rider/rideDetails/RideDetailsScreen';
+import DestinationInputComp from './src/components/common/DestinationInputComp';
+
+import { NavigationContainer } from '@react-navigation/native';
 
 const App: () => React$Node = () => {
 
@@ -86,17 +70,13 @@ const App: () => React$Node = () => {
     setAppStateVisible(appState.current);
     console.log("AppState", appState.current);
   };
+//signup Cree avec numero de telephone ... on peut meme send le code ici... 
+//au lieu de Home ... on peut chercher a confirmer le code .... dans Home ... si le code nest pas verifie... 
+//sil nya pas de numero de telephone on met le modal ... 
 
-  /**
-   * <StatusBar barStyle="dark-content" />
-      <SafeAreaView style={{alignItems:'center'}}>
-      <ImageBackground source={imageKeys.background} style={styles.image}>
-        <LoginRoute/>
-        </ImageBackground>
-      </SafeAreaView>
-   */
-  
-      if (initializing) return <ActivityIndicator size="large" color="#00ff00" />; 
+//return <DestinationInputComp/>
+
+    if (initializing) return <ActivityIndicator size="large" color="#00ff00" />; 
       if (!user) {
         return (
           <NavigationContainer>

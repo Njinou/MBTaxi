@@ -22,16 +22,19 @@ const RatingScreen = (props) => {
         onRequestClose={() => {
           Alert.alert("Modal has been closed.");
           props.setModalVisible(!props.openingModal);
-        }}
+        }} 
       >
         <View style={styles.centeredView}>
           <View style={styles.modalView}>
-          <TaxiText style={{paddingBottom:40}} styleText={{color:'#000000',fontFamily:fontKeys.MR,fontSize:18,textAlign:'center'}} func={props.setVisibleFunc}  text={textKeys.rideReview + " "+ "Mary" +"?"}/>  
-            <View style={{paddingBottom:40}}>    
-                <Rate star={props.rate} setStar={props.settingRating}/>
-            </View>
-            <TaxiTextInput placeholder={textKeys.comment} style={{alignSelf:'stretch',marginBottom:54}} value={props.comment} func={getComment} />
-            <TaxiText style={{marginTop:'auto'}} styleText={{color:'#F2B84D',fontFamily:fontKeys.MSB,fontSize:12,textAlign:'center'}} func={props.setVisibleFunc}  text={textKeys.done}/>           
+          <TaxiText style={{paddingBottom:40}} styleText={{color:'#000000',fontFamily:fontKeys.MR,fontSize:18,textAlign:'center'}} func={props.setVisibleFunc}  text={ props.text? props.text: textKeys.rideReview + " "+ "Mary" +"?"}/>  
+            
+            {props.noRate? null: 
+              <View style={{paddingBottom:40}}>    
+                 <Rate star={props.rate} setStar={props.settingRating}/>
+              </View>
+            }
+           <TaxiTextInput  keyboardType={props.keyboardType}  placeholder={props.placeholder? props.placeholder: textKeys.comment} style={{alignSelf:'stretch',marginBottom:54}} value={props.comment} func={props.getComment} />
+            <TaxiText style={{marginTop:'auto'}} styleText={{color:'#F2B84D',fontFamily:fontKeys.MSB,fontSize:12,textAlign:'center'}} func={props.setVisibleFunc}  text={props.textButton? props.textButton: textKeys.done}/>           
           </View>
         </View>
       </Modal>

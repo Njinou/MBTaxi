@@ -16,7 +16,7 @@ function LoginRoute() {
     <Stack.Navigator initialRouteName="login">
     <Stack.Screen name="login" component={LoginScreen}  options={{ title: 'Login' }}/>
     <Stack.Screen name="signup" component={SignUp}  options={{ title: 'SignUp' }}/>
-    <Stack.Screen name="code" component={SignUpConfirmationCode}  options={{ title: 'Confirmation Code' }}/>
+    <Stack.Screen name="confirmationCode" component={SignUpConfirmationCode}  options={{ title: 'Confirmation Code' }}/>
     <Stack.Screen name="success" component={ConfirmationSuccess}  options={{ title: 'Confirmation Success' }}/>
   </Stack.Navigator>
   );
