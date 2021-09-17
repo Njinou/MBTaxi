@@ -62,7 +62,7 @@ const LoginScreen: () => React$Node = (props) => {
   const [isportrait,setIsPortrait] = useState(windowWidth <= windowHeight);
   const [error,setError] = useState('');
   const [creating,setCreating] = useState(false);
-
+  const passwordRef = useRef();
   signingUp = () => {
     setCreating(true)
     auth()
@@ -143,9 +143,9 @@ const LoginScreen: () => React$Node = (props) => {
               </View>
             )}
 
-         <TaxiText text={error} styleText={{marginBottom:5,fontSize:18,color:'red',fontWeight:'normal'}}/>
-        <TaxiTextInput placeholder={textKeys.login.username} value={username} func={setUsername}/>
-        <TaxiTextInput  placeholder={textKeys.password} secureTextEntry={true} value={password} func={setPassword}/>
+         <TaxiText text={error} styleText={{marginBottom:5,fontSize:18,color:'red',fontWeight:'normal'}} />
+        <TaxiTextInput placeholder={textKeys.login.username} value={username} func={setUsername} onSubmitEditing={() => {passwordRef.current.focus(); }}/>
+        <TaxiTextInput  placeholder={textKeys.password} secureTextEntry={true} value={password} func={setPassword} ref={passwordRef} />
         <TaxiButton  text={textKeys.login.login} func={signingUp} disabled={disabledButton}/>
         <TaxiText   
           text={textKeys.login.forgotPassword}
