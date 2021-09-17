@@ -33,7 +33,7 @@ const RatingScreen = (props) => {
                  <Rate star={props.rate} setStar={props.settingRating}/>
               </View>
             }
-           <TaxiTextInput  keyboardType={props.keyboardType}  placeholder={props.placeholder? props.placeholder: textKeys.comment} style={{alignSelf:'stretch',marginBottom:54}} value={props.comment} func={getComment} />
+           <TaxiTextInput  keyboardType={props.keyboardType}  placeholder={props.placeholder? props.placeholder: textKeys.comment} style={{alignSelf:'stretch',marginBottom:54}} value={props.comment} func={props.getComment} />
             <TaxiText style={{marginTop:'auto'}} styleText={{color:'#F2B84D',fontFamily:fontKeys.MSB,fontSize:12,textAlign:'center'}} func={props.setVisibleFunc}  text={props.textButton? props.textButton: textKeys.done}/>           
           </View>
         </View>

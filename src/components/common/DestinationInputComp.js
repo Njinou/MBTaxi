@@ -1,5 +1,5 @@
 import React, { useState,useEffect } from 'react';
-import {StyleSheet,View,Image,ImageBackground, ScrollView,Text,TextInput,FlatList, Pressable} from 'react-native';
+import {StyleSheet,View,Image,ImageBackground, ScrollView,Text,TextInput,FlatList, Pressable, SafeAreaView} from 'react-native';
 
 import fontKeys from  '../../keyText/fontKeys';
 import imageKeys from '../../keyText/imageKeys';
@@ -22,6 +22,7 @@ import auth from '@react-native-firebase/auth';
 
 // passer la valeur retour comme props et la fonction onTexchange
 const GOOGLE_MAPS_API_KEY = 'AIzaSyB6iuVD8X4sEeHAGHY3tmMQRyM_Vyoc3UU';
+Geocoder.init(GOOGLE_MAPS_API_KEY, {language: 'en'});
 
 function compareString (str1,str2){
   var words1 = str1.split(/\s+/g),
@@ -43,19 +44,19 @@ return total;
 
 
 
-const DestinationInputComp =() =>{
+const DestinationInputComp =(props) =>{
 
     const [destination,setDestination] = useState(null);
-    const [isSearching,setIsSearching] = useState(false);
-    const [value,setValue] = useState(null);
+    const [isSearching,setIsSearching] = useState(true);
+    const [values,setValues] = useState(null);
     const [location, setLocation] = useState(null) //
     const [locationAddress, setLocationAddress] = useState(null) //
-    const [textInput, setTextInput] = useState("");
+    const [textInputs, setTextInputs] = useState("");
     const [error, setError] = useState("");
     const [data,setData] = useState([]);
-    const [option,setOption] = useState(false);
-    const [optionValue,setOptionValue] = useState(null);
-    const [currentAddress,setCurrentAddress] = useState("");
+    const [currentAddress,setCurrentAddress] = useState(""); //current Address prends en compte la ville et le pays...
+    //my location... tu peux montrer ma location juste pour selectionner lequel des deux ...
+    //passer une function et maLocation , destination 
 
     const handleLocationPermission = async () => { 
         let permissionCheck = ""
@@ -106,6 +107,7 @@ const DestinationInputComp =() =>{
                 location: {lat, lng},
               },
             } = res.results[0];
+            if (props.getMalocation) props.getMalocation(formatted_address);
             setCurrentAddress(formatted_address);
             setLocationAddress(res.results[0]); })
             setLocation({ latitude, longitude })
@@ -118,12 +120,14 @@ const DestinationInputComp =() =>{
       }, [])
 
     APIPlaceAutocomplete = (destination, currentPlace) => {
+      console.log("Inside Destination Input.............................")
         const URL = `https://maps.googleapis.com/maps/api/place/autocomplete/json?key=${GOOGLE_MAPS_API_KEY}&input=${destination}&location=${currentPlace.latitude},${currentPlace.longitude}&radius=2000`;
          if (destination.length > 0) {
            return fetch(URL)
              .then(resp => resp.json())
              .then (result => {
                let localAddress = result.predictions.filter( element => compareString(element.description, currentAddress)>1);
+               console.log("local address local address ",localAddress);
                setData(localAddress); 
              })
              .catch(error => console.log('voici l\'erreur ',error));
@@ -133,9 +137,11 @@ const DestinationInputComp =() =>{
          }
        };
  
-       const onChangeText = (val) =>{
+       const onChangeTextComp = (val) =>{
+           setIsSearching(true);
            console.log('value input ',val)
-         setTextInput(val);
+           console.log("Inside DestinationInput Compt prendre la valeur ... ",val)
+         setTextInputs(val);
       APIPlaceAutocomplete(val,location);
        }
        onSubmitEditing = () =>{
@@ -148,11 +154,10 @@ const DestinationInputComp =() =>{
       );
       const Item = ({ item}) => (
         <Pressable onPress={() =>  {
-          setValue(item);
+          setIsSearching(false);
+          setValues(item);
+         if (props.getMaDestination) props.getMaDestination(item) // destination 
           setData([]);
-          //setTimeout(function(){ props.navigation.navigate('option') }, 1000);
-          setOption(true);
-          //props.navigation.navigate('riderDestination');
           }}>
           <View style={{backgroundColor:'white',borderBottomLeftRadius:8,borderBottomRightRadius:8}}>
             <TaxiImageText12 
@@ -166,9 +171,16 @@ const DestinationInputComp =() =>{
       );
 
 
+/*
 
+<FlatList
+        data={data}
+        renderItem={renderItem}
+        keyExtractor={item => item.place_id}
+    />
+*/
     return (
-        <>
+        <SafeAreaView>
         <TextInput  
         style={{
         backgroundColor:'white',
@@ -191,16 +203,12 @@ const DestinationInputComp =() =>{
         placeholder={textKeys.destination}
         inputStyle={{borderWidth:0,marginRight:24,marginTop :17,
         }}
-        onChangeText={onChangeText}
+        onChangeText={onChangeTextComp}
         onSubmitEditing={onSubmitEditing}
-        value={value?  value.description.split(',')[0] : textInput}
+        value={isSearching? textInputs :  values.description.split(',')[0]}
     />
-    <FlatList
-        data={data}
-        renderItem={renderItem}
-        keyExtractor={item => item.place_id}
-    />
-        </>
+    
+        </SafeAreaView>
     );
 }
 export default DestinationInputComp;

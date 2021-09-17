@@ -124,6 +124,9 @@ const SetDestinationScreen = (props) =>{
     //setSavedResults (savedResults + 5 > savedPlaces.length ? savedPlaces.length : savedResults + 5 ) 
     const [childTable, setChildTable] = useState(childSaving(typeOfRide));
     const [buttonTitle,setButtonTitle] =useState(buttonText(typeOfRide));
+
+    const [pickupEditLocation,setPickupEditLocation] = useState(true);
+    const [destinationEditLocation,setDestinationEditLocation] = useState(true);
     //console.log('itemsss itemaaa',props.route.params.item)//.state.params.item)
        // console.log('option',props.route.params.option)//.state.params.option)
 
@@ -206,7 +209,11 @@ adaRef..child(key).remove()
       };
 
       const Item = ({ item }) => (
-        <Pressable onPress={()=> {setDestination(item.destination); console.log(item)}}>
+        <Pressable onPress={()=> {
+          setDestination(item.destination); 
+          setDestinationEditLocation(false)
+          }}
+        >
         <TaxiImageText12 
             imageFunc={()=>savingPlace(item)}
             style={{alignSelf:'stretch',maxWidth:'100%'}}

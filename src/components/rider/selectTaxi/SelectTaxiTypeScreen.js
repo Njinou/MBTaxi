@@ -112,12 +112,12 @@ const SelectTaxiTypeScreen = (props) => {
 
     gettingCopayer =(val) =>   {
       setCopayer(val);
-      if ( cop && Array.isArray(cop)){
+      /*if ( cop && Array.isArray(cop)){
         let PromiseCopayer = val.map( cop =>  mesombPayment(cop))
         Promise.all(PromiseCopayer).then(values => {
           console.log(values);
         });
-      }  
+      }*/  
     }
     settingCashValue = (val) =>  {
       setCashValue(val); 
@@ -147,15 +147,8 @@ const SelectTaxiTypeScreen = (props) => {
     setSelectedTaxi(DATA[0])
   })*/
 
-  copayer.map (cop => mesombPayment(cop))
+  //copayer.map (cop => mesombPayment(cop))
 
-
-  var fn = function asyncMultiplyBy2(v){ // sample async action
-    return new Promise(resolve => setTimeout(() => resolve(v * 2), 100));
-};
-
-
-  
 const operateur ={
   MTN:['650','651','652','653','654','67X','680'],
   ORANGE : ['655','656','657','658','659','69X'],
@@ -165,28 +158,31 @@ const operateur ={
 
 let numer = '237672634842';
  const getOperateur =(nbre)=>{
-  console.log('voici le numero ... de la ... ', nbre);
   let Premier = nbre.charAt(0) === '+' ? nbre.substring(4,5) : nbre.substring(3,4);
   let deuxPremier = nbre.charAt(0) === '+' ? nbre.substring(4,6) : nbre.substring(3,5);
   let troisPremier =  nbre.charAt(0) === '+' ? nbre.substring(4,7) : nbre.substring(3,6);
+
   if (Premier === "2") return "CAMTEL" 
   switch (deuxPremier){
-    case "66": return "NEXTEL";
+    case "66":  return "NEXTEL";
     case "69": return "ORANGE";
     case "67": return "MTN";
+    default:
+    console.log("not deux premier working ",deuxPremier);
   }
-
-  switch (troisPremier){
+  switch (true){
     case operateur.MTN.includes(troisPremier): return "MTN";
     case operateur.ORANGE.includes(troisPremier): return "ORANGE";
     case operateur.NEXTEL.includes(troisPremier): return "NEXTEL";
     case operateur.CAMTEL.includes(troisPremier): return "CAMTEL";
+
+    default:
+    console.log("not TROIS PREMIERS .... working ",troisPremier);
   }
  }
 
 const mesombPayment = async (obj) => {
-  return new Promise((resolve, reject) => {
-  // const response = 
+  try{
     fetch('https://mesomb.hachther.com/api/v1.0/payment/online/',{
      method: 'POST',
      headers: {
@@ -196,53 +192,29 @@ const mesombPayment = async (obj) => {
      'Content-Type': 'application/json',
      },
      body: JSON.stringify({
-         amount :mesombValue,//100,
-       payer : getOperateur(obj.phoneNumber),// '237672634842',//'237696603582',//'237400001019',
+         amount : mesombValue,//100,
+       payer : obj.phoneNumber.substring(1),//'237696603582',//obj.phoneNumber.substring(1),// '237672634842',//'237696603582',//'237400001019',
        fees:true,
-       service : 'MTN',//'ORANGE', //MTN
+       service : getOperateur(obj.phoneNumber),//'MTN',//'ORANGE', //MTN
        currency : 'XAF',
-       message : "Message"
+       message : `You are paying for your ride with MBTaxi the amount of ${mesombValue} please approve the request to secure your taxi`
        })
-   }).then(  response=>  resolve (response.json()))
-   .catch(error => reject(error))
- })} 
+   }).then(  response=>  { 
+      console.log("response provided by mesomb shall be",response); 
+      if (obj.status=== 200){
+        console.log("the transaction was very successful....");
+    } 
+  })
+   .catch(error => console.log('mesomb messing my day up',error))
+ }
+ //)} 
 
- /*catch (error) {
-   console.error(error);
+ catch (error) {
+   console.error('error in mesomb payment ',error);
  } finally {
    console.log(false);
  }
-}*/
-
-console.log(auth().currentUser);
- //console.log(" Mekongo ... Makondo.....",mesombPayment(auth().currentUser));
-  /*const mesombPayment = async (user) => {
-    try {
-     const response = await fetch('https://mesomb.hachther.com/api/v1.0/payment/online/',{
-       method: 'POST',
-       headers: {
-       'X-MeSomb-Application': 'be6190b6ba9506f2dfd6abeb9a02aa98fe02247c',
-       'User-Agent' : 'Mozilla',
-       Accept: 'application/json',
-       'Content-Type': 'application/json',
-       },
-       body: JSON.stringify({
-           amount :mesombValue,//100,
-         payer : getOperateur(user.phoneNumber),// '237672634842',//'237696603582',//'237400001019',
-         fees:true,
-         service : 'MTN',//'ORANGE', //MTN
-         currency : 'XAF',
-         message : "Message"
-         })
-     });
-     const json = await response.json();
-   } catch (error) {
-     console.error(error);
-   } finally {
-     console.log(false);
-   }
- }*/
-
+}
 
    requestRide = () =>{ 
      let obj = selectedTaxi;
@@ -466,7 +438,7 @@ if (matchingDriver) return (
                     alignItems:'center',
                     justifyContent:'center'
                 }}>  
-                <TaxiText func={()=>mesombPayment(user)} 
+                <TaxiText func={async ()=> await mesombPayment(user)} 
                   styleText={{color:'#5BE39B',fontSize:16,fontFamily:fontKeys.MB}}  
                   text="Mobile Money"
                   style={{borderColor:'red',borderRadius:8,borderStyle:'solid'}}

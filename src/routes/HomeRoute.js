@@ -47,6 +47,7 @@ const Drawer = createDrawerNavigator();
 //changer la tof de profil de celui qui prendra le taxi pour la reconnaissance
 
 //par defaut who is the rider ....
+
 const  HomeRoute = (props)=> {
   const [whoRiderText,setWhoRiderText] = React.useState(textKeys.rider.address.forme);
   const [isUserRider,setIsUserRider] = React.useState(true);
@@ -56,6 +57,18 @@ const  HomeRoute = (props)=> {
   const [rating,setRating] = useState(0);
   const [comment,setComment] = useState("");
   const[lastRide,setLastRide] = useState(null);
+
+  function Home(props) {
+    return (
+      <Drawer.Navigator initialRouteName="route"  drawerContent={props => <MenuScreenRider {...props}  user={user}  />}>
+      <Drawer.Screen name="scheduled" component={ScheduleScreen}  options={{ title: 'Scheduled rides' }}/>
+      
+      <Drawer.Screen name="help" component={HelpScreen}  options={{ title: 'FAQ & Help' }}/>
+      <Drawer.Screen name="settings" component={SettingsScreen}  options={{ title: 'Settings' }}/>
+      <Drawer.Screen name="contact" component={ContactScreen}  options={{ title: 'Contact Us' }}/>
+      </Drawer.Navigator>
+    );
+  }
 
 
   useEffect (()=>{   
@@ -116,8 +129,13 @@ const  HomeRoute = (props)=> {
     settingRating = (val) => setRating(val);
     getComment =(val) => setComment(val);
   return (
-    <Drawer.Navigator initialRouteName="destination"  drawerContent={props => <MenuScreenRider {...props}  user={user} />}>
-    <Drawer.Screen name="destination">
+      <Stack.Navigator >
+        <Stack.Screen
+          name="Home"
+          component={Home}
+          options={{ headerShown: false }}
+        />
+            <Stack.Screen name="destination">
       {props => <HomeRiderDestinationScreen {...props} 
         openingRatingModal={openingRating} 
         closingRatingModalFunc={savingRiderRating} 
@@ -126,33 +144,33 @@ const  HomeRoute = (props)=> {
         comment={comment}
         getComment={getComment}
       />}
-    </Drawer.Screen >
-    <Drawer.Screen name="history" component={RideHistoryComponent}  options={{ title: 'history' }}/>
-    <Drawer.Screen name="historyDetails" component={HistoryDetailScreen}  options={{ title: 'History Details' }}/>
-    <Drawer.Screen name="scheduledRideDetails" component={ScheduleRideDetails}  options={{ title: 'History Details' }}/>
+    </Stack.Screen >
+    <Stack.Screen name="history" component={RideHistoryComponent}  options={{ title: 'history' }}/>
+    <Stack.Screen name="historyDetails" component={HistoryDetailScreen}  options={{ title: 'History Details' }}/>
+    <Stack.Screen name="scheduledRideDetails" component={ScheduleRideDetails}  options={{ title: 'History Details' }}/>
     
     
-    <Drawer.Screen name="saved" component={SavedScreen}  options={{ title: 'Saved Places' }}/>
-    <Drawer.Screen name="payment" component={PaymentScreen}  options={{ title: 'Payment' }}/>
+    <Stack.Screen name="saved" component={SavedScreen}  options={{ title: 'Saved Places' }}/>
+    <Stack.Screen name="payment" component={PaymentScreen}  options={{ title: 'Payment' }}/>
 
     
-    <Drawer.Screen name="match" component={MatchDriverScreen}  options={{ title: 'Matching your driver' }}/>
-    <Drawer.Screen name="select" component={SelectTaxiTypeScreen}  options={{ title: 'Select Ride' }}/>
-    <Drawer.Screen name="rideDetails" component={RideDetailsScreen}  options={{ title: 'Ride Details' }}/>
+    <Stack.Screen name="match" component={MatchDriverScreen}  options={{ title: 'Matching your driver' }}/>
+    <Stack.Screen name="select" component={SelectTaxiTypeScreen}  options={{ title: 'Select Ride' }}/>
+    <Stack.Screen name="rideDetails" component={RideDetailsScreen}  options={{ title: 'Ride Details' }}/>
     
-    <Drawer.Screen name="scheduled" component={ScheduleScreen}  options={{ title: 'Scheduled rides' }}/>
-    <Drawer.Screen name="help" component={HelpScreen}  options={{ title: 'FAQ & Help' }}/>
-    <Drawer.Screen name="settings" component={SettingsScreen}  options={{ title: 'Settings' }}/>
-    <Drawer.Screen name="contact" component={ContactScreen}  options={{ title: 'Contact Us' }}/>
+    <Stack.Screen name="scheduled" component={ScheduleScreen}  options={{ title: 'Scheduled rides' }}/>
     
-    <Drawer.Screen name="dest2" options={{ 
+    <Stack.Screen name="help" component={HelpScreen}  options={{ title: 'FAQ & Help' }}/>
+    <Stack.Screen name="settings" component={SettingsScreen}  options={{ title: 'Settings' }}/>
+    <Stack.Screen name="contact" component={ContactScreen}  options={{ title: 'Contact Us' }}/>
+    
+    <Stack.Screen name="dest2" options={{ 
         title: 'title to be  changed',
       }}>
       {props => <SetDestinationScreen {...props} selectingUser={selectingUser}  func={whoRiderFunc}/>}
-    </Drawer.Screen>
-    <Drawer.Screen name="option" component={RideOtherOptions}  options={{ title: null }}/>
-
-  </Drawer.Navigator>
+    </Stack.Screen>
+    <Stack.Screen name="option" component={RideOtherOptions}  options={{ title: null }}/>
+      </Stack.Navigator>
   );
 }
 
