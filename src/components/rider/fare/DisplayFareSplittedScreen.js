@@ -1,5 +1,5 @@
 import React, { useState,useEffect } from "react";
-import { Alert, Modal, StyleSheet, Text, Pressable, View, ScrollView,FlatList } from "react-native";
+import { Alert, Modal, StyleSheet, Text, Pressable, View, ScrollView,FlatList ,Image} from "react-native";
 
 import fontKeys from '../../../keyText/fontKeys';
 import textKeys from '../../../keyText/textKeys';
@@ -19,28 +19,95 @@ const DisplayFareSplittedScreen = (props) => {
     const [modalVisible, setModalVisible] = useState(false);
     const [isSearching,setIsSearching] = useState(false); 
     const [input,setInput] = useState(null); 
-    const [copayer,setCopayer] = useState(props.copayer);
-    const [prixTotal,setPrixTotal] = useState(props.rideDetails?.prixTotal  ?props.rideDetails?.prixTotal:0);
-    const [pu,setPu] = useState(props.rideDetails?.prixTotal/copayer.length ? (props.rideDetails?.prixTotal/copayer.length).toFixed(2) :0);
-    setVisibleFunc = () =>  setModalVisible(!modalVisible);
+   setVisibleFunc = () =>  setModalVisible(!modalVisible);
      getTextInput = (val) =>  {
         setInput (val);
         val.length >0 ? setIsSearching(true) : setIsSearching(false);
     }
-    const Item = ({ item }) => (
-      <View style={styles.item}>
-        <TaxiText12Row   textTopLeft={item.displayName}  textTopLeftStyle={{fontSize:16,color:'#000000'}} 
-        textTopRight="1000 FCFA" style={{borderWidth:0}}
+    //edit amount 
+    //remove friend
+    //
+    /*
+     <TaxiText12Row   textTopLeft={item.displayName}  textTopLeftStyle={{fontSize:16,color:'#000000'}} 
+        textTopRight="1000 FCFA" style={{borderWidth:0,justifyContent:'space-between'}}
          RightComponent={<TaxiText  styleText={{color:'#000000',fontSize:16,fontFamily:fontKeys.MB,paddingTop:11,paddingBottom:11,paddingRight:15,paddingLeft:15}} 
-        style={{alignSelf:'flex-start',borderColor:'#DBDBDB',borderWidth:1.5,borderStyle:'solid'}} text={ pu + " F. CFA"}/>}/>
+        style={{alignSelf:'flex-start',borderColor:'#DBDBDB',borderWidth:1.5,borderStyle:'solid',marginLeft:'auto',borderWidth:0}} text={ pu + " F. CFA"}/>}/>
+       
+     <Modal
+            animationType='fade'
+            transparent={true}
+            visible={true}>
+              <View style={{flex:1,flexDirection:'column',justifyContent:'center',alignItems:'center'}}>
+                <Text style={{flex:1}}>
+                  adsasada 1  asd asd
+                </Text>
+                <Text style={{flex:1}}>
+                  adsasada  2  asd asd
+                </Text>
+                <Text style={{flex:1}}>
+                  adsasada 3 asd asd
+                </Text>
+
+              </View>
+        </Modal>
+    
+    */
+   //somme d
+
+/*
+    const Item = ({ item,index }) => (
+      <View  style={{flex:1,flexDirection:'row',alignItems:'center'}}>
+         <View style={{flex:1,flexDirection:'row',justifyContent:'space-evenly',alignItems:'center'}}> 
+            <TaxiText text ={item.displayName}  styleText={{fontSize:16,color:'#000000'}} />
+              <TaxiTextInput  func={(val) => props.updatePriceCopayer(item,val)} 
+              value={typeof (item.price) === 'string'? item.price : JSON.stringify(item.price)} 
+              placeholder={props.pu} style={{marginBottom:0,marginLeft:'auto',marginRight:5,paddingRight:10, color:'#000000',
+                fontSize:16,fontFamily:fontKeys.MB,}}/>
+              <TaxiText text ="F. CFA" styleText={{color:'black',fontSize:16,fontFamily:fontKeys.MB}}/>         
+        </View>
+        <Pressable onPress={()=>{
+          props.updatePriceCopayer(item,750)
+          //props.removingCopayer(item);
+         //props.updatePriceCopayer(item,props.)
+        }}>
+          <Image source={imageKeys.threedots} style={{width:50, height:50}}/>
+        </Pressable> 
       </View>
     );
 
-    const renderItem = ({ item }) => (
-      <Item item={item} />
-    );
+   const renderItem = ({ item,index }) => (
+      <Item item={item} index={index} />
+    );*/
+    //
+    //inputs[index]
 
-    console.log('ride details inside Splitted',(props.rideDetails?.prixTotal/3).toFixed(2));
+ 
+    /*gettingNewPriceVal ={gettingNewPriceVal}
+                  inputsTrueFalse ={inputsTrueFalse}
+                  inputs ={inputs}
+                  */
+    const renderItem = ({item,index})=>(
+      <View  style={{flex:1,flexDirection:'row',alignItems:'center'}}>
+         <View style={{flex:1,flexDirection:'row',justifyContent:'space-evenly',alignItems:'center'}}> 
+            <TaxiText text ={item.displayName}  styleText={{fontSize:16,color:'#000000'}} />
+            <TaxiTextInput
+             func={(val) => props.gettingNewPriceVal(val,index)}
+             value={props.inputsTrueFalse[index]? props.inputs[index]:item.price + ''}  
+                style={{flex:1,alignSelf:'stretch',marginBottom:0,marginRight:1,paddingRight:10, color:'#000000',
+                fontSize:16,fontFamily:fontKeys.MB,}} placeholder={item.price}/>
+              <TaxiText text ="F. CFA" styleText={{color:'black',fontSize:16,fontFamily:fontKeys.MB}}/> 
+                      
+        </View>
+        <Pressable onPress={()=>{
+          props.updatePriceCopayer(item,750)
+          //props.removingCopayer(item);
+         //props.updatePriceCopayer(item,props.)
+        }}>
+          <Image source={imageKeys.threedots} style={{width:50, height:50}}/>
+        </Pressable> 
+      </View>
+    )
+      const [inputShit,setInputShit] = useState('');
   return (
           <ScrollView  contentContainerStyle={[styles.modalView,]}>
                 <View 
@@ -61,7 +128,7 @@ const DisplayFareSplittedScreen = (props) => {
                         alignSelf:'center',
                         justifyContent:'center',
                         paddingTop:30, 
-                        paddingBottom:84,
+                        paddingBottom:24,
                         borderBottomStyle:'solid',
                         borderBottomColor:'#EAEAEA',
                         borderBottomWidth:1,
@@ -69,15 +136,18 @@ const DisplayFareSplittedScreen = (props) => {
                 >
                     <Text>
                         <Text style={[styles.textInfo,{fontSize:24}]}>{textKeys.rider.fare.split.price}</Text>
-                        <Text style={[styles.textInfo,{fontSize:24,fontFamily:fontKeys.MB}]}> {prixTotal}</Text>
+                        <Text style={[styles.textInfo,{fontSize:24,fontFamily:fontKeys.MB}]}> {props.rideDetails.prixTotal}</Text>
                     </Text>
                    
               </View>
-                <View style={{paddingBottom:20.5}}>
+              
+                <View style={{paddingBottom:20.5,paddingTop:10}}>
                     <FlatList
-                      data={copayer}
-                      renderItem={renderItem}
-                      keyExtractor={item => item.id}
+                      data={props.copayer}
+                      refreshing={true}
+                      extraData={props.copayer}
+                      renderItem={(item,index) => renderItem(item,index)}
+                      keyExtractor={item => item.uid}
                     />
                 </View>
                 <TaxiImageText func={props.func} image={imageKeys.plusgreen} style={{alignSelf:'flex-start'}} textStyle={{color:'#5BE39B',fontSize:14,fontFamily:fontKeys.MR}} text={textKeys.rider.fare.split.addPerson}/>

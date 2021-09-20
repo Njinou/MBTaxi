@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
         fontFamily:  fontKeys.MR,
         paddingLeft:11,
         color:'#3F4D5F',
-        fontSize:12,
+        fontSize:12, 
         marginLeft:36,
         marginRight:36,
         backgroundColor:'white',

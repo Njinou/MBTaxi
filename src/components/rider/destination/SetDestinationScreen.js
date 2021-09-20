@@ -21,29 +21,11 @@ const GOOGLE_MAPS_API_KEY = 'AIzaSyB6iuVD8X4sEeHAGHY3tmMQRyM_Vyoc3UU';
 //nestedScrollEnabled = {true}
 //org.reactjs.native.example.MBTaxi
 //com.mbouendeu.MBTaxi
-//select rider present Me iff rider is different from Me... otherwise Modal textinput and displays users by username... 
 //set prefer friends rider, and most frequent.....
-
-//on peut commencer par who is the rider et puis donner la possibilite a l'utilisateur de faire son choix.. 
-// on devra prendre user depuis homeRoute et obtenir a liste des users ..
 
 
 // LIMIT NUMBER OF ITEM TO A CERTAIN NUMBER AND INCREASING IT BY 5 
 
-/*
-
-            <View style={{flex:1,flexDirection:'row',justifyContent:'space-around',alignItems:'center',paddingTop:10,paddingBottom:10}}>
-               <TaxiText text={'Nombre de Passager'}  styleText={styles.prixText}/>
-                <TaxiText text={'Prix par Passager'} styleText={styles.prixText}/>
-                <TaxiText text={'Prix  Total'}  styleText={styles.prixText}/>
-            </View>
-
-*/
-
-
-  const ItemSaved = ({ item }) => {
-    return (<TaxiImageText image={imageKeys.history} text={item?.destination?.description? item?.destination?.description:JSON.stringify(item)}   style={{ flex: 1 }}  textStyle={{color:'#000000',fontFamily:fontKeys.MR,fontSize:14,flex:1}}/>)
-  };
 
   function childSaving(val){
     switch(val){
@@ -228,7 +210,19 @@ adaRef..child(key).remove()
         </Pressable>
       );
 
-      
+      const ItemSaved = ({ item }) => (
+       <TaxiImageText 
+          func={()=>{
+            setDestination(item.destination); 
+          setDestinationEditLocation(false)
+          }}
+          image={imageKeys.history} 
+          text={item?.destination?.description? item?.destination?.description:JSON.stringify(item)}   
+          style={{ flex: 1 }}  
+          textStyle={{color:'#000000',fontFamily:fontKeys.MR,fontSize:14,flex:1}}
+        />
+      );
+
 
       const renderItemSaved = ({ item }) => (
         <ItemSaved item={item} />
@@ -396,10 +390,9 @@ const showDatePicker = () => {
     .catch (error => console('error is ...',error))
   }
   
-  console.log("new printing of props extrada shit...",savedPlaces);
 
     return (
-        <ScrollView style={{height:'100%',backgroundColor:'white'}} nestedScrollEnabled={true}>
+        <ScrollView style={{height:'100%',backgroundColor:'white'}} >
            { props.selectingUser? <View style={{paddingTop:9,}}>  
                 <TaxiImageText 
                     image={imageKeys.profilegrey} 
@@ -570,7 +563,7 @@ const showDatePicker = () => {
             </Pressable>
             <View>
             
-            <ScrollView  style={{flex:1,paddingLeft:37,paddingTop:12,marginRight:37,marginBottom:10,}} nestedScrollEnabled={true}>
+            <ScrollView  style={{flex:1,paddingLeft:37,paddingTop:12,marginRight:37,marginBottom:10,}}  nestedScrollEnabled={true} >
             <FlatList
                 extraData={savedPlaces}
                 data={savedPlaces.length>0 ? savedPlaces.slice(0,savedResults): savedPlaces}
