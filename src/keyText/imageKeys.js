@@ -49,5 +49,7 @@ const imageKeys = {
     map: require("../assets/images/map.png"),
    yourlocation: require("../assets/images/yourlocation.png"),
    arrow: require("../assets/images/arrow.png"),
+   threedots: require('../assets/images/threedots.jpeg'),
+
  };
  export default imageKeys;

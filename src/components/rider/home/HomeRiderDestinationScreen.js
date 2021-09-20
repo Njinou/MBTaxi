@@ -227,7 +227,7 @@ const HomeRiderDestinationScreen: (props) => React$Node = (props) => {
           setOption(true);
           //props.navigation.navigate('riderDestination');
           }}>
-          <View style={{backgroundColor:'red',borderBottomLeftRadius:8,borderBottomRightRadius:8}}>
+          <View style={{backgroundColor:'white',borderBottomLeftRadius:8,borderBottomRightRadius:8}}>
             <TaxiImageText12 
                 image={imageKeys.stayyellow} 
                 text={textKeys.destination} 
@@ -251,18 +251,20 @@ const HomeRiderDestinationScreen: (props) => React$Node = (props) => {
    // const actionCodeInfo =  auth().checkActionCode('ABCD');
     //console.log('Action code operation: ', actionCodeInfo.operation);
     // <DestinationInputComp  getMaDestination={getMaDestination} getMalocation={getMalocation}/>
+
+    //<DestinationInputComp/>
   if (error) return null;
   if (location) {   return (
     <View style={{height:'100%'}}>
        <ImageBackground source={imageKeys.map} style={styles.image}>
          <View>
-         <DestinationInputComp/>
+         
          </View>
-         <View style={{flex:1,backgroundColor:'red'}}>     
+         <View style={{flex:1}}>     
          </View>
             <View style={{marginLeft:20,marginRight:15, }}> 
                   {props.option || option ? < RideOtherOptions setModalVisible={option} func={setModalFunc}/> :<>
-                    <TaxiImageTextInput  
+                  <TaxiImageTextInput  
                         style={{
                         backgroundColor:'white',
                         alignItems:'center',
@@ -270,7 +272,7 @@ const HomeRiderDestinationScreen: (props) => React$Node = (props) => {
                         marginBottom:1,
                         borderTopLeftRadius:8,
                         borderTopRightRadius:8,
-                        shadowColor: 'red',//rgba(170,170,170,0.5)',//'rgba(170,170,170,0.5)',
+                        shadowColor: 'rgba(170,170,170,0.5)',//'rgba(170,170,170,0.5)',
                         shadowOffset: { width: 0, height: 2 },
                         shadowOpacity: 2,
                         shadowRadius:8,

@@ -27,7 +27,7 @@ const DATA = [
     id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
     matricule: 'matricule ',
     driverID: 'driverId ',
-    nbrePlaces: 5,
+    nbrePlacesDisponible: 5,
     pu: '250',
     taxiType:'Taxi',
   },
@@ -35,7 +35,7 @@ const DATA = [
     id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
     matricule: 'matricule ',
     driverID: 'driverId ',
-    nbrePlaces: 2,
+    nbrePlacesDisponible: 2,
     pu: '300',
     taxiType:'Moto-Taxi',
   },
@@ -43,7 +43,7 @@ const DATA = [
     id: '58694a0f-3da1-471f-bd96-145571e29d72',
     matricule: 'matricule ',
     driverID: 'driverId ',
-    nbrePlaces: 20,
+    nbrePlacesDisponible: 20,
     pu: '250',
     taxiType:'Clando-Bus',
   },
@@ -91,6 +91,14 @@ const MotoPicket = () =>{
 // anticiper et mettre le nombre de people disponible  = nmbre place au max... 
 const SelectTaxiTypeScreen = (props) => {
 
+
+  let objInit = {...DATA[0]}
+  objInit.nbrePeople = 1;
+  objInit.prixTotal = DATA[0].pu;
+  objInit.bid= bid
+  objInit.price =  DATA[0].pu;
+   
+
     const [modalVisible, setModalVisible] = useState(false);
     const [isSearching,setIsSearching] = useState(false); 
     const [input,setInput] = useState(null); 
@@ -103,15 +111,52 @@ const SelectTaxiTypeScreen = (props) => {
     const [matchingDriver,setMatchingDriver] = useState(false);
     const [driverMatched,setDriverMatched] = useState(false);
     const [openModal,setOpenModal] = useState(false);
-    const [rideDetails,setRideDetails] = useState(null);
+    const [rideDetails,setRideDetails] = useState(objInit);
 
-    const [copayer,setCopayer] = useState([]);
+    const [copayer,setCopayer] = useState([
+      auth().currentUser
+   ]);
     const [cashValue,setCashValue] = useState (0);
     const [mesombValue,setMesombValue] = useState (prixTotal);
     const [user,setUser] = useState (auth().currentUser);
+    const [pu,setPu] = useState ((prixTotal/copayer.length).toFixed(2));
+   
+    const [inputs,setInputs] = useState([]);
+    const [inputsTrueFalse,setInputsTrueFalse] = useState([]);
 
-    gettingCopayer =(val) =>   {
-      setCopayer(val);
+
+    const [updatePrice,setUpdatePrice] = useState((prixTotal/copayer.length).toFixed(2));
+
+    gettingNewPriceVal = (val,index)=>  {
+      console.log('this is the index number...',index)
+      let temps =  [...inputs];
+      temps[index] = val;
+      setInputs(temps);
+      let tempTrueF = [...inputsTrueFalse];
+      tempTrueF[index] =true;
+      setInputsTrueFalse (tempTrueF);
+    }
+
+    useEffect ( ()=>{
+    let withPrice = copayer.map (rslt => {
+      let tmp = rslt;
+      tmp.price = prixTotal/copayer.length;
+      return tmp;
+    })
+    setCopayer (withPrice) ;
+   },[])
+
+    gettingUpdatePrice = (price) => {
+  //  setUpdatePrice[item.uid] = price;
+      setUpdatePrice(price);
+    }
+    gettingCopayer =(val) => {
+       let withPrice = val.map (rslt => {
+        let tmp = rslt;
+        tmp.price = prixTotal/val.length;
+        return tmp;
+      })
+      setCopayer (withPrice) ;//(val);
       /*if ( cop && Array.isArray(cop)){
         let PromiseCopayer = val.map( cop =>  mesombPayment(cop))
         Promise.all(PromiseCopayer).then(values => {
@@ -123,7 +168,61 @@ const SelectTaxiTypeScreen = (props) => {
       setCashValue(val); 
       setMesombValue(prixTotal - val);
     } 
-    closingModal = () =>setOpenModal(false);
+    closingModal = () => {
+      let valeurPrixTotal = copayer.reduce((a, b,key) => { if (inputsTrueFalse[key]) return (a + parseInt(inputs[key])); return (a + b.price);}, 0);
+      console.log("Voici la valeur totale apres... les modifications .. de la chose..  ",valeurPrixTotal);
+      if (valeurPrixTotal  != prixTotal) {
+        alert("Le prix ajuste ne correspond pas aux prix total")
+      }else {
+        Alert.alert(
+          "Confirmation des Frais",
+          "Voulez vous appliquer les differents montants aux utilisateurs choisis",
+          [
+            {
+              text: "Cancel",
+              onPress: () => console.log("Cancel Pressed"),
+              style: "cancel"
+            },
+            { text: "OK", onPress: () => {
+
+              let updateCopayerList = copayer.map( (element,key) => {
+                let obj= element
+                obj.price =  parseInt(inputs[key]);//inputsTrueFalse[key]? parseInt(inputs[key]) :element.price ;
+               // console.log( "in obj price this is the value... ",obj.price);
+                return obj;
+              })
+              console.log("Hwlllo update price ... and shit...",updateCopayerList)
+              //(updateCopayerList);
+            } }
+          ]
+        );
+      }
+
+      setOpenModal(false);
+    }
+
+
+    updatePriceCopayer = (item,newPrice)=>{
+      //if (newPrice >props.rideDetails.prixTotal)
+      // UPDATE QUAND L''UTILISATEUR A FINI SES MODIFICATIONS... ET EST SUR LE POINT DE SOUMETTRE SA REQUETTE ET LA NOUS POUVONS LA VALIDER SELON K LE TOTAL CORRESPONDE AU PRIC TOTAL.
+      //IL nous faut donc un tableau qui recupere ces valeurs...
+      /*let valeurPrixTotal = props.copayer.reduce((a, b) => { if (b.uid === item.uid) return (a + newPrice); return (a + b.price);}, 0);
+      if (valeurPrixTotal ===  props.rideDetails.prixTotal){
+        props.gettingUpdatePrice(newPrice);
+        let obj= item;
+        obj.price = newPrice; 
+       
+        let updateCopayerList = props.copayer.map( element => {
+          if (element.uid === item.uid) return obj;
+          return element;
+        })
+        props.gettingCopayer(updateCopayerList);
+      }else {
+        alert("Le prix total sera change si vous apporter cette modification.....")
+      }
+*/
+    }
+
 
     const  bidding = (val) =>  {setPrixTotal(val); setBidding(true); setMesombValue(val-cashValue)}
     const openingSplitPaymentModal = () =>  {
@@ -132,7 +231,11 @@ const SelectTaxiTypeScreen = (props) => {
      obj.nbrePeople = selectedPeople;
      obj.prixTotal = prixTotal;
      obj.bid= bid
+     setPu (prixTotal/copayer.length ? (prixTotal/copayer.length).toFixed(2) :0);
+     obj.price =  prixTotal/copayer.length ? (prixTotal/copayer.length).toFixed(2) :0;
+      
      setRideDetails(obj);
+     console.log(' the obj value for the total price ',obj);
     }
 
     const closingSplitPaymentModal = () =>  {
@@ -168,7 +271,6 @@ let numer = '237672634842';
     case "69": return "ORANGE";
     case "67": return "MTN";
     default:
-    console.log("not deux premier working ",deuxPremier);
   }
   switch (true){
     case operateur.MTN.includes(troisPremier): return "MTN";
@@ -177,7 +279,7 @@ let numer = '237672634842';
     case operateur.CAMTEL.includes(troisPremier): return "CAMTEL";
 
     default:
-    console.log("not TROIS PREMIERS .... working ",troisPremier);
+      return "UNKNOWN OPERATOR";
   }
  }
 
@@ -215,13 +317,21 @@ const mesombPayment = async (obj) => {
    console.log(false);
  }
 }
-
+/*
+firebase
+  .database()
+  .ref('users')
+  .orderByChild('emailAddress')
+  .equalTo(email)
+  .once('value', snap => console.log(snap.val()));
+*/
    requestRide = () =>{ 
      let obj = selectedTaxi;
      obj.nbrePeople = selectedPeople;
      obj.prixTotal = prixTotal;
      obj.bid= bid
      setRideDetails(obj);
+
      console.log(obj);
      setTimeout(function(){setMatchingDriver(true); }, 1500); //AUTOMATIC TO BE CHANGED
      setTimeout(function(){setMatchingDriver(false);  setDriverMatched(true)}, 3000);
@@ -292,6 +402,7 @@ const mesombPayment = async (obj) => {
               Verifier le paiment avant d'activer le bouton pour eviter les requetes inutiles"
             />
 */
+//openingSplitPaymentModal
 
 if (driverMatched) return <RideDetailsScreen />
 //useEffect or function to match the driver..... 
@@ -449,7 +560,19 @@ if (matchingDriver) return (
           {
             openModal &&  (
             <View style={styles.centeredView}>
-                <DisplayFareScreen gettingCopayer={gettingCopayer} rideDetails={rideDetails} closingModal={closingModal} closingSplitPaymentModal={closingSplitPaymentModal} />
+                <DisplayFareScreen 
+                  gettingCopayer={gettingCopayer} 
+                  rideDetails={rideDetails} 
+                  closingModal={closingModal} 
+                  closingSplitPaymentModal={closingSplitPaymentModal}  
+                  gettingUpdatePrice={gettingUpdatePrice} 
+                  updatePrice={updatePrice}
+                  pu ={pu}
+                  copayer={copayer}
+                  gettingNewPriceVal ={gettingNewPriceVal}
+                  inputsTrueFalse ={inputsTrueFalse}
+                  inputs ={inputs}
+            />
             </View>)
           }
         </ScrollView>

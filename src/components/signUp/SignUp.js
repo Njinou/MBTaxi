@@ -13,8 +13,10 @@ import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
 import storage from '@react-native-firebase/storage';
 
 import SignUpConfirmationCode from './SignUpConfirmationCode';
+import database from '@react-native-firebase/database';
 
 import TaxiText from '../common/TaxiText';
+import { FirebaseDatabaseTypes } from '@react-native-firebase/database';
 //displayName
 //photoURL
 //phoneNumber
@@ -158,7 +160,17 @@ async function confirmCode() {
       auth().currentUser.updateProfile(update);
       await auth().currentUser.updatePhoneNumber(authCredential);
     })
-    .then(() => {console.log("Updated successfully!"); setCreating(false);}) //setCreating(false);
+    .then(() => {
+      console.log("Updated successfully!"); 
+      setCreating(false);
+        database()
+        .ref('/allUsers')
+        .push(JSON.parse(JSON.stringify(auth().currentUser)))
+        .then(snapshot => {
+        console.log('Creating user : ', snapshot);
+      })
+      .catch(error => console.error(error))
+    }) //setCreating(false);
     .catch(error => {
       if (error.code === 'auth/email-already-in-use') {
         console.log('That email address is already in use!');
