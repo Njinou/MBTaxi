@@ -29,6 +29,7 @@ import database from '@react-native-firebase/database';
 import DestinationInputComp from './src/components/common/DestinationInputComp';
 
 import { NavigationContainer } from '@react-navigation/native';
+import MapsScreen from './src/components/maps/MapsScreen';
 
 const App: () => React$Node = () => {
 
@@ -75,7 +76,7 @@ const App: () => React$Node = () => {
 //sil nya pas de numero de telephone on met le modal ... 
 
 //return <DestinationInputComp/>
-
+return <MapsScreen/>
     if (initializing) return <ActivityIndicator size="large" color="#00ff00" />; 
       if (!user) {
         return (

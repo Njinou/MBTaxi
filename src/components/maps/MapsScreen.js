@@ -7,6 +7,10 @@ import Geocoder from 'react-native-geocoding';
 
 import MapViewDirections from 'react-native-maps-directions';
 import fontKeys from "../../keyText/fontKeys"
+import * as turf from "@turf/turf";
+import { FirebaseDatabaseTypes } from "@react-native-firebase/database"
+import MatchDriverScreen from "../rider/MatchDriver/MatchDriverScreen"
+import auth from '@react-native-firebase/auth';
 
 const GOOGLE_MAPS_API_KEY = 'AIzaSyB6iuVD8X4sEeHAGHY3tmMQRyM_Vyoc3UU';
 Geocoder.init(GOOGLE_MAPS_API_KEY, {language: 'en'});
@@ -25,6 +29,9 @@ const MapsScreen = () => {
     const [backgroundColor,setBackgroundColor] = useState('#fff');
     const [distance,setDistance] = useState(0);
     const [timing,setTiming] = useState(0);
+
+
+    const [featuresCollection,setFeaturesCollection] = useState([]);
 
     const handleLocationPermission = async () => { 
         let permissionCheck = ""
@@ -156,6 +163,147 @@ Geocoder.from(41.89, 12.49)
 
       const destination = {latitude: 3.866667, longitude: 11.516667};
 
+      const neighbors = () =>{
+
+      }
+      /*
+      1)- envoyer continuellement les coordinates
+      2)- dans mon tableau des 10 points, je remplace les points les plus proches... du target points en fonction de la distance qui les separe.... item.geometry.properties.distanceToPoint
+      3)- prendre la base sur laquelle on a deja compare ...et comparer aux nouvelles entrees ... si le chauffeur changer de route... il peut se rapprocher de la destination 
+      4)-
+      
+      dans un map on sauvegarde les distances en fonction des target points et puis on filtre juste pour prendre les distances minimales ... 
+      // et retourner les nearest .... 
+      programmation dynamik...
+      sauvegarder les distances 
+      */
+      function compareDistance(a, b) {
+        //properties
+        return a.properties.distanceToPoint - b.properties.distanceToPoint;
+      }
+
+      /*
+      
+function savinData (tab, val ){
+  let cle =  tab.toString()  + '[' + val + ']';
+ return cle;
+}
+
+console.log(savinData([1, [1, 1]],[2,3]));
+
+a.set(savinData([1, [1, 1]],[2,3]),0989);
+//console.log(a.get(savinData([1, 1, 1],[2,3])))
+console.log(a.get(savinData([1, [1, 1]],[2,3])));
+      */
+
+/*
+
+
+function sortingArray (a,b){
+ return a-b;
+}
+
+function neighborPointMod(targetPoint,points) {
+        // Input validation
+        
+        let arraySize = points.length<=10? points.length: 10;
+        var neighborArray =  new Array(arraySize);
+        for (j=0 ; j <neighborArray.length; j++){
+          neighborArray[j] =  points[j];
+        }
+        neighborArray = neighborArray.sort(sortingArray);
+        points.slice(arraySize, points.length).map( pt => {
+          const distanceToPoint =  Math.abs(targetPoint - pt);
+
+          //neighborArray = neighborArray.sort(compareDistance); //sortng after each point 
+          let tempVal = 0; // shift of one case to the right ....
+           for (i =0 ; i<neighborArray.length; i++){
+             
+              console.log("This is the  state of the array at the moment...before condition",neighborArray)
+             if (distanceToPoint< Math.abs(targetPoint -neighborArray[i])) {
+              //neighborArray.shift();
+              neighborArray.splice(i+1,0,pt);
+              neighborArray =neighborArray.slice(0,neighborArray.length-1);
+
+              let closest = pt;
+             // neighborArray[i] = closest;
+              //neighborArray.splice(i,0,pt);
+              break;
+             } 
+           }
+          
+        });
+        return neighborArray;
+      }
+      
+      let testArray = [14,-9,5,33,96,-1,0,75,54,-23,-22];
+      //console.log("original array... ", testArray);
+      neighborPointMod(0,testArray);
+
+*/
+
+function sortingArray (a,b){
+  return a-b;
+ }
+      function neighborPointMod(
+        targetPoint,points) {
+        // Input validation
+        if (!targetPoint) throw new Error("targetPoint is required");
+        if (!points) throw new Error("points is required");
+        
+        let finalArray = [];
+        let arraySize = points.length<=10? points.length: 10;
+        var neighborArray =  new Array(arraySize);
+        for (j=0 ; j <neighborArray.length; j++){
+
+          neighborArray[j] = turf.clone(points.features[j]);
+          neighborArray[j].properties.featureIndex = j;
+          neighborArray[j].properties.distanceToPoint = turf.distance(targetPoint, neighborArray[j]);
+        }
+        
+        neighborArray = neighborArray.sort(compareDistance);
+      
+        turf.featureEach(points, (pt, featureIndex) => {
+          const distanceToPoint = turf.distance(targetPoint, pt);
+
+          for (i =0 ; i<neighborArray.length; i++){
+             if (distanceToPoint< neighborArray[i].properties.distanceToPoint) {
+               if (i === 0) console.log ("Here at the beginning" , JSON.stringify(neighborArray));
+              let closest = turf.clone(points.features[featureIndex]);
+              closest.properties.featureIndex = featureIndex;
+              closest.properties.distanceToPoint = distanceToPoint;
+              neighborArray.splice(i,0,closest);
+              neighborArray =neighborArray.slice(0,neighborArray.length-1);
+              break;
+             } 
+           }
+        });
+        return neighborArray;
+      }
+
+      function nearestPointMod(
+        targetPoint,points) {
+        // Input validation
+        if (!targetPoint) throw new Error("targetPoint is required");
+        if (!points) throw new Error("points is required");
+          
+        let nearest;
+        let minDist = Infinity;
+        let bestFeatureIndex = 0;
+        
+        turf.featureEach(points, (pt, featureIndex) => {
+          const distanceToPoint = turf.distance(targetPoint, pt);
+           
+          if (distanceToPoint < minDist) {
+            bestFeatureIndex = featureIndex;
+            minDist = distanceToPoint;
+          }
+        });
+        nearest = turf.clone(points.features[bestFeatureIndex]);
+        nearest.properties.featureIndex = bestFeatureIndex;
+        nearest.properties.distanceToPoint = minDist;
+        return nearest;
+      }
       /*
       Distance: 244.741 km
 [Fri Sep 10 2021 23:24:07.434]  LOG      Duration: 257.25 min
@@ -217,7 +365,36 @@ Geocoder.from(41.89, 12.49)
                   setDistance(result.distance.toFixed(2))
                   setTiming(result.duration)
                   console.log(`Distance: ${result.distance} km`)
-                  console.log(`Duration: ${result.duration} min.`)   
+                  console.log(`Duration: ${result.duration} min.`) 
+                 // let featurePoints = result.coordinates.map ( element => new Array(element.longitude, element.latitude));
+                 
+                  var targetPoint = turf.point([9.738832, 4.057143], {"marker-color": "#0F0"});
+                  var points = turf.featureCollection( result.coordinates.map( rslt => turf.point([rslt.longitude,rslt.latitude])))
+                  var nearest = nearestPointMod(targetPoint, points);
+                  let uid = auth().currentUser.uid;
+
+                  let obj= {
+                    [uid]:points
+                  }
+
+                  neighborPointMod(targetPoint, points);
+
+                  console.log("Obj obj obj",nearest)
+                  //database.ref('/request/date').set()
+                  //function(targetPoint) return 
+                  console.log ('it is not possible ', location);
+
+                 /* var targetPoint = turf.point([28.965797, 41.010086], {"marker-color": "#0F0"});
+                  var points = turf.featureCollection([
+                      turf.point([28.973865, 41.011122]),
+                      turf.point([28.948459, 41.024204]),
+                      turf.point([28.938674, 41.013324])
+                  ]);
+
+                  var nearest = turf.nearestPoint(targetPoint, points);
+                  console.log("nearest neearest ",nearest);*/
+                  //select only taxi that still have seats availabl
+                  //allow driver to speficy if they pick up someone other from the app so i will know the exact number of seats available ..
                 }}
             />
             <Marker
