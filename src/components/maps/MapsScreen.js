@@ -1,6 +1,6 @@
 import React, { useEffect,useState ,useRef} from "react"
 import { SafeAreaView, StatusBar, StyleSheet,TextInput,View,Modal ,Text,Pressable,PanResponder,Animated,useWindowDimensions,} from "react-native"
-import MapView, { PROVIDER_GOOGLE,Marker } from "react-native-maps"
+import MapView, { PROVIDER_GOOGLE,Marker, Circle } from "react-native-maps"
 import { check, request, PERMISSIONS, RESULTS } from "react-native-permissions" //
 import Geolocation from "react-native-geolocation-service"
 import Geocoder from 'react-native-geocoding';
@@ -8,7 +8,7 @@ import Geocoder from 'react-native-geocoding';
 import MapViewDirections from 'react-native-maps-directions';
 import fontKeys from "../../keyText/fontKeys"
 import * as turf from "@turf/turf";
-import { FirebaseDatabaseTypes } from "@react-native-firebase/database"
+import database from "@react-native-firebase/database"
 import MatchDriverScreen from "../rider/MatchDriver/MatchDriverScreen"
 import auth from '@react-native-firebase/auth';
 
@@ -184,7 +184,7 @@ Geocoder.from(41.89, 12.49)
 
       /*
       
-function savinData (tab, val ){
+function savinDataMap (tab, val ){
   let cle =  tab.toString()  + '[' + val + ']';
  return cle;
 }
@@ -195,6 +195,15 @@ a.set(savinData([1, [1, 1]],[2,3]),0989);
 //console.log(a.get(savinData([1, 1, 1],[2,3])))
 console.log(a.get(savinData([1, [1, 1]],[2,3])));
       */
+
+
+function savinDataMap (tab, val ){
+  let cle =  tab.toString()  + ';' + val ;
+ return cle;
+}
+
+const closestPointSol = new Map();
+
 
 /*
 
@@ -247,7 +256,7 @@ function sortingArray (a,b){
  }
       function neighborPointMod(
         targetPoint,points) {
-        // Input validation
+         // Input validation
         if (!targetPoint) throw new Error("targetPoint is required");
         if (!points) throw new Error("points is required");
         
@@ -268,7 +277,6 @@ function sortingArray (a,b){
 
           for (i =0 ; i<neighborArray.length; i++){
              if (distanceToPoint< neighborArray[i].properties.distanceToPoint) {
-               if (i === 0) console.log ("Here at the beginning" , JSON.stringify(neighborArray));
               let closest = turf.clone(points.features[featureIndex]);
               closest.properties.featureIndex = featureIndex;
               closest.properties.distanceToPoint = distanceToPoint;
@@ -308,6 +316,10 @@ function sortingArray (a,b){
       Distance: 244.741 km
 [Fri Sep 10 2021 23:24:07.434]  LOG      Duration: 257.25 min
       */
+
+hashCode = s => s.split('').reduce((a,b)=>{a=((a<<5)-a)+b.charCodeAt(0);return a&a},0)
+
+
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar barStyle="dark-content" />
@@ -367,8 +379,9 @@ function sortingArray (a,b){
                   console.log(`Distance: ${result.distance} km`)
                   console.log(`Duration: ${result.duration} min.`) 
                  // let featurePoints = result.coordinates.map ( element => new Array(element.longitude, element.latitude));
-                 
-                  var targetPoint = turf.point([9.738832, 4.057143], {"marker-color": "#0F0"});
+                  
+                 var targetAltitude = [9.738832, 4.057143];
+                  var targetPoint = turf.point(targetAltitude, {"marker-color": "#0F0"});
                   var points = turf.featureCollection( result.coordinates.map( rslt => turf.point([rslt.longitude,rslt.latitude])))
                   var nearest = nearestPointMod(targetPoint, points);
                   let uid = auth().currentUser.uid;
@@ -379,8 +392,36 @@ function sortingArray (a,b){
 
                   neighborPointMod(targetPoint, points);
 
+                  //ici nous allons sauvegarder les coordonnees .. et non les points....
+                  pointsAltitude = result.coordinates.map( rslt => [rslt.longitude,rslt.latitude]);
+
+                 /* if (!(savinDataMap(pointsAltitude,targetAltitude) in closestPointSol) ) {
+                    closestPointSol.set(savinDataMap(pointsAltitude,targetAltitude),neighborPointMod(targetPoint, points))
+                  }
+                  closestPointSol.get(savinDataMap(pointsAltitude,targetAltitude))*/
+
                   console.log("Obj obj obj",nearest)
-                  //database.ref('/request/date').set()
+                   
+                  //initialise pour recupere la precedente valeur .... 
+                 /* database()
+                  .ref('/maps/neighbor')
+                  .set({
+                    [savinDataMap(pointsAltitude,targetAltitude)]: neighborPointMod(targetPoint, points)
+                  })
+                  .then(() => console.log('Data set.'));*/
+                    let arr = result.coordinates.map( rslt =>  '(' +JSON.stringify(rslt.longitude).replace(".", "+") + ';' +JSON.stringify(rslt.latitude).replace(".", "+") +')' );   
+                    let  reducerPoints = arr.reduce((previousValue, currentValue) => previousValue + currentValue)
+                    reducerPoints = reducerPoints + `:${targetAltitude}`;
+                    console.log(reducerPoints.length);
+                    console.log(" reducerPoints reducerPoints  reducerPoints reducerPoints   ",hashCode(reducerPoints)); 
+                   
+                    let june  = JSON.stringify(hashCode(arr[0]));
+                    
+                    database()
+                    .ref('/maps/neighbor')
+                    .child(june)
+                    .set(neighborPointMod(targetPoint, points));
+
                   //function(targetPoint) return 
                   console.log ('it is not possible ', location);
 
