@@ -76,7 +76,7 @@ const App: () => React$Node = () => {
 //sil nya pas de numero de telephone on met le modal ... 
 
 //return <DestinationInputComp/>
-return <MapsScreen/>
+//return <MapsScreen/>
     if (initializing) return <ActivityIndicator size="large" color="#00ff00" />; 
       if (!user) {
         return (

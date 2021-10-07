@@ -289,6 +289,8 @@ function sortingArray (a,b){
         return neighborArray;
       }
 
+      // let cardnt = geometry.coordinates;
+      //let db= JSON.stringify(cardnt[0]).replace('.','+') +','+JSON.stringify(cardnt[1]).replace('.','+');
       function nearestPointMod(
         targetPoint,points) {
         // Input validation
@@ -383,12 +385,49 @@ hashCode = s => s.split('').reduce((a,b)=>{a=((a<<5)-a)+b.charCodeAt(0);return a
                  var targetAltitude = [9.738832, 4.057143];
                   var targetPoint = turf.point(targetAltitude, {"marker-color": "#0F0"});
                   var points = turf.featureCollection( result.coordinates.map( rslt => turf.point([rslt.longitude,rslt.latitude])))
+                  
                   var nearest = nearestPointMod(targetPoint, points);
                   let uid = auth().currentUser.uid;
 
                   let obj= {
                     [uid]:points
                   }
+                   
+                  database()
+                  .ref('/drivers/midPoints')
+                  .on('value', snapshot => {
+
+                    let driversMidPointsKey = Object.entries(snapshot.val());
+
+                     let  lamere = driversMidPointsKey.map( pndt => {
+
+                      var pointes = turf.featureCollection( pndt[1].map( rslt => {
+                        let obj = turf.point(rslt);
+                        obj.driverID= pndt[0];
+                        return obj;
+                      }
+                      ));
+                      return nearestPointMod(targetPoint, pointes)
+                    })  
+                    
+                    lamere.map( lam => 
+                      { 
+                        let db= JSON.stringify(lam.geometry.coordinates[0]).replace('.','+') +','+JSON.stringify(lam.geometry.coordinates[1]).replace('.','+');
+                        database().ref('/users/neighborDrivers/' + auth().currentUser.uid).child(db).set(lam)
+                      }
+                    )
+                    //nearestPointMod
+                    console.log("finally working ... ",lamere)
+
+                   /*
+                      var pointes = turf.featureCollection( driversMidPointsKey[1].map( rslt => {
+                          let obj = turf.point(rslt);
+                          obj.key= driversMidPointsKey[0];
+                          return obj;
+                        }
+                        ));
+                       console.log("car found found found ....", neighborPointMod(targetPoint, pointes))*/
+                  })
 
                   neighborPointMod(targetPoint, points);
 
@@ -416,9 +455,20 @@ hashCode = s => s.split('').reduce((a,b)=>{a=((a<<5)-a)+b.charCodeAt(0);return a
                     console.log(" reducerPoints reducerPoints  reducerPoints reducerPoints   ",hashCode(reducerPoints)); 
                    
                     let june  = JSON.stringify(hashCode(arr[0]));
+                    let trying = "trying";
+                    try{
+
+                    }
+                    catch(e){}
+                     
+                    // location/uid/ push set location driver on realtime... push with timestamp ... 
+                    // location/targetPoint/ uid : points...
+                    // trigger once a request is made... /request/{destinationId}/{uid}
+                    // 
                     
+                    //
                     database()
-                    .ref('/maps/neighbor')
+                    .ref(`/maps/neighbor/${trying}`)
                     .child(june)
                     .set(neighborPointMod(targetPoint, points));
 

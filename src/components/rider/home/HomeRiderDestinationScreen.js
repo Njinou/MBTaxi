@@ -32,6 +32,7 @@ import DestinationInputComp from '../../common/DestinationInputComp';
 import { Value } from 'react-native-reanimated';
 
 import auth from '@react-native-firebase/auth';
+import { now } from 'lodash';
 
 
 const GOOGLE_MAPS_API_KEY = 'AIzaSyB6iuVD8X4sEeHAGHY3tmMQRyM_Vyoc3UU';
@@ -55,7 +56,8 @@ for (i = 0; i < words1.length; i++) {
 }
 return total;
 }
-
+// pickp : location :
+//destination : value
 const HomeRiderDestinationScreen: (props) => React$Node = (props) => {
     const [destination,setDestination] = useState(null);
     const [isSearchingAddress,setIsSearchingAddress] = useState(true);
@@ -159,18 +161,10 @@ const HomeRiderDestinationScreen: (props) => React$Node = (props) => {
             } = res.results[0];
             setCurrentAddress(formatted_address);
             setLocationAddress(res.results[0]);
-            //same for revere geocoding 
-            
-            // Search by geo-location (reverse geo-code)
-      /*Geocoder.from(location)
-		.then(json => {
-        		var addressComponent = json.results[0].address_components[0];
-			console.log('addressComponent .........??????????????!!!!!',addressComponent);
-		})
-		.catch(error => console.warn(error));*/
-            
+            //same for revere geocoding             
         })
-            setLocation({ latitude, longitude })
+            setLocation({ latitude, longitude });
+            console.log("Inside the shit...");
           },
           error => {
             console.log(error.code, error.message)
@@ -218,6 +212,7 @@ const HomeRiderDestinationScreen: (props) => React$Node = (props) => {
       );
       const Item = ({ item}) => (
         <Pressable onPress={() =>  {
+          try{
           //setInsertDestinationValue(true);
           setIsSearchingAddress(false);
           setValue(item);
@@ -226,7 +221,65 @@ const HomeRiderDestinationScreen: (props) => React$Node = (props) => {
           //setTimeout(function(){ props.navigation.navigate('option') }, 1000);
           setOption(true);
           //props.navigation.navigate('riderDestination');
-          }}>
+          
+          let db= JSON.stringify(location.latitude).replace('.','+') +','+JSON.stringify(location.longitude).replace('.','+');
+
+          database()
+          .ref('/users/pickupPoint')
+          .child(db)
+          .push(auth().currentUser.uid)
+          .then(() => console.log('Data set.'));
+           
+
+           /*//reversing it ....
+           let deta = "4+0226,9+7018";
+            detaSplit = deta.split(',');
+            let filterere = detaSplit.map( elmnt =>  Number((elmnt.replace("+","."))))
+            console.log("filterere filterere ",filterere);*/
+         /* var obj = {
+            targetPoint:[],
+            pickupPoint:[],
+            datetime:now(),
+
+          }*/
+          
+          Geocoder.from(item.description)
+		      .then(json => {
+			      var locationa = json.results[0].geometry.location;
+		    	console.log(" value description value description ..... ",locationa);
+          
+          //pousser et prendre juste le dernier....
+          /*let trajectoire ={
+            depart:[location.latitude,location.longitude],
+            arrivee:[locationa.lat,locationa.lng]
+          }
+          database()
+          .ref('/users/' + auth().currentUser.uid + '/trajectory')
+          .push(trajectoire)
+          .then(() => console.log('Data set.'));*/
+
+
+            let dba = JSON.stringify(locationa.lat).replace('.','+') +','+JSON.stringify(locationa.lng).replace('.','+');
+          database()
+          .ref('/users/destinationPoint/' + dba)
+          .child('clients')
+          .push(auth().currentUser.uid)
+          .then(() => console.log('Data set.'));
+         // {"lat": 4.0945282, "lng": 9.7699599}
+		      })
+		      .catch(error => {
+            console.warn(error);
+            });
+           
+            // {"latitude": 4.0226, "longitude": 9.7018}
+          console.log('location location ...',location); //location
+          console.log('value value..... ',item);
+          }
+          catch(e){
+            console.log("Catcheing loge",e)
+          }
+        }
+          }>
           <View style={{backgroundColor:'white',borderBottomLeftRadius:8,borderBottomRightRadius:8}}>
             <TaxiImageText12 
                 image={imageKeys.stayyellow} 
@@ -287,7 +340,6 @@ const HomeRiderDestinationScreen: (props) => React$Node = (props) => {
                         inputStyle={{borderWidth:0,marginRight:24,marginTop :17,
                         }}
                         func={onChangeText}
-                        onSubmitEditing={onSubmitEditing}
                         value= {isSearchingAddress? textInput :  value.description.split(',')[0]}
                     /> 
                      <FlatList
