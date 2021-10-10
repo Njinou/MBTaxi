@@ -337,13 +337,13 @@ firebase
      setTimeout(function(){setMatchingDriver(false);  setDriverMatched(true)}, 3000);
    }
 
-    const ViewPrice = (item) =>{
+    const ViewPrice = (itemSelected) =>{
       return (
         <View style={{flex:1,flexDirection:'row',alignItems:'center'}}>
           <Image source={imageKeys.greenfilledcheck} style={{marginRight:5}}/>
           <View >
             <Text style={{fontSize:16,color:'#000000',fontFamily:fontKeys.MR}}>
-              {item.taxiType? item.taxiType: 'Taxi'} 
+              {itemSelected.item.taxiType} 
             </Text>
             <Text  style={{fontSize:12,color:'#878787',fontFamily:fontKeys.MR}}>
               {selectedPeople >1 ? selectedPeople + ' People':  selectedPeople + ' Person'}
@@ -354,7 +354,8 @@ firebase
     }
 
     const Item = ({ item }) => (
-      <Pressable onPress={ ()=>  {setSelectedTaxi(item); setPrixUnitaire(item.pu); setPrixTotal(selectedPeople * item.pu);setMesombValue (selectedPeople * item.pu - cashValue) }}>
+      <Pressable onPress={ ()=>  {
+        setSelectedTaxi(item); setPrixUnitaire(item.pu); setPrixTotal(selectedPeople * item.pu);setMesombValue (selectedPeople * item.pu - cashValue) }}>
        {item.id === selectedTaxi?.id ? < PriceMoto componentTopLeft={<ViewPrice item={item}/>} textBottomLeft={<MotoPicket/>} textTopRight={item.pu} 
                  style={{flex:1,alignItems:'center'}}
                  styleTopRight={{color:'#3F4D5F',marginBottom:50,fontSize:18,fontFamily:fontKeys.MR,}}

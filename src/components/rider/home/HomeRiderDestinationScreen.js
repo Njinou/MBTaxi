@@ -223,12 +223,31 @@ const HomeRiderDestinationScreen: (props) => React$Node = (props) => {
           //props.navigation.navigate('riderDestination');
           
           let db= JSON.stringify(location.latitude).replace('.','+') +','+JSON.stringify(location.longitude).replace('.','+');
+           
 
           database()
-          .ref('/users/pickupPoint')
-          .child(db)
-          .push(auth().currentUser.uid)
-          .then(() => console.log('Data set.'));
+          .ref('/users/pickupPoint/' + db)
+          .child('clients')
+          .on('value', snapshot => {
+            if (snapshot.exists()){
+            let isAlreadyIn = Object.values(snapshot.val());
+            console.log("asdasdasdadsd",isAlreadyIn);
+              if (!isAlreadyIn.includes(auth().currentUser.uid))  {
+                database()
+                .ref('/users/pickupPoint/' + db )
+                .child('clients')
+                .push(auth().currentUser.uid)
+                .then(() => console.log('Data set.'));
+              }
+          } else {
+              database()
+              .ref('/users/pickupPoint/' + db )
+              .child('clients')
+              .push(auth().currentUser.uid)
+              .then(() => console.log('Data set.'));
+          }})
+
+          
            
 
            /*//reversing it ....
@@ -257,14 +276,40 @@ const HomeRiderDestinationScreen: (props) => React$Node = (props) => {
           .ref('/users/' + auth().currentUser.uid + '/trajectory')
           .push(trajectoire)
           .then(() => console.log('Data set.'));*/
-
-
-            let dba = JSON.stringify(locationa.lat).replace('.','+') +','+JSON.stringify(locationa.lng).replace('.','+');
-          database()
-          .ref('/users/destinationPoint/' + dba)
-          .child('clients')
+           
+       
+         // .set(auth().currentUser.uid)
+          let  derpart = JSON.stringify(location.latitude).replace('.','+') +','+JSON.stringify(location.longitude).replace('.','+');
+          let  arrve = JSON.stringify(locationa.lat).replace('.','+') +','+JSON.stringify(locationa.lng).replace('.','+');
+          /*database()
+          .ref('/users/destinationPoint/' + arrve + '/clients')
+          .child(derpart)
           .push(auth().currentUser.uid)
-          .then(() => console.log('Data set.'));
+          .then(() => console.log('Data set.'));*/
+
+
+          database()
+          .ref('/users/destinationPoint/' + arrve + '/clients')
+          .child(derpart)
+          .on('value', snapshot => {
+            if (snapshot.exists()){
+
+            let isAlreadyIn = Object.values(snapshot.val());
+            if (!isAlreadyIn.includes(auth().currentUser.uid))  {
+              database()
+              .ref('/users/destinationPoint/' + arrve + '/clients')
+              .child(derpart)
+              .push(auth().currentUser.uid)
+            }
+
+            }else{
+              database()
+              .ref('/users/destinationPoint/' + arrve + '/clients')
+              .child(derpart)
+              .push(auth().currentUser.uid)
+            }
+          })
+          
          // {"lat": 4.0945282, "lng": 9.7699599}
 		      })
 		      .catch(error => {

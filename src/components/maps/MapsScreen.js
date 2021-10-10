@@ -261,7 +261,7 @@ function sortingArray (a,b){
         if (!points) throw new Error("points is required");
         
         let finalArray = [];
-        let arraySize = points.length<=10? points.length: 10;
+        let arraySize = points.features.length<=10? points.features.length: 10;
         var neighborArray =  new Array(arraySize);
         for (j=0 ; j <neighborArray.length; j++){
 
@@ -375,17 +375,17 @@ hashCode = s => s.split('').reduce((a,b)=>{a=((a<<5)-a)+b.charCodeAt(0);return a
                 apikey={GOOGLE_MAPS_API_KEY}
                 strokeWidth ={5}
                 strokeColor="black"
-                onReady={result => {
+                onReady={ async  result => {
                   setDistance(result.distance.toFixed(2))
                   setTiming(result.duration)
                   console.log(`Distance: ${result.distance} km`)
                   console.log(`Duration: ${result.duration} min.`) 
                  // let featurePoints = result.coordinates.map ( element => new Array(element.longitude, element.latitude));
                   
-                 var targetAltitude = [9.738832, 4.057143];
+                 var targetAltitude = [ 4.057143,9.738832,];
                   var targetPoint = turf.point(targetAltitude, {"marker-color": "#0F0"});
                   var points = turf.featureCollection( result.coordinates.map( rslt => turf.point([rslt.longitude,rslt.latitude])))
-                  
+
                   var nearest = nearestPointMod(targetPoint, points);
                   let uid = auth().currentUser.uid;
 
@@ -393,7 +393,7 @@ hashCode = s => s.split('').reduce((a,b)=>{a=((a<<5)-a)+b.charCodeAt(0);return a
                     [uid]:points
                   }
                    
-                  database()
+                  /*database()
                   .ref('/drivers/midPoints')
                   .on('value', snapshot => {
 
@@ -418,16 +418,71 @@ hashCode = s => s.split('').reduce((a,b)=>{a=((a<<5)-a)+b.charCodeAt(0);return a
                     )
                     //nearestPointMod
                     console.log("finally working ... ",lamere)
+                  })*/
+                 
+                  
+                  let arrayObj = [];
+                  
+                  const snapshot = await database().ref('/drivers/position/').child('k1GIi6YhWHQpQ5XIuV3y4Q7TTgN2').once('value') //orderByValue().equalTo("4+0394,9+687").once('value')
+                  restaurantData = snapshot.val()
+                  restaurantData = restaurantData.split(",")
+                  restaurantData = restaurantData.map( elmnt =>  Number((elmnt.replace("+","."))))
 
-                   /*
-                      var pointes = turf.featureCollection( driversMidPointsKey[1].map( rslt => {
-                          let obj = turf.point(rslt);
-                          obj.key= driversMidPointsKey[0];
-                          return obj;
-                        }
-                        ));
-                       console.log("car found found found ....", neighborPointMod(targetPoint, pointes))*/
+                  console.log("restaurantData restaurantData restaurantData ",restaurantData);
+                    //map. (val =>  driverId = val[0] )
+                 /* database().ref('/drivers/position/').once ('value',   snapshot =>{ //"4+0394,9+687"
+                    if (snapshot.exists()){
+                      let altitudePoint = (Object.values(snapshot.val())[0]).split(',');
+                      altitudePoint = altitudePoint.map( elmnt =>  Number((elmnt.replace("+","."))));
+                      let obj = {};
+                      obj.point = altitudePoint
+                      obj.driverID = 'lam.driverID'
+                      console.log("Helloooooo",obj);
+                     // await  arrayObj.push(obj);
+                      return obj;
+                    //  return obj; //return admin.database().ref("/GrassPondo").child(snapshot.val()).push(obj);
+                    }else{
+                      console.log("Helloooooo It is not happening here ... ")
+                    }
+                  })*/
+
+
+
+                  database()
+                  .ref('/drivers/position')
+                  .on('value', snapshot => {
+                    let driversMidPointsKey = Object.entries(snapshot.val());
+                   // let altitudePoint = context.params.picupID.split(',');
+                    let  altitudePoint =  [location.latitude,location.longitude]; //altitudePoint.map( elmnt =>  Number((elmnt.replace("+","."))));
+                    var targetPoint = turf.point(altitudePoint, {"marker-color": "#0F0"});
+                    let pickupID= JSON.stringify(location.latitude).replace('.','+') +','+JSON.stringify(location.longitude).replace('.','+');
+                    /*var pointes =  driversMidPointsKey.map ( drky => { 
+                     let turfPointes = turf.featureCollection( drky.map( rslt => {
+                        let obj = turf.point(rslt[1]);
+                        obj.driverID= rslt[0];
+                        return obj;
+                      }
+                      ));
+                      return  neighborPointMod(targetPoint,turfPointes);
+                     })*/
+
+                     let pointsWithDriverID = turf.featureCollection( driversMidPointsKey.map (elmnt => {
+                      let altitudePoinet = elmnt[1].split(',');
+                         let rsltFina =  altitudePoinet.map( elmnt =>  Number((elmnt.replace("+","."))));
+                          console.log("here are the right and wrong.. ", rsltFina);
+                        let  obj= turf.point(rsltFina)
+                        obj.driverID = elmnt[0]
+                       return obj;
+                     }))
+                    // console.log(" PKOI CELA MARCHE ET PAS L'AUTRE.... . ",neighborPointMod(targetPoint,pointsWithDriverID) );
+                      database().ref('/users/pickupPoint/' + pickupID + '/neighbor').set(neighborPointMod(targetPoint, pointsWithDriverID))
+                      .then(() => console.log('Data set. in pickupPoint... '))
+                      .catch( error => console.log("error",error))
+                    
                   })
+
+
+
 
                   neighborPointMod(targetPoint, points);
 
