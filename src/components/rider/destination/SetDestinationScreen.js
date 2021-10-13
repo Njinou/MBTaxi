@@ -91,10 +91,12 @@ const SetDestinationScreen = (props) =>{
     const [destination, setDestination] = useState(props.route.params.destination);
     const [location, setLocation] = useState(props.route.params.location);
     const [longLat, setLongLat] = useState(props.route.params.currentPosition);
+
     const [addressStop, setAddressStop] = useState(null);
     const AjouterStop = () => {SetStop(true);}
     const removeStop = () => SetStop(false);
     const addRiders = () => setMeRider(textKeys.rider.address.whor);
+    
     
     const [data,setData] = useState([]);
     const [recentsPlaces,setRecentsPlaces] = useState([]); //afficher les directions recentes
@@ -384,7 +386,8 @@ const showDatePicker = () => {
   reference.child(newVal.key).set(ride).then( (res) => {
     console.log("Ride save !!!!!",res);
     //select
-     props.navigation.navigate('select');
+     //props.navigation.navigate('select');
+    props.navigation.navigate('select',{destination:destination,location:location, arrayDepart: props.route.params.arrayDepart, arrayArrive: props.route.params.arrayArrive },)
     }
     )
     .catch (error => console('error is ...',error))

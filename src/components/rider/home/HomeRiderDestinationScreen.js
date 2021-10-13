@@ -78,6 +78,9 @@ const HomeRiderDestinationScreen: (props) => React$Node = (props) => {
     const [maLocation,setMaLocation] = useState(null);
     const [maDestination,setMaDestination] =useState(null);
 
+    const  [arrayDepart, setArrayDepart] = useState([]);
+    const [arrayArrive ,setArrayArrive]  = useState([]);
+
     getMalocation =(val) => console.log("ma location DATA ",data);//setMaLocation (val)
     getMaDestination =(val) =>  console.log("Destination");//setMaDestination (val)
     
@@ -172,7 +175,7 @@ const HomeRiderDestinationScreen: (props) => React$Node = (props) => {
           { enableHighAccuracy: true, timeout: 15000, maximumAge: 10000 }
         )
       }, [])
- const setModalFunc = (val) => {setOption(false); props.navigation.navigate('dest2',{ option:val,destination:value,location:locationAddress,currentPosition:location },); setOptionValue(val); } //va dans option ride 
+ const setModalFunc = (val) => {setOption(false); props.navigation.navigate('dest2',{ option:val,destination:value,location:locationAddress,currentPosition:location, arrayDepart: arrayDepart,arrayArrive: arrayArrive },); setOptionValue(val); } //va dans option ride 
 
      APIPlaceAutocomplete = (destination, currentPlace) => {
        const URL = `https://maps.googleapis.com/maps/api/place/autocomplete/json?key=${GOOGLE_MAPS_API_KEY}&input=${destination}&location=${currentPlace.latitude},${currentPlace.longitude}&radius=2000`;
@@ -281,6 +284,9 @@ const HomeRiderDestinationScreen: (props) => React$Node = (props) => {
          // .set(auth().currentUser.uid)
           let  derpart = JSON.stringify(location.latitude).replace('.','+') +','+JSON.stringify(location.longitude).replace('.','+');
           let  arrve = JSON.stringify(locationa.lat).replace('.','+') +','+JSON.stringify(locationa.lng).replace('.','+');
+          setArrayDepart([location.latitude,location.longitude]); // 
+          setArrayArrive([locationa.lat,locationa.lng]); // 
+
           /*database()
           .ref('/users/destinationPoint/' + arrve + '/clients')
           .child(derpart)
@@ -309,7 +315,7 @@ const HomeRiderDestinationScreen: (props) => React$Node = (props) => {
               .push(auth().currentUser.uid)
             }
           })
-          
+
          // {"lat": 4.0945282, "lng": 9.7699599}
 		      })
 		      .catch(error => {
@@ -351,6 +357,7 @@ const HomeRiderDestinationScreen: (props) => React$Node = (props) => {
     // <DestinationInputComp  getMaDestination={getMaDestination} getMalocation={getMalocation}/>
 
     //<DestinationInputComp/>
+
   if (error) return null;
   if (location) {   return (
     <View style={{height:'100%'}}>
