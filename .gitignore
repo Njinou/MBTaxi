@@ -2,6 +2,7 @@
 #
 .DS_Store
 
+.keys
 # Xcode
 #
 build/
@@ -61,3 +62,7 @@ buck-out/
 #Firebase key
 google-services.json
 GoogleService-Info.plist
+
+android/app/release/
+android/app/uploadkey
+android/java_pid13695.hprof

@@ -18,7 +18,10 @@ import imageKeys from "../../../keyText/imageKeys";
 
 import RideHistoryBlock from '../history/RideHistoryBlock';
 import auth from '@react-native-firebase/auth';
+import database from '@react-native-firebase/database';
+
 import {Picker} from '@react-native-picker/picker';
+import destination from "@turf/destination";
 
 
 
@@ -112,6 +115,9 @@ const SelectTaxiTypeScreen = (props) => {
     const [driverMatched,setDriverMatched] = useState(false);
     const [openModal,setOpenModal] = useState(false);
     const [rideDetails,setRideDetails] = useState(objInit);
+
+    const [destination, setDestination] = useState(props.route.params.destination);
+    const [location, setLocation] = useState(props.route.params.location);
 
     const [copayer,setCopayer] = useState([
       auth().currentUser
@@ -326,6 +332,62 @@ firebase
   .once('value', snap => console.log(snap.val()));
 */
    requestRide = () =>{ 
+    // arrayDepart: props.route.params.arrayDepart, arrayArrive: props.route.params.arrayArrive
+    let depart= JSON.stringify(props.route.params.arrayDepart[0]).replace('.','+') +','+JSON.stringify(props.route.params.arrayDepart[1]).replace('.','+');
+    let arrivee= JSON.stringify(props.route.params.arrayArrive[0]).replace('.','+') +','+JSON.stringify(props.route.params.arrayArrive[1]).replace('.','+');
+   // selectedPeople
+    
+   
+
+    
+    database()
+    .ref('/requests/' + arrivee + '/' + depart)
+    .child(selectedPeople)
+    .once('value', snap =>  {
+      if (!snap.exists()){
+        database()
+        .ref('/requests/' + arrivee + '/' + depart)
+        .child(selectedPeople)
+        .push(auth().currentUser.uid)
+      } 
+    }
+    );
+
+    //'/requests/{destinationID}/{departureID}/{nbreOfSeats}/{uid}/'
+     //'alerting/arrive/depart/selectedPeople/  set uid: true' 
+     //=> matched (true)  chauffeur ayant eu l'offre....
+     //set uid false pour tout le reste 
+     // matched false 
+     
+     // fetch  all '/requests/{destinationID}/{departureID}/{nbreOfSeats}/'
+     //si empty or null => uid: false
+
+     //remove user from users/pickupPoint/{departureID} /clients/ orderByValue().equalTo(uid)
+    // remove user from users/destinationPoint/{arrivalID}/clients/{departureID} /orderByValue().equalTo(uid)
+
+    //available space in taxi === 0 then remove taxidriver ID in 
+//orderbyVAlue ().equalTo (uid) remove it ... 
+
+    /*database()
+    .ref('/requests/' + arrivee + '/' + depart)
+    .child(selectedPeople)
+    .once('value', snap =>  {
+      }
+    );*/
+
+       
+    /*database()
+    .ref('/users/favoTaxis/' + arrivee)
+    .child(depart)
+    .once('value', snap => console.log("l'ensemble des taxis favorables a notre developement et puis cest tout.... ", snap.val()));*/
+
+ /*
+ 
+ 
+ .map( rslt =>  {
+        if (rslt.place >=5) return rslt;
+      }).filter(Boolean)*/
+
      let obj = selectedTaxi;
      obj.nbrePeople = selectedPeople;
      obj.prixTotal = prixTotal;
@@ -336,14 +398,23 @@ firebase
      setTimeout(function(){setMatchingDriver(true); }, 1500); //AUTOMATIC TO BE CHANGED
      setTimeout(function(){setMatchingDriver(false);  setDriverMatched(true)}, 3000);
    }
+  
+   /*
+   
+     const [destination, setDestination] = useState(props.route.params.destination);
+    const [location, setLocation] = useState(props.route.params.location);
+    const setModalFunc = (val) => {setOption(false); 
+      props.navigation.navigate('dest2',{ option:val,destination:value,location:locationAddress,currentPosition:location },)
+    ; setOptionValue(val); } //va dans option ride 
 
-    const ViewPrice = (item) =>{
+   */
+    const ViewPrice = (itemSelected) =>{
       return (
         <View style={{flex:1,flexDirection:'row',alignItems:'center'}}>
           <Image source={imageKeys.greenfilledcheck} style={{marginRight:5}}/>
           <View >
             <Text style={{fontSize:16,color:'#000000',fontFamily:fontKeys.MR}}>
-              {item.taxiType? item.taxiType: 'Taxi'} 
+              {itemSelected.item.taxiType} 
             </Text>
             <Text  style={{fontSize:12,color:'#878787',fontFamily:fontKeys.MR}}>
               {selectedPeople >1 ? selectedPeople + ' People':  selectedPeople + ' Person'}
@@ -354,7 +425,8 @@ firebase
     }
 
     const Item = ({ item }) => (
-      <Pressable onPress={ ()=>  {setSelectedTaxi(item); setPrixUnitaire(item.pu); setPrixTotal(selectedPeople * item.pu);setMesombValue (selectedPeople * item.pu - cashValue) }}>
+      <Pressable onPress={ ()=>  {
+        setSelectedTaxi(item); setPrixUnitaire(item.pu); setPrixTotal(selectedPeople * item.pu);setMesombValue (selectedPeople * item.pu - cashValue) }}>
        {item.id === selectedTaxi?.id ? < PriceMoto componentTopLeft={<ViewPrice item={item}/>} textBottomLeft={<MotoPicket/>} textTopRight={item.pu} 
                  style={{flex:1,alignItems:'center'}}
                  styleTopRight={{color:'#3F4D5F',marginBottom:50,fontSize:18,fontFamily:fontKeys.MR,}}
@@ -403,6 +475,11 @@ firebase
             />
 */
 //openingSplitPaymentModal
+
+
+//console.log("this is the location and shit...... fucker ", location) 
+console.log ("Location location",location);
+console.log("destination destination",destination);
 
 if (driverMatched) return <RideDetailsScreen />
 //useEffect or function to match the driver..... 
