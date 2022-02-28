@@ -105,7 +105,7 @@ const SelectTaxiTypeScreen = (props) => {
     const [modalVisible, setModalVisible] = useState(false);
     const [isSearching,setIsSearching] = useState(false); 
     const [input,setInput] = useState(null); 
-    const [selectedPeople, setSelectedPeople] = useState(1);
+    const [selectedPeople, setSelectedPeople] = useState('1');
     const [selectedTaxi,setSelectedTaxi] = useState(DATA[0]); //data[0]
     const [data,setData] = useState(DATA);
     const [prixUnitaire,setPrixUnitaire]  = useState(250);
@@ -134,7 +134,6 @@ const SelectTaxiTypeScreen = (props) => {
     const [updatePrice,setUpdatePrice] = useState((prixTotal/copayer.length).toFixed(2));
 
     gettingNewPriceVal = (val,index)=>  {
-      console.log('this is the index number...',index)
       let temps =  [...inputs];
       temps[index] = val;
       setInputs(temps);
@@ -176,7 +175,6 @@ const SelectTaxiTypeScreen = (props) => {
     } 
     closingModal = () => {
       let valeurPrixTotal = copayer.reduce((a, b,key) => { if (inputsTrueFalse[key]) return (a + parseInt(inputs[key])); return (a + b.price);}, 0);
-      console.log("Voici la valeur totale apres... les modifications .. de la chose..  ",valeurPrixTotal);
       if (valeurPrixTotal  != prixTotal) {
         alert("Le prix ajuste ne correspond pas aux prix total")
       }else {
@@ -393,8 +391,6 @@ firebase
      obj.prixTotal = prixTotal;
      obj.bid= bid
      setRideDetails(obj);
-
-     console.log(obj);
      setTimeout(function(){setMatchingDriver(true); }, 1500); //AUTOMATIC TO BE CHANGED
      setTimeout(function(){setMatchingDriver(false);  setDriverMatched(true)}, 3000);
    }
@@ -476,10 +472,6 @@ firebase
 */
 //openingSplitPaymentModal
 
-
-//console.log("this is the location and shit...... fucker ", location) 
-console.log ("Location location",location);
-console.log("destination destination",destination);
 
 if (driverMatched) return <RideDetailsScreen />
 //useEffect or function to match the driver..... 

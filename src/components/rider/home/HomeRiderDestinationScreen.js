@@ -33,7 +33,8 @@ import { Value } from 'react-native-reanimated';
 
 import auth from '@react-native-firebase/auth';
 import { now } from 'lodash';
-
+import firestore from '@react-native-firebase/firestore';
+import * as geofire from 'geofire-common';
 
 const GOOGLE_MAPS_API_KEY = 'AIzaSyB6iuVD8X4sEeHAGHY3tmMQRyM_Vyoc3UU';
 //DANS SCHEDULE RIDE IL PEUT CHOISIR LE POINT DE PICK UP 
@@ -83,10 +84,7 @@ const HomeRiderDestinationScreen: (props) => React$Node = (props) => {
 
     getMalocation =(val) => console.log("ma location DATA ",data);//setMaLocation (val)
     getMaDestination =(val) =>  console.log("Destination");//setMaDestination (val)
-    
-    console.log(" Here are the values.... maLocation ",maLocation);
-    console.log (" there it is ... maDestination ",maDestination);
-
+   
     const handleLocationPermission = async () => { 
         let permissionCheck = ""
         if (Platform.OS === "ios") {
@@ -137,7 +135,6 @@ const HomeRiderDestinationScreen: (props) => React$Node = (props) => {
                    elmnt.hasOwnProperty('rate') ? setOpeningRating(false): setOpeningRating(true);
     
                  } else {
-                      console.log(" DANS LE COMPOSANT HOME ROUTE ...   does not exists has to be")
                       setOpeningRating(false)
                      // setOpeningRating(true)
                     }
@@ -164,10 +161,9 @@ const HomeRiderDestinationScreen: (props) => React$Node = (props) => {
             } = res.results[0];
             setCurrentAddress(formatted_address);
             setLocationAddress(res.results[0]);
-            //same for revere geocoding             
+            //same for revere geocoding           
         })
             setLocation({ latitude, longitude });
-            console.log("Inside the shit...");
           },
           error => {
             console.log(error.code, error.message)
@@ -202,10 +198,9 @@ const HomeRiderDestinationScreen: (props) => React$Node = (props) => {
        // setInsertDestinationValue(false);
        setIsSearchingAddress(true);
         setTextInput(val);
-     APIPlaceAutocomplete(val,location);
+     APIPlaceAutocomplete(val,location); 
       }
       onSubmitEditing = () =>{
-        console.log('On submit Editing');
         //setOption(true);
        // props.navigation.navigate('riderDestination');
       }
@@ -225,7 +220,47 @@ const HomeRiderDestinationScreen: (props) => React$Node = (props) => {
           setOption(true);
           //props.navigation.navigate('riderDestination');
           
-          let db= JSON.stringify(location.latitude).replace('.','+') +','+JSON.stringify(location.longitude).replace('.','+');
+
+          
+      
+          /*
+          nombre de chauffeur C
+          => pour chaque chauffeur .... on va entrer la position du chauffeur ...  
+          =>Entrer les midpoints de chaque chauffeur => M * C 
+          => M * O(1+C) => O(MC)
+          pour chaque rider =>  R *  o(log(M + R)
+      
+          */
+          // Add the hash and the lat/lng to the document. We will use the hash
+          // for queries and the lat/lng for distance comparisons.
+          //country => city => users => location 
+          // country => city => drivers => midpoint (geohash, lat,lng,id : uid, role, places_vailable, place_Taken, )
+          //country => city => drivers => location ... on time T.
+          //matched_driver_rider
+          // update 
+          /*
+          closest driver based on location..... 
+            compare rider position to driver nearby and filter false positive...
+          */
+         
+          const hash = geofire.geohashForLocation([location.latitude, location.longitude]);
+          let splitCurrentAddress = currentAddress.split(',');
+
+        
+
+          const londonRef = firestore().collection(splitCurrentAddress[splitCurrentAddress.length-1].trim()).doc(splitCurrentAddress[splitCurrentAddress.length-2].trim()).collection('riders').doc('pickupPoint');
+          londonRef.set({
+            uid:auth().currentUser.uid,
+            geohash: hash,
+            lat: location.latitude,
+            lng: location.longitude
+          }).then(() => {
+            console.log("")
+            // ...
+          })
+          .catch (e => console.log("The error is and e and shitl....... ",e))
+
+          let db = JSON.stringify(location.latitude).replace('.','+') +','+JSON.stringify(location.longitude).replace('.','+');
            
 
           database()
@@ -234,7 +269,6 @@ const HomeRiderDestinationScreen: (props) => React$Node = (props) => {
           .on('value', snapshot => {
             if (snapshot.exists()){
             let isAlreadyIn = Object.values(snapshot.val());
-            console.log("asdasdasdadsd",isAlreadyIn);
               if (!isAlreadyIn.includes(auth().currentUser.uid))  {
                 database()
                 .ref('/users/pickupPoint/' + db )
@@ -268,9 +302,7 @@ const HomeRiderDestinationScreen: (props) => React$Node = (props) => {
           Geocoder.from(item.description)
 		      .then(json => {
 			      var locationa = json.results[0].geometry.location;
-		    	console.log(" value description value description ..... ",locationa);
-          
-          //pousser et prendre juste le dernier....
+		    	 //pousser et prendre juste le dernier....
           /*let trajectoire ={
             depart:[location.latitude,location.longitude],
             arrivee:[locationa.lat,locationa.lng]
@@ -280,6 +312,25 @@ const HomeRiderDestinationScreen: (props) => React$Node = (props) => {
           .push(trajectoire)
           .then(() => console.log('Data set.'));*/
            
+                   
+          const hash = geofire.geohashForLocation([locationa.lat, locationa.lng]);
+          let splitCurrentAddress = currentAddress.split(',');
+
+        
+
+          const londonRef = firestore().collection(splitCurrentAddress[splitCurrentAddress.length-1].trim()).doc(splitCurrentAddress[splitCurrentAddress.length-2].trim()).collection('riders').doc('destinationPoint');
+          londonRef.set({
+           uid:auth().currentUser.uid,
+            geohash: hash,
+            lat: locationa.lat,
+            lng: locationa.lng
+          }).then(() => {
+            console.log("")
+            // ...
+          })
+          .catch (e => console.log("The error is and e and shitl....... ",e))
+
+
        
          // .set(auth().currentUser.uid)
           let  derpart = JSON.stringify(location.latitude).replace('.','+') +','+JSON.stringify(location.longitude).replace('.','+');
@@ -321,10 +372,6 @@ const HomeRiderDestinationScreen: (props) => React$Node = (props) => {
 		      .catch(error => {
             console.warn(error);
             });
-           
-            // {"latitude": 4.0226, "longitude": 9.7018}
-          console.log('location location ...',location); //location
-          console.log('value value..... ',item);
           }
           catch(e){
             console.log("Catcheing loge",e)
@@ -344,7 +391,6 @@ const HomeRiderDestinationScreen: (props) => React$Node = (props) => {
 
     
       savingComment =() => {
-        console.log("oh well...")
         setOpeningRating(false)
        // setOpeningRating(!openingRatingModal);
        props.closingRatingModalFunc();
