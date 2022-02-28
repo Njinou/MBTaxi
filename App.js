@@ -7,7 +7,9 @@ import 'react-native-gesture-handler';
  * @flow strict-local
  */
 
-import React,{useState,useEffect,useRef} from 'react';
+
+
+import React,{useState,useEffect,useRef, useCallback} from 'react';
 import {
   SafeAreaView,
   StyleSheet,
@@ -15,8 +17,13 @@ import {
   AppState,
   ImageBackground,
   ActivityIndicator,
-} from 'react-native';
 
+  Button,
+  Text,
+  TextInput,
+  View,
+} from 'react-native';
+/*
 import fontKeys from './src/keyText/fontKeys';
 import imageKeys from './src/keyText/imageKeys';
 
@@ -29,10 +36,28 @@ import database from '@react-native-firebase/database';
 import DestinationInputComp from './src/components/common/DestinationInputComp';
 
 import { NavigationContainer } from '@react-navigation/native';
-import MapsScreen from './src/components/maps/MapsScreen';
+import MapsScreen from './src/components/maps/MapsScreen';*/
 
 const App: () => React$Node = () => {
+  const [message,setMessage] = useState();
+  return(
+    <SafeAreaView>
+      <Button 
+        title="Say Hello"
+        onPress={ ()=> {
+         setTimeout ( ()=>{
+          setMessage("Hello Tester");
 
+         },Math.floor(Math.random() * 200 ))
+        }} />
+        {message && (
+          <Text style={styles.messageText} testID="printed-message">
+            {message}
+          </Text>
+        )}
+    </SafeAreaView>
+  )
+/*
   const appState = useRef(AppState.currentState);
   const [appStateVisible, setAppStateVisible] = useState(appState.current);
   const [initializing, setInitializing] = useState(true);
@@ -75,6 +100,7 @@ const App: () => React$Node = () => {
 //au lieu de Home ... on peut chercher a confirmer le code .... dans Home ... si le code nest pas verifie... 
 //sil nya pas de numero de telephone on met le modal ... 
 
+
 //return <DestinationInputComp/>
 //return <MapsScreen/>
     if (initializing) return <ActivityIndicator size="large" color="#00ff00" />; 
@@ -92,10 +118,16 @@ const App: () => React$Node = () => {
           <HomeRoute/>
         </NavigationContainer>
        
-      );
+      );*/
 };
 
 const styles = StyleSheet.create({
+  messageText: {
+    fontFamily: "Arial",
+    fontSize: 38,
+    textAlign: "center",
+    marginTop: 10
+  },
  arrowDown: {
     borderTopWidth: 66,
     borderRightWidth: 180,
@@ -115,7 +147,7 @@ triangle: {
     height: 0,
     backgroundColor: 'transparent',
     borderStyle: 'solid',
-},
+},/*
 driver: {
   textAlign:'center',
   fontSize:20.5,
@@ -138,7 +170,7 @@ passwordText:{
   color:'#A3A1A1',
   fontSize:12,
   fontFamily:fontKeys.MSB
-},
+},*/
 image: {
   //flex: 1,
   resizeMode: "cover",
